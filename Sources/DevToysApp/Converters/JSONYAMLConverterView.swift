@@ -1,14 +1,19 @@
 import SwiftUI
 
 struct JSONYAMLConverterView {
+    @Environment(\.horizontalSizeClass) var hSizeClass
     @State var input = ""
     @State var output = ""
+
+    init() {
+        UITextView.appearance().backgroundColor = .clear
+    }
 }
 
 extension JSONYAMLConverterView: View {
     var body: some View {
         VStack(spacing: 16) {
-            ConfigurationSection {
+            CustomSection("Configuration") {
                 ConfigurationRow(systemImage: "arrow.left.arrow.right") {
                     Text("Conversion")
                     Text("Select which conversion mode you want to use")
@@ -27,41 +32,66 @@ extension JSONYAMLConverterView: View {
                 }
             }
 
-            HStack {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Input")
-                        Spacer()
-                        Button {
-                            self.input = UIPasteboard.general.string ?? ""
-                        } label: {
-                            Label("Paste", systemImage: "doc.on.clipboard")
-                        }
-                        Button {
-                            self.input.removeAll()
-                        } label: {
-                            Image(systemName: "xmark")
-                        }
-                    }
-                    TextEditor(text: self.$input)
-                }
-                Divider()
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Output")
-                        Spacer()
-                        Button {
-                            UIPasteboard.general.string = self.output
-                        } label: {
-                            Label("Copy", systemImage: "doc.on.doc")
-                        }
-                    }
-                    TextEditor(text: self.$output)
+            if self.hSizeClass == .compact {
+                self.inputView
+                self.outputView
+            } else {
+                HStack {
+                    self.inputView
+                    Divider()
+                    self.outputView
                 }
             }
         }
         .padding()
         .navigationTitle("JSON <> YAML Converter")
+    }
+
+    var inputView: some View {
+        CustomSection("Input") {
+            Button {
+                self.input = UIPasteboard.general.string ?? ""
+            } label: {
+                if self.hSizeClass == .compact {
+                    Image(systemName: "doc.on.clipboard")
+                } else {
+                    Label("Paste", systemImage: "doc.on.clipboard")
+                }
+            }
+            .buttonStyle(.bordered)
+            .hoverEffect()
+            Button(role: .destructive) {
+                self.input.removeAll()
+            } label: {
+                Image(systemName: "xmark")
+            }
+            .buttonStyle(.bordered)
+            .hoverEffect()
+        } content: {
+            TextEditor(text: self.$input)
+                .background(.regularMaterial)
+                .cornerRadius(8)
+        }
+    }
+
+    var outputView: some View {
+        CustomSection("Output") {
+            Button {
+                UIPasteboard.general.string = self.output
+            } label: {
+                if self.hSizeClass == .compact {
+                    Image(systemName: "doc.on.doc")
+                } else {
+                    Label("Copy", systemImage: "doc.on.doc")
+                }
+            }
+            .buttonStyle(.bordered)
+            .hoverEffect()
+        } content: {
+            TextEditor(text: self.$output)
+                .background(.regularMaterial)
+                .cornerRadius(8)
+        }
     }
 }
 
