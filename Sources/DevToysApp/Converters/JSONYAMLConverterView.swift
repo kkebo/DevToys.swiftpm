@@ -52,11 +52,7 @@ extension JSONYAMLConverterView: View {
             Button {
                 self.input = UIPasteboard.general.string ?? ""
             } label: {
-                if self.hSizeClass == .compact {
-                    Image(systemName: "doc.on.clipboard")
-                } else {
-                    Label("Paste", systemImage: "doc.on.clipboard")
-                }
+                Label("Paste", systemImage: "doc.on.clipboard")
             }
             .buttonStyle(.bordered)
             .hoverEffect()
@@ -79,11 +75,7 @@ extension JSONYAMLConverterView: View {
             Button {
                 UIPasteboard.general.string = self.output
             } label: {
-                if self.hSizeClass == .compact {
-                    Image(systemName: "doc.on.doc")
-                } else {
-                    Label("Copy", systemImage: "doc.on.doc")
-                }
+                Label("Copy", systemImage: "doc.on.doc")
             }
             .buttonStyle(.bordered)
             .hoverEffect()
