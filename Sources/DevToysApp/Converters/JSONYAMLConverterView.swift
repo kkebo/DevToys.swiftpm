@@ -80,7 +80,7 @@ extension JSONYAMLConverterView: View {
             .buttonStyle(.bordered)
             .hoverEffect()
         } content: {
-            TextEditor(text: self.$output)
+            TextEditor(text: .constant(self.output))
                 .background(.regularMaterial)
                 .cornerRadius(8)
         }
