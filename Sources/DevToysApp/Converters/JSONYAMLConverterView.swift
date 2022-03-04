@@ -7,21 +7,25 @@ struct JSONYAMLConverterView {
 
 extension JSONYAMLConverterView: View {
     var body: some View {
-        VStack(spacing: 10) {
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Configuration")
-                Label {
-                    VStack(alignment: .leading) {
-                        Text("Conversion")
-                        Text("Select which conversion mode you want to use")
-                            .foregroundStyle(.secondary)
+        VStack(spacing: 16) {
+            ConfigurationSection {
+                ConfigurationRow(systemImage: "arrow.left.arrow.right") {
+                    Text("Conversion")
+                    Text("Select which conversion mode you want to use")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                } content: {
+                    Picker("", selection: .constant(0)) {
+                        Text("YAML to JSON")
+                        Text("JSON to YAML")
                     }
-                } icon: {
-                    Image(systemName: "arrow.left.arrow.right")
                 }
-                Label("Indentation", systemImage: "increase.indent")
+                ConfigurationRow("Indentation", systemImage: "increase.indent") {
+                    Picker("", selection: .constant(0)) {
+                        Text("2 spaces")
+                    }
+                }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack {
                 VStack(alignment: .leading) {
