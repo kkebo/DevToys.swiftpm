@@ -28,6 +28,7 @@ struct ConfigurationRow<Title: View, Content: View> {
         self.content = content()
     }
 
+    @_disfavoredOverload
     init<S: StringProtocol>(
         _ title: S,
         systemImage name: String,

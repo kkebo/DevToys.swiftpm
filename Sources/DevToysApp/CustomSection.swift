@@ -11,7 +11,8 @@ struct CustomSection<Title: View, Content: View> {
         self.title = Text(titleKey).font(.title3)
         self.content = content()
     }
-    
+
+    @_disfavoredOverload
     init<S: StringProtocol>(
         _ title: S,
         @ViewBuilder content: () -> Content
@@ -33,6 +34,7 @@ struct CustomSection<Title: View, Content: View> {
         self.content = content()
     }
 
+    @_disfavoredOverload
     init<S: StringProtocol, Toolbar: View>(
         _ title: S,
         @ViewBuilder toolbar: () -> Toolbar,
