@@ -65,6 +65,9 @@ extension JSONYAMLConverterView: View {
             .hoverEffect()
         } content: {
             TextEditor(text: self.$input)
+                .disableAutocorrection(true)
+                .textInputAutocapitalization(.never)
+                .font(.body.monospaced())
                 .background(.regularMaterial)
                 .cornerRadius(8)
         }
@@ -81,6 +84,9 @@ extension JSONYAMLConverterView: View {
             .hoverEffect()
         } content: {
             TextEditor(text: .constant(self.output))
+                .disableAutocorrection(true)
+                .textInputAutocapitalization(.never)
+                .font(.body.monospaced())
                 .background(.regularMaterial)
                 .cornerRadius(8)
         }
