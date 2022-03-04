@@ -16,6 +16,7 @@ extension Sidebar: View {
             Section("Text") {}
             Section("Graphic") {}
         }
+        .navigationTitle("DevToys")
     }
 }
 
