@@ -74,10 +74,6 @@ struct NumberBaseConverterView {
         .init(self.inputString, radix: self.inputType.radix) ?? 0
     }
 
-    init() {
-        UITextField.appearance().clearButtonMode = .whileEditing
-    }
-
     private func outputValue(in type: NumberType) -> String {
         .init(
             self.inputValue,
@@ -132,6 +128,9 @@ extension NumberBaseConverterView: View {
             }
         }
         .navigationTitle("Number Base Converter")
+        .task { @MainActor in
+            UITextField.appearance().clearButtonMode = .whileEditing
+        }
     }
 
     private func outputSection(type: NumberType) -> some View {
