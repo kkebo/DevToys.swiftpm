@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CustomSection<Title: View, Content: View> {
+struct ToySection<Title: View, Content: View> {
     let title: Title
     let content: Content
 
@@ -49,7 +49,7 @@ struct CustomSection<Title: View, Content: View> {
     }
 }
 
-extension CustomSection: View {
+extension ToySection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             self.title
@@ -59,9 +59,9 @@ extension CustomSection: View {
     }
 }
 
-struct CustomSection_Previews: PreviewProvider {
+struct ToySection_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSection("Configuration") {
+        ToySection("Configuration") {
             ConfigurationRow("foo", systemImage: "pencil") {
                 Text("bar")
             }

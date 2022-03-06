@@ -12,8 +12,8 @@ struct JSONYAMLConverterView {
 
 extension JSONYAMLConverterView: View {
     var body: some View {
-        VStack(spacing: 16) {
-            CustomSection("Configuration") {
+        ToyPage {
+            ToySection("Configuration") {
                 ConfigurationRow(systemImage: "arrow.left.arrow.right") {
                     Text("Conversion")
                     Text("Select which conversion mode you want to use")
@@ -43,12 +43,11 @@ extension JSONYAMLConverterView: View {
                 }
             }
         }
-        .padding()
         .navigationTitle("JSON <> YAML Converter")
     }
 
     var inputView: some View {
-        CustomSection("Input") {
+        ToySection("Input") {
             Button {
                 self.input = UIPasteboard.general.string ?? ""
             } label: {
@@ -70,11 +69,12 @@ extension JSONYAMLConverterView: View {
                 .font(.body.monospaced())
                 .background(.regularMaterial)
                 .cornerRadius(8)
+                .frame(minHeight: 200)
         }
     }
 
     var outputView: some View {
-        CustomSection("Output") {
+        ToySection("Output") {
             Button {
                 UIPasteboard.general.string = self.output
             } label: {
@@ -89,6 +89,7 @@ extension JSONYAMLConverterView: View {
                 .font(.body.monospaced())
                 .background(.regularMaterial)
                 .cornerRadius(8)
+                .frame(minHeight: 200)
         }
     }
 }
