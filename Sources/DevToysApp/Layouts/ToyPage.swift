@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ToyPage<Content: View> {
-    let content: Content
+    private let content: Content
 
     init(@ViewBuilder content: () -> Content) {
         self.content = content()

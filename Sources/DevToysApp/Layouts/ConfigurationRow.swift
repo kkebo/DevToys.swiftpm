@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ConfigurationRow<Title: View, Content: View> {
-    let label: Label<Title, Image>
-    let content: Content
+    private let label: Label<Title, Image>
+    private let content: Content
 
     init<T: View>(
         systemImage name: String,

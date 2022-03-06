@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ToySection<Title: View, Content: View> {
-    let title: Title
-    let content: Content
+    private let title: Title
+    private let content: Content
 
     init(
         _ titleKey: LocalizedStringKey,

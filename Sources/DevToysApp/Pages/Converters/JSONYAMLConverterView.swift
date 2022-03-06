@@ -46,7 +46,7 @@ extension JSONYAMLConverterView: View {
         .navigationTitle("JSON <> YAML Converter")
     }
 
-    var inputSection: some View {
+    private var inputSection: some View {
         ToySection("Input") {
             Button {
                 self.input = UIPasteboard.general.string ?? ""
@@ -73,7 +73,7 @@ extension JSONYAMLConverterView: View {
         }
     }
 
-    var outputSection: some View {
+    private var outputSection: some View {
         ToySection("Output") {
             Button {
                 UIPasteboard.general.string = self.output
