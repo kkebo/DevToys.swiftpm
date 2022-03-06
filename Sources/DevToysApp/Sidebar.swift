@@ -9,6 +9,9 @@ extension Sidebar: View {
                 NavigationLink("JSON <> YAML") {
                     JSONYAMLConverterView()
                 }
+                NavigationLink("Number Base") {
+                    NumberBaseConverterView()
+                }
             }
             Section("Encoders / Decoders") {}
             Section("Formatters") {}
