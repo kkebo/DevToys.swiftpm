@@ -6,6 +6,38 @@
 
 This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swiss Army Knife for developers, for iPadOS.
 
+<img src="./screenshot.png" alt="screenshot" width="640">
+
+## Features
+
+- Converters
+  - [ ] JSON <> YAML
+  - [x] Number Base
+- Encoders / Decoders
+  - [ ] HTML
+  - [ ] URL
+  - [ ] Base64
+  - [ ] GZip
+  - [ ] JWT Decoder
+- Formatters
+  - [ ] JSON
+  - [ ] SQL
+  - [ ] XML
+- Generators
+  - [ ] Hash (MD5, SHA1, SHA256, SHA512)
+  - [ ] UUID 1 and 4
+  - [ ] Lorem Ipsum
+  - [ ] Checksum
+- Text
+  - [ ] Inspector & Case Converter
+  - [ ] Regex Tester
+  - [ ] Text Comparer
+  - [ ] Markdown Preview
+- Graphic
+  - [ ] Color Blindness Simulator
+  - [ ] PNG / JPEG Compressor
+  - [ ] Image Converter
+
 ## Target platforms
 
 - iPadOS 15.2 or later
