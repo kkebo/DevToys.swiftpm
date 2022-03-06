@@ -8,7 +8,7 @@ struct CustomSection<Title: View, Content: View> {
         _ titleKey: LocalizedStringKey,
         @ViewBuilder content: () -> Content
     ) where Title == Text {
-        self.title = Text(titleKey).font(.title3)
+        self.title = Text(titleKey)
         self.content = content()
     }
 
@@ -17,7 +17,7 @@ struct CustomSection<Title: View, Content: View> {
         _ title: S,
         @ViewBuilder content: () -> Content
     ) where Title == Text {
-        self.title = Text(title).font(.title3)
+        self.title = Text(title)
         self.content = content()
     }
 
@@ -27,7 +27,7 @@ struct CustomSection<Title: View, Content: View> {
         @ViewBuilder content: () -> Content
     ) where Title == HStack<TupleView<(Text, Spacer, Toolbar)>> {
         self.title = HStack {
-            Text(titleKey).font(.title3)
+            Text(titleKey)
             Spacer()
             toolbar()
         }
@@ -41,7 +41,7 @@ struct CustomSection<Title: View, Content: View> {
         @ViewBuilder content: () -> Content
     ) where Title == HStack<TupleView<(Text, Spacer, Toolbar)>> {
         self.title = HStack {
-            Text(title).font(.title3)
+            Text(title)
             Spacer()
             toolbar()
         }
@@ -55,6 +55,7 @@ extension CustomSection: View {
             self.title
             self.content
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
