@@ -4,7 +4,7 @@
 [![Swift Playgrounds](https://img.shields.io/badge/Swift%20Playgrounds-4.0-orange.svg)](https://itunes.apple.com/jp/app/swift-playgrounds/id908519492)
 ![Platform](https://img.shields.io/badge/platform-ipados-lightgrey.svg)
 
-This is the app re-implemented [DevToys](https://devtoys.app) with SwiftUI for iPadOS.
+This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swiss Army Knife for developers, for iPadOS.
 
 ## Target platforms
 
