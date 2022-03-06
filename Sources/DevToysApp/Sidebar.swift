@@ -5,19 +5,40 @@ struct Sidebar {}
 extension Sidebar: View {
     var body: some View {
         List {
-            Section("Converters") {
-                NavigationLink("JSON <> YAML") {
+            Section {
+                NavigationLink {
                     JSONYAMLConverterView()
+                } label: {
+                    Label("JSON <> YAML", systemImage: "doc.plaintext")
                 }
-                NavigationLink("Number Base") {
+                NavigationLink {
                     NumberBaseConverterView()
+                } label: {
+                    Label("Number Base", systemImage: "number.square")
                 }
+            } header: {
+                Label("Converters", systemImage: "arrow.triangle.2.circlepath")
             }
-            Section("Encoders / Decoders") {}
-            Section("Formatters") {}
-            Section("Generators") {}
-            Section("Text") {}
-            Section("Graphic") {}
+            Section {
+            } header: {
+                Label("Encoders / Decoders", systemImage: "01.square")
+            }
+            Section {
+            } header: {
+                Label("Formatters", systemImage: "increase.indent")
+            }
+            Section {
+            } header: {
+                Label("Generators", systemImage: "plus.square")
+            }
+            Section {
+            } header: {
+                Label("Text", systemImage: "textformat")
+            }
+            Section {
+            } header: {
+                Label("Graphic", systemImage: "photo.on.rectangle.angled")
+            }
         }
         .navigationTitle("DevToys")
     }
