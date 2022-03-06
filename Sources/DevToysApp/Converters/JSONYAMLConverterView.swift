@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct JSONYAMLConverterView {
-    @Environment(\.horizontalSizeClass) var hSizeClass
-    @State var input = ""
-    @State var output = ""
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    @State private var input = ""
+    @State private var output = ""
 
     init() {
         UITextView.appearance().backgroundColor = .clear
