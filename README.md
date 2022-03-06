@@ -5,3 +5,19 @@
 ![Platform](https://img.shields.io/badge/platform-ipados-lightgrey.svg)
 
 This is the app re-implemented [DevToys](https://devtoys.app) with SwiftUI for iPadOS.
+
+## Target platforms
+
+- iPadOS 15.2 or later
+- iOS 15.2 or later
+  
+## Build requirements
+
+- Swift Playgrounds 4.0 or later (iPadOS 15.2 or later)
+- Xcode 13.2 or later (macOS 11.3 or later)
+
+## Get Started
+
+1. Clone this repository
+1. Open DevToys.swiftpm with Swift Playgrounds
+1. Run
