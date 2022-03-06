@@ -19,5 +19,6 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
 ## Get Started
 
 1. Clone this repository
+    - I recommend [Working Copy](https://workingcopyapp.com) or [a-Shell](https://holzschu.github.io/a-Shell_iOS/) (`lg2` command).
 1. Open DevToys.swiftpm with Swift Playgrounds
 1. Run
