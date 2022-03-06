@@ -33,20 +33,20 @@ extension JSONYAMLConverterView: View {
             }
 
             if self.hSizeClass == .compact {
-                self.inputView
-                self.outputView
+                self.inputSection
+                self.outputSection
             } else {
                 HStack {
-                    self.inputView
+                    self.inputSection
                     Divider()
-                    self.outputView
+                    self.outputSection
                 }
             }
         }
         .navigationTitle("JSON <> YAML Converter")
     }
 
-    var inputView: some View {
+    var inputSection: some View {
         ToySection("Input") {
             Button {
                 self.input = UIPasteboard.general.string ?? ""
@@ -73,7 +73,7 @@ extension JSONYAMLConverterView: View {
         }
     }
 
-    var outputView: some View {
+    var outputSection: some View {
         ToySection("Output") {
             Button {
                 UIPasteboard.general.string = self.output
