@@ -92,7 +92,7 @@ extension NumberBaseConverterView: View {
     var body: some View {
         ToyPage {
             ToySection("Configuration") {
-                ConfigurationRow("Format type", systemImage: "textformat") {
+                ConfigurationRow("Format number", systemImage: "textformat") {
                     Toggle("", isOn: self.$isFormatOn)
                         .tint(.accentColor)
                 }
