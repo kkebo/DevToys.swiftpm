@@ -16,7 +16,7 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
   - [x] Number Base
 - Encoders / Decoders
   - [ ] HTML
-  - [ ] URL
+  - [x] URL
   - [ ] Base64
   - [ ] GZip
   - [ ] JWT Decoder

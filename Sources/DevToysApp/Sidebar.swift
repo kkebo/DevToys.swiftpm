@@ -20,6 +20,11 @@ extension Sidebar: View {
                 Label("Converters", systemImage: "arrow.triangle.2.circlepath")
             }
             Section {
+                NavigationLink {
+                    URLEncoderDecoderView()
+                } label: {
+                    Label("URL", systemImage: "link")
+                }
             } header: {
                 Label("Encoders / Decoders", systemImage: "01.square")
             }
