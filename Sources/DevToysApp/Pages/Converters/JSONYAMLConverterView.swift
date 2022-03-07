@@ -72,7 +72,7 @@ extension JSONYAMLConverterView: View {
                 .font(.body.monospaced())
                 .background(.regularMaterial)
                 .cornerRadius(8)
-                .frame(minHeight: 200)
+                .frame(idealHeight: 200)
         }
     }
 
@@ -92,7 +92,7 @@ extension JSONYAMLConverterView: View {
                 .font(.body.monospaced())
                 .background(.regularMaterial)
                 .cornerRadius(8)
-                .frame(minHeight: 200)
+                .frame(idealHeight: 200)
         }
     }
 }
