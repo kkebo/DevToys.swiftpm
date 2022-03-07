@@ -38,6 +38,11 @@ extension Sidebar: View {
                 Label("Formatters", systemImage: "increase.indent")
             }
             Section {
+                NavigationLink {
+                    UUIDGeneratorView()
+                } label: {
+                    Label("UUID", systemImage: "01.square")
+                }
             } header: {
                 Label("Generators", systemImage: "plus.square")
             }

@@ -26,7 +26,9 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
   - [ ] XML
 - Generators
   - [ ] Hash (MD5, SHA1, SHA256, SHA512)
-  - [ ] UUID 1 and 4
+  - [ ] UUID
+    - [ ] UUID v1
+    - [x] UUID v4
   - [ ] Lorem Ipsum
   - [ ] Checksum
 - Text
