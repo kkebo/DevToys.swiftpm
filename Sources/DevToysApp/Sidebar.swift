@@ -25,6 +25,11 @@ extension Sidebar: View {
                 } label: {
                     Label("URL", systemImage: "link")
                 }
+                NavigationLink {
+                    Base64EncoderDecoderView()
+                } label: {
+                    Label("Base 64", systemImage: "b.square")
+                }
             } header: {
                 Label("Encoders / Decoders", systemImage: "01.square")
             }
