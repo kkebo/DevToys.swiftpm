@@ -100,9 +100,6 @@ extension URLEncoderDecoderView: View {
             }
         }
         .navigationTitle("URL Encoder / Decoder")
-        .task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
     }
 }
 
