@@ -51,7 +51,7 @@ struct UUIDGeneratorView {
             uuids = uuids.lowercased()
         }
         if !self.usesHyphens {
-            uuids.removeAll { $0 == "-" }
+            uuids = uuids.split(separator: "-").joined()
         }
         self.output = uuids
     }
