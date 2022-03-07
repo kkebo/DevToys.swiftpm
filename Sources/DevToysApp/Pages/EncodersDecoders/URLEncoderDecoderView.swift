@@ -15,7 +15,7 @@ struct URLEncoderDecoderView {
     @State private var conversionMode = ConversionMode.encode
     @State private var input = ""
 
-    var output: String {
+    private var output: String {
         switch self.conversionMode {
         case .encode:
             return self.input
