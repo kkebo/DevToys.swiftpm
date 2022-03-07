@@ -70,6 +70,12 @@ struct NumberBaseConverterView {
     @State private var inputType = NumberType.decimal
     @State private var inputString = ""
 
+    init() {
+        Task.detached { @MainActor in
+            UITextField.appearance().clearButtonMode = .whileEditing
+        }
+    }
+
     private var inputValue: Int {
         .init(self.inputString, radix: self.inputType.radix) ?? 0
     }
@@ -128,9 +134,6 @@ extension NumberBaseConverterView: View {
             }
         }
         .navigationTitle("Number Base Converter")
-        .task { @MainActor in
-            UITextField.appearance().clearButtonMode = .whileEditing
-        }
     }
 
     private func outputSection(type: NumberType) -> some View {

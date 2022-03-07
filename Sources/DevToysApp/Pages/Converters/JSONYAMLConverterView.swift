@@ -4,6 +4,12 @@ struct JSONYAMLConverterView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
     @State private var input = ""
     @State private var output = ""
+
+    init() {
+        Task.detached { @MainActor in
+            UITextView.appearance().backgroundColor = .clear
+        }
+    }
 }
 
 extension JSONYAMLConverterView: View {
@@ -40,9 +46,6 @@ extension JSONYAMLConverterView: View {
             }
         }
         .navigationTitle("JSON <> YAML Converter")
-        .task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
     }
 
     private var inputSection: some View {
