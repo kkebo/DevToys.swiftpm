@@ -64,6 +64,7 @@ extension JSONYAMLConverterView: View {
             }
             .buttonStyle(.bordered)
             .hoverEffect()
+            .disabled(self.input.isEmpty)
         } content: {
             TextEditor(text: self.$input)
                 .disableAutocorrection(true)
