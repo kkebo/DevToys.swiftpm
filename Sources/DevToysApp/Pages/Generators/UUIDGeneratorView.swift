@@ -60,87 +60,97 @@ struct UUIDGeneratorView {
 extension UUIDGeneratorView: View {
     var body: some View {
         ToyPage {
-            ToySection("Configuration") {
-                ConfigurationRow("Hyphens", systemImage: "minus") {
-                    Toggle("", isOn: self.$usesHyphens)
-                        .tint(.accentColor)
-                }
-                ConfigurationRow("Uppercase", systemImage: "textformat") {
-                    Toggle("", isOn: self.$isUppercase)
-                        .tint(.accentColor)
-                }
-                ConfigurationRow(systemImage: "slider.horizontal.3") {
-                    Text("UUID version")
-                    Text("Choose the version of UUID to generate")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                } content: {
-                    Picker("", selection: self.$version) {
-                        ForEach(UUIDVersion.allCases) {
-                            Text($0.description)
-                        }
-                    }
-                    .disabled(true)  // TODO: Uncomment if v1 is implemented
-                }
-            }
-
-            ToySection("Generate") {
-                HStack {
-                    Button(
-                        self.numberOfUUIDs ?? 0 > 1
-                            ? "Generate UUIDs"
-                            : "Generate UUID"
-                    ) {
-                        if self.output.isEmpty {
-                            self.output = self.generate()
-                        } else {
-                            self.output += "\n" + self.generate()
-                        }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .hoverEffect()
-                    .disabled(self.numberOfUUIDs == nil)
-                    Text("x")
-                    TextField("N", text: self.$numberOfUUIDsString)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(maxWidth: 80)
-                        .keyboardType(.numberPad)
-                        .font(.body.monospacedDigit())
-                        .disableAutocorrection(true)
-                        .textInputAutocapitalization(.never)
-                        .border(self.numberOfUUIDs == nil ? .red : .clear)
-                }
-            }
-
-            ToySection(self.numberOfUUIDs ?? 0 > 1 ? "UUIDs" : "UUID") {
-                Button {
-                    UIPasteboard.general.string = self.output
-                } label: {
-                    Label("Copy", systemImage: "doc.on.doc")
-                }
-                .buttonStyle(.bordered)
-                .hoverEffect()
-                Button(role: .destructive) {
-                    self.output.removeAll()
-                } label: {
-                    Image(systemName: "xmark")
-                }
-                .buttonStyle(.bordered)
-                .hoverEffect()
-                .disabled(self.output.isEmpty)
-            } content: {
-                TextEditor(text: .constant(self.output))
-                    .disableAutocorrection(true)
-                    .textInputAutocapitalization(.never)
-                    .font(.body.monospaced())
-                    .background(.regularMaterial)
-                    .cornerRadius(8)
-                    .frame(idealHeight: 200)
-            }
+            self.configurationSection
+            self.generateSection
+            self.outputSection
         }
         .navigationTitle("UUID Generator")
         .onAppear {
             self.output = self.generate()
+        }
+    }
+
+    private var configurationSection: some View {
+        ToySection("Configuration") {
+            ConfigurationRow("Hyphens", systemImage: "minus") {
+                Toggle("", isOn: self.$usesHyphens)
+                    .tint(.accentColor)
+            }
+            ConfigurationRow("Uppercase", systemImage: "textformat") {
+                Toggle("", isOn: self.$isUppercase)
+                    .tint(.accentColor)
+            }
+            ConfigurationRow(systemImage: "slider.horizontal.3") {
+                Text("UUID version")
+                Text("Choose the version of UUID to generate")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            } content: {
+                Picker("", selection: self.$version) {
+                    ForEach(UUIDVersion.allCases) {
+                        Text($0.description)
+                    }
+                }
+                .disabled(true)  // TODO: Uncomment if v1 is implemented
+            }
+        }
+    }
+
+    private var generateSection: some View {
+        ToySection("Generate") {
+            HStack {
+                Button(
+                    self.numberOfUUIDs ?? 0 > 1
+                    ? "Generate UUIDs"
+                    : "Generate UUID"
+                ) {
+                    if self.output.isEmpty {
+                        self.output = self.generate()
+                    } else {
+                        self.output += "\n" + self.generate()
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .hoverEffect()
+                .disabled(self.numberOfUUIDs == nil)
+                Text("x")
+                TextField("N", text: self.$numberOfUUIDsString)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(maxWidth: 80)
+                    .keyboardType(.numberPad)
+                    .font(.body.monospacedDigit())
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
+                    .border(self.numberOfUUIDs == nil ? .red : .clear)
+            }
+        }
+    }
+
+    private var outputSection: some View {
+        ToySection(self.numberOfUUIDs ?? 0 > 1 ? "UUIDs" : "UUID") {
+            Button {
+                UIPasteboard.general.string = self.output
+            } label: {
+                Label("Copy", systemImage: "doc.on.doc")
+            }
+            .buttonStyle(.bordered)
+            .hoverEffect()
+            Button(role: .destructive) {
+                self.output.removeAll()
+            } label: {
+                Image(systemName: "xmark")
+            }
+            .buttonStyle(.bordered)
+            .hoverEffect()
+            .disabled(self.output.isEmpty)
+        } content: {
+            TextEditor(text: .constant(self.output))
+                .disableAutocorrection(true)
+                .textInputAutocapitalization(.never)
+                .font(.body.monospaced())
+                .background(.regularMaterial)
+                .cornerRadius(8)
+                .frame(idealHeight: 200)
         }
     }
 }
