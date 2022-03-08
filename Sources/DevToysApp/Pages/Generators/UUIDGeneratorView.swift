@@ -35,15 +35,15 @@ struct UUIDGeneratorView {
         }
     }
 
-    private func generate() {
+    private func generate() -> String {
         switch self.version {
         case .v1: preconditionFailure("not implemented")
-        case .v4: self.generateUUIDv4()
+        case .v4: return self.generateUUIDv4()
         }
     }
 
-    private func generateUUIDv4() {
-        guard let numberOfUUIDs = self.numberOfUUIDs else { return }
+    private func generateUUIDv4() -> String {
+        guard let numberOfUUIDs = self.numberOfUUIDs else { return "" }
         var uuids = (0..<numberOfUUIDs).lazy
             .map { _ in UUID().uuidString }
             .joined(separator: "\n")
@@ -53,7 +53,7 @@ struct UUIDGeneratorView {
         if !self.usesHyphens {
             uuids = uuids.split(separator: "-").joined()
         }
-        self.output = uuids
+        return uuids
     }
 }
 
@@ -89,9 +89,14 @@ extension UUIDGeneratorView: View {
                     Button(
                         self.numberOfUUIDs ?? 0 > 1
                             ? "Generate UUIDs"
-                            : "Generate UUID",
-                        action: self.generate
-                    )
+                            : "Generate UUID"
+                    ) {
+                        if self.output.isEmpty {
+                            self.output = self.generate()
+                        } else {
+                            self.output += "\n" + self.generate()
+                        }
+                    }
                     .buttonStyle(.borderedProminent)
                     .hoverEffect()
                     .disabled(self.numberOfUUIDs == nil)
@@ -134,6 +139,9 @@ extension UUIDGeneratorView: View {
             }
         }
         .navigationTitle("UUID Generator")
+        .onAppear {
+            self.output = self.generate()
+        }
     }
 }
 
