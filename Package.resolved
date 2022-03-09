@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log.git",
+        "state": {
+          "branch": null,
+          "revision": "5d66f7ba25daf4f94100e7022febf3c75e37a6c7",
+          "version": "1.4.2"
+        }
+      },
+      {
+        "package": "LoggingPlayground",
+        "repositoryURL": "https://github.com/kkk669/swift-log-playground",
+        "state": {
+          "branch": null,
+          "revision": "0e54bc8a292a3ddddecab489a2fefa90988ab21a",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
