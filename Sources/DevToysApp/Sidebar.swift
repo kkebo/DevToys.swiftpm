@@ -39,6 +39,11 @@ extension Sidebar: View {
             }
             Section {
                 NavigationLink {
+                    HashGeneratorView()
+                } label: {
+                    Label("Hash", systemImage: "number")
+                }
+                NavigationLink {
                     UUIDGeneratorView()
                 } label: {
                     Label("UUID", systemImage: "01.square")
