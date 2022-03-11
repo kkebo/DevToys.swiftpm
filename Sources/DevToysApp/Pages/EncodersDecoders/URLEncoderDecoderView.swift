@@ -1,24 +1,12 @@
 import SwiftUI
 
-private enum ConversionMode: String {
-    case encode
-    case decode
-}
-
-extension ConversionMode: Identifiable {
-    var id: Self { self }
-}
-
-extension ConversionMode: CaseIterable {}
-
 struct URLEncoderDecoderView {
-    @State private var conversionMode = ConversionMode.encode
+    @State private var encodeMode = true
     @State private var input = ""
     @State private var isImporterPresented = false
 
     private var output: String {
-        switch self.conversionMode {
-        case .encode:
+        if self.encodeMode {
             return self.input
                 .addingPercentEncoding(
                     withAllowedCharacters: .urlQueryAllowed
@@ -26,7 +14,7 @@ struct URLEncoderDecoderView {
                             .init(charactersIn: ":#[]@!$&'()*+,;=")
                         )
                 ) ?? ""
-        case .decode:
+        } else {
             return self.input.removingPercentEncoding ?? ""
         }
     }
@@ -62,10 +50,9 @@ extension URLEncoderDecoderView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    Picker("", selection: self.$conversionMode) {
-                        ForEach(ConversionMode.allCases) {
-                            Text(LocalizedStringKey($0.rawValue.capitalized))
-                        }
+                    Picker("", selection: self.$encodeMode) {
+                        Text("Encode").tag(true)
+                        Text("Decode").tag(false)
                     }
                 }
             }
