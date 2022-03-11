@@ -33,13 +33,7 @@ extension NumberBaseConverterView: View {
             }
 
             ToySection("Input") {
-                Button {
-                    self.viewModel.input = UIPasteboard.general.string ?? ""
-                } label: {
-                    Label("Paste", systemImage: "doc.on.clipboard")
-                }
-                .buttonStyle(.bordered)
-                .hoverEffect()
+                PasteButton(text: self.$viewModel.input)
             } content: {
                 TextField("", text: self.$viewModel.input)
                     .textFieldStyle(.roundedBorder)
@@ -75,13 +69,7 @@ extension NumberBaseConverterView: View {
                     .textFieldStyle(.roundedBorder)
                     .font(.body.monospaced())
                     .disabled(true)
-                Button {
-                    UIPasteboard.general.string = value
-                } label: {
-                    Image(systemName: "doc.on.doc")
-                }
-                .buttonStyle(.bordered)
-                .hoverEffect()
+                CopyButton(text: value)
             }
         }
     } 

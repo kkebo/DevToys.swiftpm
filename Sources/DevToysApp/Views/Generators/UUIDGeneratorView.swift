@@ -82,21 +82,8 @@ extension UUIDGeneratorView: View {
         ToySection(
             self.viewModel.numberOfUUIDs ?? 0 > 1 ? "UUIDs" : "UUID"
         ) {
-            Button {
-                UIPasteboard.general.string = self.viewModel.output
-            } label: {
-                Label("Copy", systemImage: "doc.on.doc")
-            }
-            .buttonStyle(.bordered)
-            .hoverEffect()
-            Button(role: .destructive) {
-                self.viewModel.output.removeAll()
-            } label: {
-                Image(systemName: "xmark")
-            }
-            .buttonStyle(.bordered)
-            .hoverEffect()
-            .disabled(self.viewModel.output.isEmpty)
+            CopyButton(text: self.viewModel.output)
+            ClearButton(text: self.$viewModel.output)
         } content: {
             TextEditor(text: .constant(self.viewModel.output))
                 .disableAutocorrection(true)

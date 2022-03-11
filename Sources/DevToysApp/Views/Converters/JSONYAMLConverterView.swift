@@ -4,25 +4,10 @@ struct JSONYAMLConverterView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
     @State private var input = ""
     @State private var output = ""
-    @State private var isImporterPresented = false
 
     init() {
         Task.detached { @MainActor in
             UITextView.appearance().backgroundColor = .clear
-        }
-    }
-
-    private func openFile(_ url: URL) {
-        guard url.startAccessingSecurityScopedResource() else {
-            logger.error("Failed to start accessing security scoped resource.")
-            return
-        }
-        defer { url.stopAccessingSecurityScopedResource() }
-        do {
-            self.input = try .init(contentsOf: url)
-        } catch {
-            logger.error("\(error.localizedDescription)")
-            return
         }
     }
 }
@@ -65,50 +50,9 @@ extension JSONYAMLConverterView: View {
 
     private var inputSection: some View {
         ToySection("Input") {
-            Button {
-                self.input = UIPasteboard.general.string ?? ""
-            } label: {
-                Label("Paste", systemImage: "doc.on.clipboard")
-            }
-            .buttonStyle(.bordered)
-            .hoverEffect()
-            Button {
-                if self.isImporterPresented {
-                    // Workaround for the known issue
-                    // https://developer.apple.com/forums/thread/693140
-                    self.isImporterPresented = false
-                    DispatchQueue.main.asyncAfter(
-                        deadline: .now() + .milliseconds(50)
-                    ) {
-                        self.isImporterPresented = true
-                    }
-                } else {
-                    self.isImporterPresented = true
-                }
-            } label: {
-                Image(systemName: "doc")
-            }
-            .buttonStyle(.bordered)
-            .hoverEffect()
-            .fileImporter(
-                isPresented: self.$isImporterPresented,
-                allowedContentTypes: [.data]
-            ) {
-                switch $0 {
-                case .success(let url):
-                    self.openFile(url)
-                case .failure(let error):
-                    logger.error("\(error.localizedDescription)")
-                }
-            }
-            Button(role: .destructive) {
-                self.input.removeAll()
-            } label: {
-                Image(systemName: "xmark")
-            }
-            .buttonStyle(.bordered)
-            .hoverEffect()
-            .disabled(self.input.isEmpty)
+            PasteButton(text: self.$input)
+            OpenFileButton(text: self.$input)
+            ClearButton(text: self.$input)
         } content: {
             TextEditor(text: self.$input)
                 .disableAutocorrection(true)
@@ -122,13 +66,7 @@ extension JSONYAMLConverterView: View {
 
     private var outputSection: some View {
         ToySection("Output") {
-            Button {
-                UIPasteboard.general.string = self.output
-            } label: {
-                Label("Copy", systemImage: "doc.on.doc")
-            }
-            .buttonStyle(.bordered)
-            .hoverEffect()
+            CopyButton(text: self.output)
         } content: {
             TextEditor(text: .constant(self.output))
                 .disableAutocorrection(true)
