@@ -1,29 +1,17 @@
 import SwiftUI
 
-private enum ConversionMode: String {
-    case encode
-    case decode
-}
-
-extension ConversionMode: Identifiable {
-    var id: Self { self }
-}
-
-extension ConversionMode: CaseIterable {}
-
 struct Base64EncoderDecoderView {
-    @State private var conversionMode = ConversionMode.encode
+    @State private var encodeMode = true
     @State private var encoding = String.Encoding.utf8
     @State private var input = ""
     @State private var isImporterPresented = false
 
     private var output: String {
-        switch self.conversionMode {
-        case .encode:
+        if self.encodeMode {
             return self.input
                 .data(using: self.encoding)?
                 .base64EncodedString() ?? ""
-        case .decode:
+        } else {
             return Data(base64Encoded: self.input)
                 .flatMap { .init(data: $0, encoding: self.encoding) }
                 ?? ""
@@ -61,10 +49,9 @@ extension Base64EncoderDecoderView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    Picker("", selection: self.$conversionMode) {
-                        ForEach(ConversionMode.allCases) {
-                            Text(LocalizedStringKey($0.rawValue.capitalized))
-                        }
+                    Picker("", selection: self.$encodeMode) {
+                        Text("Encode").tag(true)
+                        Text("Decode").tag(false)
                     }
                 }
                 ConfigurationRow(systemImage: "textformat") {
