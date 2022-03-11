@@ -1,24 +1,13 @@
-import CryptoKit
 import SwiftUI
 
 struct HashGeneratorView {
-    @State private var isUppercase = false
-    @State private var input = ""
+    @StateObject private var viewModel = HashGeneratorViewModel()
     @State private var isImporterPresented = false
 
     init() {
         Task.detached { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
-    }
-
-    private func hashInput<F: HashFunction>(type: F.Type) -> String {
-        guard !self.input.isEmpty else { return "" }
-        guard let data = self.input.data(using: .utf8) else { return "" }
-        let output: String = F.hash(data: data).lazy
-            .map { String($0, radix: 16) }
-            .joined()
-        return self.isUppercase ? output.uppercased() : output
     }
 
     private func openFile(_ url: URL) {
@@ -28,7 +17,7 @@ struct HashGeneratorView {
         }
         defer { url.stopAccessingSecurityScopedResource() }
         do {
-            self.input = try .init(contentsOf: url)
+            self.viewModel.input = try .init(contentsOf: url)
         } catch {
             logger.error("\(error.localizedDescription)")
             return
@@ -41,17 +30,17 @@ extension HashGeneratorView: View {
         ToyPage {
             ToySection("Configuration") {
                 ConfigurationRow("Uppercase", systemImage: "textformat") {
-                    Toggle("", isOn: self.$isUppercase)
+                    Toggle("", isOn: self.$viewModel.isUppercase)
                 }
             }
 
             self.inputSection
 
             VStack(spacing: 10) {
-                self.outputSection("MD5", type: Insecure.MD5.self)
-                self.outputSection("SHA1", type: Insecure.SHA1.self)
-                self.outputSection("SHA256", type: SHA256.self)
-                self.outputSection("SHA512", type: SHA512.self)
+                self.outputSection("MD5", value: self.viewModel.md5)
+                self.outputSection("SHA1", value: self.viewModel.sha1)
+                self.outputSection("SHA256", value: self.viewModel.sha256)
+                self.outputSection("SHA512", value: self.viewModel.sha512)
             }
         }
         .navigationTitle("Hash Generator")
@@ -60,7 +49,7 @@ extension HashGeneratorView: View {
     private var inputSection: some View {
         ToySection("Input") {
             Button {
-                self.input = UIPasteboard.general.string ?? ""
+                self.viewModel.input = UIPasteboard.general.string ?? ""
             } label: {
                 Label("Paste", systemImage: "doc.on.clipboard")
             }
@@ -96,15 +85,15 @@ extension HashGeneratorView: View {
                 }
             }
             Button(role: .destructive) {
-                self.input.removeAll()
+                self.viewModel.input.removeAll()
             } label: {
                 Image(systemName: "xmark")
             }
             .buttonStyle(.bordered)
             .hoverEffect()
-            .disabled(self.input.isEmpty)
+            .disabled(self.viewModel.input.isEmpty)
         } content: {
-            TextEditor(text: self.$input)
+            TextEditor(text: self.$viewModel.input)
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
                 .font(.body.monospaced())
@@ -114,18 +103,18 @@ extension HashGeneratorView: View {
         }
     }
 
-    private func outputSection<F: HashFunction>(
+    private func outputSection(
         _ title: String,
-        type: F.Type
+        value: String
     ) -> some View {
         ToySection(title) {
             HStack {
-                TextField("", text: .constant(self.hashInput(type: type)))
+                TextField("", text: .constant(value))
                     .textFieldStyle(.roundedBorder)
                     .font(.body.monospaced())
                     .disabled(true)
                 Button {
-                    UIPasteboard.general.string = self.hashInput(type: type)
+                    UIPasteboard.general.string = value
                 } label: {
                     Image(systemName: "doc.on.doc")
                 }

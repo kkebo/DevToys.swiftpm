@@ -1,22 +1,8 @@
 import SwiftUI
 
 struct Base64EncoderDecoderView {
-    @State private var encodeMode = true
-    @State private var encoding = String.Encoding.utf8
-    @State private var input = ""
+    @StateObject private var viewModel = Base64EncoderDecoderViewModel()
     @State private var isImporterPresented = false
-
-    private var output: String {
-        if self.encodeMode {
-            return self.input
-                .data(using: self.encoding)?
-                .base64EncodedString() ?? ""
-        } else {
-            return Data(base64Encoded: self.input)
-                .flatMap { .init(data: $0, encoding: self.encoding) }
-                ?? ""
-        }
-    }
 
     init() {
         Task.detached { @MainActor in
@@ -31,7 +17,7 @@ struct Base64EncoderDecoderView {
         }
         defer { url.stopAccessingSecurityScopedResource() }
         do {
-            self.input = try .init(contentsOf: url)
+            self.viewModel.input = try .init(contentsOf: url)
         } catch {
             logger.error("\(error.localizedDescription)")
             return
@@ -49,7 +35,7 @@ extension Base64EncoderDecoderView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    Picker("", selection: self.$encodeMode) {
+                    Picker("", selection: self.$viewModel.encodeMode) {
                         Text("Encode").tag(true)
                         Text("Decode").tag(false)
                     }
@@ -60,7 +46,7 @@ extension Base64EncoderDecoderView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    Picker("", selection: self.$encoding) {
+                    Picker("", selection: self.$viewModel.encoding) {
                         Text("UTF-8").tag(String.Encoding.utf8)
                         Text("ASCII").tag(String.Encoding.ascii)
                     }
@@ -69,7 +55,7 @@ extension Base64EncoderDecoderView: View {
 
             ToySection("Input") {
                 Button {
-                    self.input = UIPasteboard.general.string ?? ""
+                    self.viewModel.input = UIPasteboard.general.string ?? ""
                 } label: {
                     Label("Paste", systemImage: "doc.on.clipboard")
                 }
@@ -105,15 +91,15 @@ extension Base64EncoderDecoderView: View {
                     }
                 }
                 Button(role: .destructive) {
-                    self.input.removeAll()
+                    self.viewModel.input.removeAll()
                 } label: {
                     Image(systemName: "xmark")
                 }
                 .buttonStyle(.bordered)
                 .hoverEffect()
-                .disabled(self.input.isEmpty)
+                .disabled(self.viewModel.input.isEmpty)
             } content: {
-                TextEditor(text: self.$input)
+                TextEditor(text: self.$viewModel.input)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .font(.body.monospaced())
@@ -124,14 +110,14 @@ extension Base64EncoderDecoderView: View {
             
             ToySection("Output") {
                 Button {
-                    UIPasteboard.general.string = self.output
+                    UIPasteboard.general.string = self.viewModel.output
                 } label: {
                     Label("Copy", systemImage: "doc.on.doc")
                 }
                 .buttonStyle(.bordered)
                 .hoverEffect()
             } content: {
-                TextEditor(text: .constant(self.output))
+                TextEditor(text: .constant(self.viewModel.output))
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .font(.body.monospaced())

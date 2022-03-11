@@ -1,23 +1,8 @@
 import SwiftUI
 
 struct URLEncoderDecoderView {
-    @State private var encodeMode = true
-    @State private var input = ""
+    @StateObject private var viewModel = URLEncoderDecoderViewModel()
     @State private var isImporterPresented = false
-
-    private var output: String {
-        if self.encodeMode {
-            return self.input
-                .addingPercentEncoding(
-                    withAllowedCharacters: .urlQueryAllowed
-                        .subtracting(
-                            .init(charactersIn: ":#[]@!$&'()*+,;=")
-                        )
-                ) ?? ""
-        } else {
-            return self.input.removingPercentEncoding ?? ""
-        }
-    }
 
     init() {
         Task.detached { @MainActor in
@@ -32,7 +17,7 @@ struct URLEncoderDecoderView {
         }
         defer { url.stopAccessingSecurityScopedResource() }
         do {
-            self.input = try .init(contentsOf: url)
+            self.viewModel.input = try .init(contentsOf: url)
         } catch {
             logger.error("\(error.localizedDescription)")
             return
@@ -50,7 +35,7 @@ extension URLEncoderDecoderView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    Picker("", selection: self.$encodeMode) {
+                    Picker("", selection: self.$viewModel.encodeMode) {
                         Text("Encode").tag(true)
                         Text("Decode").tag(false)
                     }
@@ -59,7 +44,7 @@ extension URLEncoderDecoderView: View {
 
             ToySection("Input") {
                 Button {
-                    self.input = UIPasteboard.general.string ?? ""
+                    self.viewModel.input = UIPasteboard.general.string ?? ""
                 } label: {
                     Label("Paste", systemImage: "doc.on.clipboard")
                 }
@@ -95,15 +80,15 @@ extension URLEncoderDecoderView: View {
                     }
                 }
                 Button(role: .destructive) {
-                    self.input.removeAll()
+                    self.viewModel.input.removeAll()
                 } label: {
                     Image(systemName: "xmark")
                 }
                 .buttonStyle(.bordered)
                 .hoverEffect()
-                .disabled(self.input.isEmpty)
+                .disabled(self.viewModel.input.isEmpty)
             } content: {
-                TextEditor(text: self.$input)
+                TextEditor(text: self.$viewModel.input)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .font(.body.monospaced())
@@ -114,14 +99,14 @@ extension URLEncoderDecoderView: View {
 
             ToySection("Output") {
                 Button {
-                    UIPasteboard.general.string = self.output
+                    UIPasteboard.general.string = self.viewModel.output
                 } label: {
                     Label("Copy", systemImage: "doc.on.doc")
                 }
                 .buttonStyle(.bordered)
                 .hoverEffect()
             } content: {
-                TextEditor(text: .constant(self.output))
+                TextEditor(text: .constant(self.viewModel.output))
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .font(.body.monospaced())

@@ -1,48 +1,8 @@
-import SwiftJSONFormatter
 import SwiftUI
 
-private enum Indentation {
-    case twoSpaces
-    case fourSpaces
-    case oneTab
-    case minified
-}
-
-extension Indentation: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .twoSpaces: return "2 spaces"
-        case .fourSpaces: return "4 spaces"
-        case .oneTab: return "1 tab"
-        case .minified: return "Minified"
-        }
-    }
-}
-
-extension Indentation: Identifiable {
-    var id: Self { self }
-}
-
-extension Indentation: CaseIterable {}
-
-struct JSONFormatterView {
-    @Environment(\.horizontalSizeClass) private var hSizeClass
-    @State private var indentation = Indentation.twoSpaces
-    @State private var input = ""
+struct JWTDecoderView {
+    @StateObject private var viewModel = JWTDecoderViewModel()
     @State private var isImporterPresented = false
-
-    private var output: String {
-        switch self.indentation {
-        case .twoSpaces:
-            return SwiftJSONFormatter.beautify(self.input, indent: "  ")
-        case .fourSpaces:
-            return SwiftJSONFormatter.beautify(self.input, indent: "    ")
-        case .oneTab:
-            return SwiftJSONFormatter.beautify(self.input, indent: "\t")
-        case .minified:
-            return SwiftJSONFormatter.minify(self.input)
-        }
-    }
 
     init() {
         Task.detached { @MainActor in
@@ -57,7 +17,7 @@ struct JSONFormatterView {
         }
         defer { url.stopAccessingSecurityScopedResource() }
         do {
-            self.input = try .init(contentsOf: url)
+            self.viewModel.input = try .init(contentsOf: url)
         } catch {
             logger.error("\(error.localizedDescription)")
             return
@@ -65,37 +25,20 @@ struct JSONFormatterView {
     }
 }
 
-extension JSONFormatterView: View {
+extension JWTDecoderView: View {
     var body: some View {
         ToyPage {
-            ToySection("Configuration") {
-                ConfigurationRow("Indentation", systemImage: "increase.indent") {
-                    Picker("", selection: self.$indentation) {
-                        ForEach(Indentation.allCases) {
-                            Text(LocalizedStringKey($0.description))
-                        }
-                    }
-                }
-            }
-
-            if self.hSizeClass == .compact {
-                self.inputSection
-                self.outputSection
-            } else {
-                HStack {
-                    self.inputSection
-                    Divider()
-                    self.outputSection
-                }
-            }
+            self.inputSection
+            self.headerSection
+            self.payloadSection
         }
-        .navigationTitle("JSON Formatter")
+        .navigationTitle("JWT Decoder")
     }
 
     private var inputSection: some View {
-        ToySection("Input") {
+        ToySection("JWT Token") {
             Button {
-                self.input = UIPasteboard.general.string ?? ""
+                self.viewModel.input = UIPasteboard.general.string ?? ""
             } label: {
                 Label("Paste", systemImage: "doc.on.clipboard")
             }
@@ -131,15 +74,35 @@ extension JSONFormatterView: View {
                 }
             }
             Button(role: .destructive) {
-                self.input.removeAll()
+                self.viewModel.input.removeAll()
             } label: {
                 Image(systemName: "xmark")
             }
             .buttonStyle(.bordered)
             .hoverEffect()
-            .disabled(self.input.isEmpty)
+            .disabled(self.viewModel.input.isEmpty)
         } content: {
-            TextEditor(text: self.$input)
+            TextEditor(text: self.$viewModel.input)
+                .disableAutocorrection(true)
+                .textInputAutocapitalization(.never)
+                .font(.body.monospaced())
+                .background(.regularMaterial)
+                .cornerRadius(8)
+                .frame(height: 100)
+        }
+    }
+
+    private var headerSection: some View {
+        ToySection("Header") {
+            Button {
+                UIPasteboard.general.string = self.viewModel.header
+            } label: {
+                Label("Copy", systemImage: "doc.on.doc")
+            }
+            .buttonStyle(.bordered)
+            .hoverEffect()
+        } content: {
+            TextEditor(text: .constant(self.viewModel.header))
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
                 .font(.body.monospaced())
@@ -149,17 +112,17 @@ extension JSONFormatterView: View {
         }
     }
 
-    private var outputSection: some View {
-        ToySection("Output") {
+    private var payloadSection: some View {
+        ToySection("Payload") {
             Button {
-                UIPasteboard.general.string = self.output
+                UIPasteboard.general.string = self.viewModel.payload
             } label: {
                 Label("Copy", systemImage: "doc.on.doc")
             }
             .buttonStyle(.bordered)
             .hoverEffect()
         } content: {
-            TextEditor(text: .constant(self.output))
+            TextEditor(text: .constant(self.viewModel.payload))
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
                 .font(.body.monospaced())
@@ -170,8 +133,8 @@ extension JSONFormatterView: View {
     }
 }
 
-struct JSONFormatterView_Previews: PreviewProvider {
+struct JWTDecoderView_Previews: PreviewProvider {
     static var previews: some View {
-        JSONFormatterView()
+        JWTDecoderView()
     }
 }

@@ -1,10 +1,8 @@
-import JWTDecode
 import SwiftUI
 
-struct JWTDecoderView {
-    @State private var input = ""
-    @State private var header = ""
-    @State private var payload = ""
+struct JSONFormatterView {
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    @StateObject private var viewModel = JSONFormatterViewModel()
     @State private var isImporterPresented = false
 
     init() {
@@ -20,7 +18,7 @@ struct JWTDecoderView {
         }
         defer { url.stopAccessingSecurityScopedResource() }
         do {
-            self.input = try .init(contentsOf: url)
+            self.viewModel.input = try .init(contentsOf: url)
         } catch {
             logger.error("\(error.localizedDescription)")
             return
@@ -28,20 +26,37 @@ struct JWTDecoderView {
     }
 }
 
-extension JWTDecoderView: View {
+extension JSONFormatterView: View {
     var body: some View {
         ToyPage {
-            self.inputSection
-            self.headerSection
-            self.payloadSection
+            ToySection("Configuration") {
+                ConfigurationRow("Indentation", systemImage: "increase.indent") {
+                    Picker("", selection: self.$viewModel.indentation) {
+                        ForEach(JSONIndentation.allCases) {
+                            Text(LocalizedStringKey($0.description))
+                        }
+                    }
+                }
+            }
+
+            if self.hSizeClass == .compact {
+                self.inputSection
+                self.outputSection
+            } else {
+                HStack {
+                    self.inputSection
+                    Divider()
+                    self.outputSection
+                }
+            }
         }
-        .navigationTitle("JWT Decoder")
+        .navigationTitle("JSON Formatter")
     }
 
     private var inputSection: some View {
-        ToySection("JWT Token") {
+        ToySection("Input") {
             Button {
-                self.input = UIPasteboard.general.string ?? ""
+                self.viewModel.input = UIPasteboard.general.string ?? ""
             } label: {
                 Label("Paste", systemImage: "doc.on.clipboard")
             }
@@ -77,54 +92,15 @@ extension JWTDecoderView: View {
                 }
             }
             Button(role: .destructive) {
-                self.input.removeAll()
+                self.viewModel.input.removeAll()
             } label: {
                 Image(systemName: "xmark")
             }
             .buttonStyle(.bordered)
             .hoverEffect()
-            .disabled(self.input.isEmpty)
+            .disabled(self.viewModel.input.isEmpty)
         } content: {
-            TextEditor(text: self.$input)
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
-                .frame(height: 100)
-                .onChange(of: self.input) { input in
-                    guard
-                        let jwt = try? JWTDecode.decode(jwt: input),
-                        let header = try? JSONSerialization.data(
-                            withJSONObject: jwt.header,
-                            options: [.prettyPrinted, .sortedKeys]
-                        ),
-                        let payload = try? JSONSerialization.data(
-                            withJSONObject: jwt.body,
-                            options: [.prettyPrinted, .sortedKeys]
-                        )
-                    else {
-                        self.header = ""
-                        self.payload = ""
-                        return
-                    }
-                    self.header = .init(data: header, encoding: .utf8) ?? ""
-                    self.payload = .init(data: payload, encoding: .utf8) ?? ""
-                }
-        }
-    }
-
-    private var headerSection: some View {
-        ToySection("Header") {
-            Button {
-                UIPasteboard.general.string = self.header
-            } label: {
-                Label("Copy", systemImage: "doc.on.doc")
-            }
-            .buttonStyle(.bordered)
-            .hoverEffect()
-        } content: {
-            TextEditor(text: .constant(self.header))
+            TextEditor(text: self.$viewModel.input)
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
                 .font(.body.monospaced())
@@ -134,17 +110,17 @@ extension JWTDecoderView: View {
         }
     }
 
-    private var payloadSection: some View {
-        ToySection("Payload") {
+    private var outputSection: some View {
+        ToySection("Output") {
             Button {
-                UIPasteboard.general.string = self.payload
+                UIPasteboard.general.string = self.viewModel.output
             } label: {
                 Label("Copy", systemImage: "doc.on.doc")
             }
             .buttonStyle(.bordered)
             .hoverEffect()
         } content: {
-            TextEditor(text: .constant(self.payload))
+            TextEditor(text: .constant(self.viewModel.output))
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
                 .font(.body.monospaced())
@@ -155,8 +131,8 @@ extension JWTDecoderView: View {
     }
 }
 
-struct JWTDecoderView_Previews: PreviewProvider {
+struct JSONFormatterView_Previews: PreviewProvider {
     static var previews: some View {
-        JWTDecoderView()
+        JSONFormatterView()
     }
 }
