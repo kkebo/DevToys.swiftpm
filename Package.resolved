@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "JWTDecode",
+        "repositoryURL": "https://github.com/auth0/JWTDecode.swift",
+        "state": {
+          "branch": null,
+          "revision": "3cd207fb9e943b6168a117baa3936c823204c2dc",
+          "version": "2.6.3"
+        }
+      },
+      {
         "package": "swift-log",
         "repositoryURL": "https://github.com/apple/swift-log.git",
         "state": {

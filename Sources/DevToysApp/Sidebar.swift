@@ -30,6 +30,15 @@ extension Sidebar: View {
                 } label: {
                     Label("Base 64", systemImage: "b.square")
                 }
+                NavigationLink {
+                    JWTDecoderView()
+                } label: {
+                    Label {
+                        Text("JWT Decoder")
+                    } icon: {
+                        Image(systemName: "rays").font(.body.bold())
+                    }
+                }
             } header: {
                 Label("Encoders / Decoders", systemImage: "01.square")
             }
