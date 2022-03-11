@@ -21,7 +21,7 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
   - [ ] GZip
   - [ ] JWT Decoder
 - Formatters
-  - [ ] JSON
+  - [x] JSON
   - [ ] SQL
   - [ ] XML
 - Generators

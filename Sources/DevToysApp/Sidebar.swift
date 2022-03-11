@@ -34,6 +34,11 @@ extension Sidebar: View {
                 Label("Encoders / Decoders", systemImage: "01.square")
             }
             Section {
+                NavigationLink {
+                    JSONFormatterView()
+                } label: {
+                    Label("JSON", systemImage: "curlybraces")
+                }
             } header: {
                 Label("Formatters", systemImage: "increase.indent")
             }

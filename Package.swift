@@ -33,19 +33,21 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/kkk669/swift-log-playground", "0.1.0"..<"0.2.0")
+        .package(url: "https://github.com/kkk669/swift-log-playground", "0.1.0"..<"0.2.0"),
+        .package(url: "https://github.com/luin/SwiftJSONFormatter", "1.0.0"..<"1.1.0")
     ],
     targets: [
         .executableTarget(
             name: "DevToysApp",
             dependencies: [
-                .product(name: "LoggingPlayground", package: "swift-log-playground")
+                .product(name: "LoggingPlayground", package: "swift-log-playground"),
+                .product(name: "SwiftJSONFormatter", package: "SwiftJSONFormatter")
             ],
             swiftSettings: [
                 .unsafeFlags(["-Xfrontend", "-warn-long-function-bodies=100"], .when(configuration: .debug)),
                 .unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
                 .unsafeFlags(["-Xfrontend", "-warn-concurrency"]),
-                .unsafeFlags(["-Xfrontend", "-enable-actor-data-race-checks"]),
+                .unsafeFlags(["-Xfrontend", "-enable-actor-data-race-checks"])
             ]
         )
     ]
