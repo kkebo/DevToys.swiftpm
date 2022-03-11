@@ -18,6 +18,15 @@
           "revision": "0e54bc8a292a3ddddecab489a2fefa90988ab21a",
           "version": "0.1.0"
         }
+      },
+      {
+        "package": "SwiftJSONFormatter",
+        "repositoryURL": "https://github.com/luin/SwiftJSONFormatter",
+        "state": {
+          "branch": null,
+          "revision": "843456f526833771b9e6b3d0f5b7d06f2557ecab",
+          "version": "1.0.0"
+        }
       }
     ]
   },
