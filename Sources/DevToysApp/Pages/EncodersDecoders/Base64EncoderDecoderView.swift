@@ -61,9 +61,8 @@ extension Base64EncoderDecoderView: View {
                         .foregroundStyle(.secondary)
                 } content: {
                     Picker("", selection: self.$encoding) {
-                        ForEach([String.Encoding.utf8], id: \.self) {
-                            Text($0.description)
-                        }
+                        Text("UTF-8").tag(String.Encoding.utf8)
+                        Text("ASCII").tag(String.Encoding.ascii)
                     }
                 }
             }
