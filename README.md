@@ -19,7 +19,7 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
   - [x] URL
   - [x] Base64
   - [ ] GZip
-  - [ ] JWT Decoder
+  - [x] JWT Decoder
 - Formatters
   - [x] JSON
   - [ ] SQL
