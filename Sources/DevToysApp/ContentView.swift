@@ -1,13 +1,19 @@
 import SwiftUI
 
-struct ContentView {}
+struct ContentView {
+    @State private var searchQuery = ""
+}
 
 extension ContentView: View {
     var body: some View {
         NavigationView {
-            Sidebar()
+            Sidebar(searchQuery: self.searchQuery)
             AllToolsView(searchQuery: self.searchQuery)
         }
+        .searchable(
+            text: self.$searchQuery,
+            prompt: "Type to search for tools..."
+        )
     }
 }
 
