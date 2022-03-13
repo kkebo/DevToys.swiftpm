@@ -5,6 +5,11 @@ struct Sidebar {}
 extension Sidebar: View {
     var body: some View {
         List {
+            NavigationLink {
+                AllToolsView()
+            } label: {
+                Label("All tools", systemImage: "house")
+            }
             Section {
                 NavigationLink {
                     JSONYAMLConverterView()

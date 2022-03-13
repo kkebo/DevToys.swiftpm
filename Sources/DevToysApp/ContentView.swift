@@ -6,7 +6,7 @@ extension ContentView: View {
     var body: some View {
         NavigationView {
             Sidebar()
-            Text("Happy Hacking!")
+            AllToolsView(searchQuery: self.searchQuery)
         }
     }
 }
