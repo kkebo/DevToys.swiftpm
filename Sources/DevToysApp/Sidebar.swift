@@ -40,7 +40,7 @@ extension Sidebar: View {
                 Label("Number Base", systemImage: "number.square")
             }
         } header: {
-            Label("Converters", systemImage: "arrow.triangle.2.circlepath")
+            Text("Converters").font(.title3.bold())
         }
         Section {
             NavigationLink {
@@ -63,7 +63,7 @@ extension Sidebar: View {
                 }
             }
         } header: {
-            Label("Encoders / Decoders", systemImage: "01.square")
+            Text("Encoders / Decoders").font(.title3.bold())
         }
         Section {
             NavigationLink {
@@ -72,7 +72,7 @@ extension Sidebar: View {
                 Label("JSON", systemImage: "curlybraces")
             }
         } header: {
-            Label("Formatters", systemImage: "increase.indent")
+            Text("Formatters").font(.title3.bold())
         }
         Section {
             NavigationLink {
@@ -86,15 +86,15 @@ extension Sidebar: View {
                 Label("UUID", systemImage: "01.square")
             }
         } header: {
-            Label("Generators", systemImage: "plus.square")
+            Text("Generators").font(.title3.bold())
         }
         Section {
         } header: {
-            Label("Text", systemImage: "textformat")
+            Text("Text").font(.title3.bold())
         }
         Section {
         } header: {
-            Label("Graphic", systemImage: "photo.on.rectangle.angled")
+            Text("Graphic").font(.title3.bold())
         }
     }
 
