@@ -4,7 +4,7 @@ struct NumberBaseConverterView {
     @StateObject private var viewModel = NumberBaseConverterViewModel()
 
     init() {
-        Task.detached { @MainActor in
+        Task { @MainActor in
             UITextField.appearance().clearButtonMode = .whileEditing
         }
     }

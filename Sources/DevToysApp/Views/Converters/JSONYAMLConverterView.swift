@@ -6,7 +6,7 @@ struct JSONYAMLConverterView {
     @State private var output = ""
 
     init() {
-        Task.detached { @MainActor in
+        Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
     }

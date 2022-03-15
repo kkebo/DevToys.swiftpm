@@ -5,7 +5,7 @@ struct JSONFormatterView {
     @StateObject private var viewModel = JSONFormatterViewModel()
 
     init() {
-        Task.detached { @MainActor in
+        Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
     }

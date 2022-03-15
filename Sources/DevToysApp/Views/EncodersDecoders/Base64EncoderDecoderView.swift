@@ -4,7 +4,7 @@ struct Base64EncoderDecoderView {
     @StateObject private var viewModel = Base64EncoderDecoderViewModel()
 
     init() {
-        Task.detached { @MainActor in
+        Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
     }

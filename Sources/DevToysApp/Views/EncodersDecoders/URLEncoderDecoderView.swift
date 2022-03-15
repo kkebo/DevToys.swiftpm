@@ -4,7 +4,7 @@ struct URLEncoderDecoderView {
     @StateObject private var viewModel = URLEncoderDecoderViewModel()
 
     init() {
-        Task.detached { @MainActor in
+        Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
     }

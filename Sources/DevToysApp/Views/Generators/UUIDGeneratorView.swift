@@ -4,7 +4,7 @@ struct UUIDGeneratorView {
     @StateObject private var viewModel = UUIDGeneratorViewModel()
 
     init() {
-        Task.detached { @MainActor in
+        Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
     }

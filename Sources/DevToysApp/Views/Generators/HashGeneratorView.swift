@@ -4,7 +4,7 @@ struct HashGeneratorView {
     @StateObject private var viewModel = HashGeneratorViewModel()
 
     init() {
-        Task.detached { @MainActor in
+        Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
     }

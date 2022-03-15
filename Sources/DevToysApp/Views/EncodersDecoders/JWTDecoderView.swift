@@ -4,7 +4,7 @@ struct JWTDecoderView {
     @StateObject private var viewModel = JWTDecoderViewModel()
 
     init() {
-        Task.detached { @MainActor in
+        Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
     }
