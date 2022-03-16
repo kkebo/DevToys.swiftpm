@@ -44,6 +44,14 @@ extension Sidebar: View {
         }
         Section {
             NavigationLink {
+                HTMLEncoderDecoderView()
+            } label: {
+                Label(
+                    "HTML",
+                    systemImage: "chevron.left.slash.chevron.right"
+                )
+            }
+            NavigationLink {
                 URLEncoderDecoderView()
             } label: {
                 Label("URL", systemImage: "link")
@@ -111,6 +119,16 @@ extension Sidebar: View {
                 NumberBaseConverterView()
             } label: {
                 Label("Number Base Converter", systemImage: "number.square")
+            }
+        }
+        if self.isMatch("HTML Encoder / Decoder") {
+            NavigationLink {
+                HTMLEncoderDecoderView()
+            } label: {
+                Label(
+                    "HTML Encoder / Decoder",
+                    systemImage: "chevron.left.slash.chevron.right"
+                )
             }
         }
         if self.isMatch("URL Encoder / Decoder") {
