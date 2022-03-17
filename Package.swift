@@ -36,7 +36,7 @@ let package = Package(
         .package(url: "https://github.com/kkk669/swift-log-playground", "0.1.0"..<"0.2.0"),
         .package(url: "https://github.com/luin/SwiftJSONFormatter", "1.0.0"..<"1.1.0"),
         .package(url: "https://github.com/auth0/JWTDecode.swift", "2.6.3"..<"2.7.0"),
-        .package(url: "https://github.com/Kitura/swift-html-entities", "4.0.0"..<"4.1.0")
+        .package(url: "https://github.com/kkk669/swift-html-entities", "4.0.1"..<"4.1.0")
     ],
     targets: [
         .executableTarget(

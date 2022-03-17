@@ -12,11 +12,11 @@
       },
       {
         "package": "HTMLEntities",
-        "repositoryURL": "https://github.com/Kitura/swift-html-entities",
+        "repositoryURL": "https://github.com/kkk669/swift-html-entities",
         "state": {
           "branch": null,
-          "revision": "3686a2b931be24dd2531307f89e2f1d648c0200e",
-          "version": "4.0.0"
+          "revision": "39083f7a1826b1b01e3a270795ed409ac4ccea18",
+          "version": "4.0.1"
         }
       },
       {
