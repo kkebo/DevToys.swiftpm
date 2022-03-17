@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "HTMLEntities",
+        "repositoryURL": "https://github.com/kkk669/swift-html-entities",
+        "state": {
+          "branch": null,
+          "revision": "39083f7a1826b1b01e3a270795ed409ac4ccea18",
+          "version": "4.0.1"
+        }
+      },
+      {
         "package": "swift-log",
         "repositoryURL": "https://github.com/apple/swift-log.git",
         "state": {

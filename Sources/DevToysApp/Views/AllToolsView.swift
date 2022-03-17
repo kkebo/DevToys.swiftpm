@@ -87,6 +87,26 @@ extension AllToolsView: View {
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
+                    || "HTML Encoder / Decoder".lowercased()
+                        .contains(self.searchQuery.lowercased())
+                {
+                    NavigationLink {
+                        HTMLEncoderDecoderView()
+                    } label: {
+                        Label {
+                            Text("HTML")
+                            Text(
+                                "Encode or decode all the applicable characters to their corresponding HTML entities"
+                            )
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        } icon: {
+                            Image(systemName: "chevron.left.slash.chevron.right")
+                        }
+                    }
+                }
+                if !self.isSearching
+                    || self.searchQuery.isEmpty
                     || "JSON Formatter".lowercased()
                         .contains(self.searchQuery.lowercased())
                 {

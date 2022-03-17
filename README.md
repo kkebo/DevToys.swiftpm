@@ -15,7 +15,7 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
   - [ ] JSON <> YAML
   - [x] Number Base
 - Encoders / Decoders
-  - [ ] HTML
+  - [x] HTML
   - [x] URL
   - [x] Base64
   - [ ] GZip
