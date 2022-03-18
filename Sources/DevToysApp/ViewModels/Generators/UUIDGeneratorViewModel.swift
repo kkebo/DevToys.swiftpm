@@ -5,7 +5,7 @@ final class UUIDGeneratorViewModel {
     @Published var usesHyphens = true
     @Published var isUppercase = false
     @Published var version = UUIDVersion.v4
-    @Published var numberOfUUIDsString = "5"
+    @Published var numberOfUUIDsString = "1"
     @Published var numberOfUUIDs: UInt?
     @Published var output = ""
 
@@ -13,8 +13,6 @@ final class UUIDGeneratorViewModel {
         self.$numberOfUUIDsString
             .map(UInt.init)
             .assign(to: &self.$numberOfUUIDs)
-
-        self.output = self.generate()
     }
 
     func generate() -> String {
