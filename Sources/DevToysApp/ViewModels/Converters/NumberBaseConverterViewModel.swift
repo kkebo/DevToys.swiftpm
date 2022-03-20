@@ -4,7 +4,7 @@ final class NumberBaseConverterViewModel {
     @Published var isFormatOn = true
     @Published var inputType = NumberType.decimal
     @Published var input = ""
-    @Published private var inputValue = 0
+    @Published private var inputValue: UInt = 0
     @Published var hexadecimal = ""
     @Published var decimal = ""
     @Published var octal = ""
@@ -14,7 +14,7 @@ final class NumberBaseConverterViewModel {
         self.$input
             .combineLatest(self.$inputType)
             .dropFirst()
-            .map { Int($0, radix: $1.radix) ?? 0 }
+            .map { .init($0, radix: $1.radix) ?? 0 }
             .assign(to: &self.$inputValue)
 
         let inputWithOptions = self.$inputValue
@@ -46,7 +46,7 @@ final class NumberBaseConverterViewModel {
                 .enumerated()
                 .reduce(into: "") { acc, cur in
                     let (i, c) = cur
-                    if i > 0 && c != "-" && i.isMultiple(of: type.digitsInGroup) {
+                    if i > 0 && i.isMultiple(of: type.digitsInGroup) {
                         acc = String(c) + type.separator + acc
                     } else {
                         acc = String(c) + acc
