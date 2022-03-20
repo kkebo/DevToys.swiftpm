@@ -19,6 +19,7 @@ final class NumberBaseConverterViewModel {
 
         let inputWithOptions = self.$inputValue
             .combineLatest(self.$isFormatOn)
+            .dropFirst()
 
         inputWithOptions
             .map { value, format in
