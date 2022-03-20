@@ -4,7 +4,7 @@ final class NumberBaseConverterViewModel {
     @Published var isFormatOn = true
     @Published var inputType = NumberType.decimal
     @Published var input = ""
-    @Published private var inputValue: UInt = 0
+    @Published private var inputValue: UInt?
     @Published var hexadecimal = ""
     @Published var decimal = ""
     @Published var octal = ""
@@ -14,23 +14,39 @@ final class NumberBaseConverterViewModel {
         self.$input
             .combineLatest(self.$inputType)
             .dropFirst()
-            .map { .init($0, radix: $1.radix) ?? 0 }
+            .map { .init($0, radix: $1.radix) }
             .assign(to: &self.$inputValue)
 
         let inputWithOptions = self.$inputValue
             .combineLatest(self.$isFormatOn)
 
         inputWithOptions
-            .map { Self.convert($0, into: .hexadecimal, formatted: $1) }
+            .map { value, format in
+                value.map {
+                    Self.convert($0, into: .hexadecimal, formatted: format)
+                } ?? ""
+            }
             .assign(to: &self.$hexadecimal)
         inputWithOptions
-            .map { Self.convert($0, into: .decimal, formatted: $1) }
+            .map { value, format in
+                value.map {
+                    Self.convert($0, into: .decimal, formatted: format)
+                } ?? ""
+            }
             .assign(to: &self.$decimal)
         inputWithOptions
-            .map { Self.convert($0, into: .octal, formatted: $1) }
+            .map { value, format in
+                value.map {
+                    Self.convert($0, into: .octal, formatted: format)
+                } ?? ""
+            }
             .assign(to: &self.$octal)
         inputWithOptions
-            .map { Self.convert($0, into: .binary, formatted: $1) }
+            .map { value, format in
+                value.map {
+                    Self.convert($0, into: .binary, formatted: format)
+                } ?? ""
+            }
             .assign(to: &self.$binary)
     }
 
