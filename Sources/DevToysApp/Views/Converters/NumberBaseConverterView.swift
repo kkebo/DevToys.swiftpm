@@ -32,6 +32,18 @@ extension NumberBaseConverterView: View {
                 }
             }
 
+            if !self.viewModel.input.isEmpty && self.viewModel.inputValue == nil {
+                HStack {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundColor(.yellow)
+                    Text("The current value isn't valid")
+                    Spacer()
+                }
+                .padding()
+                .background(.yellow.opacity(0.2))
+                .cornerRadius(8)
+            }
+
             ToySection("Input") {
                 PasteButton(text: self.$viewModel.input)
             } content: {

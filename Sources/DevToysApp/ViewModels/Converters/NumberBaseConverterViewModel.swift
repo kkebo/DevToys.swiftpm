@@ -4,7 +4,7 @@ final class NumberBaseConverterViewModel {
     @Published var isFormatOn = true
     @Published var inputType = NumberType.decimal
     @Published var input = ""
-    @Published private var inputValue: UInt?
+    @Published var inputValue: UInt?
     @Published var hexadecimal = ""
     @Published var decimal = ""
     @Published var octal = ""
