@@ -21,6 +21,14 @@ struct ToySection<Title: View, Content: View> {
         self.content = content()
     }
 
+    init(
+        @ViewBuilder _ title: () -> Title,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.title = title()
+        self.content = content()
+    }
+
     init<Toolbar: View>(
         _ titleKey: LocalizedStringKey,
         @ViewBuilder toolbar: () -> Toolbar,
@@ -42,6 +50,19 @@ struct ToySection<Title: View, Content: View> {
     ) where Title == HStack<TupleView<(Text, Spacer, Toolbar)>> {
         self.title = HStack {
             Text(title)
+            Spacer()
+            toolbar()
+        }
+        self.content = content()
+    }
+
+    init<T: View, Toolbar: View>(
+        @ViewBuilder _ title: () -> T,
+        @ViewBuilder toolbar: () -> Toolbar,
+        @ViewBuilder content: () -> Content
+    ) where Title == HStack<TupleView<(T, Spacer, Toolbar)>> {
+        self.title = HStack {
+            title()
             Spacer()
             toolbar()
         }
