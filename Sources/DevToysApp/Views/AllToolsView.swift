@@ -1,6 +1,8 @@
 import SwiftUI
 
-private struct AllToolsLabelStyle {}
+private struct AllToolsLabelStyle {
+    @Environment(\.colorScheme) private var colorScheme
+}
 
 extension AllToolsLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
@@ -9,8 +11,12 @@ extension AllToolsLabelStyle: LabelStyle {
                 .font(.system(size: 50))
                 .frame(width: 80, height: 80)
                 .background(
-                    .quaternary,
-                    in: RoundedRectangle(cornerRadius: 8)
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(
+                            self.colorScheme == .dark
+                                ? Color.secondary.opacity(0.2)
+                                : .clear
+                        )
                 )
                 .padding(30)
 
@@ -22,7 +28,11 @@ extension AllToolsLabelStyle: LabelStyle {
             .padding([.horizontal, .bottom])
         }
         .frame(minHeight: 300, alignment: .top)
-        .background(.quaternary, in: RoundedRectangle(cornerRadius: 8))
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.secondary)
+                .opacity(self.colorScheme == .dark ? 0.2 : 0.1)
+        )
     }
 }
 
