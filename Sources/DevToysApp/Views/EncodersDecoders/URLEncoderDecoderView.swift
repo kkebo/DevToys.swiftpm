@@ -20,10 +20,12 @@ extension URLEncoderDecoderView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    Picker("", selection: self.$viewModel.encodeMode) {
-                        Text("Encode").tag(true)
-                        Text("Decode").tag(false)
-                    }
+                    Toggle(
+                        self.viewModel.encodeMode ? "Encode" : "Decode",
+                        isOn: self.$viewModel.encodeMode
+                    )
+                    .tint(.accentColor)
+                    .fixedSize(horizontal: true, vertical: false)
                 }
             }
 
