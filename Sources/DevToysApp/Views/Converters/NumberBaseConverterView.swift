@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct NumberBaseConverterView {
-    @StateObject private var viewModel = NumberBaseConverterViewModel()
+    @ObservedObject private var viewModel: NumberBaseConverterViewModel
 
-    init() {
+    init(viewModel: NumberBaseConverterViewModel) {
+        self.viewModel = viewModel
+
         Task { @MainActor in
             UITextField.appearance().clearButtonMode = .whileEditing
         }
@@ -89,6 +91,6 @@ extension NumberBaseConverterView: View {
 
 struct NumberBaseConverterView_Previews: PreviewProvider {
     static var previews: some View {
-        NumberBaseConverterView()
+        NumberBaseConverterView(viewModel: .init())
     }
 }

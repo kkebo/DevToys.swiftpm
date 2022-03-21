@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct Base64EncoderDecoderView {
-    @StateObject private var viewModel = Base64EncoderDecoderViewModel()
+    @ObservedObject private var viewModel: Base64EncoderDecoderViewModel
 
-    init() {
+    init(viewModel: Base64EncoderDecoderViewModel) {
+        self.viewModel = viewModel
+
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
@@ -72,6 +74,6 @@ extension Base64EncoderDecoderView: View {
 
 struct Base64EncoderDecoderView_Previews: PreviewProvider {
     static var previews: some View {
-        Base64EncoderDecoderView()
+        Base64EncoderDecoderView(viewModel: .init())
     }
 }

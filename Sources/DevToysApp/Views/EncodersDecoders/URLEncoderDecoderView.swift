@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct URLEncoderDecoderView {
-    @StateObject private var viewModel = URLEncoderDecoderViewModel()
+    @ObservedObject private var viewModel: URLEncoderDecoderViewModel
 
-    init() {
+    init(viewModel: URLEncoderDecoderViewModel) {
+        self.viewModel = viewModel
+
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
@@ -61,6 +63,6 @@ extension URLEncoderDecoderView: View {
 
 struct URLEncoderDecoderView_Previews: PreviewProvider {
     static var previews: some View {
-        URLEncoderDecoderView()
+        URLEncoderDecoderView(viewModel: .init())
     }
 }

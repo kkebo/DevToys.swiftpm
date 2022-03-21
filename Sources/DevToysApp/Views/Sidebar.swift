@@ -2,6 +2,7 @@ import SwiftUI
 
 struct Sidebar {
     @Environment(\.isSearching) private var isSearching
+    @EnvironmentObject private var state: AppState
     let searchQuery: String
 
     private func isMatch(_ name: String) -> Bool {
@@ -35,7 +36,9 @@ extension Sidebar: View {
                 Label("JSON <> YAML", systemImage: "doc.plaintext")
             }
             NavigationLink {
-                NumberBaseConverterView()
+                NumberBaseConverterView(
+                    viewModel: self.state.numberBaseConverterViewModel
+                )
             } label: {
                 Label("Number Base", systemImage: "number.square")
             }
@@ -44,7 +47,9 @@ extension Sidebar: View {
         }
         Section {
             NavigationLink {
-                HTMLEncoderDecoderView()
+                HTMLEncoderDecoderView(
+                    viewModel: self.state.htmlEncoderDecoderViewModel
+                )
             } label: {
                 Label(
                     "HTML",
@@ -52,17 +57,23 @@ extension Sidebar: View {
                 )
             }
             NavigationLink {
-                URLEncoderDecoderView()
+                URLEncoderDecoderView(
+                    viewModel: self.state.urlEncoderDecoderViewModel
+                )
             } label: {
                 Label("URL", systemImage: "link")
             }
             NavigationLink {
-                Base64EncoderDecoderView()
+                Base64EncoderDecoderView(
+                    viewModel: self.state.base64EncoderDecoderViewModel
+                )
             } label: {
                 Label("Base 64", systemImage: "b.square")
             }
             NavigationLink {
-                JWTDecoderView()
+                JWTDecoderView(
+                    viewModel: self.state.jwtDecoderViewModel
+                )
             } label: {
                 Label {
                     Text("JWT Decoder")
@@ -75,7 +86,9 @@ extension Sidebar: View {
         }
         Section {
             NavigationLink {
-                JSONFormatterView()
+                JSONFormatterView(
+                    viewModel: self.state.jsonFormatterViewModel
+                )
             } label: {
                 Label("JSON", systemImage: "curlybraces")
             }
@@ -84,12 +97,16 @@ extension Sidebar: View {
         }
         Section {
             NavigationLink {
-                HashGeneratorView()
+                HashGeneratorView(
+                    viewModel: self.state.hashGeneratorViewModel
+                )
             } label: {
                 Label("Hash", systemImage: "number")
             }
             NavigationLink {
-                UUIDGeneratorView()
+                UUIDGeneratorView(
+                    viewModel: self.state.uuidGeneratorViewModel
+                )
             } label: {
                 Label("UUID", systemImage: "01.square")
             }
@@ -116,14 +133,18 @@ extension Sidebar: View {
         }
         if self.isMatch("Number Base Converter") {
             NavigationLink {
-                NumberBaseConverterView()
+                NumberBaseConverterView(
+                    viewModel: self.state.numberBaseConverterViewModel
+                )
             } label: {
                 Label("Number Base Converter", systemImage: "number.square")
             }
         }
         if self.isMatch("HTML Encoder / Decoder") {
             NavigationLink {
-                HTMLEncoderDecoderView()
+                HTMLEncoderDecoderView(
+                    viewModel: self.state.htmlEncoderDecoderViewModel
+                )
             } label: {
                 Label(
                     "HTML Encoder / Decoder",
@@ -133,21 +154,27 @@ extension Sidebar: View {
         }
         if self.isMatch("URL Encoder / Decoder") {
             NavigationLink {
-                URLEncoderDecoderView()
+                URLEncoderDecoderView(
+                    viewModel: self.state.urlEncoderDecoderViewModel
+                )
             } label: {
                 Label("URL Encoder / Decoder", systemImage: "link")
             }
         }
         if self.isMatch("Base 64 Encoder / Decoder") {
             NavigationLink {
-                Base64EncoderDecoderView()
+                Base64EncoderDecoderView(
+                    viewModel: self.state.base64EncoderDecoderViewModel
+                )
             } label: {
                 Label("Base 64 Encoder / Decoder", systemImage: "b.square")
             }
         }
         if self.isMatch("JWT Decoder") {
             NavigationLink {
-                JWTDecoderView()
+                JWTDecoderView(
+                    viewModel: self.state.jwtDecoderViewModel
+                )
             } label: {
                 Label {
                     Text("JWT Decoder")
@@ -158,21 +185,27 @@ extension Sidebar: View {
         }
         if self.isMatch("JSON Formatter") {
             NavigationLink {
-                JSONFormatterView()
+                JSONFormatterView(
+                    viewModel: self.state.jsonFormatterViewModel
+                )
             } label: {
                 Label("JSON Formatter", systemImage: "curlybraces")
             }
         }
         if self.isMatch("Hash Generator") {
             NavigationLink {
-                HashGeneratorView()
+                HashGeneratorView(
+                    viewModel: self.state.hashGeneratorViewModel
+                )
             } label: {
                 Label("Hash Generator", systemImage: "number")
             }
         }
         if self.isMatch("UUID Generator") {
             NavigationLink {
-                UUIDGeneratorView()
+                UUIDGeneratorView(
+                    viewModel: self.state.uuidGeneratorViewModel
+                )
             } label: {
                 Label("UUID Generator", systemImage: "01.square")
             }
@@ -183,5 +216,6 @@ extension Sidebar: View {
 struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {
         Sidebar(searchQuery: "")
+            .environmentObject(AppState())
     }
 }

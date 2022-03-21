@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct JWTDecoderView {
-    @StateObject private var viewModel = JWTDecoderViewModel()
+    @ObservedObject private var viewModel: JWTDecoderViewModel
 
-    init() {
+    init(viewModel: JWTDecoderViewModel) {
+        self.viewModel = viewModel
+
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
@@ -67,6 +69,6 @@ extension JWTDecoderView: View {
 
 struct JWTDecoderView_Previews: PreviewProvider {
     static var previews: some View {
-        JWTDecoderView()
+        JWTDecoderView(viewModel: .init())
     }
 }

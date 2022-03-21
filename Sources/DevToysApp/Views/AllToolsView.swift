@@ -39,6 +39,7 @@ struct AllToolsLabelStyle_Previews: PreviewProvider {
 
 struct AllToolsView {
     @Environment(\.isSearching) private var isSearching
+    @EnvironmentObject private var state: AppState
     let searchQuery: String
     private let columns = [GridItem(.adaptive(minimum: 140, maximum: 160))]
 }
@@ -53,7 +54,9 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        Base64EncoderDecoderView()
+                        Base64EncoderDecoderView(
+                            viewModel: self.state.base64EncoderDecoderViewModel
+                        )
                     } label: {
                         Label {
                             Text("Base 64")
@@ -71,7 +74,9 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        HashGeneratorView()
+                        HashGeneratorView(
+                            viewModel: self.state.hashGeneratorViewModel
+                        )
                     } label: {
                         Label {
                             Text("Hash")
@@ -91,7 +96,9 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        HTMLEncoderDecoderView()
+                        HTMLEncoderDecoderView(
+                            viewModel: self.state.htmlEncoderDecoderViewModel
+                        )
                     } label: {
                         Label {
                             Text("HTML")
@@ -111,7 +118,9 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        JSONFormatterView()
+                        JSONFormatterView(
+                            viewModel: self.state.jsonFormatterViewModel
+                        )
                     } label: {
                         Label {
                             Text("JSON")
@@ -147,7 +156,9 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        JWTDecoderView()
+                        JWTDecoderView(
+                            viewModel: self.state.jwtDecoderViewModel
+                        )
                     } label: {
                         Label {
                             Text("JWT Decoder")
@@ -168,7 +179,9 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        NumberBaseConverterView()
+                        NumberBaseConverterView(
+                            viewModel: self.state.numberBaseConverterViewModel
+                        )
                     } label: {
                         Label {
                             Text("Number Base")
@@ -186,7 +199,9 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        URLEncoderDecoderView()
+                        URLEncoderDecoderView(
+                            viewModel: self.state.urlEncoderDecoderViewModel
+                        )
                     } label: {
                         Label {
                             Text("URL")
@@ -204,7 +219,9 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        UUIDGeneratorView()
+                        UUIDGeneratorView(
+                            viewModel: self.state.uuidGeneratorViewModel
+                        )
                     } label: {
                         Label {
                             Text("UUID")
@@ -231,5 +248,6 @@ extension AllToolsView: View {
 struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
         AllToolsView(searchQuery: "")
+            .environmentObject(AppState())
     }
 }

@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct HashGeneratorView {
-    @StateObject private var viewModel = HashGeneratorViewModel()
+    @ObservedObject private var viewModel: HashGeneratorViewModel
 
-    init() {
+    init(viewModel: HashGeneratorViewModel) {
+        self.viewModel = viewModel
+
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
@@ -65,6 +67,6 @@ extension HashGeneratorView: View {
 
 struct HashGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        HashGeneratorView()
+        HashGeneratorView(viewModel: .init())
     }
 }

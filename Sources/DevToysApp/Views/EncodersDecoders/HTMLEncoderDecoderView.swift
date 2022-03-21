@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct HTMLEncoderDecoderView {
-    @StateObject private var viewModel = HTMLEncoderDecoderViewModel()
+    @ObservedObject private var viewModel: HTMLEncoderDecoderViewModel
 
-    init() {
+    init(viewModel: HTMLEncoderDecoderViewModel) {
+        self.viewModel = viewModel
+
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
@@ -61,6 +63,6 @@ extension HTMLEncoderDecoderView: View {
 
 struct HTMLEncoderDecoderView_Previews: PreviewProvider {
     static var previews: some View {
-        HTMLEncoderDecoderView()
+        HTMLEncoderDecoderView(viewModel: .init())
     }
 }

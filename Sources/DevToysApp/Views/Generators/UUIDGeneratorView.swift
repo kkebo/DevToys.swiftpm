@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct UUIDGeneratorView {
-    @StateObject private var viewModel = UUIDGeneratorViewModel()
+    @ObservedObject private var viewModel: UUIDGeneratorViewModel
 
-    init() {
+    init(viewModel: UUIDGeneratorViewModel) {
+        self.viewModel = viewModel
+
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
@@ -98,6 +100,6 @@ extension UUIDGeneratorView: View {
 
 struct UUIDGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        UUIDGeneratorView()
+        UUIDGeneratorView(viewModel: .init())
     }
 }

@@ -2,9 +2,11 @@ import SwiftUI
 
 struct JSONFormatterView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @StateObject private var viewModel = JSONFormatterViewModel()
+    @ObservedObject private var viewModel: JSONFormatterViewModel
 
-    init() {
+    init(viewModel: JSONFormatterViewModel) {
+        self.viewModel = viewModel
+
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
         }
@@ -71,6 +73,6 @@ extension JSONFormatterView: View {
 
 struct JSONFormatterView_Previews: PreviewProvider {
     static var previews: some View {
-        JSONFormatterView()
+        JSONFormatterView(viewModel: .init())
     }
 }
