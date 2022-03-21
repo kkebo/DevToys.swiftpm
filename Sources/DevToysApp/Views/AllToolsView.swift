@@ -56,6 +56,7 @@ extension AllToolsView: View {
                             Image(systemName: "b.square")
                         }
                     }
+                    .hoverEffect()
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
@@ -78,6 +79,7 @@ extension AllToolsView: View {
                             Image(systemName: "number")
                         }
                     }
+                    .hoverEffect()
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
@@ -100,6 +102,7 @@ extension AllToolsView: View {
                             Image(systemName: "chevron.left.slash.chevron.right")
                         }
                     }
+                    .hoverEffect()
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
@@ -120,6 +123,7 @@ extension AllToolsView: View {
                             Image(systemName: "curlybraces")
                         }
                     }
+                    .hoverEffect()
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
@@ -138,6 +142,7 @@ extension AllToolsView: View {
                             Image(systemName: "doc.plaintext")
                         }
                     }
+                    .hoverEffect()
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
@@ -161,6 +166,7 @@ extension AllToolsView: View {
                                 .font(.system(size: 50).bold())
                         }
                     }
+                    .hoverEffect()
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
@@ -181,6 +187,7 @@ extension AllToolsView: View {
                             Image(systemName: "number.square")
                         }
                     }
+                    .hoverEffect()
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
@@ -201,6 +208,7 @@ extension AllToolsView: View {
                             Image(systemName: "link")
                         }
                     }
+                    .hoverEffect()
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
@@ -221,6 +229,7 @@ extension AllToolsView: View {
                             Image(systemName: "01.square")
                         }
                     }
+                    .hoverEffect()
                 }
             }
             .labelStyle(AllToolsLabelStyle())
