@@ -4,24 +4,29 @@ import class Foundation.DispatchQueue
 import class Foundation.JSONSerialization
 
 final class JWTDecoderViewModel {
-    @Published var input = ""
+    @Published var input = "" {
+        didSet { self.updateDecodedJWT() }
+    }
+    @Published var decodedJWT: JWT? {
+        didSet { self.updateHeaderAndPayload() }
+    }
     @Published var header = ""
     @Published var payload = ""
 
-    init() {
-        let jwtPublisher = self.$input
-            .dropFirst()
-            .map { try? Self.decode($0) }
+    init() {}
 
-        jwtPublisher
-            .map { try? $0.flatMap(Self.encodeHeader) }
-            .replaceNil(with: "")
-            .assign(to: &self.$header)
+    private func updateDecodedJWT() {
+        self.decodedJWT = try? Self.decode(self.input)
+    }
 
-        jwtPublisher
-            .map { try? $0.flatMap(Self.encodePayload) }
-            .replaceNil(with: "")
-            .assign(to: &self.$payload)
+    private func updateHeaderAndPayload() {
+        if let jwt = self.decodedJWT {
+            self.header = (try? Self.encodeHeader(of: jwt)) ?? ""
+            self.payload = (try? Self.encodePayload(of: jwt)) ?? ""
+        } else {
+            self.header = ""
+            self.payload = ""
+        }
     }
 
     private static func decode(_ jwt: String) throws -> JWT {

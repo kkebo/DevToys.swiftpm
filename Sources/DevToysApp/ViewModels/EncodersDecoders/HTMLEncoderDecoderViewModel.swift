@@ -2,19 +2,24 @@ import Combine
 import HTMLEntities
 
 final class HTMLEncoderDecoderViewModel {
-    @Published var encodeMode = true
-    @Published var input = ""
+    @Published var encodeMode = true {
+        didSet {
+            if oldValue != self.encodeMode {
+                self.input = self.output
+            }
+        }
+    }
+    @Published var input = "" {
+        didSet { self.updateOutput() }
+    }
     @Published var output = ""
 
-    init() {
-        self.$input.combineLatest(self.$encodeMode)
-            .dropFirst()
-            .map { input, encodeMode in
-                encodeMode
-                    ? Self.encode(input)
-                    : Self.decode(input)
-            }
-            .assign(to: &self.$output)
+    init() {}
+
+    private func updateOutput() {
+        self.output = self.encodeMode
+            ? Self.encode(self.input)
+            : Self.decode(self.input)
     }
 
     private static func encode(_ input: String) -> String {

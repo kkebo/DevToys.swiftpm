@@ -2,47 +2,51 @@ import Combine
 import CryptoKit
 
 final class HashGeneratorViewModel {
-    @Published var isUppercase = false
-    @Published var input = ""
+    @Published var isUppercase = false {
+        didSet { self.formatOutputValues() }
+    }
+    @Published var input = "" {
+        didSet { self.updateOutputValues() }
+    }
     @Published var md5 = ""
     @Published var sha1 = ""
     @Published var sha256 = ""
     @Published var sha512 = ""
 
-    init() {
-        let inputWithOptions = self.$input
-            .combineLatest(self.$isUppercase)
-            .dropFirst()
+    init() {}
 
-        inputWithOptions
-            .map {
-                Self.generate($0, type: Insecure.MD5.self, uppercase: $1)
-            }
-            .assign(to: &self.$md5)
-        inputWithOptions
-            .map {
-                Self.generate($0, type: Insecure.SHA1.self, uppercase: $1)
-            }
-            .assign(to: &self.$sha1)
-        inputWithOptions
-            .map { Self.generate($0, type: SHA256.self, uppercase: $1) }
-            .assign(to: &self.$sha256)
-        inputWithOptions
-            .map { Self.generate($0, type: SHA512.self, uppercase: $1) }
-            .assign(to: &self.$sha512)
+    private func updateOutputValues() {
+        let value = self.input
+        self.md5 = Self.generate(value, type: Insecure.MD5.self)
+        self.sha1 = Self.generate(value, type: Insecure.SHA1.self)
+        self.sha256 = Self.generate(value, type: SHA256.self)
+        self.sha512 = Self.generate(value, type: SHA512.self)
+        self.formatOutputValues(ignoreLowercase: true)
+    }
+
+    private func formatOutputValues(ignoreLowercase: Bool = false) {
+        if self.isUppercase {
+            self.md5 = self.md5.uppercased()
+            self.sha1 = self.sha1.uppercased()
+            self.sha256 = self.sha256.uppercased()
+            self.sha512 = self.sha512.uppercased()
+        } else if !ignoreLowercase {
+            self.md5 = self.md5.lowercased()
+            self.sha1 = self.sha1.lowercased()
+            self.sha256 = self.sha256.lowercased()
+            self.sha512 = self.sha512.lowercased()
+        }
     }
 
     private static func generate<F: HashFunction>(
         _ input: String,
-        type: F.Type,
-        uppercase: Bool
+        type: F.Type
     ) -> String {
         guard !input.isEmpty else { return "" }
         guard let data = input.data(using: .utf8) else { return "" }
-        let output: String = F.hash(data: data).lazy
+        return F.hash(data: data).lazy
             .map { String($0, radix: 16) }
             .joined()
-        return uppercase ? output.uppercased() : output
     }
 }
 

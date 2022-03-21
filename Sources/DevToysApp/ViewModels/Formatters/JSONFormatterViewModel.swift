@@ -2,16 +2,18 @@ import Combine
 import SwiftJSONFormatter
 
 final class JSONFormatterViewModel {
-    @Published var indentation = JSONIndentation.twoSpaces
-    @Published var input = ""
+    @Published var indentation = JSONIndentation.twoSpaces {
+        didSet { self.updateOutput() }
+    }
+    @Published var input = "" {
+        didSet { self.updateOutput() }
+    }
     @Published var output = ""
 
-    init() {
-        self.$input
-            .combineLatest(self.$indentation)
-            .dropFirst()
-            .map(Self.format)
-            .assign(to: &self.$output)
+    init() {}
+
+    private func updateOutput() {
+        self.output = Self.format(self.input, indentation: self.indentation)
     }
 
     private static func format(

@@ -1,54 +1,49 @@
 import Combine
 
 final class NumberBaseConverterViewModel {
-    @Published var isFormatOn = true
-    @Published var inputType = NumberType.decimal
-    @Published var input = ""
-    @Published var inputValue: Int?
+    @Published var isFormatOn = true {
+        didSet { self.updateOutputValues() }
+    }
+    @Published var inputType = NumberType.decimal {
+        didSet {
+            switch self.inputType {
+            case .hexadecimal: self.input = self.hexadecimal
+            case .decimal: self.input = self.decimal
+            case .octal: self.input = self.octal
+            case .binary: self.input = self.binary
+            }
+        }
+    }
+    @Published var input = "" {
+        didSet { self.updateInputValue() }
+    }
+    @Published var inputValue: Int? {
+        didSet { self.updateOutputValues() }
+    }
     @Published var hexadecimal = ""
     @Published var decimal = ""
     @Published var octal = ""
     @Published var binary = ""
 
-    init() {
-        self.$input
-            .combineLatest(self.$inputType)
-            .dropFirst()
-            .map(Self.convert)
-            .assign(to: &self.$inputValue)
+    init() {}
 
-        let inputWithOptions = self.$inputValue
-            .combineLatest(self.$isFormatOn)
-            .dropFirst()
+    private func updateInputValue() {
+        self.inputValue = Self.convert(self.input, from: self.inputType)
+    }
 
-        inputWithOptions
-            .map { value, format in
-                value.map {
-                    Self.convert($0, to: .hexadecimal, formatted: format)
-                } ?? ""
-            }
-            .assign(to: &self.$hexadecimal)
-        inputWithOptions
-            .map { value, format in
-                value.map {
-                    Self.convert($0, to: .decimal, formatted: format)
-                } ?? ""
-            }
-            .assign(to: &self.$decimal)
-        inputWithOptions
-            .map { value, format in
-                value.map {
-                    Self.convert($0, to: .octal, formatted: format)
-                } ?? ""
-            }
-            .assign(to: &self.$octal)
-        inputWithOptions
-            .map { value, format in
-                value.map {
-                    Self.convert($0, to: .binary, formatted: format)
-                } ?? ""
-            }
-            .assign(to: &self.$binary)
+    private func updateOutputValues() {
+        if let value = self.inputValue {
+            let format = self.isFormatOn
+            self.hexadecimal = Self.convert(value, to: .hexadecimal, formatted: format)
+            self.decimal = Self.convert(value, to: .decimal, formatted: format)
+            self.octal = Self.convert(value, to: .octal, formatted: format)
+            self.binary = Self.convert(value, to: .binary, formatted: format)
+        } else {
+            self.hexadecimal = ""
+            self.decimal = ""
+            self.octal = ""
+            self.binary = ""
+        }
     }
 
     private static func convert<S: StringProtocol>(

@@ -2,22 +2,27 @@ import Combine
 import struct Foundation.Data
 
 final class Base64EncoderDecoderViewModel {
-    @Published var encodeMode = true
-    @Published var encoding = String.Encoding.utf8
-    @Published var input = ""
+    @Published var encodeMode = true {
+        didSet {
+            if oldValue != self.encodeMode {
+                self.input = self.output
+            }
+        }
+    }
+    @Published var encoding = String.Encoding.utf8 {
+        didSet { self.updateOutput() }
+    }
+    @Published var input = "" {
+        didSet { self.updateOutput() }
+    }
     @Published var output = ""
 
-    init() {
-        self.$input
-            .combineLatest(self.$encodeMode, self.$encoding)
-            .dropFirst()
-            .map { input, encodeMode, encoding in
-                encodeMode
-                    ? Self.encode(input, encoding: encoding)
-                    : Self.decode(input, encoding: encoding)
-            }
-            .replaceNil(with: "")
-            .assign(to: &self.$output)
+    init() {}
+
+    private func updateOutput() {
+        self.output = self.encodeMode
+            ? Self.encode(self.input, encoding: self.encoding) ?? ""
+            : Self.decode(self.input, encoding: self.encoding) ?? ""
     }
 
     private static func encode(
