@@ -18,6 +18,7 @@ extension HashGeneratorView: View {
             ToySection("Configuration") {
                 ConfigurationRow("Uppercase", systemImage: "textformat") {
                     Toggle("", isOn: self.$viewModel.isUppercase)
+                        .fixedSize(horizontal: true, vertical: false)
                 }
             }
 

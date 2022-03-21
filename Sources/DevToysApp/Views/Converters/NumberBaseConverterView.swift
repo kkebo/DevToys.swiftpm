@@ -19,6 +19,7 @@ extension NumberBaseConverterView: View {
                 ConfigurationRow("Format number", systemImage: "textformat") {
                     Toggle("", isOn: self.$viewModel.isFormatOn)
                         .tint(.accentColor)
+                        .fixedSize(horizontal: true, vertical: false)
                 }
                 ConfigurationRow(systemImage: "arrow.left.arrow.right") {
                     Text("Input type")

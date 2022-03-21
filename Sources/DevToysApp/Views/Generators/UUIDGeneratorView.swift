@@ -27,10 +27,12 @@ extension UUIDGeneratorView: View {
             ConfigurationRow("Hyphens", systemImage: "minus") {
                 Toggle("", isOn: self.$viewModel.usesHyphens)
                     .tint(.accentColor)
+                    .fixedSize(horizontal: true, vertical: false)
             }
             ConfigurationRow("Uppercase", systemImage: "textformat") {
                 Toggle("", isOn: self.$viewModel.isUppercase)
                     .tint(.accentColor)
+                    .fixedSize(horizontal: true, vertical: false)
             }
             ConfigurationRow(systemImage: "slider.horizontal.3") {
                 Text("UUID version")
