@@ -10,8 +10,6 @@ final class JSONFormatterViewModel {
     }
     @Published var output = ""
 
-    init() {}
-
     private func updateOutput() {
         self.output = Self.format(self.input, indentation: self.indentation)
     }

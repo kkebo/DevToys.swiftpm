@@ -25,8 +25,6 @@ final class NumberBaseConverterViewModel {
     @Published var octal = ""
     @Published var binary = ""
 
-    init() {}
-
     private func updateInputValue() {
         self.inputValue = Self.convert(self.input, from: self.inputType)
     }

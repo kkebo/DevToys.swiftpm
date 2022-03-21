@@ -13,8 +13,6 @@ final class HashGeneratorViewModel {
     @Published var sha256 = ""
     @Published var sha512 = ""
 
-    init() {}
-
     private func updateOutputValues() {
         let value = self.input
         self.md5 = Self.generate(value, type: Insecure.MD5.self)

@@ -13,8 +13,6 @@ final class URLEncoderDecoderViewModel {
     }
     @Published var output = ""
 
-    init() {}
-
     private func updateOutput() {
         self.output = self.encodeMode
             ? Self.encode(self.input) ?? ""

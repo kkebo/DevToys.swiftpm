@@ -13,8 +13,6 @@ final class JWTDecoderViewModel {
     @Published var header = ""
     @Published var payload = ""
 
-    init() {}
-
     private func updateDecodedJWT() {
         self.decodedJWT = try? Self.decode(self.input)
     }

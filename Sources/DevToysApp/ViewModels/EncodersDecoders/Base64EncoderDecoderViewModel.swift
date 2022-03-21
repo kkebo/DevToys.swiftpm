@@ -17,8 +17,6 @@ final class Base64EncoderDecoderViewModel {
     }
     @Published var output = ""
 
-    init() {}
-
     private func updateOutput() {
         self.output = self.encodeMode
             ? Self.encode(self.input, encoding: self.encoding) ?? ""
