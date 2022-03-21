@@ -26,17 +26,6 @@ extension AllToolsLabelStyle: LabelStyle {
     }
 }
 
-struct AllToolsLabelStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            Label("Title 1", systemImage: "star")
-            Label("Title 2", systemImage: "square")
-            Label("Title 3", systemImage: "circle")
-        }
-        .labelStyle(AllToolsLabelStyle())
-    }
-}
-
 struct AllToolsView {
     @Environment(\.isSearching) private var isSearching
     @EnvironmentObject private var state: AppState
