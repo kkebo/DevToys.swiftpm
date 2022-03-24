@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct NumberBaseConverterView {
-    @ObservedObject private var viewModel: NumberBaseConverterViewModel
+    @ObservedObject private var state: NumberBaseConverterViewState
 
-    init(viewModel: NumberBaseConverterViewModel) {
-        self.viewModel = viewModel
+    init(state: NumberBaseConverterViewState) {
+        self.state = state
 
         Task { @MainActor in
             UITextField.appearance().clearButtonMode = .whileEditing
@@ -17,7 +17,7 @@ extension NumberBaseConverterView: View {
         ToyPage {
             ToySection("Configuration") {
                 ConfigurationRow("Format number", systemImage: "textformat") {
-                    Toggle("", isOn: self.$viewModel.isFormatOn)
+                    Toggle("", isOn: self.$state.converter.isFormatOn)
                         .tint(.accentColor)
                         .fixedSize(horizontal: true, vertical: false)
                 }
@@ -27,7 +27,7 @@ extension NumberBaseConverterView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    Picker("", selection: self.$viewModel.inputType) {
+                    Picker("", selection: self.$state.inputType) {
                         ForEach(NumberType.allCases) {
                             Text(LocalizedStringKey($0.rawValue.capitalized))
                         }
@@ -35,7 +35,7 @@ extension NumberBaseConverterView: View {
                 }
             }
 
-            if !self.viewModel.input.isEmpty && self.viewModel.inputValue == nil {
+            if !self.state.input.isEmpty && self.state.inputValue == nil {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.yellow)
@@ -48,9 +48,9 @@ extension NumberBaseConverterView: View {
             }
 
             ToySection("Input") {
-                PasteButton(text: self.$viewModel.input)
+                PasteButton(text: self.$state.input)
             } content: {
-                TextField("", text: self.$viewModel.input)
+                TextField("", text: self.$state.input)
                     .textFieldStyle(.roundedBorder)
                     .font(.body.monospaced())
                     .keyboardType(.numbersAndPunctuation)
@@ -61,14 +61,14 @@ extension NumberBaseConverterView: View {
             VStack(spacing: 10) {
                 self.outputSection(
                     "Hexadecimal",
-                    value: self.viewModel.hexadecimal
+                    value: self.state.hexadecimal
                 )
                 self.outputSection(
                     "Decimal",
-                    value: self.viewModel.decimal
+                    value: self.state.decimal
                 )
-                self.outputSection("Octal", value: self.viewModel.octal)
-                self.outputSection("Binary", value: self.viewModel.binary)
+                self.outputSection("Octal", value: self.state.octal)
+                self.outputSection("Binary", value: self.state.binary)
             }
         }
         .navigationTitle("Number Base Converter")
@@ -92,6 +92,6 @@ extension NumberBaseConverterView: View {
 
 struct NumberBaseConverterView_Previews: PreviewProvider {
     static var previews: some View {
-        NumberBaseConverterView(viewModel: .init())
+        NumberBaseConverterView(state: .init())
     }
 }

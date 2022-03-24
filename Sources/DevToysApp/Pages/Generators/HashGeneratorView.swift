@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct HashGeneratorView {
-    @ObservedObject private var viewModel: HashGeneratorViewModel
+    @ObservedObject private var state: HashGeneratorViewState
 
-    init(viewModel: HashGeneratorViewModel) {
-        self.viewModel = viewModel
+    init(state: HashGeneratorViewState) {
+        self.state = state
 
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
@@ -17,7 +17,7 @@ extension HashGeneratorView: View {
         ToyPage {
             ToySection("Configuration") {
                 ConfigurationRow("Uppercase", systemImage: "textformat") {
-                    Toggle("", isOn: self.$viewModel.isUppercase)
+                    Toggle("", isOn: self.$state.generator.isUppercase)
                         .fixedSize(horizontal: true, vertical: false)
                 }
             }
@@ -25,10 +25,10 @@ extension HashGeneratorView: View {
             self.inputSection
 
             VStack(spacing: 10) {
-                self.outputSection("MD5", value: self.viewModel.md5)
-                self.outputSection("SHA1", value: self.viewModel.sha1)
-                self.outputSection("SHA256", value: self.viewModel.sha256)
-                self.outputSection("SHA512", value: self.viewModel.sha512)
+                self.outputSection("MD5", value: self.state.md5)
+                self.outputSection("SHA1", value: self.state.sha1)
+                self.outputSection("SHA256", value: self.state.sha256)
+                self.outputSection("SHA512", value: self.state.sha512)
             }
         }
         .navigationTitle("Hash Generator")
@@ -36,11 +36,11 @@ extension HashGeneratorView: View {
 
     private var inputSection: some View {
         ToySection("Input") {
-            PasteButton(text: self.$viewModel.input)
-            OpenFileButton(text: self.$viewModel.input)
-            ClearButton(text: self.$viewModel.input)
+            PasteButton(text: self.$state.input)
+            OpenFileButton(text: self.$state.input)
+            ClearButton(text: self.$state.input)
         } content: {
-            TextEditor(text: self.$viewModel.input)
+            TextEditor(text: self.$state.input)
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
                 .font(.body.monospaced())
@@ -68,6 +68,6 @@ extension HashGeneratorView: View {
 
 struct HashGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        HashGeneratorView(viewModel: .init())
+        HashGeneratorView(state: .init())
     }
 }

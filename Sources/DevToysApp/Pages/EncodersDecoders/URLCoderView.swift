@@ -1,10 +1,10 @@
 import SwiftUI
 
-struct HTMLEncoderDecoderView {
-    @ObservedObject private var viewModel: HTMLEncoderDecoderViewModel
+struct URLCoderView {
+    @ObservedObject private var state: URLCoderViewState
 
-    init(viewModel: HTMLEncoderDecoderViewModel) {
-        self.viewModel = viewModel
+    init(state: URLCoderViewState) {
+        self.state = state
 
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
@@ -12,7 +12,7 @@ struct HTMLEncoderDecoderView {
     }
 }
 
-extension HTMLEncoderDecoderView: View {
+extension URLCoderView: View {
     var body: some View {
         ToyPage {
             ToySection("Configuration") {
@@ -23,8 +23,8 @@ extension HTMLEncoderDecoderView: View {
                         .foregroundStyle(.secondary)
                 } content: {
                     Toggle(
-                        self.viewModel.encodeMode ? "Encode" : "Decode",
-                        isOn: self.$viewModel.encodeMode
+                        self.state.encodeMode ? "Encode" : "Decode",
+                        isOn: self.$state.encodeMode
                     )
                     .tint(.accentColor)
                     .fixedSize(horizontal: true, vertical: false)
@@ -32,11 +32,11 @@ extension HTMLEncoderDecoderView: View {
             }
 
             ToySection("Input") {
-                PasteButton(text: self.$viewModel.input)
-                OpenFileButton(text: self.$viewModel.input)
-                ClearButton(text: self.$viewModel.input)
+                PasteButton(text: self.$state.input)
+                OpenFileButton(text: self.$state.input)
+                ClearButton(text: self.$state.input)
             } content: {
-                TextEditor(text: self.$viewModel.input)
+                TextEditor(text: self.$state.input)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .font(.body.monospaced())
@@ -46,9 +46,9 @@ extension HTMLEncoderDecoderView: View {
             }
 
             ToySection("Output") {
-                CopyButton(text: self.viewModel.output)
+                CopyButton(text: self.state.output)
             } content: {
-                TextEditor(text: .constant(self.viewModel.output))
+                TextEditor(text: .constant(self.state.output))
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .font(.body.monospaced())
@@ -57,12 +57,12 @@ extension HTMLEncoderDecoderView: View {
                     .frame(idealHeight: 200)
             }
         }
-        .navigationTitle("HTML Encoder / Decoder")
+        .navigationTitle("URL Encoder / Decoder")
     }
 }
 
-struct HTMLEncoderDecoderView_Previews: PreviewProvider {
+struct URLCoderView_Previews: PreviewProvider {
     static var previews: some View {
-        HTMLEncoderDecoderView(viewModel: .init())
+        URLCoderView(state: .init())
     }
 }
