@@ -70,5 +70,6 @@ extension JWTDecoderView: View {
 struct JWTDecoderView_Previews: PreviewProvider {
     static var previews: some View {
         JWTDecoderView(state: .init())
+            .previewPresets()
     }
 }

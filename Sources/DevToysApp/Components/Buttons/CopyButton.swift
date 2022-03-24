@@ -19,5 +19,6 @@ extension CopyButton: View {
 struct CopyButton_Previews: PreviewProvider {
     static var previews: some View {
         CopyButton(text: "foobar")
+            .previewPresets()
     }
 }

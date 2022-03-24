@@ -69,5 +69,6 @@ extension HashGeneratorView: View {
 struct HashGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
         HashGeneratorView(state: .init())
+            .previewPresets()
     }
 }

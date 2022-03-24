@@ -93,5 +93,6 @@ struct ToySection_Previews: PreviewProvider {
                 Text("bar")
             }
         }
+        .previewPresets()
     }
 }

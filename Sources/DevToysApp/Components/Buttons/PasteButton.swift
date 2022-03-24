@@ -19,5 +19,6 @@ extension PasteButton: View {
 struct PasteButton_Previews: PreviewProvider {
     static var previews: some View {
         PasteButton(text: .constant(""))
+            .previewPresets()
     }
 }

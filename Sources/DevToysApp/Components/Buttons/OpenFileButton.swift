@@ -56,5 +56,6 @@ extension OpenFileButton: View {
 struct OpenFileButton_Previews: PreviewProvider {
     static var previews: some View {
         OpenFileButton(text: .constant(""))
+            .previewPresets()
     }
 }

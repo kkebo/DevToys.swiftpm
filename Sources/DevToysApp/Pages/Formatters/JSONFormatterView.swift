@@ -77,5 +77,6 @@ extension JSONFormatterView: View {
 struct JSONFormatterView_Previews: PreviewProvider {
     static var previews: some View {
         JSONFormatterView(state: .init())
+            .previewPresets()
     }
 }

@@ -189,5 +189,6 @@ struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {
         Sidebar(searchQuery: "")
             .environmentObject(AppState())
+            .previewPresets()
     }
 }

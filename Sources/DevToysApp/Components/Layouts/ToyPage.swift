@@ -37,5 +37,6 @@ struct ToyPage_Previews: PreviewProvider {
                 }
             }
         }
+        .previewPresets()
     }
 }

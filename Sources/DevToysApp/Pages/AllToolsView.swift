@@ -255,5 +255,6 @@ struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
         AllToolsView(searchQuery: "")
             .environmentObject(AppState())
+            .previewPresets()
     }
 }
