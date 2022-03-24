@@ -1,15 +1,8 @@
 import SwiftUI
 
-#if TESTING_ENABLED
-    import PlaygroundTester
-#endif
-
 struct Sidebar {
     @Environment(\.isSearching) private var isSearching
     @EnvironmentObject private var state: AppState
-    #if TESTING_ENABLED
-        @State private var isTesterViewPresented = false
-    #endif
     let searchQuery: String
 
     private func isMatch(_ name: String) -> Bool {
@@ -27,14 +20,7 @@ extension Sidebar: View {
                 self.searchResults
             }
             #if TESTING_ENABLED
-                Button {
-                    self.isTesterViewPresented = true
-                } label: {
-                    Label("Unit Tests", systemImage: "checklist")
-                }
-                .sheet(isPresented: self.$isTesterViewPresented) {
-                    PlaygroundTesterView()
-                }
+                UnitTestsButton()
             #endif
         }
         .navigationTitle("DevToys")
