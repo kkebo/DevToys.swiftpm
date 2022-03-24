@@ -53,8 +53,8 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        Base64EncoderDecoderView(
-                            viewModel: self.state.base64EncoderDecoderViewModel
+                        Base64CoderView(
+                            state: self.state.base64CoderViewState
                         )
                     } label: {
                         Label {
@@ -75,7 +75,7 @@ extension AllToolsView: View {
                 {
                     NavigationLink {
                         HashGeneratorView(
-                            viewModel: self.state.hashGeneratorViewModel
+                            state: self.state.hashGeneratorViewState
                         )
                     } label: {
                         Label {
@@ -97,9 +97,7 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        HTMLEncoderDecoderView(
-                            viewModel: self.state.htmlEncoderDecoderViewModel
-                        )
+                        HTMLCoderView(state: self.state.htmlCoderViewState)
                     } label: {
                         Label {
                             Text("HTML")
@@ -121,7 +119,7 @@ extension AllToolsView: View {
                 {
                     NavigationLink {
                         JSONFormatterView(
-                            viewModel: self.state.jsonFormatterViewModel
+                            state: self.state.jsonFormatterViewState
                         )
                     } label: {
                         Label {
@@ -161,7 +159,7 @@ extension AllToolsView: View {
                 {
                     NavigationLink {
                         JWTDecoderView(
-                            viewModel: self.state.jwtDecoderViewModel
+                            state: self.state.jwtDecoderViewState
                         )
                     } label: {
                         Label {
@@ -185,7 +183,7 @@ extension AllToolsView: View {
                 {
                     NavigationLink {
                         NumberBaseConverterView(
-                            viewModel: self.state.numberBaseConverterViewModel
+                            state: self.state.numberBaseConverterViewState
                         )
                     } label: {
                         Label {
@@ -205,8 +203,8 @@ extension AllToolsView: View {
                         .contains(self.searchQuery.lowercased())
                 {
                     NavigationLink {
-                        URLEncoderDecoderView(
-                            viewModel: self.state.urlEncoderDecoderViewModel
+                        URLCoderView(
+                            state: self.state.urlCoderViewState
                         )
                     } label: {
                         Label {
@@ -227,7 +225,7 @@ extension AllToolsView: View {
                 {
                     NavigationLink {
                         UUIDGeneratorView(
-                            viewModel: self.state.uuidGeneratorViewModel
+                            state: self.state.uuidGeneratorViewState
                         )
                     } label: {
                         Label {

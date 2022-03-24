@@ -37,7 +37,7 @@ extension Sidebar: View {
             }
             NavigationLink {
                 NumberBaseConverterView(
-                    viewModel: self.state.numberBaseConverterViewModel
+                    state: self.state.numberBaseConverterViewState
                 )
             } label: {
                 Label("Number Base", systemImage: "number.square")
@@ -47,9 +47,7 @@ extension Sidebar: View {
         }
         Section {
             NavigationLink {
-                HTMLEncoderDecoderView(
-                    viewModel: self.state.htmlEncoderDecoderViewModel
-                )
+                HTMLCoderView(state: self.state.htmlCoderViewState)
             } label: {
                 Label(
                     "HTML",
@@ -57,23 +55,17 @@ extension Sidebar: View {
                 )
             }
             NavigationLink {
-                URLEncoderDecoderView(
-                    viewModel: self.state.urlEncoderDecoderViewModel
-                )
+                URLCoderView(state: self.state.urlCoderViewState)
             } label: {
                 Label("URL", systemImage: "link")
             }
             NavigationLink {
-                Base64EncoderDecoderView(
-                    viewModel: self.state.base64EncoderDecoderViewModel
-                )
+                Base64CoderView(state: self.state.base64CoderViewState)
             } label: {
                 Label("Base 64", systemImage: "b.square")
             }
             NavigationLink {
-                JWTDecoderView(
-                    viewModel: self.state.jwtDecoderViewModel
-                )
+                JWTDecoderView(state: self.state.jwtDecoderViewState)
             } label: {
                 Label {
                     Text("JWT Decoder")
@@ -86,9 +78,7 @@ extension Sidebar: View {
         }
         Section {
             NavigationLink {
-                JSONFormatterView(
-                    viewModel: self.state.jsonFormatterViewModel
-                )
+                JSONFormatterView(state: self.state.jsonFormatterViewState)
             } label: {
                 Label("JSON", systemImage: "curlybraces")
             }
@@ -97,16 +87,12 @@ extension Sidebar: View {
         }
         Section {
             NavigationLink {
-                HashGeneratorView(
-                    viewModel: self.state.hashGeneratorViewModel
-                )
+                HashGeneratorView(state: self.state.hashGeneratorViewState)
             } label: {
                 Label("Hash", systemImage: "number")
             }
             NavigationLink {
-                UUIDGeneratorView(
-                    viewModel: self.state.uuidGeneratorViewModel
-                )
+                UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
             } label: {
                 Label("UUID", systemImage: "01.square")
             }
@@ -134,7 +120,7 @@ extension Sidebar: View {
         if self.isMatch("Number Base Converter") {
             NavigationLink {
                 NumberBaseConverterView(
-                    viewModel: self.state.numberBaseConverterViewModel
+                    state: self.state.numberBaseConverterViewState
                 )
             } label: {
                 Label("Number Base Converter", systemImage: "number.square")
@@ -142,9 +128,7 @@ extension Sidebar: View {
         }
         if self.isMatch("HTML Encoder / Decoder") {
             NavigationLink {
-                HTMLEncoderDecoderView(
-                    viewModel: self.state.htmlEncoderDecoderViewModel
-                )
+                HTMLCoderView(state: self.state.htmlCoderViewState)
             } label: {
                 Label(
                     "HTML Encoder / Decoder",
@@ -154,27 +138,21 @@ extension Sidebar: View {
         }
         if self.isMatch("URL Encoder / Decoder") {
             NavigationLink {
-                URLEncoderDecoderView(
-                    viewModel: self.state.urlEncoderDecoderViewModel
-                )
+                URLCoderView(state: self.state.urlCoderViewState)
             } label: {
                 Label("URL Encoder / Decoder", systemImage: "link")
             }
         }
         if self.isMatch("Base 64 Encoder / Decoder") {
             NavigationLink {
-                Base64EncoderDecoderView(
-                    viewModel: self.state.base64EncoderDecoderViewModel
-                )
+                Base64CoderView(state: self.state.base64CoderViewState)
             } label: {
                 Label("Base 64 Encoder / Decoder", systemImage: "b.square")
             }
         }
         if self.isMatch("JWT Decoder") {
             NavigationLink {
-                JWTDecoderView(
-                    viewModel: self.state.jwtDecoderViewModel
-                )
+                JWTDecoderView(state: self.state.jwtDecoderViewState)
             } label: {
                 Label {
                     Text("JWT Decoder")
@@ -185,27 +163,21 @@ extension Sidebar: View {
         }
         if self.isMatch("JSON Formatter") {
             NavigationLink {
-                JSONFormatterView(
-                    viewModel: self.state.jsonFormatterViewModel
-                )
+                JSONFormatterView(state: self.state.jsonFormatterViewState)
             } label: {
                 Label("JSON Formatter", systemImage: "curlybraces")
             }
         }
         if self.isMatch("Hash Generator") {
             NavigationLink {
-                HashGeneratorView(
-                    viewModel: self.state.hashGeneratorViewModel
-                )
+                HashGeneratorView(state: self.state.hashGeneratorViewState)
             } label: {
                 Label("Hash Generator", systemImage: "number")
             }
         }
         if self.isMatch("UUID Generator") {
             NavigationLink {
-                UUIDGeneratorView(
-                    viewModel: self.state.uuidGeneratorViewModel
-                )
+                UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
             } label: {
                 Label("UUID Generator", systemImage: "01.square")
             }

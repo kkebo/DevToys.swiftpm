@@ -1,10 +1,10 @@
 import SwiftUI
 
-struct Base64EncoderDecoderView {
-    @ObservedObject private var viewModel: Base64EncoderDecoderViewModel
+struct Base64CoderView {
+    @ObservedObject private var state: Base64CoderViewState
 
-    init(viewModel: Base64EncoderDecoderViewModel) {
-        self.viewModel = viewModel
+    init(state: Base64CoderViewState) {
+        self.state = state
 
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
@@ -12,7 +12,7 @@ struct Base64EncoderDecoderView {
     }
 }
 
-extension Base64EncoderDecoderView: View {
+extension Base64CoderView: View {
     var body: some View {
         ToyPage {
             ToySection("Configuration") {
@@ -23,8 +23,8 @@ extension Base64EncoderDecoderView: View {
                         .foregroundStyle(.secondary)
                 } content: {
                     Toggle(
-                        self.viewModel.encodeMode ? "Encode" : "Decode",
-                        isOn: self.$viewModel.encodeMode
+                        self.state.encodeMode ? "Encode" : "Decode",
+                        isOn: self.$state.encodeMode
                     )
                     .tint(.accentColor)
                     .fixedSize(horizontal: true, vertical: false)
@@ -35,7 +35,7 @@ extension Base64EncoderDecoderView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    Picker("", selection: self.$viewModel.encoding) {
+                    Picker("", selection: self.$state.coder.encoding) {
                         Text("UTF-8").tag(String.Encoding.utf8)
                         Text("ASCII").tag(String.Encoding.ascii)
                     }
@@ -43,11 +43,11 @@ extension Base64EncoderDecoderView: View {
             }
 
             ToySection("Input") {
-                PasteButton(text: self.$viewModel.input)
-                OpenFileButton(text: self.$viewModel.input)
-                ClearButton(text: self.$viewModel.input)
+                PasteButton(text: self.$state.input)
+                OpenFileButton(text: self.$state.input)
+                ClearButton(text: self.$state.input)
             } content: {
-                TextEditor(text: self.$viewModel.input)
+                TextEditor(text: self.$state.input)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .font(.body.monospaced())
@@ -57,9 +57,9 @@ extension Base64EncoderDecoderView: View {
             }
             
             ToySection("Output") {
-                CopyButton(text: self.viewModel.output)
+                CopyButton(text: self.state.output)
             } content: {
-                TextEditor(text: .constant(self.viewModel.output))
+                TextEditor(text: .constant(self.state.output))
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .font(.body.monospaced())
@@ -72,8 +72,8 @@ extension Base64EncoderDecoderView: View {
     }
 }
 
-struct Base64EncoderDecoderView_Previews: PreviewProvider {
+struct Base64CoderView_Previews: PreviewProvider {
     static var previews: some View {
-        Base64EncoderDecoderView(viewModel: .init())
+        Base64CoderView(state: .init())
     }
 }

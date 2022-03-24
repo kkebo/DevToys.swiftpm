@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct JWTDecoderView {
-    @ObservedObject private var viewModel: JWTDecoderViewModel
+    @ObservedObject private var state: JWTDecoderViewState
 
-    init(viewModel: JWTDecoderViewModel) {
-        self.viewModel = viewModel
+    init(state: JWTDecoderViewState) {
+        self.state = state
 
         Task { @MainActor in
             UITextView.appearance().backgroundColor = .clear
@@ -24,11 +24,11 @@ extension JWTDecoderView: View {
 
     private var inputSection: some View {
         ToySection("JWT Token") {
-            PasteButton(text: self.$viewModel.input)
-            OpenFileButton(text: self.$viewModel.input)
-            ClearButton(text: self.$viewModel.input)
+            PasteButton(text: self.$state.input)
+            OpenFileButton(text: self.$state.input)
+            ClearButton(text: self.$state.input)
         } content: {
-            TextEditor(text: self.$viewModel.input)
+            TextEditor(text: self.$state.input)
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
                 .font(.body.monospaced())
@@ -40,9 +40,9 @@ extension JWTDecoderView: View {
 
     private var headerSection: some View {
         ToySection("Header") {
-            CopyButton(text: self.viewModel.header)
+            CopyButton(text: self.state.header)
         } content: {
-            TextEditor(text: .constant(self.viewModel.header))
+            TextEditor(text: .constant(self.state.header))
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
                 .font(.body.monospaced())
@@ -54,9 +54,9 @@ extension JWTDecoderView: View {
 
     private var payloadSection: some View {
         ToySection("Payload") {
-            CopyButton(text: self.viewModel.payload)
+            CopyButton(text: self.state.payload)
         } content: {
-            TextEditor(text: .constant(self.viewModel.payload))
+            TextEditor(text: .constant(self.state.payload))
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
                 .font(.body.monospaced())
@@ -69,6 +69,6 @@ extension JWTDecoderView: View {
 
 struct JWTDecoderView_Previews: PreviewProvider {
     static var previews: some View {
-        JWTDecoderView(viewModel: .init())
+        JWTDecoderView(state: .init())
     }
 }
