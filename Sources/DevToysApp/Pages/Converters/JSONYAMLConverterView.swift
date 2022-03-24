@@ -82,5 +82,6 @@ extension JSONYAMLConverterView: View {
 struct JSONYAMLConverterView_Previews: PreviewProvider {
     static var previews: some View {
         JSONYAMLConverterView()
+            .previewPresets()
     }
 }

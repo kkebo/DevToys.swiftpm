@@ -75,5 +75,6 @@ extension Base64CoderView: View {
 struct Base64CoderView_Previews: PreviewProvider {
     static var previews: some View {
         Base64CoderView(state: .init())
+            .previewPresets()
     }
 }

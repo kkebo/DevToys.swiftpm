@@ -20,5 +20,6 @@ extension ClearButton: View {
 struct ClearButton_Previews: PreviewProvider {
     static var previews: some View {
         ClearButton(text: .constant(""))
+            .previewPresets()
     }
 }

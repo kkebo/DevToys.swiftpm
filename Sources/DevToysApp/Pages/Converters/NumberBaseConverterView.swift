@@ -93,5 +93,6 @@ extension NumberBaseConverterView: View {
 struct NumberBaseConverterView_Previews: PreviewProvider {
     static var previews: some View {
         NumberBaseConverterView(state: .init())
+            .previewPresets()
     }
 }

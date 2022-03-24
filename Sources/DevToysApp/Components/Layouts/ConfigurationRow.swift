@@ -56,5 +56,6 @@ struct ConfigurationRow_Previews: PreviewProvider {
         ConfigurationRow("foo", systemImage: "pencil") {
             Text("bar")
         }
+        .previewPresets()
     }
 }
