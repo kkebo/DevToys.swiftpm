@@ -13,3 +13,35 @@ struct Base64Coder {
             .flatMap { .init(data: $0, encoding: self.encoding) }
     }
 }
+
+#if TESTING_ENABLED
+import PlaygroundTester
+
+@objcMembers
+final class Base64CoderTests: TestCase {
+    func testEncodeUTF8() {
+        let coder = Base64Coder()
+        AssertEqual(
+            "SGVsbG8gdGhlcmUgIQ==",
+            other: coder.encode("Hello there !")
+        )
+        AssertEqual(
+            "8J+rgw==",
+            other: coder.encode("🫃")
+        )
+    }
+
+    func testEncodeASCII() {
+        var coder = Base64Coder()
+        coder.encoding = .ascii
+        AssertEqual(
+            "SGVsbG8gdGhlcmUgIQ==",
+            other: coder.encode("Hello there !")
+        )
+        AssertEqual(
+            "Pz8=",
+            other: coder.encode("🫃")
+        )
+    }
+}
+#endif
