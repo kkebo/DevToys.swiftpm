@@ -4,7 +4,7 @@ struct Base64Coder {
     var encoding = String.Encoding.utf8
 
     func encode(_ input: String) -> String? {
-        input.data(using: self.encoding)?
+        input.data(using: self.encoding, allowLossyConversion: true)?
             .base64EncodedString()
     }
 
@@ -51,7 +51,7 @@ final class Base64CoderTests: TestCase {
             other: coder.encode("Hello there !")
         )
         AssertEqual(
-            "Pz8=",
+            "Pw==",
             other: coder.encode("🫃")
         )
     }
@@ -64,8 +64,8 @@ final class Base64CoderTests: TestCase {
             other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
         )
         AssertEqual(
-            "??",
-            other: coder.decode("Pz8=")
+            "?",
+            other: coder.decode("Pw==")
         )
     }
 }
