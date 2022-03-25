@@ -6,7 +6,15 @@ struct NumberBaseConverter {
         to type: NumberType,
         uppercase: Bool = true
     ) -> String {
-        let converted: String
+        guard value != 0 else {
+            if type == .binary {
+                return "0000"
+            } else {
+                return "0"
+            }
+        }
+
+        var converted: String
         if type != .decimal && value < 0 {
             // 2's complement
             converted = .init(
@@ -20,6 +28,14 @@ struct NumberBaseConverter {
                 radix: type.radix,
                 uppercase: uppercase
             )
+        }
+
+        if type == .binary {
+            // Zero Padding
+            converted = String(
+                repeating: "0",
+                count: value.leadingZeroBitCount % 4
+            ) + converted
         }
 
         return self.isFormatOn
@@ -112,6 +128,10 @@ final class NumberBaseConverterTests: TestCase {
         AssertEqual(
             "1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111",
             other: converter.convert(-1, to: .binary)
+        )
+        AssertEqual(
+            "0000",
+            other: converter.convert(0, to: .binary)
         )
         converter.isFormatOn = false
         AssertEqual(
