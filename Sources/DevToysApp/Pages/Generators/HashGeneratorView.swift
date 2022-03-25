@@ -19,6 +19,17 @@ extension HashGeneratorView: View {
                 ConfigurationRow("Uppercase", systemImage: "textformat") {
                     Toggle("", isOn: self.$state.generator.isUppercase)
                         .fixedSize(horizontal: true, vertical: false)
+                        .disabled(self.state.generator.outputType != .hex)
+                }
+                ConfigurationRow(
+                    "Output Type",
+                    systemImage: "slider.horizontal.3"
+                ) {
+                    Picker("", selection: self.$state.generator.outputType) {
+                        ForEach(HashOutputType.allCases) {
+                            Text($0.rawValue.capitalized)
+                        }
+                    }
                 }
             }
 
