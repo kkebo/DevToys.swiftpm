@@ -16,10 +16,10 @@ struct HashGenerator {
         _ input: String,
         type: F.Type
     ) -> String {
-        let out: String = self.generate(input, type: type).lazy
-            .map { String($0, radix: 16) }
+        let format = self.isUppercase ? "%02X" : "%02x"
+        return self.generate(input, type: type).lazy
+            .map { String(format: format, $0) }
             .joined()
-        return self.isUppercase ? out.uppercased() : out
     }
 
     func generateMD5(_ input: String) -> String {
