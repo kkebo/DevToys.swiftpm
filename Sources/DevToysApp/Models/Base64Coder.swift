@@ -31,6 +31,18 @@ final class Base64CoderTests: TestCase {
         )
     }
 
+    func testDecodeUTF8() {
+        let coder = Base64Coder()
+        AssertEqual(
+            "Hello there !",
+            other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
+        )
+        AssertEqual(
+            "🫃",
+            other: coder.decode("8J+rgw==")
+        )
+    }
+
     func testEncodeASCII() {
         var coder = Base64Coder()
         coder.encoding = .ascii
@@ -41,6 +53,19 @@ final class Base64CoderTests: TestCase {
         AssertEqual(
             "Pz8=",
             other: coder.encode("🫃")
+        )
+    }
+
+    func testDecodeASCII() {
+        var coder = Base64Coder()
+        coder.encoding = .ascii
+        AssertEqual(
+            "Hello there !",
+            other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
+        )
+        AssertEqual(
+            "??",
+            other: coder.decode("Pz8=")
         )
     }
 }
