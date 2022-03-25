@@ -2,12 +2,30 @@
   "object": {
     "pins": [
       {
+        "package": "Difference",
+        "repositoryURL": "https://github.com/krzysztofzablocki/Difference",
+        "state": {
+          "branch": null,
+          "revision": "02fe1111edc8318c4f8a0da96336fcbcc201f38b",
+          "version": "1.0.1"
+        }
+      },
+      {
         "package": "JWTDecode",
         "repositoryURL": "https://github.com/auth0/JWTDecode.swift",
         "state": {
           "branch": null,
           "revision": "3cd207fb9e943b6168a117baa3936c823204c2dc",
           "version": "2.6.3"
+        }
+      },
+      {
+        "package": "PlaygroundTester",
+        "repositoryURL": "https://github.com/Losiowaty/PlaygroundTester",
+        "state": {
+          "branch": null,
+          "revision": "889be7ea8a44182c46318757aea93d817db4b132",
+          "version": "0.2.0"
         }
       },
       {

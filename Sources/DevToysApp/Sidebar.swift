@@ -19,6 +19,9 @@ extension Sidebar: View {
             } else {
                 self.searchResults
             }
+            #if TESTING_ENABLED
+                UnitTestsButton()
+            #endif
         }
         .navigationTitle("DevToys")
     }
