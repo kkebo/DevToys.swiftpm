@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "LoremSwiftum",
+        "repositoryURL": "https://github.com/lukaskubanek/LoremSwiftum",
+        "state": {
+          "branch": null,
+          "revision": "8942e732e50458cde5dccf9996afa16f29372853",
+          "version": "2.2.2"
+        }
+      },
+      {
         "package": "PlaygroundTester",
         "repositoryURL": "https://github.com/Losiowaty/PlaygroundTester",
         "state": {
