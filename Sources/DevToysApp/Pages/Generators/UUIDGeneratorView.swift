@@ -54,30 +54,34 @@ extension UUIDGeneratorView: View {
         ToySection("Generate") {
             HStack {
                 Button(
-                    self.state.numberOfUUIDs ?? 0 > 1
+                    self.state.numberOfUUIDs > 1
                         ? "Generate UUIDs"
                         : "Generate UUID",
                     action: self.state.generate
                 )
                 .buttonStyle(.borderedProminent)
                 .hoverEffect()
-                .disabled(self.state.numberOfUUIDs == nil)
+                .disabled(!self.state.isNumberOfUUIDsValid)
                 Text("x")
-                TextField("N", text: self.$state.numberOfUUIDsString)
-                    .textFieldStyle(.roundedBorder)
-                    .frame(maxWidth: 80)
-                    .keyboardType(.numberPad)
-                    .font(.body.monospacedDigit())
-                    .disableAutocorrection(true)
-                    .textInputAutocapitalization(.never)
-                    .border(self.state.numberOfUUIDs == nil ? .red : .clear)
+                TextField(
+                    "N",
+                    value: self.$state.numberOfUUIDs,
+                    format: .number
+                )
+                .textFieldStyle(.roundedBorder)
+                .frame(maxWidth: 80)
+                .keyboardType(.numberPad)
+                .font(.body.monospacedDigit())
+                .disableAutocorrection(true)
+                .textInputAutocapitalization(.never)
+                .border(!self.state.isNumberOfUUIDsValid ? .red : .clear)
             }
         }
     }
 
     private var outputSection: some View {
         ToySection(
-            self.state.numberOfUUIDs ?? 0 > 1 ? "UUIDs" : "UUID"
+            self.state.numberOfUUIDs > 1 ? "UUIDs" : "UUID"
         ) {
             CopyButton(text: self.state.output)
             ClearButton(text: self.$state.output)
