@@ -178,6 +178,28 @@ extension AllToolsView: View {
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
+                    || "Lorem Ipsum Generator".lowercased()
+                        .contains(self.searchQuery.lowercased())
+                {
+                    NavigationLink {
+                        LoremIpsumGeneratorView(
+                            state: self.state.loremIpsumGeneratorViewState
+                        )
+                    } label: {
+                        Label {
+                            Text("Lorem Ipsum Generator")
+                            Text("Generate Lorem Ipsum placeholder text")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        } icon: {
+                            Image(systemName: "text.alignleft")
+                                .font(.system(size: 50).bold())
+                        }
+                    }
+                    .hoverEffect()
+                }
+                if !self.isSearching
+                    || self.searchQuery.isEmpty
                     || "Number Base Converter".lowercased()
                         .contains(self.searchQuery.lowercased())
                 {

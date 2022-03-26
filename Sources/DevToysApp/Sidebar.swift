@@ -99,6 +99,13 @@ extension Sidebar: View {
             } label: {
                 Label("UUID", systemImage: "01.square")
             }
+            NavigationLink {
+                LoremIpsumGeneratorView(
+                    state: self.state.loremIpsumGeneratorViewState
+                )
+            } label: {
+                Label("Lorem Ipsum", systemImage: "text.alignleft")
+            }
         } header: {
             Text("Generators").font(.title3.bold())
         }
@@ -183,6 +190,15 @@ extension Sidebar: View {
                 UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
             } label: {
                 Label("UUID Generator", systemImage: "01.square")
+            }
+        }
+        if self.isMatch("Lorem Ipsum Generator") {
+            NavigationLink {
+                LoremIpsumGeneratorView(
+                    state: self.state.loremIpsumGeneratorViewState
+                )
+            } label: {
+                Label("Lorem Ipsum", systemImage: "text.alignleft")
             }
         }
     }

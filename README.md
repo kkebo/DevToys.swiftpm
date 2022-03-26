@@ -29,7 +29,7 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
   - [ ] UUID
     - [ ] UUID v1
     - [x] UUID v4
-  - [ ] Lorem Ipsum
+  - [x] Lorem Ipsum
   - [ ] Checksum
 - Text
   - [ ] Inspector & Case Converter
