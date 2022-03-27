@@ -16,7 +16,9 @@ let package = Package(
         .iOSApplication(
             name: "DevToys",
             targets: ["DevToysApp"],
-            displayVersion: "1.0",
+            bundleIdentifier: "xyz.kebo.DevToysForiPad",
+            teamIdentifier: "X4678G5DL2",
+            displayVersion: "1.0.0",
             bundleVersion: "1",
             iconAssetName: "AppIcon",
             accentColorAssetName: "AccentColor",
