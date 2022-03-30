@@ -39,10 +39,10 @@
       },
       {
         "package": "HTMLEntities",
-        "repositoryURL": "https://github.com/kkk669/swift-html-entities",
+        "repositoryURL": "https://github.com/Kitura/swift-html-entities",
         "state": {
           "branch": null,
-          "revision": "39083f7a1826b1b01e3a270795ed409ac4ccea18",
+          "revision": "d8ca73197f59ce260c71bd6d7f6eb8bbdccf508b",
           "version": "4.0.1"
         }
       },
