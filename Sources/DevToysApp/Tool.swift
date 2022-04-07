@@ -20,10 +20,10 @@ enum Tool {
 
     static var coderCases: [Self] {
         [
-            .base64Coder,
             .htmlCoder,
-            .jwtDecoder,
             .urlCoder,
+            .base64Coder,
+            .jwtDecoder,
         ]
     }
 
@@ -34,8 +34,8 @@ enum Tool {
     static var generatorCases: [Self] {
         [
             .hashGenerator,
-            .loremIpsumGenerator,
             .uuidGenerator,
+            .loremIpsumGenerator,
         ]
     }
 
@@ -47,8 +47,8 @@ enum Tool {
         switch self {
         case .base64Coder:
             return .init(
-                shortTitle: "Base64",
-                longTitle: "Base64 Encoder / Decoder",
+                shortTitle: "Base 64",
+                longTitle: "Base 64 Encoder / Decoder",
                 iconName: "b.square",
                 description: "Encode and decode Base64 data"
             )
