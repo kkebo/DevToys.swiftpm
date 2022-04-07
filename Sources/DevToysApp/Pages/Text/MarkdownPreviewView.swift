@@ -17,21 +17,21 @@ extension MarkdownPreviewView: View {
     var body: some View {
         ToyPage {
             if self.hSizeClass == .compact {
-                self.inputSection
-                self.outputSection
+                self.markdownSection
+                self.previewSection
             } else {
                 HStack {
-                    self.inputSection
+                    self.markdownSection
                     Divider()
-                    self.outputSection
+                    self.previewSection
                 }
             }
         }
         .navigationTitle("Markdown Preview")
     }
 
-    private var inputSection: some View {
-        ToySection("Input") {
+    private var markdownSection: some View {
+        ToySection("Markdown") {
             PasteButton(text: self.$state.input)
             OpenFileButton(text: self.$state.input)
             ClearButton(text: self.$state.input)
@@ -46,8 +46,8 @@ extension MarkdownPreviewView: View {
         }
     }
 
-    private var outputSection: some View {
-        ToySection("Output") {
+    private var previewSection: some View {
+        ToySection("Preview") {
             CopyButton(text: self.state.output)
         } content: {
             HTMLView(self.state.output)
