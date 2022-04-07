@@ -10,6 +10,7 @@ final class AppState {
     let hashGeneratorViewState = HashGeneratorViewState()
     let uuidGeneratorViewState = UUIDGeneratorViewState()
     let loremIpsumGeneratorViewState = LoremIpsumGeneratorViewState()
+    let markdownPreviewViewState = MarkdownPreviewViewState()
 }
 
 extension AppState: ObservableObject {}

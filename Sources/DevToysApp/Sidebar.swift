@@ -110,6 +110,13 @@ extension Sidebar: View {
             Text("Generators").font(.title3.bold())
         }
         Section {
+            NavigationLink {
+                MarkdownPreviewView(
+                    state: self.state.markdownPreviewViewState
+                )
+            } label: {
+                Label("Markdown Preview", systemImage: "arrow.down.square")
+            }
         } header: {
             Text("Text").font(.title3.bold())
         }
@@ -120,85 +127,122 @@ extension Sidebar: View {
     }
 
     @ViewBuilder private var searchResults: some View {
-        if self.isMatch("JSON <> YAML Converter") {
-            NavigationLink {
-                JSONYAMLConverterView()
-            } label: {
-                Label("JSON <> YAML Converter", systemImage: "doc.plaintext")
+        Group {
+            if self.isMatch("JSON <> YAML Converter") {
+                NavigationLink {
+                    JSONYAMLConverterView()
+                } label: {
+                    Label(
+                        "JSON <> YAML Converter",
+                        systemImage: "doc.plaintext"
+                    )
+                }
             }
-        }
-        if self.isMatch("Number Base Converter") {
-            NavigationLink {
-                NumberBaseConverterView(
-                    state: self.state.numberBaseConverterViewState
-                )
-            } label: {
-                Label("Number Base Converter", systemImage: "number.square")
-            }
-        }
-        if self.isMatch("HTML Encoder / Decoder") {
-            NavigationLink {
-                HTMLCoderView(state: self.state.htmlCoderViewState)
-            } label: {
-                Label(
-                    "HTML Encoder / Decoder",
-                    systemImage: "chevron.left.slash.chevron.right"
-                )
-            }
-        }
-        if self.isMatch("URL Encoder / Decoder") {
-            NavigationLink {
-                URLCoderView(state: self.state.urlCoderViewState)
-            } label: {
-                Label("URL Encoder / Decoder", systemImage: "link")
-            }
-        }
-        if self.isMatch("Base 64 Encoder / Decoder") {
-            NavigationLink {
-                Base64CoderView(state: self.state.base64CoderViewState)
-            } label: {
-                Label("Base 64 Encoder / Decoder", systemImage: "b.square")
-            }
-        }
-        if self.isMatch("JWT Decoder") {
-            NavigationLink {
-                JWTDecoderView(state: self.state.jwtDecoderViewState)
-            } label: {
-                Label {
-                    Text("JWT Decoder")
-                } icon: {
-                    Image(systemName: "rays").font(.body.bold())
+            if self.isMatch("Number Base Converter") {
+                NavigationLink {
+                    NumberBaseConverterView(
+                        state: self.state.numberBaseConverterViewState
+                    )
+                } label: {
+                    Label(
+                        "Number Base Converter",
+                        systemImage: "number.square"
+                    )
                 }
             }
         }
-        if self.isMatch("JSON Formatter") {
-            NavigationLink {
-                JSONFormatterView(state: self.state.jsonFormatterViewState)
-            } label: {
-                Label("JSON Formatter", systemImage: "curlybraces")
+        Group {
+            if self.isMatch("HTML Encoder / Decoder") {
+                NavigationLink {
+                    HTMLCoderView(state: self.state.htmlCoderViewState)
+                } label: {
+                    Label(
+                        "HTML Encoder / Decoder",
+                        systemImage: "chevron.left.slash.chevron.right"
+                    )
+                }
+            }
+            if self.isMatch("URL Encoder / Decoder") {
+                NavigationLink {
+                    URLCoderView(state: self.state.urlCoderViewState)
+                } label: {
+                    Label("URL Encoder / Decoder", systemImage: "link")
+                }
+            }
+            if self.isMatch("Base 64 Encoder / Decoder") {
+                NavigationLink {
+                    Base64CoderView(state: self.state.base64CoderViewState)
+                } label: {
+                    Label(
+                        "Base 64 Encoder / Decoder",
+                        systemImage: "b.square"
+                    )
+                }
+            }
+            if self.isMatch("JWT Decoder") {
+                NavigationLink {
+                    JWTDecoderView(state: self.state.jwtDecoderViewState)
+                } label: {
+                    Label {
+                        Text("JWT Decoder")
+                    } icon: {
+                        Image(systemName: "rays").font(.body.bold())
+                    }
+                }
             }
         }
-        if self.isMatch("Hash Generator") {
-            NavigationLink {
-                HashGeneratorView(state: self.state.hashGeneratorViewState)
-            } label: {
-                Label("Hash Generator", systemImage: "number")
+        Group {
+            if self.isMatch("JSON Formatter") {
+                NavigationLink {
+                    JSONFormatterView(
+                        state: self.state.jsonFormatterViewState
+                    )
+                } label: {
+                    Label("JSON Formatter", systemImage: "curlybraces")
+                }
             }
         }
-        if self.isMatch("UUID Generator") {
-            NavigationLink {
-                UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
-            } label: {
-                Label("UUID Generator", systemImage: "01.square")
+        Group {
+            if self.isMatch("Hash Generator") {
+                NavigationLink {
+                    HashGeneratorView(
+                        state: self.state.hashGeneratorViewState
+                    )
+                } label: {
+                    Label("Hash Generator", systemImage: "number")
+                }
+            }
+            if self.isMatch("UUID Generator") {
+                NavigationLink {
+                    UUIDGeneratorView(
+                        state: self.state.uuidGeneratorViewState
+                    )
+                } label: {
+                    Label("UUID Generator", systemImage: "01.square")
+                }
+            }
+            if self.isMatch("Lorem Ipsum Generator") {
+                NavigationLink {
+                    LoremIpsumGeneratorView(
+                        state: self.state.loremIpsumGeneratorViewState
+                    )
+                } label: {
+                    Label("Lorem Ipsum", systemImage: "text.alignleft")
+                }
             }
         }
-        if self.isMatch("Lorem Ipsum Generator") {
-            NavigationLink {
-                LoremIpsumGeneratorView(
-                    state: self.state.loremIpsumGeneratorViewState
-                )
-            } label: {
-                Label("Lorem Ipsum", systemImage: "text.alignleft")
+        Group {
+            if self.isMatch("Markdown Preview") {
+                NavigationLink {
+                    MarkdownPreviewView(
+                        state: self.state.markdownPreviewViewState
+                    )
+                } label: {
+                    Label(
+                        "Markdown Preview",
+                        systemImage: "arrow.down.square"
+                    )
+                }
             }
         }
     }

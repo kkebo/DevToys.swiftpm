@@ -200,6 +200,27 @@ extension AllToolsView: View {
                 }
                 if !self.isSearching
                     || self.searchQuery.isEmpty
+                    || "Markdown Preview".lowercased()
+                        .contains(self.searchQuery.lowercased())
+                {
+                    NavigationLink {
+                        MarkdownPreviewView(
+                            state: self.state.markdownPreviewViewState
+                        )
+                    } label: {
+                        Label {
+                            Text("Markdown Preview")
+                            Text("Preview a Markdown document")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        } icon: {
+                            Image(systemName: "arrow.down.square")
+                        }
+                    }
+                    .hoverEffect()
+                }
+                if !self.isSearching
+                    || self.searchQuery.isEmpty
                     || "Number Base Converter".lowercased()
                         .contains(self.searchQuery.lowercased())
                 {
@@ -219,47 +240,49 @@ extension AllToolsView: View {
                     }
                     .hoverEffect()
                 }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "URL Encoder / Decoder".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        URLCoderView(
-                            state: self.state.urlCoderViewState
-                        )
-                    } label: {
-                        Label {
-                            Text("URL")
-                            Text("Encode or decode all the applicable characters to their corresponding URL entities")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "link")
+                Group {
+                    if !self.isSearching
+                        || self.searchQuery.isEmpty
+                        || "URL Encoder / Decoder".lowercased()
+                            .contains(self.searchQuery.lowercased())
+                    {
+                        NavigationLink {
+                            URLCoderView(
+                                state: self.state.urlCoderViewState
+                            )
+                        } label: {
+                            Label {
+                                Text("URL")
+                                Text("Encode or decode all the applicable characters to their corresponding URL entities")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            } icon: {
+                                Image(systemName: "link")
+                            }
                         }
+                        .hoverEffect()
                     }
-                    .hoverEffect()
-                }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "UUID Generator".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        UUIDGeneratorView(
-                            state: self.state.uuidGeneratorViewState
-                        )
-                    } label: {
-                        Label {
-                            Text("UUID")
-                            Text("Generate UUIDs version 1 and 4")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "01.square")
+                    if !self.isSearching
+                        || self.searchQuery.isEmpty
+                        || "UUID Generator".lowercased()
+                            .contains(self.searchQuery.lowercased())
+                    {
+                        NavigationLink {
+                            UUIDGeneratorView(
+                                state: self.state.uuidGeneratorViewState
+                            )
+                        } label: {
+                            Label {
+                                Text("UUID")
+                                Text("Generate UUIDs version 1 and 4")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            } icon: {
+                                Image(systemName: "01.square")
+                            }
                         }
+                        .hoverEffect()
                     }
-                    .hoverEffect()
                 }
             }
             .labelStyle(AllToolsLabelStyle())

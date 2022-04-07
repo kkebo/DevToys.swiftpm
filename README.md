@@ -35,7 +35,7 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
   - [ ] Inspector & Case Converter
   - [ ] Regex Tester
   - [ ] Text Comparer
-  - [ ] Markdown Preview
+  - [x] Markdown Preview
 - Graphic
   - [ ] Color Blindness Simulator
   - [ ] PNG / JPEG Compressor

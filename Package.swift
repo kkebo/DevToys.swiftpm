@@ -40,7 +40,8 @@ let package = Package(
         .package(url: "https://github.com/auth0/JWTDecode.swift", "2.6.3"..<"2.7.0"),
         .package(url: "https://github.com/Kitura/swift-html-entities", "4.0.1"..<"4.1.0"),
         .package(url: "https://github.com/Losiowaty/PlaygroundTester", "0.2.1"..<"0.3.0"),
-        .package(url: "https://github.com/lukaskubanek/LoremSwiftum", "2.2.1"..<"2.3.0")
+        .package(url: "https://github.com/lukaskubanek/LoremSwiftum", "2.2.1"..<"2.3.0"),
+        .package(url: "https://github.com/JohnSundell/Ink", "0.5.1"..<"0.6.0")
     ],
     targets: [
         .executableTarget(
@@ -51,7 +52,8 @@ let package = Package(
                 .product(name: "JWTDecode", package: "JWTDecode.swift"),
                 .product(name: "HTMLEntities", package: "swift-html-entities"),
                 .product(name: "PlaygroundTester", package: "PlaygroundTester"),
-                .product(name: "LoremSwiftum", package: "LoremSwiftum")
+                .product(name: "LoremSwiftum", package: "LoremSwiftum"),
+                .product(name: "Ink", package: "Ink")
             ],
             swiftSettings: [
                 .unsafeFlags(["-Xfrontend", "-warn-long-function-bodies=100"], .when(configuration: .debug)),
