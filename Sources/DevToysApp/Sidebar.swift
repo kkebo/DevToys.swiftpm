@@ -19,9 +19,6 @@ extension Sidebar: View {
             } else {
                 self.searchResults
             }
-            #if TESTING_ENABLED
-                UnitTestsButton()
-            #endif
         }
         .navigationTitle("DevToys")
     }
@@ -33,89 +30,36 @@ extension Sidebar: View {
             Label("All tools", systemImage: "house")
         }
         Section {
-            NavigationLink {
-                JSONYAMLConverterView()
-            } label: {
-                Label("JSON <> YAML", systemImage: "doc.plaintext")
-            }
-            NavigationLink {
-                NumberBaseConverterView(
-                    state: self.state.numberBaseConverterViewState
-                )
-            } label: {
-                Label("Number Base", systemImage: "number.square")
+            ForEach(Tool.converterCases) { tool in
+                self.row(for: tool)
             }
         } header: {
             Text("Converters").font(.title3.bold())
         }
         Section {
-            NavigationLink {
-                HTMLCoderView(state: self.state.htmlCoderViewState)
-            } label: {
-                Label(
-                    "HTML",
-                    systemImage: "chevron.left.slash.chevron.right"
-                )
-            }
-            NavigationLink {
-                URLCoderView(state: self.state.urlCoderViewState)
-            } label: {
-                Label("URL", systemImage: "link")
-            }
-            NavigationLink {
-                Base64CoderView(state: self.state.base64CoderViewState)
-            } label: {
-                Label("Base 64", systemImage: "b.square")
-            }
-            NavigationLink {
-                JWTDecoderView(state: self.state.jwtDecoderViewState)
-            } label: {
-                Label {
-                    Text("JWT Decoder")
-                } icon: {
-                    Image(systemName: "rays").font(.body.bold())
-                }
+            ForEach(Tool.coderCases) { tool in
+                self.row(for: tool)
             }
         } header: {
             Text("Encoders / Decoders").font(.title3.bold())
         }
         Section {
-            NavigationLink {
-                JSONFormatterView(state: self.state.jsonFormatterViewState)
-            } label: {
-                Label("JSON", systemImage: "curlybraces")
+            ForEach(Tool.formatterCases) { tool in
+                self.row(for: tool)
             }
         } header: {
             Text("Formatters").font(.title3.bold())
         }
         Section {
-            NavigationLink {
-                HashGeneratorView(state: self.state.hashGeneratorViewState)
-            } label: {
-                Label("Hash", systemImage: "number")
-            }
-            NavigationLink {
-                UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
-            } label: {
-                Label("UUID", systemImage: "01.square")
-            }
-            NavigationLink {
-                LoremIpsumGeneratorView(
-                    state: self.state.loremIpsumGeneratorViewState
-                )
-            } label: {
-                Label("Lorem Ipsum", systemImage: "text.alignleft")
+            ForEach(Tool.generatorCases) { tool in
+                self.row(for: tool)
             }
         } header: {
             Text("Generators").font(.title3.bold())
         }
         Section {
-            NavigationLink {
-                MarkdownPreviewView(
-                    state: self.state.markdownPreviewViewState
-                )
-            } label: {
-                Label("Markdown Preview", systemImage: "arrow.down.square")
+            ForEach(Tool.textCases) { tool in
+                self.row(for: tool)
             }
         } header: {
             Text("Text").font(.title3.bold())
@@ -124,126 +68,81 @@ extension Sidebar: View {
         } header: {
             Text("Graphic").font(.title3.bold())
         }
+        #if TESTING_ENABLED
+            UnitTestsButton()
+        #endif
     }
 
-    @ViewBuilder private var searchResults: some View {
-        Group {
-            if self.isMatch("JSON <> YAML Converter") {
-                NavigationLink {
-                    JSONYAMLConverterView()
-                } label: {
-                    Label(
-                        "JSON <> YAML Converter",
-                        systemImage: "doc.plaintext"
-                    )
-                }
+    private var searchResults: some View {
+        ForEach(
+            Tool.converterCases
+                + Tool.coderCases
+                + Tool.formatterCases
+                + Tool.generatorCases
+                + Tool.textCases
+        ) { tool in
+            if self.isMatch(tool.strings.localizedLongTitle) {
+                self.row(for: tool, isSearchResult: true)
             }
-            if self.isMatch("Number Base Converter") {
-                NavigationLink {
-                    NumberBaseConverterView(
-                        state: self.state.numberBaseConverterViewState
-                    )
-                } label: {
-                    Label(
-                        "Number Base Converter",
-                        systemImage: "number.square"
-                    )
+        }
+    }
+
+    private func row(
+        for tool: Tool,
+        isSearchResult: Bool = false
+    ) -> some View {
+        let strings = tool.strings
+        return NavigationLink {
+            self.destination(for: tool)
+        } label: {
+            Label {
+                Text(
+                    LocalizedStringKey(
+                        isSearchResult
+                            ? strings.longTitle
+                            : strings.shortTitle
+                    ),
+                    bundle: .module
+                )
+            } icon: {
+                if strings.boldIcon {
+                    Image(systemName: strings.iconName)
+                        .font(.body.bold())
+                } else {
+                    Image(systemName: strings.iconName)
                 }
             }
         }
-        Group {
-            if self.isMatch("HTML Encoder / Decoder") {
-                NavigationLink {
-                    HTMLCoderView(state: self.state.htmlCoderViewState)
-                } label: {
-                    Label(
-                        "HTML Encoder / Decoder",
-                        systemImage: "chevron.left.slash.chevron.right"
-                    )
-                }
-            }
-            if self.isMatch("URL Encoder / Decoder") {
-                NavigationLink {
-                    URLCoderView(state: self.state.urlCoderViewState)
-                } label: {
-                    Label("URL Encoder / Decoder", systemImage: "link")
-                }
-            }
-            if self.isMatch("Base 64 Encoder / Decoder") {
-                NavigationLink {
-                    Base64CoderView(state: self.state.base64CoderViewState)
-                } label: {
-                    Label(
-                        "Base 64 Encoder / Decoder",
-                        systemImage: "b.square"
-                    )
-                }
-            }
-            if self.isMatch("JWT Decoder") {
-                NavigationLink {
-                    JWTDecoderView(state: self.state.jwtDecoderViewState)
-                } label: {
-                    Label {
-                        Text("JWT Decoder")
-                    } icon: {
-                        Image(systemName: "rays").font(.body.bold())
-                    }
-                }
-            }
-        }
-        Group {
-            if self.isMatch("JSON Formatter") {
-                NavigationLink {
-                    JSONFormatterView(
-                        state: self.state.jsonFormatterViewState
-                    )
-                } label: {
-                    Label("JSON Formatter", systemImage: "curlybraces")
-                }
-            }
-        }
-        Group {
-            if self.isMatch("Hash Generator") {
-                NavigationLink {
-                    HashGeneratorView(
-                        state: self.state.hashGeneratorViewState
-                    )
-                } label: {
-                    Label("Hash Generator", systemImage: "number")
-                }
-            }
-            if self.isMatch("UUID Generator") {
-                NavigationLink {
-                    UUIDGeneratorView(
-                        state: self.state.uuidGeneratorViewState
-                    )
-                } label: {
-                    Label("UUID Generator", systemImage: "01.square")
-                }
-            }
-            if self.isMatch("Lorem Ipsum Generator") {
-                NavigationLink {
-                    LoremIpsumGeneratorView(
-                        state: self.state.loremIpsumGeneratorViewState
-                    )
-                } label: {
-                    Label("Lorem Ipsum", systemImage: "text.alignleft")
-                }
-            }
-        }
-        Group {
-            if self.isMatch("Markdown Preview") {
-                NavigationLink {
-                    MarkdownPreviewView(
-                        state: self.state.markdownPreviewViewState
-                    )
-                } label: {
-                    Label(
-                        "Markdown Preview",
-                        systemImage: "arrow.down.square"
-                    )
-                }
-            }
+    }
+
+    @ViewBuilder private func destination(for tool: Tool) -> some View {
+        switch tool {
+        case .base64Coder:
+            Base64CoderView(state: self.state.base64CoderViewState)
+        case .hashGenerator:
+            HashGeneratorView(state: self.state.hashGeneratorViewState)
+        case .htmlCoder:
+            HTMLCoderView(state: self.state.htmlCoderViewState)
+        case .jsonFormatter:
+            JSONFormatterView(state: self.state.jsonFormatterViewState)
+        case .jsonYAMLConverter:
+            JSONYAMLConverterView()
+        case .jwtDecoder:
+            JWTDecoderView(state: self.state.jwtDecoderViewState)
+        case .loremIpsumGenerator:
+            LoremIpsumGeneratorView(
+                state: self.state.loremIpsumGeneratorViewState
+            )
+        case .markdownPreview:
+            MarkdownPreviewView(state: self.state.markdownPreviewViewState)
+        case .numberBaseConverter:
+            NumberBaseConverterView(
+                state: self.state.numberBaseConverterViewState
+            )
+        case .urlCoder:
+            URLCoderView(state: self.state.urlCoderViewState)
+        case .uuidGenerator:
+            UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
         }
     }
 }

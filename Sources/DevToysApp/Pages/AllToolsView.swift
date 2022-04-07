@@ -47,241 +47,14 @@ extension AllToolsView: View {
     var body: some View {
         ToyPage {
             LazyVGrid(columns: columns) {
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "Base 64 Encoder / Decoder".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        Base64CoderView(
-                            state: self.state.base64CoderViewState
-                        )
-                    } label: {
-                        Label {
-                            Text("Base 64")
-                            Text("Encode and decode Base64 data")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "b.square")
-                        }
-                    }
-                    .hoverEffect()
-                }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "Hash Generator".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        HashGeneratorView(
-                            state: self.state.hashGeneratorViewState
-                        )
-                    } label: {
-                        Label {
-                            Text("Hash")
-                            Text(
-                                "Calculate MD5, SHA1, SHA256 and SHA512 hash from text data"
-                            )
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "number")
-                        }
-                    }
-                    .hoverEffect()
-                }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "HTML Encoder / Decoder".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        HTMLCoderView(state: self.state.htmlCoderViewState)
-                    } label: {
-                        Label {
-                            Text("HTML")
-                            Text(
-                                "Encode or decode all the applicable characters to their corresponding HTML entities"
-                            )
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "chevron.left.slash.chevron.right")
-                        }
-                    }
-                    .hoverEffect()
-                }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "JSON Formatter".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        JSONFormatterView(
-                            state: self.state.jsonFormatterViewState
-                        )
-                    } label: {
-                        Label {
-                            Text("JSON")
-                            Text("Indenti or minify JSON data")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "curlybraces")
-                        }
-                    }
-                    .hoverEffect()
-                }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "JSON <> YAML Converter".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        JSONYAMLConverterView()
-                    } label: {
-                        Label {
-                            Text("JSON <> YAML")
-                            Text("Convert JSON data to YAML and vice versa")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "doc.plaintext")
-                        }
-                    }
-                    .hoverEffect()
-                }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "JWT Decoder".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        JWTDecoderView(
-                            state: self.state.jwtDecoderViewState
-                        )
-                    } label: {
-                        Label {
-                            Text("JWT Decoder")
-                            Text(
-                                "Decode a JWT header, payload and signature"
-                            )
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "rays")
-                                .font(.system(size: 50).bold())
-                        }
-                    }
-                    .hoverEffect()
-                }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "Lorem Ipsum Generator".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        LoremIpsumGeneratorView(
-                            state: self.state.loremIpsumGeneratorViewState
-                        )
-                    } label: {
-                        Label {
-                            Text("Lorem Ipsum Generator")
-                            Text("Generate Lorem Ipsum placeholder text")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "text.alignleft")
-                                .font(.system(size: 50).bold())
-                        }
-                    }
-                    .hoverEffect()
-                }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "Markdown Preview".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        MarkdownPreviewView(
-                            state: self.state.markdownPreviewViewState
-                        )
-                    } label: {
-                        Label {
-                            Text("Markdown Preview")
-                            Text("Preview a Markdown document")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "arrow.down.square")
-                        }
-                    }
-                    .hoverEffect()
-                }
-                if !self.isSearching
-                    || self.searchQuery.isEmpty
-                    || "Number Base Converter".lowercased()
-                        .contains(self.searchQuery.lowercased())
-                {
-                    NavigationLink {
-                        NumberBaseConverterView(
-                            state: self.state.numberBaseConverterViewState
-                        )
-                    } label: {
-                        Label {
-                            Text("Number Base")
-                            Text("Convert numbers from one base to another")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        } icon: {
-                            Image(systemName: "number.square")
-                        }
-                    }
-                    .hoverEffect()
-                }
-                Group {
+                ForEach(Tool.allCases) { tool in
+                    let strings = tool.strings
                     if !self.isSearching
                         || self.searchQuery.isEmpty
-                        || "URL Encoder / Decoder".lowercased()
+                        || strings.localizedLongTitle.lowercased()
                             .contains(self.searchQuery.lowercased())
                     {
-                        NavigationLink {
-                            URLCoderView(
-                                state: self.state.urlCoderViewState
-                            )
-                        } label: {
-                            Label {
-                                Text("URL")
-                                Text("Encode or decode all the applicable characters to their corresponding URL entities")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            } icon: {
-                                Image(systemName: "link")
-                            }
-                        }
-                        .hoverEffect()
-                    }
-                    if !self.isSearching
-                        || self.searchQuery.isEmpty
-                        || "UUID Generator".lowercased()
-                            .contains(self.searchQuery.lowercased())
-                    {
-                        NavigationLink {
-                            UUIDGeneratorView(
-                                state: self.state.uuidGeneratorViewState
-                            )
-                        } label: {
-                            Label {
-                                Text("UUID")
-                                Text("Generate UUIDs version 1 and 4")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            } icon: {
-                                Image(systemName: "01.square")
-                            }
-                        }
-                        .hoverEffect()
+                        self.button(for: tool)
                     }
                 }
             }
@@ -293,6 +66,65 @@ extension AllToolsView: View {
                 ? "All tools"
                 : "Search results"
         )
+    }
+
+    private func button(for tool: Tool) -> some View {
+        let strings = tool.strings
+        return NavigationLink {
+            self.destination(for: tool)
+        } label: {
+            Label {
+                Text(
+                    LocalizedStringKey(strings.longTitle),
+                    bundle: .module
+                )
+                Text(
+                    LocalizedStringKey(strings.description),
+                    bundle: .module
+                )
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            } icon: {
+                if strings.boldIcon {
+                    Image(systemName: strings.iconName)
+                        .font(.system(size: 50).bold())
+                } else {
+                    Image(systemName: strings.iconName)
+                }
+            }
+        }
+        .hoverEffect()
+    }
+
+    @ViewBuilder private func destination(for tool: Tool) -> some View {
+        switch tool {
+        case .base64Coder:
+            Base64CoderView(state: self.state.base64CoderViewState)
+        case .hashGenerator:
+            HashGeneratorView(state: self.state.hashGeneratorViewState)
+        case .htmlCoder:
+            HTMLCoderView(state: self.state.htmlCoderViewState)
+        case .jsonFormatter:
+            JSONFormatterView(state: self.state.jsonFormatterViewState)
+        case .jsonYAMLConverter:
+            JSONYAMLConverterView()
+        case .jwtDecoder:
+            JWTDecoderView(state: self.state.jwtDecoderViewState)
+        case .loremIpsumGenerator:
+            LoremIpsumGeneratorView(
+                state: self.state.loremIpsumGeneratorViewState
+            )
+        case .markdownPreview:
+            MarkdownPreviewView(state: self.state.markdownPreviewViewState)
+        case .numberBaseConverter:
+            NumberBaseConverterView(
+                state: self.state.numberBaseConverterViewState
+            )
+        case .urlCoder:
+            URLCoderView(state: self.state.urlCoderViewState)
+        case .uuidGenerator:
+            UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
+        }
     }
 }
 
