@@ -45,7 +45,6 @@ extension UUIDGeneratorView: View {
                         Text($0.description)
                     }
                 }
-                .disabled(true)  // TODO: Uncomment if v1 is implemented
             }
         }
     }
