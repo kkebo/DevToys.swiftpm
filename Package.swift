@@ -5,14 +5,11 @@
 // Do not edit it by hand because the contents will be replaced.
 
 import PackageDescription
-import AppleProductTypes
 
-let package = Package(
-    name: "DevToys",
-    platforms: [
-        .iOS("15.2")
-    ],
-    products: [
+#if canImport(AppleProductTypes)
+    import AppleProductTypes
+
+    let products: [Product] = [
         .iOSApplication(
             name: "DevToys",
             targets: ["DevToysApp"],
@@ -34,7 +31,17 @@ let package = Package(
             ],
             additionalInfoPlistContentFilePath: "Info.plist"
         )
+    ]
+#else
+    let products: [Product] = []
+#endif
+
+let package = Package(
+    name: "DevToys",
+    platforms: [
+        .iOS("15.2")
     ],
+    products: products,
     dependencies: [
         .package(url: "https://github.com/kkk669/swift-log-playground", "0.1.0"..<"0.2.0"),
         .package(url: "https://github.com/luin/SwiftJSONFormatter", "1.0.0"..<"1.1.0"),
