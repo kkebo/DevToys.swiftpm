@@ -101,8 +101,7 @@ extension Sidebar: View {
                         isSearchResult
                             ? strings.longTitle
                             : strings.shortTitle
-                    ),
-                    bundle: .module
+                    )
                 )
             } icon: {
                 if strings.boldIcon {

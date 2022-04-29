@@ -74,16 +74,10 @@ extension AllToolsView: View {
             self.destination(for: tool)
         } label: {
             Label {
-                Text(
-                    LocalizedStringKey(strings.longTitle),
-                    bundle: .module
-                )
-                Text(
-                    LocalizedStringKey(strings.description),
-                    bundle: .module
-                )
-                .font(.caption)
-                .foregroundStyle(.secondary)
+                Text(LocalizedStringKey(strings.longTitle))
+                Text(LocalizedStringKey(strings.description))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             } icon: {
                 if strings.boldIcon {
                     Image(systemName: strings.iconName)

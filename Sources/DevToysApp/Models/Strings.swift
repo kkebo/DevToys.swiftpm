@@ -8,7 +8,7 @@ struct Strings {
     let description: String
 
     var localizedLongTitle: String {
-        NSLocalizedString(self.longTitle, bundle: .module, comment: "")
+        NSLocalizedString(self.longTitle, comment: "")
     }
 
     init(
