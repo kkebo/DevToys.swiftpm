@@ -55,7 +55,7 @@ extension Base64CoderView: View {
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
             }
-            
+
             ToySection("Output") {
                 CopyButton(text: self.state.output)
             } content: {
