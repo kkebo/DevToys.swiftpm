@@ -1,16 +1,9 @@
+import Introspect
 import SwiftUI
 
 struct UUIDGeneratorView {
-    @ObservedObject private var state: UUIDGeneratorViewState
+    @ObservedObject var state: UUIDGeneratorViewState
     @FocusState private var isFocused: Bool
-
-    init(state: UUIDGeneratorViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
 }
 
 extension UUIDGeneratorView: View {
@@ -75,6 +68,9 @@ extension UUIDGeneratorView: View {
                             self.state.commitNumberOfUUIDs()
                         }
                     }
+                    .introspectTextField { textField in
+                        textField.clearButtonMode = .whileEditing
+                    }
                 Stepper("", value: self.$state.numberOfUUIDs, in: 1...10000)
                     .labelsHidden()
             }
@@ -95,6 +91,9 @@ extension UUIDGeneratorView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 }

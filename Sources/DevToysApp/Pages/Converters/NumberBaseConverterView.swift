@@ -1,15 +1,8 @@
+import Introspect
 import SwiftUI
 
 struct NumberBaseConverterView {
-    @ObservedObject private var state: NumberBaseConverterViewState
-
-    init(state: NumberBaseConverterViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextField.appearance().clearButtonMode = .whileEditing
-        }
-    }
+    @ObservedObject var state: NumberBaseConverterViewState
 }
 
 extension NumberBaseConverterView: View {
@@ -56,6 +49,9 @@ extension NumberBaseConverterView: View {
                     .keyboardType(.numbersAndPunctuation)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
+                    .introspectTextField { textField in
+                        textField.clearButtonMode = .whileEditing
+                    }
             }
 
             VStack(spacing: 10) {

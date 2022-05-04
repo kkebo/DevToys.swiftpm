@@ -1,15 +1,8 @@
+import Introspect
 import SwiftUI
 
 struct URLCoderView {
-    @ObservedObject private var state: URLCoderViewState
-
-    init(state: URLCoderViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @ObservedObject var state: URLCoderViewState
 }
 
 extension URLCoderView: View {
@@ -43,6 +36,9 @@ extension URLCoderView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
+                    .introspectTextView { textView in
+                        textView.backgroundColor = .clear
+                    }
             }
 
             ToySection("Output") {
@@ -55,6 +51,9 @@ extension URLCoderView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
+                    .introspectTextView { textView in
+                        textView.backgroundColor = .clear
+                    }
             }
         }
         .navigationTitle("URL Encoder / Decoder")
