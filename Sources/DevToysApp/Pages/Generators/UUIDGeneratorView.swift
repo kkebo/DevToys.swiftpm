@@ -2,6 +2,7 @@ import SwiftUI
 
 struct UUIDGeneratorView {
     @ObservedObject private var state: UUIDGeneratorViewState
+    @FocusState private var isFocused: Bool
 
     init(state: UUIDGeneratorViewState) {
         self.state = state
@@ -60,20 +61,22 @@ extension UUIDGeneratorView: View {
                 )
                 .buttonStyle(.borderedProminent)
                 .hoverEffect()
-                .disabled(!self.state.isNumberOfUUIDsValid)
                 Text("x")
-                TextField(
-                    "N",
-                    value: self.$state.numberOfUUIDs,
-                    format: .number
-                )
-                .textFieldStyle(.roundedBorder)
-                .frame(maxWidth: 80)
-                .keyboardType(.numberPad)
-                .font(.body.monospacedDigit())
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .border(!self.state.isNumberOfUUIDsValid ? .red : .clear)
+                TextField("N", text: self.$state.numberOfUUIDsString)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(maxWidth: 80)
+                    .keyboardType(.numberPad)
+                    .font(.body.monospacedDigit())
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
+                    .focused(self.$isFocused)
+                    .onChange(of: self.isFocused) { isFocused in
+                        if !isFocused {
+                            self.state.commitNumberOfUUIDs()
+                        }
+                    }
+                Stepper("", value: self.$state.numberOfUUIDs, in: 1...10000)
+                    .labelsHidden()
             }
         }
     }
