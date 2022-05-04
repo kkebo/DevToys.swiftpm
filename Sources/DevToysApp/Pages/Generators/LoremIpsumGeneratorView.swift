@@ -3,6 +3,7 @@ import SwiftUI
 
 struct LoremIpsumGeneratorView {
     @ObservedObject var state: LoremIpsumGeneratorViewState
+    @FocusState private var isFocused: Bool
 }
 
 extension LoremIpsumGeneratorView: View {
@@ -27,23 +28,26 @@ extension LoremIpsumGeneratorView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    TextField(
+                    TextField("", text: self.$state.lengthString)
+                        .frame(maxWidth: 80)
+                        .fixedSize(horizontal: true, vertical: false)
+                        .multilineTextAlignment(.trailing)
+                        .keyboardType(.numberPad)
+                        .font(.body.monospacedDigit())
+                        .disableAutocorrection(true)
+                        .textInputAutocapitalization(.never)
+                        .focused(self.$isFocused)
+                        .onChange(of: self.isFocused) { isFocused in
+                            if !isFocused {
+                                self.state.commitLength()
+                            }
+                        }
+                    Stepper(
                         "",
                         value: self.$state.length,
-                        format: .number
+                        in: 1...Int(Int32.max)
                     )
-                    .frame(width: 80)
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.numberPad)
-                    .font(.body.monospacedDigit())
-                    .disableAutocorrection(true)
-                    .textInputAutocapitalization(.never)
-                    .border(!self.state.isLengthValid ? .red : .clear)
-                    .onSubmit {
-                        if !self.state.isLengthValid {
-                            self.state.length = self.state.generator.length
-                        }
-                    }
+                    .labelsHidden()
                 }
                 ConfigurationRow(
                     "Start with '\(LoremIpsumGenerator.loremIpsumPrefix)...'",
