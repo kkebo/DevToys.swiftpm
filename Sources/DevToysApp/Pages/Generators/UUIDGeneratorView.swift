@@ -58,6 +58,7 @@ extension UUIDGeneratorView: View {
                 TextField("N", text: self.$state.numberOfUUIDsString)
                     .textFieldStyle(.roundedBorder)
                     .frame(maxWidth: 80)
+                    .fixedSize(horizontal: true, vertical: false)
                     .keyboardType(.numberPad)
                     .font(.body.monospacedDigit())
                     .disableAutocorrection(true)
