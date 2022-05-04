@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct PasteButton {
+    @Environment(\.horizontalSizeClass) private var hSizeClass
     @Binding var text: String
 }
 
@@ -9,7 +10,12 @@ extension PasteButton: View {
         Button {
             self.text = UIPasteboard.general.string ?? ""
         } label: {
-            Label("Paste", systemImage: "doc.on.clipboard")
+            if self.hSizeClass == .compact {
+                Label("Paste", systemImage: "doc.on.clipboard")
+                    .labelStyle(.iconOnly)
+            } else {
+                Label("Paste", systemImage: "doc.on.clipboard")
+            }
         }
         .buttonStyle(.bordered)
         .hoverEffect()

@@ -9,7 +9,8 @@ extension ClearButton: View {
         Button(role: .destructive) {
             self.text.removeAll()
         } label: {
-            Image(systemName: "xmark")
+            Label("Clear", systemImage: "xmark")
+                .labelStyle(.iconOnly)
         }
         .buttonStyle(.bordered)
         .hoverEffect()

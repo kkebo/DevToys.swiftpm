@@ -2,6 +2,7 @@ import Introspect
 import SwiftUI
 
 struct LoremIpsumGeneratorView {
+    @Environment(\.horizontalSizeClass) private var hSizeClass
     @ObservedObject var state: LoremIpsumGeneratorViewState
     @FocusState private var isFocused: Bool
 }
@@ -60,7 +61,12 @@ extension LoremIpsumGeneratorView: View {
 
             ToySection("Output") {
                 Button(action: self.state.generate) {
-                    Label("Refresh", systemImage: "arrow.clockwise")
+                    if self.hSizeClass == .compact {
+                        Label("Refresh", systemImage: "arrow.clockwise")
+                            .labelStyle(.iconOnly)
+                    } else {
+                        Label("Refresh", systemImage: "arrow.clockwise")
+                    }
                 }
                 .buttonStyle(.bordered)
                 .hoverEffect()
