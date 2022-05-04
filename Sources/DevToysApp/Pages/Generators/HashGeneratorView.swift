@@ -1,15 +1,8 @@
+import Introspect
 import SwiftUI
 
 struct HashGeneratorView {
-    @ObservedObject private var state: HashGeneratorViewState
-
-    init(state: HashGeneratorViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @ObservedObject var state: HashGeneratorViewState
 }
 
 extension HashGeneratorView: View {
@@ -58,6 +51,9 @@ extension HashGeneratorView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(height: 100)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 

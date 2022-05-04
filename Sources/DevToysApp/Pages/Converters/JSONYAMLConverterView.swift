@@ -1,15 +1,10 @@
+import Introspect
 import SwiftUI
 
 struct JSONYAMLConverterView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
     @State private var input = ""
     @State private var output = ""
-
-    init() {
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
 }
 
 extension JSONYAMLConverterView: View {
@@ -48,6 +43,7 @@ extension JSONYAMLConverterView: View {
         .navigationTitle("JSON <> YAML Converter")
     }
 
+    @MainActor
     private var inputSection: some View {
         ToySection("Input") {
             PasteButton(text: self.$input)
@@ -61,9 +57,13 @@ extension JSONYAMLConverterView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 
+    @MainActor
     private var outputSection: some View {
         ToySection("Output") {
             CopyButton(text: self.output)
@@ -75,6 +75,9 @@ extension JSONYAMLConverterView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 }

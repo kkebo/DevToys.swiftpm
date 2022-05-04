@@ -1,16 +1,9 @@
+import Introspect
 import SwiftUI
 
 struct MarkdownPreviewView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @ObservedObject private var state: MarkdownPreviewViewState
-
-    init(state: MarkdownPreviewViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @ObservedObject var state: MarkdownPreviewViewState
 }
 
 extension MarkdownPreviewView: View {
@@ -43,6 +36,9 @@ extension MarkdownPreviewView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 

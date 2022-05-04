@@ -1,15 +1,8 @@
+import Introspect
 import SwiftUI
 
 struct LoremIpsumGeneratorView {
-    @ObservedObject private var state: LoremIpsumGeneratorViewState
-
-    init(state: LoremIpsumGeneratorViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @ObservedObject var state: LoremIpsumGeneratorViewState
 }
 
 extension LoremIpsumGeneratorView: View {
@@ -72,6 +65,9 @@ extension LoremIpsumGeneratorView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
+                    .introspectTextView { textView in
+                        textView.backgroundColor = .clear
+                    }
             }
         }
         .navigationTitle("Lorem Ipsum Generator")
