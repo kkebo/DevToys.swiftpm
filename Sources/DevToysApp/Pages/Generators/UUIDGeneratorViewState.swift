@@ -30,7 +30,7 @@ final class UUIDGeneratorViewState {
         }
     }
 
-    func updateNumberOfUUIDsString() {
+    private func updateNumberOfUUIDsString() {
         let string = String(self.numberOfUUIDs)
         if self.numberOfUUIDsString != string {
             self.numberOfUUIDsString = string
