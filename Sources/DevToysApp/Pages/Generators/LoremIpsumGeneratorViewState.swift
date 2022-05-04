@@ -4,7 +4,7 @@ final class LoremIpsumGeneratorViewState {
     static let defaultLength = 1
 
     @Published var generator = LoremIpsumGenerator() {
-        didSet { self.updateOutput() }
+        didSet { self.generate() }
     }
     @Published var lengthString = 
         String(LoremIpsumGeneratorViewState.defaultLength)
@@ -18,7 +18,7 @@ final class LoremIpsumGeneratorViewState {
     @Published var output = ""
 
     init() {
-        self.updateOutput()
+        self.generate()
     }
 
     func commitLength() {
@@ -44,7 +44,7 @@ final class LoremIpsumGeneratorViewState {
         }
     }
 
-    private func updateOutput() {
+    func generate() {
         self.output = self.generator.generate()
     }
 }

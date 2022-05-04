@@ -59,6 +59,11 @@ extension LoremIpsumGeneratorView: View {
             }
 
             ToySection("Output") {
+                Button(action: self.state.generate) {
+                    Label("Refresh", systemImage: "arrow.clockwise")
+                }
+                .buttonStyle(.bordered)
+                .hoverEffect()
                 CopyButton(text: self.state.output)
                 ClearButton(text: self.$state.output)
             } content: {
