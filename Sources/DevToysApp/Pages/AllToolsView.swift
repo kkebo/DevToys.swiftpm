@@ -37,41 +37,45 @@ extension AllToolsLabelStyle: LabelStyle {
 }
 
 struct AllToolsView {
-    @Environment(\.isSearching) private var isSearching
+    private static let columns = [
+        GridItem(.adaptive(minimum: 140, maximum: 160))
+    ]
+
+    @Environment(\.isSearching) private var isSearchMode
     @EnvironmentObject private var state: AppState
+    @Binding var selection: Tool?
     let searchQuery: String
-    private let columns = [GridItem(.adaptive(minimum: 140, maximum: 160))]
+
+    private var isSearching: Bool {
+        self.isSearchMode && !self.searchQuery.isEmpty
+    }
+
+    private var tools: [Tool] {
+        if !self.isSearching {
+            return Tool.allCases
+        } else {
+            return Tool.allCases.filter {
+                $0.strings.localizedLongTitle
+                    .localizedCaseInsensitiveContains(self.searchQuery)
+            }
+        }
+    }
 }
 
 extension AllToolsView: View {
     var body: some View {
         ToyPage {
-            LazyVGrid(columns: columns) {
-                ForEach(Tool.allCases) { tool in
-                    let strings = tool.strings
-                    if !self.isSearching
-                        || self.searchQuery.isEmpty
-                        || strings.localizedLongTitle.lowercased()
-                            .contains(self.searchQuery.lowercased())
-                    {
-                        self.button(for: tool)
-                    }
-                }
+            LazyVGrid(columns: Self.columns) {
+                ForEach(self.tools, content: self.button)
             }
-            .labelStyle(AllToolsLabelStyle())
-            .foregroundStyle(.primary)
         }
-        .navigationTitle(
-            !self.isSearching || self.searchQuery.isEmpty
-                ? "All tools"
-                : "Search results"
-        )
+        .navigationTitle(!self.isSearching ? "All tools" : "Search results")
     }
 
     private func button(for tool: Tool) -> some View {
         let strings = tool.strings
-        return NavigationLink {
-            self.destination(for: tool)
+        return Button {
+            self.selection = tool
         } label: {
             Label {
                 Text(LocalizedStringKey(strings.longTitle))
@@ -86,45 +90,16 @@ extension AllToolsView: View {
                     Image(systemName: strings.iconName)
                 }
             }
+            .labelStyle(AllToolsLabelStyle())
         }
+        .foregroundStyle(.primary)
         .hoverEffect()
-    }
-
-    @ViewBuilder private func destination(for tool: Tool) -> some View {
-        switch tool {
-        case .base64Coder:
-            Base64CoderView(state: self.state.base64CoderViewState)
-        case .hashGenerator:
-            HashGeneratorView(state: self.state.hashGeneratorViewState)
-        case .htmlCoder:
-            HTMLCoderView(state: self.state.htmlCoderViewState)
-        case .jsonFormatter:
-            JSONFormatterView(state: self.state.jsonFormatterViewState)
-        case .jsonYAMLConverter:
-            JSONYAMLConverterView()
-        case .jwtDecoder:
-            JWTDecoderView(state: self.state.jwtDecoderViewState)
-        case .loremIpsumGenerator:
-            LoremIpsumGeneratorView(
-                state: self.state.loremIpsumGeneratorViewState
-            )
-        case .markdownPreview:
-            MarkdownPreviewView(state: self.state.markdownPreviewViewState)
-        case .numberBaseConverter:
-            NumberBaseConverterView(
-                state: self.state.numberBaseConverterViewState
-            )
-        case .urlCoder:
-            URLCoderView(state: self.state.urlCoderViewState)
-        case .uuidGenerator:
-            UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
-        }
     }
 }
 
 struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
-        AllToolsView(searchQuery: "")
+        AllToolsView(selection: .constant(nil), searchQuery: "")
             .environmentObject(AppState())
             .previewPresets()
     }

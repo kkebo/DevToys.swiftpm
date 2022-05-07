@@ -1,23 +1,38 @@
 import SwiftUI
 
 struct Sidebar {
-    @Environment(\.isSearching) private var isSearching
+    @Environment(\.isSearching) private var isSearchMode
     @EnvironmentObject private var state: AppState
+    @Binding var selection: Tool?
     let searchQuery: String
 
-    private func isMatch(_ name: String) -> Bool {
-        self.searchQuery.isEmpty
-            || name.lowercased().contains(self.searchQuery.lowercased())
+    private var isSearching: Bool {
+        self.isSearchMode && !self.searchQuery.isEmpty
+    }
+
+    private var allTools: [Tool] {
+        Tool.converterCases
+            + Tool.coderCases
+            + Tool.formatterCases
+            + Tool.generatorCases
+            + Tool.textCases
+    }
+
+    private var filteredTools: [Tool] {
+        self.allTools.filter {
+            $0.strings.localizedLongTitle
+                .localizedCaseInsensitiveContains(self.searchQuery)
+        }
     }
 }
 
 extension Sidebar: View {
     var body: some View {
         List {
-            if !self.isSearching || self.searchQuery.isEmpty {
+            if !self.isSearching {
                 self.normalRows
             } else {
-                self.searchResults
+                ForEach(self.filteredTools, content: self.row)
             }
         }
         .navigationTitle("DevToys")
@@ -25,42 +40,35 @@ extension Sidebar: View {
 
     @ViewBuilder private var normalRows: some View {
         NavigationLink {
-            AllToolsView(searchQuery: self.searchQuery)
+            AllToolsView(
+                selection: self.$selection,
+                searchQuery: self.searchQuery
+            )
         } label: {
             Label("All tools", systemImage: "house")
         }
         Section {
-            ForEach(Tool.converterCases) { tool in
-                self.row(for: tool)
-            }
+            ForEach(Tool.converterCases, content: self.row)
         } header: {
             Text("Converters").font(.title3.bold())
         }
         Section {
-            ForEach(Tool.coderCases) { tool in
-                self.row(for: tool)
-            }
+            ForEach(Tool.coderCases, content: self.row)
         } header: {
             Text("Encoders / Decoders").font(.title3.bold())
         }
         Section {
-            ForEach(Tool.formatterCases) { tool in
-                self.row(for: tool)
-            }
+            ForEach(Tool.formatterCases, content: self.row)
         } header: {
             Text("Formatters").font(.title3.bold())
         }
         Section {
-            ForEach(Tool.generatorCases) { tool in
-                self.row(for: tool)
-            }
+            ForEach(Tool.generatorCases, content: self.row)
         } header: {
             Text("Generators").font(.title3.bold())
         }
         Section {
-            ForEach(Tool.textCases) { tool in
-                self.row(for: tool)
-            }
+            ForEach(Tool.textCases, content: self.row)
         } header: {
             Text("Text").font(.title3.bold())
         }
@@ -73,32 +81,15 @@ extension Sidebar: View {
         #endif
     }
 
-    private var searchResults: some View {
-        ForEach(
-            Tool.converterCases
-                + Tool.coderCases
-                + Tool.formatterCases
-                + Tool.generatorCases
-                + Tool.textCases
-        ) { tool in
-            if self.isMatch(tool.strings.localizedLongTitle) {
-                self.row(for: tool, isSearchResult: true)
-            }
-        }
-    }
-
-    private func row(
-        for tool: Tool,
-        isSearchResult: Bool = false
-    ) -> some View {
+    private func row(for tool: Tool) -> some View {
         let strings = tool.strings
-        return NavigationLink {
+        return NavigationLink(tag: tool, selection: self.$selection) {
             self.destination(for: tool)
         } label: {
             Label {
                 Text(
                     LocalizedStringKey(
-                        isSearchResult
+                        self.isSearching
                             ? strings.longTitle
                             : strings.shortTitle
                     )
@@ -148,7 +139,7 @@ extension Sidebar: View {
 
 struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {
-        Sidebar(searchQuery: "")
+        Sidebar(selection: .constant(nil), searchQuery: "")
             .environmentObject(AppState())
             .previewPresets()
     }
