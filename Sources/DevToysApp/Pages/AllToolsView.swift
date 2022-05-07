@@ -57,6 +57,8 @@ struct AllToolsView {
             return Tool.allCases.filter {
                 $0.strings.localizedLongTitle
                     .localizedCaseInsensitiveContains(self.searchQuery)
+                    || $0.strings.localizedDescription
+                        .localizedCaseInsensitiveContains(self.searchQuery)
             }
         }
     }
@@ -69,7 +71,11 @@ extension AllToolsView: View {
                 ForEach(self.tools, content: self.button)
             }
         }
-        .navigationTitle(!self.isSearching ? "All tools" : "Search results")
+        .navigationTitle(
+            !self.isSearching
+                ? "All tools"
+                : "Search results for \"\(self.searchQuery)\""
+        )
     }
 
     private func button(for tool: Tool) -> some View {

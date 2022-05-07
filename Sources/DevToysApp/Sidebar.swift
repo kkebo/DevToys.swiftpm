@@ -22,6 +22,8 @@ struct Sidebar {
         self.allTools.filter {
             $0.strings.localizedLongTitle
                 .localizedCaseInsensitiveContains(self.searchQuery)
+                || $0.strings.localizedDescription
+                    .localizedCaseInsensitiveContains(self.searchQuery)
         }
     }
 }
