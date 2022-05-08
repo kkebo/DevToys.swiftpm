@@ -132,3 +132,5 @@ extension Tool: Identifiable {
 }
 
 extension Tool: CaseIterable {}
+
+extension Tool: Codable {}

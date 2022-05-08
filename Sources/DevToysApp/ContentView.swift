@@ -53,6 +53,10 @@ extension ContentView: View {
             text: self.$searchQuery,
             prompt: "Type to search for tools..."
         )
+        .onContinueUserActivity("xyz.kebo.DevToysForiPad.newWindow") {
+            let payload = try? $0.typedPayload(NewWindowActivityPayload.self)
+            self.selection = payload?.tool
+        }
     }
 }
 

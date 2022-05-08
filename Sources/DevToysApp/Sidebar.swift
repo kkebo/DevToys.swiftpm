@@ -106,6 +106,20 @@ extension Sidebar: View {
                 }
             }
         }
+        .onDrag {
+            let activity = NSUserActivity(
+                activityType: "xyz.kebo.DevToysForiPad.newWindow"
+            )
+            try! activity.setTypedPayload(
+                NewWindowActivityPayload(tool: tool)
+            )
+            return .init(object: activity)
+        }
+        .contextMenu {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                OpenInNewWindowButton(tool: tool)
+            }
+        }
     }
 
     @ViewBuilder private func destination(for tool: Tool) -> some View {
