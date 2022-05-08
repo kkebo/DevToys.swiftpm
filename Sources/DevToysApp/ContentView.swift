@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView {
     @StateObject private var state = AppState()
-    @State var selection: Tool?
+    @SceneStorage("selectedTool") private var selection: Tool?
     @State private var searchQuery = ""
 }
 
@@ -14,11 +14,40 @@ extension ContentView: View {
                 selection: self.$selection,
                 searchQuery: self.searchQuery
             )
-            AllToolsView(
-                state: self.state,
-                selection: self.$selection,
-                searchQuery: self.searchQuery
-            )
+            switch self.selection {
+            case nil:
+                AllToolsView(
+                    state: self.state,
+                    selection: self.$selection,
+                    searchQuery: self.searchQuery
+                )
+            case .base64Coder:
+                Base64CoderView(state: self.state.base64CoderViewState)
+            case .hashGenerator:
+                HashGeneratorView(state: self.state.hashGeneratorViewState)
+            case .htmlCoder:
+                HTMLCoderView(state: self.state.htmlCoderViewState)
+            case .jsonFormatter:
+                JSONFormatterView(state: self.state.jsonFormatterViewState)
+            case .jsonYAMLConverter:
+                JSONYAMLConverterView()
+            case .jwtDecoder:
+                JWTDecoderView(state: self.state.jwtDecoderViewState)
+            case .loremIpsumGenerator:
+                LoremIpsumGeneratorView(
+                    state: self.state.loremIpsumGeneratorViewState
+                )
+            case .markdownPreview:
+                MarkdownPreviewView(state: self.state.markdownPreviewViewState)
+            case .numberBaseConverter:
+                NumberBaseConverterView(
+                    state: self.state.numberBaseConverterViewState
+                )
+            case .urlCoder:
+                URLCoderView(state: self.state.urlCoderViewState)
+            case .uuidGenerator:
+                UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
+            }
         }
         .searchable(
             text: self.$searchQuery,

@@ -1,4 +1,4 @@
-enum Tool {
+enum Tool: String {
     case base64Coder
     case hashGenerator
     case htmlCoder
