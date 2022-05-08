@@ -42,7 +42,7 @@ struct AllToolsView {
     ]
 
     @Environment(\.isSearching) private var isSearchMode
-    @EnvironmentObject private var state: AppState
+    @ObservedObject var state: AppState
     @Binding var selection: Tool?
     let searchQuery: String
 
@@ -105,8 +105,11 @@ extension AllToolsView: View {
 
 struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
-        AllToolsView(selection: .constant(nil), searchQuery: "")
-            .environmentObject(AppState())
-            .previewPresets()
+        AllToolsView(
+            state: .init(),
+            selection: .constant(nil),
+            searchQuery: ""
+        )
+        .previewPresets()
     }
 }
