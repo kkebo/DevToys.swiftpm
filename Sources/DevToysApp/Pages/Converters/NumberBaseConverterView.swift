@@ -67,7 +67,9 @@ extension NumberBaseConverterView: View {
                 self.outputSection("Binary", value: self.state.binary)
             }
         }
-        .navigationTitle("Number Base Converter")
+        .navigationTitle(
+            Tool.numberBaseConverter.strings.localizedLongTitle
+        )
     }
 
     private func outputSection(

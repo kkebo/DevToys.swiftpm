@@ -20,7 +20,7 @@ extension MarkdownPreviewView: View {
                 }
             }
         }
-        .navigationTitle("Markdown Preview")
+        .navigationTitle(Tool.markdownPreview.strings.localizedLongTitle)
     }
 
     private var markdownSection: some View {

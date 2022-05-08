@@ -40,7 +40,7 @@ extension JSONYAMLConverterView: View {
                 }
             }
         }
-        .navigationTitle("JSON <> YAML Converter")
+        .navigationTitle(Tool.jsonYAMLConverter.strings.localizedLongTitle)
     }
 
     @MainActor

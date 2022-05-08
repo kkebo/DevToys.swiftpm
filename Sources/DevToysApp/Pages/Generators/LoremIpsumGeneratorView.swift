@@ -85,7 +85,9 @@ extension LoremIpsumGeneratorView: View {
                     }
             }
         }
-        .navigationTitle("Lorem Ipsum Generator")
+        .navigationTitle(
+            Tool.loremIpsumGenerator.strings.localizedLongTitle
+        )
     }
 }
 

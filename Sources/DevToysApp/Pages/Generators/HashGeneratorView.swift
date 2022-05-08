@@ -35,7 +35,7 @@ extension HashGeneratorView: View {
                 self.outputSection("SHA512", value: self.state.sha512)
             }
         }
-        .navigationTitle("Hash Generator")
+        .navigationTitle(Tool.hashGenerator.strings.localizedLongTitle)
     }
 
     private var inputSection: some View {

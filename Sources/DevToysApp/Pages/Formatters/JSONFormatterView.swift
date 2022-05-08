@@ -33,7 +33,7 @@ extension JSONFormatterView: View {
                 }
             }
         }
-        .navigationTitle("JSON Formatter")
+        .navigationTitle(Tool.jsonFormatter.strings.localizedLongTitle)
     }
 
     private var inputSection: some View {

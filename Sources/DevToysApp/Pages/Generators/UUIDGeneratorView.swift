@@ -13,7 +13,7 @@ extension UUIDGeneratorView: View {
             self.generateSection
             self.outputSection
         }
-        .navigationTitle("UUID Generator")
+        .navigationTitle(Tool.uuidGenerator.strings.localizedLongTitle)
     }
 
     private var configurationSection: some View {
