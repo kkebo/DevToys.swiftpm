@@ -42,7 +42,7 @@ struct AllToolsView {
     ]
 
     @Environment(\.isSearching) private var isSearchMode
-    @EnvironmentObject private var state: AppState
+    @ObservedObject var state: AppState
     @Binding var selection: Tool?
     let searchQuery: String
 
@@ -79,34 +79,57 @@ extension AllToolsView: View {
     }
 
     private func button(for tool: Tool) -> some View {
-        let strings = tool.strings
-        return Button {
+        Button {
             self.selection = tool
         } label: {
-            Label {
-                Text(LocalizedStringKey(strings.longTitle))
-                Text(LocalizedStringKey(strings.description))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            } icon: {
-                if strings.boldIcon {
-                    Image(systemName: strings.iconName)
-                        .font(.system(size: 50).bold())
-                } else {
-                    Image(systemName: strings.iconName)
-                }
-            }
-            .labelStyle(AllToolsLabelStyle())
+            self.buttonLabel(for: tool)
         }
         .foregroundStyle(.primary)
         .hoverEffect()
+        .onDrag {
+            let activity = NSUserActivity(
+                activityType: "xyz.kebo.DevToysForiPad.newWindow"
+            )
+            try! activity.setTypedPayload(
+                NewWindowActivityPayload(tool: tool)
+            )
+            return .init(object: activity)
+        } preview: {
+            self.buttonLabel(for: tool)
+        }
+        .contextMenu {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                OpenInNewWindowButton(tool: tool)
+            }
+        }
+    }
+
+    private func buttonLabel(for tool: Tool) -> some View {
+        let strings = tool.strings
+        return Label {
+            Text(LocalizedStringKey(strings.longTitle))
+            Text(LocalizedStringKey(strings.description))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        } icon: {
+            if strings.boldIcon {
+                Image(systemName: strings.iconName)
+                    .font(.system(size: 50).bold())
+            } else {
+                Image(systemName: strings.iconName)
+            }
+        }
+        .labelStyle(AllToolsLabelStyle())
     }
 }
 
 struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
-        AllToolsView(selection: .constant(nil), searchQuery: "")
-            .environmentObject(AppState())
-            .previewPresets()
+        AllToolsView(
+            state: .init(),
+            selection: .constant(nil),
+            searchQuery: ""
+        )
+        .previewPresets()
     }
 }

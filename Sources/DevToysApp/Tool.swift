@@ -1,4 +1,4 @@
-enum Tool {
+enum Tool: String {
     case base64Coder
     case hashGenerator
     case htmlCoder
@@ -132,3 +132,5 @@ extension Tool: Identifiable {
 }
 
 extension Tool: CaseIterable {}
+
+extension Tool: Codable {}

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct Sidebar {
     @Environment(\.isSearching) private var isSearchMode
-    @EnvironmentObject private var state: AppState
+    @ObservedObject var state: AppState
     @Binding var selection: Tool?
     let searchQuery: String
 
@@ -43,6 +43,7 @@ extension Sidebar: View {
     @ViewBuilder private var normalRows: some View {
         NavigationLink {
             AllToolsView(
+                state: self.state,
                 selection: self.$selection,
                 searchQuery: self.searchQuery
             )
@@ -105,6 +106,20 @@ extension Sidebar: View {
                 }
             }
         }
+        .onDrag {
+            let activity = NSUserActivity(
+                activityType: "xyz.kebo.DevToysForiPad.newWindow"
+            )
+            try! activity.setTypedPayload(
+                NewWindowActivityPayload(tool: tool)
+            )
+            return .init(object: activity)
+        }
+        .contextMenu {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                OpenInNewWindowButton(tool: tool)
+            }
+        }
     }
 
     @ViewBuilder private func destination(for tool: Tool) -> some View {
@@ -141,8 +156,7 @@ extension Sidebar: View {
 
 struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {
-        Sidebar(selection: .constant(nil), searchQuery: "")
-            .environmentObject(AppState())
+        Sidebar(state: .init(), selection: .constant(nil), searchQuery: "")
             .previewPresets()
     }
 }
