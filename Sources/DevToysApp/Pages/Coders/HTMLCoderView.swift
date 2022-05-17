@@ -62,7 +62,9 @@ extension HTMLCoderView: View {
 
 struct HTMLCoderView_Previews: PreviewProvider {
     static var previews: some View {
-        HTMLCoderView(state: .init())
-            .previewPresets()
+        NavigationView {
+            HTMLCoderView(state: .init())
+        }
+        .previewPresets()
     }
 }

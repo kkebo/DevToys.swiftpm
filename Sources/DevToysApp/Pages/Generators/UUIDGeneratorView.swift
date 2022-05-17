@@ -101,7 +101,9 @@ extension UUIDGeneratorView: View {
 
 struct UUIDGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        UUIDGeneratorView(state: .init())
-            .previewPresets()
+        NavigationView {
+            UUIDGeneratorView(state: .init())
+        }
+        .previewPresets()
     }
 }

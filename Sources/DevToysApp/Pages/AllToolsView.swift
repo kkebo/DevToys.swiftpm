@@ -128,7 +128,9 @@ extension AllToolsView: View {
 
 struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
-        AllToolsView(state: .init(), selection: .constant(nil))
-            .previewPresets()
+        NavigationView {
+            AllToolsView(state: .init(), selection: .constant(nil))
+        }
+        .previewPresets()
     }
 }

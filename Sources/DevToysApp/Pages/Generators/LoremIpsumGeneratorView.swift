@@ -93,7 +93,9 @@ extension LoremIpsumGeneratorView: View {
 
 struct LoremIpsumGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        LoremIpsumGeneratorView(state: .init())
-            .previewPresets()
+        NavigationView {
+            LoremIpsumGeneratorView(state: .init())
+        }
+        .previewPresets()
     }
 }

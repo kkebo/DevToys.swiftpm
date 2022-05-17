@@ -155,7 +155,9 @@ extension Sidebar: View {
 
 struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {
-        Sidebar(state: .init(), selection: .constant(nil))
-            .previewPresets()
+        NavigationView {
+            Sidebar(state: .init(), selection: .constant(nil))
+        }
+        .previewPresets()
     }
 }
