@@ -41,13 +41,12 @@ struct AllToolsView {
         GridItem(.adaptive(minimum: 140, maximum: 160))
     ]
 
-    @Environment(\.isSearching) private var isSearchMode
     @ObservedObject var state: AppState
     @Binding var selection: Tool?
-    let searchQuery: String
+    @State private var searchQuery = ""
 
     private var isSearching: Bool {
-        self.isSearchMode && !self.searchQuery.isEmpty
+        !self.searchQuery.isEmpty
     }
 
     private var tools: [Tool] {
@@ -75,6 +74,10 @@ extension AllToolsView: View {
             !self.isSearching
                 ? "All tools"
                 : "Search results for \"\(self.searchQuery)\""
+        )
+        .searchable(
+            text: self.$searchQuery,
+            prompt: "Type to search for tools..."
         )
     }
 
@@ -125,11 +128,7 @@ extension AllToolsView: View {
 
 struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
-        AllToolsView(
-            state: .init(),
-            selection: .constant(nil),
-            searchQuery: ""
-        )
-        .previewPresets()
+        AllToolsView(state: .init(), selection: .constant(nil))
+            .previewPresets()
     }
 }

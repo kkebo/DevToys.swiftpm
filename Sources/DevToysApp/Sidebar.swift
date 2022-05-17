@@ -1,13 +1,12 @@
 import SwiftUI
 
 struct Sidebar {
-    @Environment(\.isSearching) private var isSearchMode
     @ObservedObject var state: AppState
     @Binding var selection: Tool?
-    let searchQuery: String
+    @State private var searchQuery = ""
 
     private var isSearching: Bool {
-        self.isSearchMode && !self.searchQuery.isEmpty
+        !self.searchQuery.isEmpty
     }
 
     private var allTools: [Tool] {
@@ -38,15 +37,15 @@ extension Sidebar: View {
             }
         }
         .navigationTitle("DevToys")
+        .searchable(
+            text: self.$searchQuery,
+            prompt: "Type to search for tools..."
+        )
     }
 
     @ViewBuilder private var normalRows: some View {
         NavigationLink {
-            AllToolsView(
-                state: self.state,
-                selection: self.$selection,
-                searchQuery: self.searchQuery
-            )
+            AllToolsView(state: self.state, selection: self.$selection)
         } label: {
             Label("All tools", systemImage: "house")
         }
@@ -156,7 +155,7 @@ extension Sidebar: View {
 
 struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {
-        Sidebar(state: .init(), selection: .constant(nil), searchQuery: "")
+        Sidebar(state: .init(), selection: .constant(nil))
             .previewPresets()
     }
 }

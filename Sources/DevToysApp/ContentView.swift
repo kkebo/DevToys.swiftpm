@@ -3,24 +3,15 @@ import SwiftUI
 struct ContentView {
     @StateObject private var state = AppState()
     @SceneStorage("selectedTool") private var selection: Tool?
-    @State private var searchQuery = ""
 }
 
 extension ContentView: View {
     var body: some View {
         NavigationView {
-            Sidebar(
-                state: self.state,
-                selection: self.$selection,
-                searchQuery: self.searchQuery
-            )
+            Sidebar(state: self.state, selection: self.$selection)
             switch self.selection {
             case nil:
-                AllToolsView(
-                    state: self.state,
-                    selection: self.$selection,
-                    searchQuery: self.searchQuery
-                )
+                AllToolsView(state: self.state, selection: self.$selection)
             case .base64Coder:
                 Base64CoderView(state: self.state.base64CoderViewState)
             case .hashGenerator:
@@ -49,10 +40,6 @@ extension ContentView: View {
                 UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
             }
         }
-        .searchable(
-            text: self.$searchQuery,
-            prompt: "Type to search for tools..."
-        )
         .onContinueUserActivity("xyz.kebo.DevToysForiPad.newWindow") {
             let payload = try? $0.typedPayload(NewWindowActivityPayload.self)
             self.selection = payload?.tool
