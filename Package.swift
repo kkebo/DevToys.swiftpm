@@ -29,6 +29,7 @@ import PackageDescription
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
             ],
+            appCategory: .developerTools,
             additionalInfoPlistContentFilePath: "Info.plist"
         )
     ]
