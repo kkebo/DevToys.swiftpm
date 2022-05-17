@@ -9,7 +9,7 @@ extension ContentView: View {
     var body: some View {
         NavigationView {
             Sidebar(state: self.state, selection: self.$selection)
-            // When the horizontal size class is compact, the transition doesn't fire because the side bar is not initialized. The following switch statement is a workaround for that.
+            // If the sidebar is collapsed from the beginning, the transition using NavigationLink's selection doesn't fire until the sidebar is shown once. The following switch statement is a workaround for that.
             switch self.selection {
             case nil:
                 AllToolsView(state: self.state, selection: self.$selection)
