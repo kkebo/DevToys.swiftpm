@@ -1,3 +1,4 @@
+import func Darwin.uuid_generate_time
 import typealias Darwin.uuid_t
 import struct Foundation.UUID
 
