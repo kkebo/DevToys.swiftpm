@@ -1,15 +1,8 @@
+import Introspect
 import SwiftUI
 
 struct NumberBaseConverterView {
-    @ObservedObject private var state: NumberBaseConverterViewState
-
-    init(state: NumberBaseConverterViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextField.appearance().clearButtonMode = .whileEditing
-        }
-    }
+    @ObservedObject var state: NumberBaseConverterViewState
 }
 
 extension NumberBaseConverterView: View {
@@ -56,6 +49,9 @@ extension NumberBaseConverterView: View {
                     .keyboardType(.numbersAndPunctuation)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
+                    .introspectTextField { textField in
+                        textField.clearButtonMode = .whileEditing
+                    }
             }
 
             VStack(spacing: 10) {
@@ -71,7 +67,9 @@ extension NumberBaseConverterView: View {
                 self.outputSection("Binary", value: self.state.binary)
             }
         }
-        .navigationTitle("Number Base Converter")
+        .navigationTitle(
+            Tool.numberBaseConverter.strings.localizedLongTitle
+        )
     }
 
     private func outputSection(
@@ -92,7 +90,9 @@ extension NumberBaseConverterView: View {
 
 struct NumberBaseConverterView_Previews: PreviewProvider {
     static var previews: some View {
-        NumberBaseConverterView(state: .init())
-            .previewPresets()
+        NavigationView {
+            NumberBaseConverterView(state: .init())
+        }
+        .previewPresets()
     }
 }

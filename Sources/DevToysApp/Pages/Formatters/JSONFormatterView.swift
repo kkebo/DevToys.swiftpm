@@ -1,16 +1,9 @@
+import Introspect
 import SwiftUI
 
 struct JSONFormatterView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @ObservedObject private var state: JSONFormatterViewState
-
-    init(state: JSONFormatterViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @ObservedObject var state: JSONFormatterViewState
 }
 
 extension JSONFormatterView: View {
@@ -40,7 +33,7 @@ extension JSONFormatterView: View {
                 }
             }
         }
-        .navigationTitle("JSON Formatter")
+        .navigationTitle(Tool.jsonFormatter.strings.localizedLongTitle)
     }
 
     private var inputSection: some View {
@@ -56,6 +49,9 @@ extension JSONFormatterView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 
@@ -70,13 +66,18 @@ extension JSONFormatterView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 }
 
 struct JSONFormatterView_Previews: PreviewProvider {
     static var previews: some View {
-        JSONFormatterView(state: .init())
-            .previewPresets()
+        NavigationView {
+            JSONFormatterView(state: .init())
+        }
+        .previewPresets()
     }
 }

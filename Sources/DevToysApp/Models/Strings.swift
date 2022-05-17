@@ -11,6 +11,10 @@ struct Strings {
         NSLocalizedString(self.longTitle, comment: "")
     }
 
+    var localizedDescription: String {
+        NSLocalizedString(self.description, comment: "")
+    }
+
     init(
         shortTitle: String,
         longTitle: String,

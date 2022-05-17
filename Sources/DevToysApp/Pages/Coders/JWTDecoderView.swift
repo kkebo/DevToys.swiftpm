@@ -1,15 +1,8 @@
+import Introspect
 import SwiftUI
 
 struct JWTDecoderView {
-    @ObservedObject private var state: JWTDecoderViewState
-
-    init(state: JWTDecoderViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @ObservedObject var state: JWTDecoderViewState
 }
 
 extension JWTDecoderView: View {
@@ -35,6 +28,9 @@ extension JWTDecoderView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(height: 100)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 
@@ -49,6 +45,9 @@ extension JWTDecoderView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 
@@ -63,13 +62,18 @@ extension JWTDecoderView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 }
 
 struct JWTDecoderView_Previews: PreviewProvider {
     static var previews: some View {
-        JWTDecoderView(state: .init())
-            .previewPresets()
+        NavigationView {
+            JWTDecoderView(state: .init())
+        }
+        .previewPresets()
     }
 }

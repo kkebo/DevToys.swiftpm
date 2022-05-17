@@ -1,15 +1,8 @@
+import Introspect
 import SwiftUI
 
 struct HashGeneratorView {
-    @ObservedObject private var state: HashGeneratorViewState
-
-    init(state: HashGeneratorViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @ObservedObject var state: HashGeneratorViewState
 }
 
 extension HashGeneratorView: View {
@@ -42,7 +35,7 @@ extension HashGeneratorView: View {
                 self.outputSection("SHA512", value: self.state.sha512)
             }
         }
-        .navigationTitle("Hash Generator")
+        .navigationTitle(Tool.hashGenerator.strings.localizedLongTitle)
     }
 
     private var inputSection: some View {
@@ -58,6 +51,9 @@ extension HashGeneratorView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(height: 100)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 
@@ -79,7 +75,9 @@ extension HashGeneratorView: View {
 
 struct HashGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        HashGeneratorView(state: .init())
-            .previewPresets()
+        NavigationView {
+            HashGeneratorView(state: .init())
+        }
+        .previewPresets()
     }
 }

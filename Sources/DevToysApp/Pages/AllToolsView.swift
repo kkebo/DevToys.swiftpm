@@ -37,95 +37,100 @@ extension AllToolsLabelStyle: LabelStyle {
 }
 
 struct AllToolsView {
-    @Environment(\.isSearching) private var isSearching
-    @EnvironmentObject private var state: AppState
-    let searchQuery: String
-    private let columns = [GridItem(.adaptive(minimum: 140, maximum: 160))]
+    private static let columns = [
+        GridItem(.adaptive(minimum: 140, maximum: 160))
+    ]
+
+    @ObservedObject var state: AppState
+    @Binding var selection: Tool?
+    @State private var searchQuery = ""
+
+    private var isSearching: Bool {
+        !self.searchQuery.isEmpty
+    }
+
+    private var tools: [Tool] {
+        if !self.isSearching {
+            return Tool.allCases
+        } else {
+            return Tool.allCases.filter {
+                $0.strings.localizedLongTitle
+                    .localizedCaseInsensitiveContains(self.searchQuery)
+                    || $0.strings.localizedDescription
+                        .localizedCaseInsensitiveContains(self.searchQuery)
+            }
+        }
+    }
 }
 
 extension AllToolsView: View {
     var body: some View {
         ToyPage {
-            LazyVGrid(columns: columns) {
-                ForEach(Tool.allCases) { tool in
-                    let strings = tool.strings
-                    if !self.isSearching
-                        || self.searchQuery.isEmpty
-                        || strings.localizedLongTitle.lowercased()
-                            .contains(self.searchQuery.lowercased())
-                    {
-                        self.button(for: tool)
-                    }
-                }
+            LazyVGrid(columns: Self.columns) {
+                ForEach(self.tools, content: self.button)
             }
-            .labelStyle(AllToolsLabelStyle())
-            .foregroundStyle(.primary)
         }
         .navigationTitle(
-            !self.isSearching || self.searchQuery.isEmpty
+            !self.isSearching
                 ? "All tools"
-                : "Search results"
+                : "Search results for \"\(self.searchQuery)\""
+        )
+        .searchable(
+            text: self.$searchQuery,
+            prompt: "Type to search for tools..."
         )
     }
 
     private func button(for tool: Tool) -> some View {
-        let strings = tool.strings
-        return NavigationLink {
-            self.destination(for: tool)
+        Button {
+            self.selection = tool
         } label: {
-            Label {
-                Text(LocalizedStringKey(strings.longTitle))
-                Text(LocalizedStringKey(strings.description))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            } icon: {
-                if strings.boldIcon {
-                    Image(systemName: strings.iconName)
-                        .font(.system(size: 50).bold())
-                } else {
-                    Image(systemName: strings.iconName)
-                }
+            self.buttonLabel(for: tool)
+        }
+        .foregroundStyle(.primary)
+        .hoverEffect()
+        .onDrag {
+            let activity = NSUserActivity(
+                activityType: "xyz.kebo.DevToysForiPad.newWindow"
+            )
+            try! activity.setTypedPayload(
+                NewWindowActivityPayload(tool: tool)
+            )
+            return .init(object: activity)
+        } preview: {
+            self.buttonLabel(for: tool)
+        }
+        .contextMenu {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                OpenInNewWindowButton(tool: tool)
             }
         }
-        .hoverEffect()
     }
 
-    @ViewBuilder private func destination(for tool: Tool) -> some View {
-        switch tool {
-        case .base64Coder:
-            Base64CoderView(state: self.state.base64CoderViewState)
-        case .hashGenerator:
-            HashGeneratorView(state: self.state.hashGeneratorViewState)
-        case .htmlCoder:
-            HTMLCoderView(state: self.state.htmlCoderViewState)
-        case .jsonFormatter:
-            JSONFormatterView(state: self.state.jsonFormatterViewState)
-        case .jsonYAMLConverter:
-            JSONYAMLConverterView()
-        case .jwtDecoder:
-            JWTDecoderView(state: self.state.jwtDecoderViewState)
-        case .loremIpsumGenerator:
-            LoremIpsumGeneratorView(
-                state: self.state.loremIpsumGeneratorViewState
-            )
-        case .markdownPreview:
-            MarkdownPreviewView(state: self.state.markdownPreviewViewState)
-        case .numberBaseConverter:
-            NumberBaseConverterView(
-                state: self.state.numberBaseConverterViewState
-            )
-        case .urlCoder:
-            URLCoderView(state: self.state.urlCoderViewState)
-        case .uuidGenerator:
-            UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
+    private func buttonLabel(for tool: Tool) -> some View {
+        let strings = tool.strings
+        return Label {
+            Text(LocalizedStringKey(strings.longTitle))
+            Text(LocalizedStringKey(strings.description))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        } icon: {
+            if strings.boldIcon {
+                Image(systemName: strings.iconName)
+                    .font(.system(size: 50).bold())
+            } else {
+                Image(systemName: strings.iconName)
+            }
         }
+        .labelStyle(AllToolsLabelStyle())
     }
 }
 
 struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
-        AllToolsView(searchQuery: "")
-            .environmentObject(AppState())
-            .previewPresets()
+        NavigationView {
+            AllToolsView(state: .init(), selection: .constant(nil))
+        }
+        .previewPresets()
     }
 }

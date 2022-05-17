@@ -1,15 +1,10 @@
+import Introspect
 import SwiftUI
 
 struct LoremIpsumGeneratorView {
-    @ObservedObject private var state: LoremIpsumGeneratorViewState
-
-    init(state: LoremIpsumGeneratorViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    @ObservedObject var state: LoremIpsumGeneratorViewState
+    @FocusState private var isFocused: Bool
 }
 
 extension LoremIpsumGeneratorView: View {
@@ -34,23 +29,26 @@ extension LoremIpsumGeneratorView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    TextField(
+                    TextField("", text: self.$state.lengthString)
+                        .frame(maxWidth: 80)
+                        .fixedSize(horizontal: true, vertical: false)
+                        .multilineTextAlignment(.trailing)
+                        .keyboardType(.numberPad)
+                        .font(.body.monospacedDigit())
+                        .disableAutocorrection(true)
+                        .textInputAutocapitalization(.never)
+                        .focused(self.$isFocused)
+                        .onChange(of: self.isFocused) { isFocused in
+                            if !isFocused {
+                                self.state.commitLength()
+                            }
+                        }
+                    Stepper(
                         "",
                         value: self.$state.length,
-                        format: .number
+                        in: 1...Int(Int32.max)
                     )
-                    .frame(width: 80)
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.numberPad)
-                    .font(.body.monospacedDigit())
-                    .disableAutocorrection(true)
-                    .textInputAutocapitalization(.never)
-                    .border(!self.state.isLengthValid ? .red : .clear)
-                    .onSubmit {
-                        if !self.state.isLengthValid {
-                            self.state.length = self.state.generator.length
-                        }
-                    }
+                    .labelsHidden()
                 }
                 ConfigurationRow(
                     "Start with '\(LoremIpsumGenerator.loremIpsumPrefix)...'",
@@ -62,6 +60,16 @@ extension LoremIpsumGeneratorView: View {
             }
 
             ToySection("Output") {
+                Button(action: self.state.generate) {
+                    if self.hSizeClass == .compact {
+                        Label("Refresh", systemImage: "arrow.clockwise")
+                            .labelStyle(.iconOnly)
+                    } else {
+                        Label("Refresh", systemImage: "arrow.clockwise")
+                    }
+                }
+                .buttonStyle(.bordered)
+                .hoverEffect()
                 CopyButton(text: self.state.output)
                 ClearButton(text: self.$state.output)
             } content: {
@@ -72,15 +80,22 @@ extension LoremIpsumGeneratorView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
+                    .introspectTextView { textView in
+                        textView.backgroundColor = .clear
+                    }
             }
         }
-        .navigationTitle("Lorem Ipsum Generator")
+        .navigationTitle(
+            Tool.loremIpsumGenerator.strings.localizedLongTitle
+        )
     }
 }
 
 struct LoremIpsumGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        LoremIpsumGeneratorView(state: .init())
-            .previewPresets()
+        NavigationView {
+            LoremIpsumGeneratorView(state: .init())
+        }
+        .previewPresets()
     }
 }

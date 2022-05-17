@@ -35,7 +35,8 @@ extension OpenFileButton: View {
                 self.isImporterPresented = true
             }
         } label: {
-            Image(systemName: "doc")
+            Label("Open", systemImage: "doc")
+                .labelStyle(.iconOnly)
         }
         .buttonStyle(.bordered)
         .hoverEffect()

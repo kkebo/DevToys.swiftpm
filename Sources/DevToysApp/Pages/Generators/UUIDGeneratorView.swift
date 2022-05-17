@@ -1,15 +1,9 @@
+import Introspect
 import SwiftUI
 
 struct UUIDGeneratorView {
-    @ObservedObject private var state: UUIDGeneratorViewState
-
-    init(state: UUIDGeneratorViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @ObservedObject var state: UUIDGeneratorViewState
+    @FocusState private var isFocused: Bool
 }
 
 extension UUIDGeneratorView: View {
@@ -19,7 +13,7 @@ extension UUIDGeneratorView: View {
             self.generateSection
             self.outputSection
         }
-        .navigationTitle("UUID Generator")
+        .navigationTitle(Tool.uuidGenerator.strings.localizedLongTitle)
     }
 
     private var configurationSection: some View {
@@ -60,20 +54,26 @@ extension UUIDGeneratorView: View {
                 )
                 .buttonStyle(.borderedProminent)
                 .hoverEffect()
-                .disabled(!self.state.isNumberOfUUIDsValid)
                 Text("x")
-                TextField(
-                    "N",
-                    value: self.$state.numberOfUUIDs,
-                    format: .number
-                )
-                .textFieldStyle(.roundedBorder)
-                .frame(maxWidth: 80)
-                .keyboardType(.numberPad)
-                .font(.body.monospacedDigit())
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .border(!self.state.isNumberOfUUIDsValid ? .red : .clear)
+                TextField("N", text: self.$state.numberOfUUIDsString)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(maxWidth: 80)
+                    .fixedSize(horizontal: true, vertical: false)
+                    .keyboardType(.numberPad)
+                    .font(.body.monospacedDigit())
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
+                    .focused(self.$isFocused)
+                    .onChange(of: self.isFocused) { isFocused in
+                        if !isFocused {
+                            self.state.commitNumberOfUUIDs()
+                        }
+                    }
+                    .introspectTextField { textField in
+                        textField.clearButtonMode = .whileEditing
+                    }
+                Stepper("", value: self.$state.numberOfUUIDs, in: 1...10000)
+                    .labelsHidden()
             }
         }
     }
@@ -92,13 +92,18 @@ extension UUIDGeneratorView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
+                .introspectTextView { textView in
+                    textView.backgroundColor = .clear
+                }
         }
     }
 }
 
 struct UUIDGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        UUIDGeneratorView(state: .init())
-            .previewPresets()
+        NavigationView {
+            UUIDGeneratorView(state: .init())
+        }
+        .previewPresets()
     }
 }

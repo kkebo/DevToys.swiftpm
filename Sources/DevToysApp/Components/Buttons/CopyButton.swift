@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CopyButton {
+    @Environment(\.horizontalSizeClass) private var hSizeClass
     let text: String
 }
 
@@ -9,7 +10,12 @@ extension CopyButton: View {
         Button {
             UIPasteboard.general.string = self.text
         } label: {
-            Label("Copy", systemImage: "doc.on.doc")
+            if self.hSizeClass == .compact {
+                Label("Copy", systemImage: "doc.on.doc")
+                    .labelStyle(.iconOnly)
+            } else {
+                Label("Copy", systemImage: "doc.on.doc")
+            }
         }
         .buttonStyle(.bordered)
         .hoverEffect()

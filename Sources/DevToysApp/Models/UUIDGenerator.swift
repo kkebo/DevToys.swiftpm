@@ -1,3 +1,4 @@
+import typealias Darwin.uuid_t
 import struct Foundation.UUID
 
 private extension UUID {

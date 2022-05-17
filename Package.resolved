@@ -1,88 +1,95 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Difference",
-        "repositoryURL": "https://github.com/krzysztofzablocki/Difference",
-        "state": {
-          "branch": null,
-          "revision": "02fe1111edc8318c4f8a0da96336fcbcc201f38b",
-          "version": "1.0.1"
-        }
-      },
-      {
-        "package": "Ink",
-        "repositoryURL": "https://github.com/JohnSundell/Ink",
-        "state": {
-          "branch": null,
-          "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
-          "version": "0.5.1"
-        }
-      },
-      {
-        "package": "JWTDecode",
-        "repositoryURL": "https://github.com/auth0/JWTDecode.swift",
-        "state": {
-          "branch": null,
-          "revision": "3cd207fb9e943b6168a117baa3936c823204c2dc",
-          "version": "2.6.3"
-        }
-      },
-      {
-        "package": "LoremSwiftum",
-        "repositoryURL": "https://github.com/lukaskubanek/LoremSwiftum",
-        "state": {
-          "branch": null,
-          "revision": "8942e732e50458cde5dccf9996afa16f29372853",
-          "version": "2.2.2"
-        }
-      },
-      {
-        "package": "PlaygroundTester",
-        "repositoryURL": "https://github.com/Losiowaty/PlaygroundTester",
-        "state": {
-          "branch": null,
-          "revision": "ee95adee270d2a319dbce530d5887699f94594e1",
-          "version": "0.2.1"
-        }
-      },
-      {
-        "package": "HTMLEntities",
-        "repositoryURL": "https://github.com/Kitura/swift-html-entities",
-        "state": {
-          "branch": null,
-          "revision": "d8ca73197f59ce260c71bd6d7f6eb8bbdccf508b",
-          "version": "4.0.1"
-        }
-      },
-      {
-        "package": "swift-log",
-        "repositoryURL": "https://github.com/apple/swift-log.git",
-        "state": {
-          "branch": null,
-          "revision": "5d66f7ba25daf4f94100e7022febf3c75e37a6c7",
-          "version": "1.4.2"
-        }
-      },
-      {
-        "package": "LoggingPlayground",
-        "repositoryURL": "https://github.com/kkk669/swift-log-playground",
-        "state": {
-          "branch": null,
-          "revision": "0e54bc8a292a3ddddecab489a2fefa90988ab21a",
-          "version": "0.1.0"
-        }
-      },
-      {
-        "package": "SwiftJSONFormatter",
-        "repositoryURL": "https://github.com/luin/SwiftJSONFormatter",
-        "state": {
-          "branch": null,
-          "revision": "843456f526833771b9e6b3d0f5b7d06f2557ecab",
-          "version": "1.0.0"
-        }
+  "pins" : [
+    {
+      "identity" : "difference",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzysztofzablocki/Difference",
+      "state" : {
+        "revision" : "02fe1111edc8318c4f8a0da96336fcbcc201f38b",
+        "version" : "1.0.1"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "ink",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JohnSundell/Ink",
+      "state" : {
+        "revision" : "77c3d8953374a9cf5418ef0bd7108524999de85a",
+        "version" : "0.5.1"
+      }
+    },
+    {
+      "identity" : "jwtdecode.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/auth0/JWTDecode.swift",
+      "state" : {
+        "revision" : "3cd207fb9e943b6168a117baa3936c823204c2dc",
+        "version" : "2.6.3"
+      }
+    },
+    {
+      "identity" : "loremswiftum",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lukaskubanek/LoremSwiftum",
+      "state" : {
+        "revision" : "8942e732e50458cde5dccf9996afa16f29372853",
+        "version" : "2.2.2"
+      }
+    },
+    {
+      "identity" : "playgroundtester",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Losiowaty/PlaygroundTester",
+      "state" : {
+        "revision" : "ee95adee270d2a319dbce530d5887699f94594e1",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "swift-html-entities",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kitura/swift-html-entities",
+      "state" : {
+        "revision" : "d8ca73197f59ce260c71bd6d7f6eb8bbdccf508b",
+        "version" : "4.0.1"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "5d66f7ba25daf4f94100e7022febf3c75e37a6c7",
+        "version" : "1.4.2"
+      }
+    },
+    {
+      "identity" : "swift-log-playground",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kkk669/swift-log-playground",
+      "state" : {
+        "revision" : "0e54bc8a292a3ddddecab489a2fefa90988ab21a",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "swiftjsonformatter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/luin/SwiftJSONFormatter",
+      "state" : {
+        "revision" : "843456f526833771b9e6b3d0f5b7d06f2557ecab",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/SwiftUI-Introspect",
+      "state" : {
+        "revision" : "f2616860a41f9d9932da412a8978fec79c06fe24",
+        "version" : "0.1.4"
+      }
+    }
+  ],
+  "version" : 2
 }

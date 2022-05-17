@@ -1,15 +1,8 @@
+import Introspect
 import SwiftUI
 
 struct Base64CoderView {
-    @ObservedObject private var state: Base64CoderViewState
-
-    init(state: Base64CoderViewState) {
-        self.state = state
-
-        Task { @MainActor in
-            UITextView.appearance().backgroundColor = .clear
-        }
-    }
+    @ObservedObject var state: Base64CoderViewState
 }
 
 extension Base64CoderView: View {
@@ -54,6 +47,9 @@ extension Base64CoderView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
+                    .introspectTextView { textView in
+                        textView.backgroundColor = .clear
+                    }
             }
 
             ToySection("Output") {
@@ -66,6 +62,9 @@ extension Base64CoderView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
+                    .introspectTextView { textView in
+                        textView.backgroundColor = .clear
+                    }
             }
         }
         .navigationTitle("Base 64 Encoder / Decoder")
@@ -74,7 +73,9 @@ extension Base64CoderView: View {
 
 struct Base64CoderView_Previews: PreviewProvider {
     static var previews: some View {
-        Base64CoderView(state: .init())
-            .previewPresets()
+        NavigationView {
+            Base64CoderView(state: .init())
+        }
+        .previewPresets()
     }
 }
