@@ -115,12 +115,7 @@ extension AllToolsView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
         } icon: {
-            if strings.boldIcon {
-                Image(systemName: strings.iconName)
-                    .font(.system(size: 50).bold())
-            } else {
-                Image(systemName: strings.iconName)
-            }
+            tool.icon
         }
         .labelStyle(AllToolsLabelStyle())
     }

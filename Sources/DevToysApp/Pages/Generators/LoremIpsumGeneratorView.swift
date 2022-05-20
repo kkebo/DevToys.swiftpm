@@ -5,6 +5,10 @@ struct LoremIpsumGeneratorView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
     @ObservedObject var state: LoremIpsumGeneratorViewState
     @FocusState private var isFocused: Bool
+
+    init(state: AppState) {
+        self.state = state.loremIpsumGeneratorViewState
+    }
 }
 
 extension LoremIpsumGeneratorView: View {

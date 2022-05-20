@@ -4,6 +4,10 @@ import SwiftUI
 struct UUIDGeneratorView {
     @ObservedObject var state: UUIDGeneratorViewState
     @FocusState private var isFocused: Bool
+
+    init(state: AppState) {
+        self.state = state.uuidGeneratorViewState
+    }
 }
 
 extension UUIDGeneratorView: View {

@@ -3,6 +3,10 @@ import SwiftUI
 
 struct HTMLCoderView {
     @ObservedObject var state: HTMLCoderViewState
+
+    init(state: AppState) {
+        self.state = state.htmlCoderViewState
+    }
 }
 
 extension HTMLCoderView: View {

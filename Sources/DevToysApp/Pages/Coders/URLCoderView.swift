@@ -3,6 +3,10 @@ import SwiftUI
 
 struct URLCoderView {
     @ObservedObject var state: URLCoderViewState
+
+    init(state: AppState) {
+        self.state = state.urlCoderViewState
+    }
 }
 
 extension URLCoderView: View {

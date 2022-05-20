@@ -3,6 +3,10 @@ import SwiftUI
 
 struct HashGeneratorView {
     @ObservedObject var state: HashGeneratorViewState
+
+    init(state: AppState) {
+        self.state = state.hashGeneratorViewState
+    }
 }
 
 extension HashGeneratorView: View {

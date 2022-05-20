@@ -3,6 +3,10 @@ import SwiftUI
 
 struct NumberBaseConverterView {
     @ObservedObject var state: NumberBaseConverterViewState
+
+    init(state: AppState) {
+        self.state = state.numberBaseConverterViewState
+    }
 }
 
 extension NumberBaseConverterView: View {

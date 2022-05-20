@@ -3,6 +3,10 @@ import SwiftUI
 
 struct JWTDecoderView {
     @ObservedObject var state: JWTDecoderViewState
+
+    init(state: AppState) {
+        self.state = state.jwtDecoderViewState
+    }
 }
 
 extension JWTDecoderView: View {

@@ -10,11 +10,7 @@ struct Sidebar {
     }
 
     private var allTools: [Tool] {
-        Tool.converterCases
-            + Tool.coderCases
-            + Tool.formatterCases
-            + Tool.generatorCases
-            + Tool.textCases
+        toolGroups.flatMap(\.tools)
     }
 
     private var filteredTools: [Tool] {
@@ -49,34 +45,12 @@ extension Sidebar: View {
         } label: {
             Label("All tools", systemImage: "house")
         }
-        Section {
-            ForEach(Tool.converterCases, content: self.row)
-        } header: {
-            Text("Converters").font(.title3.bold())
-        }
-        Section {
-            ForEach(Tool.coderCases, content: self.row)
-        } header: {
-            Text("Encoders / Decoders").font(.title3.bold())
-        }
-        Section {
-            ForEach(Tool.formatterCases, content: self.row)
-        } header: {
-            Text("Formatters").font(.title3.bold())
-        }
-        Section {
-            ForEach(Tool.generatorCases, content: self.row)
-        } header: {
-            Text("Generators").font(.title3.bold())
-        }
-        Section {
-            ForEach(Tool.textCases, content: self.row)
-        } header: {
-            Text("Text").font(.title3.bold())
-        }
-        Section {
-        } header: {
-            Text("Graphic").font(.title3.bold())
+        ForEach(toolGroups, id: \.self) { group in
+            Section {
+                ForEach(group.tools, content: self.row)
+            } header: {
+                Text(LocalizedStringKey(group.name)).font(.title3.bold())
+            }
         }
         #if TESTING_ENABLED
             UnitTestsButton()
@@ -86,7 +60,7 @@ extension Sidebar: View {
     private func row(for tool: Tool) -> some View {
         let strings = tool.strings
         return NavigationLink(tag: tool, selection: self.$selection) {
-            self.destination(for: tool)
+            tool.page(state: self.state)
         } label: {
             Label {
                 Text(
@@ -97,12 +71,7 @@ extension Sidebar: View {
                     )
                 )
             } icon: {
-                if strings.boldIcon {
-                    Image(systemName: strings.iconName)
-                        .font(.body.bold())
-                } else {
-                    Image(systemName: strings.iconName)
-                }
+                tool.icon
             }
         }
         .onDrag {
@@ -118,37 +87,6 @@ extension Sidebar: View {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 OpenInNewWindowButton(tool: tool)
             }
-        }
-    }
-
-    @ViewBuilder private func destination(for tool: Tool) -> some View {
-        switch tool {
-        case .base64Coder:
-            Base64CoderView(state: self.state.base64CoderViewState)
-        case .hashGenerator:
-            HashGeneratorView(state: self.state.hashGeneratorViewState)
-        case .htmlCoder:
-            HTMLCoderView(state: self.state.htmlCoderViewState)
-        case .jsonFormatter:
-            JSONFormatterView(state: self.state.jsonFormatterViewState)
-        case .jsonYAMLConverter:
-            JSONYAMLConverterView()
-        case .jwtDecoder:
-            JWTDecoderView(state: self.state.jwtDecoderViewState)
-        case .loremIpsumGenerator:
-            LoremIpsumGeneratorView(
-                state: self.state.loremIpsumGeneratorViewState
-            )
-        case .markdownPreview:
-            MarkdownPreviewView(state: self.state.markdownPreviewViewState)
-        case .numberBaseConverter:
-            NumberBaseConverterView(
-                state: self.state.numberBaseConverterViewState
-            )
-        case .urlCoder:
-            URLCoderView(state: self.state.urlCoderViewState)
-        case .uuidGenerator:
-            UUIDGeneratorView(state: self.state.uuidGeneratorViewState)
         }
     }
 }

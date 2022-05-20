@@ -4,6 +4,10 @@ import SwiftUI
 struct MarkdownPreviewView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
     @ObservedObject var state: MarkdownPreviewViewState
+
+    init(state: AppState) {
+        self.state = state.markdownPreviewViewState
+    }
 }
 
 extension MarkdownPreviewView: View {
