@@ -102,6 +102,23 @@ final class NumberBaseConverterViewState {
             self.octal.removeAll()
         }
     }
+
+    func formatText(of type: NumberType) {
+        guard let value = self.inputValue else { return }
+        switch type {
+        case .hexadecimal:
+            self.hexadecimal = self.converter.convert(
+                value,
+                to: .hexadecimal
+            )
+        case .decimal:
+            self.decimal = self.converter.convert(value, to: .decimal)
+        case .octal:
+            self.octal = self.converter.convert(value, to: .octal)
+        case .binary:
+            self.binary = self.converter.convert(value, to: .binary)
+        }
+    }
 }
 
 extension NumberBaseConverterViewState: ObservableObject {}
