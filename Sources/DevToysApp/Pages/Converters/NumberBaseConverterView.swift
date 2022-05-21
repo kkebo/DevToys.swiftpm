@@ -35,15 +35,15 @@ extension NumberBaseConverterView: View {
 
             VStack(spacing: 10) {
                 self.inputSection(
-                    "Hexadecimal",
+                    type: .hexadecimal,
                     text: self.$state.hexadecimal
                 )
                 .focused(self.$focusedField, equals: .hexadecimal)
-                self.inputSection("Decimal", text: self.$state.decimal)
+                self.inputSection(type: .decimal, text: self.$state.decimal)
                     .focused(self.$focusedField, equals: .decimal)
-                self.inputSection("Octal", text: self.$state.octal)
+                self.inputSection(type: .octal, text: self.$state.octal)
                     .focused(self.$focusedField, equals: .octal)
-                self.inputSection("Binary", text: self.$state.binary)
+                self.inputSection(type: .binary, text: self.$state.binary)
                     .focused(self.$focusedField, equals: .binary)
             }
         }
@@ -58,10 +58,10 @@ extension NumberBaseConverterView: View {
     }
 
     private func inputSection(
-        _ title: LocalizedStringKey,
+        type: NumberType,
         text: Binding<String>
     ) -> some View {
-        ToySection(title) {
+        ToySection(LocalizedStringKey(type.rawValue.capitalized)) {
             HStack {
                 TextField("", text: text)
                     .textFieldStyle(.roundedBorder)
@@ -72,7 +72,9 @@ extension NumberBaseConverterView: View {
                     .introspectTextField { textField in
                         textField.clearButtonMode = .whileEditing
                     }
-                PasteButton(text: text)
+                PasteButton(text: text) {
+                    self.state.inputType = type
+                }
             }
         }
     } 
