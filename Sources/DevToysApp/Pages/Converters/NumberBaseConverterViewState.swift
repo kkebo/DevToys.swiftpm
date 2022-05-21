@@ -2,7 +2,7 @@ import Combine
 
 final class NumberBaseConverterViewState {
     @Published var converter = NumberBaseConverter() {
-        didSet { self.updateOutputValues() }
+        didSet { self.formatAllText() }
     }
     @Published var inputType = NumberType.decimal
     @Published var inputValue: Int? {
@@ -118,6 +118,14 @@ final class NumberBaseConverterViewState {
         case .binary:
             self.binary = self.converter.convert(value, to: .binary)
         }
+    }
+
+    private func formatAllText() {
+        guard let value = self.inputValue else { return }
+        self.hexadecimal = self.converter.convert(value, to: .hexadecimal)
+        self.decimal = self.converter.convert(value, to: .decimal)
+        self.octal = self.converter.convert(value, to: .octal)
+        self.binary = self.converter.convert(value, to: .binary)
     }
 }
 
