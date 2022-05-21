@@ -53,7 +53,8 @@ extension NumberBaseConverterView: View {
         .onChange(of: self.focusedField) { [focusedField] type in
             if let type = type {
                 self.state.inputType = type
-            } else if let oldType = focusedField {
+            }
+            if let oldType = focusedField {
                 self.state.formatText(of: oldType)
             }
         }
