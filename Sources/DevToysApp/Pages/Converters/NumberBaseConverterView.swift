@@ -2,6 +2,7 @@ import Introspect
 import SwiftUI
 
 struct NumberBaseConverterView {
+    @FocusState private var focusedField: NumberType?
     @ObservedObject var state: NumberBaseConverterViewState
 
     init(state: AppState) {
@@ -18,18 +19,6 @@ extension NumberBaseConverterView: View {
                         .tint(.accentColor)
                         .fixedSize(horizontal: true, vertical: false)
                 }
-                ConfigurationRow(systemImage: "arrow.left.arrow.right") {
-                    Text("Input type")
-                    Text("Select which Input type you want to use")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                } content: {
-                    Picker("", selection: self.$state.inputType) {
-                        ForEach(NumberType.allCases) {
-                            Text(LocalizedStringKey($0.rawValue.capitalized))
-                        }
-                    }
-                }
             }
 
             if !self.state.input.isEmpty && self.state.inputValue == nil {
@@ -44,10 +33,37 @@ extension NumberBaseConverterView: View {
                 .cornerRadius(8)
             }
 
-            ToySection("Input") {
-                PasteButton(text: self.$state.input)
-            } content: {
-                TextField("", text: self.$state.input)
+            VStack(spacing: 10) {
+                self.inputSection(
+                    "Hexadecimal",
+                    text: self.$state.hexadecimal
+                )
+                .focused(self.$focusedField, equals: .hexadecimal)
+                self.inputSection("Decimal", text: self.$state.decimal)
+                    .focused(self.$focusedField, equals: .decimal)
+                self.inputSection("Octal", text: self.$state.octal)
+                    .focused(self.$focusedField, equals: .octal)
+                self.inputSection("Binary", text: self.$state.binary)
+                    .focused(self.$focusedField, equals: .binary)
+            }
+        }
+        .navigationTitle(
+            Tool.numberBaseConverter.strings.localizedLongTitle
+        )
+        .onChange(of: self.focusedField) { type in
+            if let type = type {
+                self.state.inputType = type
+            }
+        }
+    }
+
+    private func inputSection(
+        _ title: LocalizedStringKey,
+        text: Binding<String>
+    ) -> some View {
+        ToySection(title) {
+            HStack {
+                TextField("", text: text)
                     .textFieldStyle(.roundedBorder)
                     .font(.body.monospaced())
                     .keyboardType(.numbersAndPunctuation)
@@ -56,37 +72,7 @@ extension NumberBaseConverterView: View {
                     .introspectTextField { textField in
                         textField.clearButtonMode = .whileEditing
                     }
-            }
-
-            VStack(spacing: 10) {
-                self.outputSection(
-                    "Hexadecimal",
-                    value: self.state.hexadecimal
-                )
-                self.outputSection(
-                    "Decimal",
-                    value: self.state.decimal
-                )
-                self.outputSection("Octal", value: self.state.octal)
-                self.outputSection("Binary", value: self.state.binary)
-            }
-        }
-        .navigationTitle(
-            Tool.numberBaseConverter.strings.localizedLongTitle
-        )
-    }
-
-    private func outputSection(
-        _ title: LocalizedStringKey,
-        value: String
-    ) -> some View {
-        ToySection(title) {
-            HStack {
-                TextField("", text: .constant(value))
-                    .textFieldStyle(.roundedBorder)
-                    .font(.body.monospaced())
-                    .disabled(true)
-                CopyButton(text: value)
+                PasteButton(text: text)
             }
         }
     } 
