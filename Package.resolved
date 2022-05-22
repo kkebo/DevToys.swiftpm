@@ -48,10 +48,10 @@
     {
       "identity" : "swift-html-entities",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/swift-html-entities",
+      "location" : "https://github.com/kkk669/swift-html-entities",
       "state" : {
-        "revision" : "d8ca73197f59ce260c71bd6d7f6eb8bbdccf508b",
-        "version" : "4.0.1"
+        "revision" : "fac7e328a57e9a54ed90c4fec9192d6cda39237b",
+        "version" : "4.0.2"
       }
     },
     {
