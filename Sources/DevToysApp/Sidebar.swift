@@ -29,7 +29,9 @@ extension Sidebar: View {
             if !self.isSearching {
                 self.normalRows
             } else {
-                ForEach(self.filteredTools, content: self.row)
+                ForEach(self.filteredTools) { tool in
+                    self.row(for: tool)
+                }
             }
         }
         .navigationTitle("DevToys")
@@ -47,7 +49,9 @@ extension Sidebar: View {
         }
         ForEach(toolGroups, id: \.self) { group in
             Section {
-                ForEach(group.tools, content: self.row)
+                ForEach(group.tools) { tool in
+                    self.row(for: tool)
+                }
             } header: {
                 Text(LocalizedStringKey(group.name)).font(.title3.bold())
             }

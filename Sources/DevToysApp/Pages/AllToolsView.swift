@@ -67,7 +67,9 @@ extension AllToolsView: View {
     var body: some View {
         ToyPage {
             LazyVGrid(columns: Self.columns) {
-                ForEach(self.tools, content: self.button)
+                ForEach(self.tools) { tool in
+                    self.button(for: tool)
+                }
             }
         }
         .navigationTitle(
