@@ -77,6 +77,8 @@ extension NumberBaseConverterView: View {
                     }
                 PasteButton(text: text) {
                     self.state.inputType = type
+                } postAction: {
+                    self.state.formatText(of: type)
                 }
             }
         }
