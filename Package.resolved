@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/auth0/JWTDecode.swift",
       "state" : {
-        "revision" : "3cd207fb9e943b6168a117baa3936c823204c2dc",
-        "version" : "2.6.3"
+        "revision" : "e105a13397c89186deb7bd40adc91aadc77f1fb9",
+        "version" : "3.0.0-fa"
       }
     },
     {
