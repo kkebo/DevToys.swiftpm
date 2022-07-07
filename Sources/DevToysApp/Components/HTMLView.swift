@@ -20,3 +20,10 @@ extension HTMLView: UIViewRepresentable {
         uiView.loadHTMLString(self.html, baseURL: nil)
     }
 }
+
+struct HTMLView_Previews: PreviewProvider {
+    static var previews: some View {
+        HTMLView("<h1>Title</h1><h2>Subtitle</h2>")
+            .previewPresets()
+    }
+}
