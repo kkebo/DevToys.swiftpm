@@ -69,6 +69,7 @@ struct URLCoderView_Previews: PreviewProvider {
         NavigationView {
             URLCoderView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

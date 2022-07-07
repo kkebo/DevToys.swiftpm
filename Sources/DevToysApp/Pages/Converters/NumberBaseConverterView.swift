@@ -90,6 +90,7 @@ struct NumberBaseConverterView_Previews: PreviewProvider {
         NavigationView {
             NumberBaseConverterView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

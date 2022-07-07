@@ -60,6 +60,7 @@ struct MarkdownPreviewView_Previews: PreviewProvider {
         NavigationView {
             MarkdownPreviewView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

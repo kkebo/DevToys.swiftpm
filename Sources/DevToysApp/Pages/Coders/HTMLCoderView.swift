@@ -69,6 +69,7 @@ struct HTMLCoderView_Previews: PreviewProvider {
         NavigationView {
             HTMLCoderView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

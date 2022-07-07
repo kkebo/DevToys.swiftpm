@@ -78,6 +78,7 @@ struct JWTDecoderView_Previews: PreviewProvider {
         NavigationView {
             JWTDecoderView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

@@ -100,6 +100,7 @@ struct LoremIpsumGeneratorView_Previews: PreviewProvider {
         NavigationView {
             LoremIpsumGeneratorView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

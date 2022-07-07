@@ -82,6 +82,7 @@ struct HashGeneratorView_Previews: PreviewProvider {
         NavigationView {
             HashGeneratorView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

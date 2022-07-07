@@ -80,6 +80,7 @@ struct Base64CoderView_Previews: PreviewProvider {
         NavigationView {
             Base64CoderView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

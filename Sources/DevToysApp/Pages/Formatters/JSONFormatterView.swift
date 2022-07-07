@@ -82,6 +82,7 @@ struct JSONFormatterView_Previews: PreviewProvider {
         NavigationView {
             JSONFormatterView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

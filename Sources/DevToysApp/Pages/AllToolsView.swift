@@ -128,6 +128,7 @@ struct AllToolsView_Previews: PreviewProvider {
         NavigationView {
             AllToolsView(state: .init(), selection: .constant(nil))
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

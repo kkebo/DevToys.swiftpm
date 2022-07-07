@@ -108,6 +108,7 @@ struct UUIDGeneratorView_Previews: PreviewProvider {
         NavigationView {
             UUIDGeneratorView(state: .init())
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

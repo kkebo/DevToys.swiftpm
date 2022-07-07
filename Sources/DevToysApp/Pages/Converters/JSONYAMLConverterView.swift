@@ -87,6 +87,7 @@ struct JSONYAMLConverterView_Previews: PreviewProvider {
         NavigationView {
             JSONYAMLConverterView()
         }
+        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }
