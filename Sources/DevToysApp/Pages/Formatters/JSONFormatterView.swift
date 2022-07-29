@@ -15,14 +15,12 @@ extension JSONFormatterView: View {
         ToyPage {
             ToySection("Configuration") {
                 ConfigurationRow("Indentation", systemImage: "increase.indent") {
-                    Picker(
-                        "",
-                        selection: self.$state.formatter.indentation
-                    ) {
+                    Picker("", selection: self.$state.formatter.indentation) {
                         ForEach(JSONIndentation.allCases) {
                             Text(LocalizedStringKey($0.description))
                         }
                     }
+                    .labelsHidden()
                 }
             }
 

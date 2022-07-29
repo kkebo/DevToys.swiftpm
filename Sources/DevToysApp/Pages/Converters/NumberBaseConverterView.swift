@@ -17,7 +17,7 @@ extension NumberBaseConverterView: View {
                 ConfigurationRow("Format number", systemImage: "textformat") {
                     Toggle("", isOn: self.$state.converter.isFormatOn)
                         .tint(.accentColor)
-                        .fixedSize(horizontal: true, vertical: false)
+                        .labelsHidden()
                 }
             }
 

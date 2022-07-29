@@ -21,11 +21,13 @@ extension JSONYAMLConverterView: View {
                         Text("YAML to JSON")
                         Text("JSON to YAML")
                     }
+                    .labelsHidden()
                 }
                 ConfigurationRow("Indentation", systemImage: "increase.indent") {
                     Picker("", selection: .constant(0)) {
                         Text("2 spaces")
                     }
+                    .labelsHidden()
                 }
             }
 

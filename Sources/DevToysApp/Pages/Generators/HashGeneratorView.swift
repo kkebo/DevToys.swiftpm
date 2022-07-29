@@ -15,7 +15,7 @@ extension HashGeneratorView: View {
             ToySection("Configuration") {
                 ConfigurationRow("Uppercase", systemImage: "textformat") {
                     Toggle("", isOn: self.$state.generator.isUppercase)
-                        .fixedSize(horizontal: true, vertical: false)
+                        .labelsHidden()
                         .disabled(self.state.generator.outputType != .hex)
                 }
                 ConfigurationRow(
@@ -27,6 +27,7 @@ extension HashGeneratorView: View {
                             Text($0.rawValue.capitalized)
                         }
                     }
+                    .labelsHidden()
                 }
             }
 

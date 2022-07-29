@@ -36,6 +36,7 @@ extension Base64CoderView: View {
                         Text("UTF-8").tag(String.Encoding.utf8)
                         Text("ASCII").tag(String.Encoding.ascii)
                     }
+                    .labelsHidden()
                 }
             }
 

@@ -26,6 +26,7 @@ extension LoremIpsumGeneratorView: View {
                             Text(LocalizedStringKey($0.rawValue.capitalized))
                         }
                     }
+                    .labelsHidden()
                 }
                 ConfigurationRow(systemImage: "number") {
                     Text("Length")
@@ -60,6 +61,7 @@ extension LoremIpsumGeneratorView: View {
                 ) {
                     Toggle("", isOn: self.$state.generator.startWithLoremIpsum)
                         .tint(.accentColor)
+                        .labelsHidden()
                 }
             }
 
