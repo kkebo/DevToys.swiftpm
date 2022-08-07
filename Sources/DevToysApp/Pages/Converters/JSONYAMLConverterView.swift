@@ -1,4 +1,3 @@
-import Introspect
 import SwiftUI
 
 struct JSONYAMLConverterView {
@@ -43,6 +42,12 @@ extension JSONYAMLConverterView: View {
             }
         }
         .navigationTitle(Tool.jsonYAMLConverter.strings.localizedLongTitle)
+        .onAppear {
+            UITextView.appearance().backgroundColor = .clear
+        }
+        .onDisappear {
+            UITextView.appearance().backgroundColor = nil
+        }
     }
 
     @MainActor
@@ -59,9 +64,6 @@ extension JSONYAMLConverterView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
-                .introspectTextView { textView in
-                    textView.backgroundColor = .clear
-                }
         }
     }
 
@@ -77,9 +79,6 @@ extension JSONYAMLConverterView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
-                .introspectTextView { textView in
-                    textView.backgroundColor = .clear
-                }
         }
     }
 }

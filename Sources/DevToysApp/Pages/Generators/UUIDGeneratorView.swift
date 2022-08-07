@@ -1,4 +1,3 @@
-import Introspect
 import SwiftUI
 
 struct UUIDGeneratorView {
@@ -18,6 +17,12 @@ extension UUIDGeneratorView: View {
             self.outputSection
         }
         .navigationTitle(Tool.uuidGenerator.strings.localizedLongTitle)
+        .onAppear {
+            UITextView.appearance().backgroundColor = .clear
+        }
+        .onDisappear {
+            UITextView.appearance().backgroundColor = nil
+        }
     }
 
     private var configurationSection: some View {
@@ -94,9 +99,6 @@ extension UUIDGeneratorView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
-                .introspectTextView { textView in
-                    textView.backgroundColor = .clear
-                }
         }
     }
 }

@@ -1,4 +1,3 @@
-import Introspect
 import SwiftUI
 
 struct HTMLCoderView {
@@ -40,9 +39,6 @@ extension HTMLCoderView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
-                    .introspectTextView { textView in
-                        textView.backgroundColor = .clear
-                    }
             }
 
             ToySection("Output") {
@@ -55,12 +51,15 @@ extension HTMLCoderView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
-                    .introspectTextView { textView in
-                        textView.backgroundColor = .clear
-                    }
             }
         }
         .navigationTitle("HTML Encoder / Decoder")
+        .onAppear {
+            UITextView.appearance().backgroundColor = .clear
+        }
+        .onDisappear {
+            UITextView.appearance().backgroundColor = nil
+        }
     }
 }
 

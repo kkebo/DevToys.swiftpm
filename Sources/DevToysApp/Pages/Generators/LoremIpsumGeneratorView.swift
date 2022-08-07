@@ -1,4 +1,3 @@
-import Introspect
 import SwiftUI
 
 struct LoremIpsumGeneratorView {
@@ -86,14 +85,17 @@ extension LoremIpsumGeneratorView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
-                    .introspectTextView { textView in
-                        textView.backgroundColor = .clear
-                    }
             }
         }
         .navigationTitle(
             Tool.loremIpsumGenerator.strings.localizedLongTitle
         )
+        .onAppear {
+            UITextView.appearance().backgroundColor = .clear
+        }
+        .onDisappear {
+            UITextView.appearance().backgroundColor = nil
+        }
     }
 }
 

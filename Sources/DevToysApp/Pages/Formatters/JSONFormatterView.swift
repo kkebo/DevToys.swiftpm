@@ -1,4 +1,3 @@
-import Introspect
 import SwiftUI
 
 struct JSONFormatterView {
@@ -36,6 +35,12 @@ extension JSONFormatterView: View {
             }
         }
         .navigationTitle(Tool.jsonFormatter.strings.localizedLongTitle)
+        .onAppear {
+            UITextView.appearance().backgroundColor = .clear
+        }
+        .onDisappear {
+            UITextView.appearance().backgroundColor = nil
+        }
     }
 
     private var inputSection: some View {
@@ -51,9 +56,6 @@ extension JSONFormatterView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
-                .introspectTextView { textView in
-                    textView.backgroundColor = .clear
-                }
         }
     }
 
@@ -68,9 +70,6 @@ extension JSONFormatterView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .frame(idealHeight: 200)
-                .introspectTextView { textView in
-                    textView.backgroundColor = .clear
-                }
         }
     }
 }

@@ -1,4 +1,3 @@
-import Introspect
 import SwiftUI
 
 struct Base64CoderView {
@@ -52,9 +51,6 @@ extension Base64CoderView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
-                    .introspectTextView { textView in
-                        textView.backgroundColor = .clear
-                    }
             }
 
             ToySection("Output") {
@@ -67,12 +63,15 @@ extension Base64CoderView: View {
                     .background(.regularMaterial)
                     .cornerRadius(8)
                     .frame(idealHeight: 200)
-                    .introspectTextView { textView in
-                        textView.backgroundColor = .clear
-                    }
             }
         }
         .navigationTitle("Base 64 Encoder / Decoder")
+        .onAppear {
+            UITextView.appearance().backgroundColor = .clear
+        }
+        .onDisappear {
+            UITextView.appearance().backgroundColor = nil
+        }
     }
 }
 
