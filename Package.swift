@@ -16,7 +16,7 @@ import PackageDescription
             bundleIdentifier: "xyz.kebo.DevToysForiPad",
             teamIdentifier: "X4678G5DL2",
             displayVersion: "1.0.0",
-            bundleVersion: "6",
+            bundleVersion: "7",
             appIcon: .asset("AppIcon"),
             accentColor: .presetColor(.purple),
             supportedDeviceFamilies: [
