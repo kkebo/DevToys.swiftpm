@@ -61,7 +61,7 @@ extension UUIDGeneratorView: View {
                 .hoverEffect()
                 Text("x")
                 TextField("N", text: self.$state.numberOfUUIDsString)
-                    .textFieldStyle(.roundedBorder)
+                    .modifier(ClearButtonModifier(text: self.$state.numberOfUUIDsString))
                     .frame(maxWidth: 80)
                     .fixedSize(horizontal: true, vertical: false)
                     .keyboardType(.numberPad)
@@ -73,9 +73,6 @@ extension UUIDGeneratorView: View {
                         if !isFocused {
                             self.state.commitNumberOfUUIDs()
                         }
-                    }
-                    .introspectTextField { textField in
-                        textField.clearButtonMode = .whileEditing
                     }
                 Stepper("", value: self.$state.numberOfUUIDs, in: 1...10000)
                     .labelsHidden()

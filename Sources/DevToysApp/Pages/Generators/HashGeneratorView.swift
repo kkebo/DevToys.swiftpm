@@ -68,10 +68,15 @@ extension HashGeneratorView: View {
     ) -> some View {
         ToySection(title) {
             HStack {
-                TextField("", text: .constant(value))
-                    .textFieldStyle(.roundedBorder)
-                    .font(.body.monospaced())
-                    .disabled(true)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    Text(value)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, 2)
+                }
+                .padding(6)
+                .background(.regularMaterial)
+                .cornerRadius(8)
+                .font(.body.monospaced())
                 CopyButton(text: value)
             }
         }

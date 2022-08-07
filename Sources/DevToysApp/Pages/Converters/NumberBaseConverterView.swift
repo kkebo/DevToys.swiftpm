@@ -1,4 +1,3 @@
-import Introspect
 import SwiftUI
 
 struct NumberBaseConverterView {
@@ -67,14 +66,11 @@ extension NumberBaseConverterView: View {
         ToySection(LocalizedStringKey(type.rawValue.capitalized)) {
             HStack {
                 TextField("", text: text)
-                    .textFieldStyle(.roundedBorder)
+                    .modifier(ClearButtonModifier(text: text))
                     .font(.body.monospaced())
                     .keyboardType(.numbersAndPunctuation)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
-                    .introspectTextField { textField in
-                        textField.clearButtonMode = .whileEditing
-                    }
                 PasteButton(text: text) {
                     self.state.inputType = type
                 } postAction: {
