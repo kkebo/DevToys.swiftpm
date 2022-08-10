@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log.git",
       "state" : {
-        "revision" : "5d66f7ba25daf4f94100e7022febf3c75e37a6c7",
-        "version" : "1.4.2"
+        "revision" : "8fc79cae9d03a5e623c52cc2dbd2df165a7832b0",
+        "version" : "1.4.3"
       }
     },
     {
@@ -68,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kkk669/swift-log-playground",
       "state" : {
-        "revision" : "0e54bc8a292a3ddddecab489a2fefa90988ab21a",
-        "version" : "0.1.0"
+        "revision" : "425154cb9f3f140234b477c48910666c0ea30123",
+        "version" : "0.1.1"
       }
     },
     {
