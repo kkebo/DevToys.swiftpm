@@ -5,6 +5,7 @@ let toolGroups: [ToolGroup] = [
         name: "Converters",
         tools: [
             .jsonYAMLConverter,
+            .timestampConverter,
             .numberBaseConverter,
         ]
     ),
@@ -49,6 +50,7 @@ enum Tool: String {
     case loremIpsumGenerator
     case markdownPreview
     case numberBaseConverter
+    case timestampConverter
     case urlCoder
     case uuidGenerator
 
@@ -108,6 +110,12 @@ enum Tool: String {
                 longTitle: "Number Base Converter",
                 description: "Convert numbers from one base to another"
             )
+        case .timestampConverter:
+            return .init(
+                shortTitle: "Timestamp",
+                longTitle: "Unix Timestamp Converter",
+                description: "Convert timestamp to human-readable date and vice versa"
+            )
         case .urlCoder:
             return .init(
                 shortTitle: "URL",
@@ -143,6 +151,8 @@ enum Tool: String {
             Image(systemName: "arrow.down").symbolVariant(.square)
         case .numberBaseConverter:
             Image(systemName: "number").symbolVariant(.square)
+        case .timestampConverter:
+            Image(systemName: "clock")
         case .urlCoder:
             Image(systemName: "link")
         case .uuidGenerator:
@@ -161,6 +171,7 @@ enum Tool: String {
         case .loremIpsumGenerator: LoremIpsumGeneratorView(state: state)
         case .markdownPreview: MarkdownPreviewView(state: state)
         case .numberBaseConverter: NumberBaseConverterView(state: state)
+        case .timestampConverter: TimestampConverterView(state: state)
         case .urlCoder: URLCoderView(state: state)
         case .uuidGenerator: UUIDGeneratorView(state: state)
         }

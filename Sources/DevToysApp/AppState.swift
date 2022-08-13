@@ -11,6 +11,7 @@ final class AppState {
     let uuidGeneratorViewState = UUIDGeneratorViewState()
     let loremIpsumGeneratorViewState = LoremIpsumGeneratorViewState()
     let markdownPreviewViewState = MarkdownPreviewViewState()
+    let timestampConverterViewState = TimestampConverterViewState()
 }
 
 extension AppState: ObservableObject {}
