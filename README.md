@@ -14,6 +14,7 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
 - Converters
   - [ ] JSON <> YAML
   - [x] Number Base
+  - [x] Unix Timestamp
 - Encoders / Decoders
   - [x] HTML
   - [x] URL
