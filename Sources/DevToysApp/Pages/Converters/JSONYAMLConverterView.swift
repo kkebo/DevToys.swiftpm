@@ -17,14 +17,14 @@ extension JSONYAMLConverterView: View {
                         .foregroundStyle(.secondary)
                 } content: {
                     Picker("", selection: .constant(0)) {
-                        Text("YAML to JSON")
-                        Text("JSON to YAML")
+                        Text("YAML to JSON").tag(0)
+                        Text("JSON to YAML").tag(1)
                     }
                     .labelsHidden()
                 }
                 ConfigurationRow("Indentation", systemImage: "increase.indent") {
                     Picker("", selection: .constant(0)) {
-                        Text("2 spaces")
+                        Text("2 spaces").tag(0)
                     }
                     .labelsHidden()
                 }
