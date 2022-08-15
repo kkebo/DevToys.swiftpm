@@ -50,7 +50,6 @@ extension JSONYAMLConverterView: View {
         }
     }
 
-    @MainActor
     private var inputSection: some View {
         ToySection("Input") {
             PasteButton(text: self.$input)
@@ -67,7 +66,6 @@ extension JSONYAMLConverterView: View {
         }
     }
 
-    @MainActor
     private var outputSection: some View {
         ToySection("Output") {
             CopyButton(text: self.output)
