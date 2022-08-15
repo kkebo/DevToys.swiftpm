@@ -67,7 +67,7 @@ let package = Package(
             swiftSettings: [
                 .unsafeFlags(["-Xfrontend", "-warn-long-function-bodies=100"], .when(configuration: .debug)),
                 .unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
-                .unsafeFlags(["-Xfrontend", "-warn-concurrency"]),
+                .unsafeFlags(["-Xfrontend", "-strict-concurrency=complete"]),
                 .unsafeFlags(["-Xfrontend", "-enable-actor-data-race-checks"]),
                 .define("TESTING_ENABLED", .when(configuration: .debug))
             ]
