@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Losiowaty/PlaygroundTester",
       "state" : {
-        "revision" : "ee95adee270d2a319dbce530d5887699f94594e1",
-        "version" : "0.2.1"
+        "revision" : "3dd77086836dcfa3d9b49af6cf4b6f8c2db55fee",
+        "version" : "0.3.0"
       }
     },
     {
