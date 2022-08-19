@@ -10,12 +10,13 @@ struct UnitTestsButton {
 extension UnitTestsButton: View {
     var body: some View {
         Button {
+            PlaygroundTesterConfiguration.isTesting = true
             self.isTesterViewPresented = true
         } label: {
             Label("Unit Tests", systemImage: "checklist")
         }
         .sheet(isPresented: self.$isTesterViewPresented) {
-            PlaygroundTesterView()
+            PlaygroundTesterWrapperView {}
         }
     }
 }
