@@ -144,7 +144,7 @@ enum Tool: String {
         case .jsonYAMLConverter:
             Image(systemName: "doc.plaintext")
         case .jwtDecoder:
-            Image(systemName: "rays").bold()
+            Image("JWT").resizable().scaledToFit()
         case .loremIpsumGenerator:
             Image(systemName: "text.alignleft")
         case .markdownPreview:

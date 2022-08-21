@@ -117,7 +117,7 @@ extension AllToolsView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
         } icon: {
-            tool.icon
+            tool.icon.padding(12)
         }
         .labelStyle(AllToolsLabelStyle())
     }

@@ -75,7 +75,7 @@ extension Sidebar: View {
                     )
                 )
             } icon: {
-                tool.icon
+                tool.icon.padding(3)
             }
         }
         .onDrag {
