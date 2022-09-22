@@ -2,7 +2,6 @@ import SwiftUI
 
 struct TimestampConverterView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @FocusState private var focusedField: Bool
     @ObservedObject private var state: TimestampConverterViewState
 
     init(state: AppState) {
