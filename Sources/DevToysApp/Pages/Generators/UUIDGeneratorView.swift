@@ -59,9 +59,10 @@ extension UUIDGeneratorView: View {
                 Button(
                     self.state.numberOfUUIDs > 1
                         ? "Generate UUIDs"
-                        : "Generate UUID",
-                    action: self.state.generate
-                )
+                        : "Generate UUID"
+                ) {
+                    self.state.generate()
+                }
                 .buttonStyle(.borderedProminent)
                 .hoverEffect()
                 Text("x")

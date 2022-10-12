@@ -65,7 +65,9 @@ extension LoremIpsumGeneratorView: View {
             }
 
             ToySection("Output") {
-                Button(action: self.state.generate) {
+                Button {
+                    self.state.generate()
+                } label: {
                     if self.hSizeClass == .compact {
                         Label("Refresh", systemImage: "arrow.clockwise")
                             .labelStyle(.iconOnly)

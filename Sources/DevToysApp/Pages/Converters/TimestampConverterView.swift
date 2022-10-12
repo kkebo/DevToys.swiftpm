@@ -65,9 +65,11 @@ extension TimestampConverterView: View {
                 )
                 .labelsHidden()
                 .disabled(self.state.timestamp == nil)
-                Button("Now", action: self.state.setNow)
-                    .buttonStyle(.bordered)
-                    .hoverEffect()
+                Button("Now") {
+                    self.state.setNow()
+                }
+                .buttonStyle(.bordered)
+                .hoverEffect()
             }
         }
     }
