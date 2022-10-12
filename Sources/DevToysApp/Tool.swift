@@ -160,7 +160,9 @@ enum Tool: String {
         }
     }
 
-    @ViewBuilder func page(state: AppState) -> some View {
+    @MainActor
+    @ViewBuilder
+    func page(state: AppState) -> some View {
         switch self {
         case .base64Coder: Base64CoderView(state: state)
         case .hashGenerator: HashGeneratorView(state: state)
