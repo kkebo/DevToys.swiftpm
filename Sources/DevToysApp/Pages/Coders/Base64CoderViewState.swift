@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class Base64CoderViewState {
     @Published var coder = Base64Coder() {
         didSet { self.updateOutput() }

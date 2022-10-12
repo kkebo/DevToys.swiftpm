@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class AppState {
     let numberBaseConverterViewState = NumberBaseConverterViewState()
     let base64CoderViewState = Base64CoderViewState()

@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class MarkdownPreviewViewState {
     @Published var input = "" {
         didSet { self.updateOutput() }

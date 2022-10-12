@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class JWTDecoderViewState {
     @Published var input = "" {
         didSet { self.updateHeaderAndPayload() }

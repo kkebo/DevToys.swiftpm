@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class LoremIpsumGeneratorViewState {
     static let defaultLength = 1
 

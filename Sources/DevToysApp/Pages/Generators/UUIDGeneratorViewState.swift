@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class UUIDGeneratorViewState {
     static let defaultNumberOfUUIDs: UInt = 1
 
