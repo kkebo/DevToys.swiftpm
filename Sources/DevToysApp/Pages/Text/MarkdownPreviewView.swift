@@ -24,12 +24,6 @@ extension MarkdownPreviewView: View {
             }
         }
         .navigationTitle(Tool.markdownPreview.strings.localizedLongTitle)
-        .onAppear {
-            UITextView.appearance().backgroundColor = .clear
-        }
-        .onDisappear {
-            UITextView.appearance().backgroundColor = nil
-        }
     }
 
     private var markdownSection: some View {
@@ -38,12 +32,7 @@ extension MarkdownPreviewView: View {
             OpenFileButton(text: self.$state.input)
             ClearButton(text: self.$state.input)
         } content: {
-            TextEditor(text: self.$state.input)
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
+            CodeEditor(text: self.$state.input)
                 .frame(idealHeight: 200)
         }
     }

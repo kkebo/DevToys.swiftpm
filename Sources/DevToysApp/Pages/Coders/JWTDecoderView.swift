@@ -16,12 +16,6 @@ extension JWTDecoderView: View {
             self.payloadSection
         }
         .navigationTitle("JWT Decoder")
-        .onAppear {
-            UITextView.appearance().backgroundColor = .clear
-        }
-        .onDisappear {
-            UITextView.appearance().backgroundColor = nil
-        }
     }
 
     private var inputSection: some View {
@@ -30,12 +24,7 @@ extension JWTDecoderView: View {
             OpenFileButton(text: self.$state.input)
             ClearButton(text: self.$state.input)
         } content: {
-            TextEditor(text: self.$state.input)
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
+            CodeEditor(text: self.$state.input)
                 .frame(height: 100)
         }
     }
@@ -44,12 +33,7 @@ extension JWTDecoderView: View {
         ToySection("Header") {
             CopyButton(text: self.state.header)
         } content: {
-            TextEditor(text: .constant(self.state.header))
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
+            CodeEditor(text: .constant(self.state.header))
                 .frame(idealHeight: 200)
         }
     }
@@ -58,12 +42,7 @@ extension JWTDecoderView: View {
         ToySection("Payload") {
             CopyButton(text: self.state.payload)
         } content: {
-            TextEditor(text: .constant(self.state.payload))
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
+            CodeEditor(text: .constant(self.state.payload))
                 .frame(idealHeight: 200)
         }
     }
