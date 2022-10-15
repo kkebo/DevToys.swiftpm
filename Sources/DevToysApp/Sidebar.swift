@@ -48,12 +48,10 @@ extension Sidebar: View {
             Label("All tools", systemImage: "house")
         }
         ForEach(toolGroups, id: \.self) { group in
-            Section {
+            Section(LocalizedStringKey(group.name)) {
                 ForEach(group.tools) { tool in
                     self.row(for: tool)
                 }
-            } header: {
-                Text(LocalizedStringKey(group.name)).font(.title3.bold())
             }
         }
         #if TESTING_ENABLED
