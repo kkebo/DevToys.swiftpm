@@ -77,10 +77,9 @@ extension Base64CoderView: View {
 
 struct Base64CoderView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             Base64CoderView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }
