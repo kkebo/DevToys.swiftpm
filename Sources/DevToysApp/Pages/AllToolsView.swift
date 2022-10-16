@@ -43,7 +43,7 @@ struct AllToolsView {
 
     @ObservedObject var state: AppState
     @Binding var selection: Tool?
-    @State private var searchQuery = ""
+    @Binding var searchQuery: String
 
     private var isSearching: Bool {
         !self.searchQuery.isEmpty
@@ -126,7 +126,7 @@ extension AllToolsView: View {
 struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AllToolsView(state: .init(), selection: .constant(nil))
+            AllToolsView(state: .init(), selection: .constant(nil), searchQuery: .constant(""))
         }
         .navigationViewStyle(.stack)
         .previewPresets()
