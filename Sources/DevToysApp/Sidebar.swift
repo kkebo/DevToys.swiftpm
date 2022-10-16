@@ -3,7 +3,7 @@ import SwiftUI
 struct Sidebar {
     @ObservedObject var state: AppState
     @Binding var selection: Tool?
-    @State private var searchQuery = ""
+    @Binding var searchQuery: String
 
     private var isSearching: Bool {
         !self.searchQuery.isEmpty
@@ -43,7 +43,7 @@ extension Sidebar: View {
 
     @ViewBuilder private var normalRows: some View {
         NavigationLink {
-            AllToolsView(state: self.state, selection: self.$selection)
+            AllToolsView(state: self.state, selection: self.$selection, searchQuery: self.$searchQuery)
         } label: {
             Label("All tools", systemImage: "house")
         }
@@ -96,7 +96,7 @@ extension Sidebar: View {
 struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            Sidebar(state: .init(), selection: .constant(nil))
+            Sidebar(state: .init(), selection: .constant(nil), searchQuery: .constant(""))
         }
         .previewPresets()
     }
