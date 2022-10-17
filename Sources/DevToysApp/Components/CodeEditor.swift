@@ -7,7 +7,7 @@ struct CodeEditor {
 extension CodeEditor: View {
     var body: some View {
         TextEditor(text: self.$text)
-            .disableAutocorrection(true)
+            .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
             .font(.body.monospaced())
             .scrollContentBackground(.hidden)
