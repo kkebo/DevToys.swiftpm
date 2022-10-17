@@ -65,7 +65,7 @@ extension NumberBaseConverterView: View {
     ) -> some View {
         ToySection(LocalizedStringKey(type.rawValue.capitalized)) {
             HStack {
-                TextField("", text: text)
+                TextField("", text: text, axis: .vertical)
                     .modifier(ClearButtonModifier(text: text))
                     .font(.body.monospaced())
                     .keyboardType(.numbersAndPunctuation)
