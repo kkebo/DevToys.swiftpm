@@ -17,12 +17,6 @@ extension UUIDGeneratorView: View {
             self.outputSection
         }
         .navigationTitle(Tool.uuidGenerator.strings.localizedLongTitle)
-        .onAppear {
-            UITextView.appearance().backgroundColor = .clear
-        }
-        .onDisappear {
-            UITextView.appearance().backgroundColor = nil
-        }
     }
 
     private var configurationSection: some View {
@@ -92,12 +86,7 @@ extension UUIDGeneratorView: View {
             CopyButton(text: self.state.output)
             ClearButton(text: self.$state.output)
         } content: {
-            TextEditor(text: .constant(self.state.output))
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
+            CodeEditor(text: .constant(self.state.output))
                 .frame(idealHeight: 200)
         }
     }

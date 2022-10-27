@@ -42,12 +42,6 @@ extension JSONYAMLConverterView: View {
             }
         }
         .navigationTitle(Tool.jsonYAMLConverter.strings.localizedLongTitle)
-        .onAppear {
-            UITextView.appearance().backgroundColor = .clear
-        }
-        .onDisappear {
-            UITextView.appearance().backgroundColor = nil
-        }
     }
 
     private var inputSection: some View {
@@ -56,12 +50,7 @@ extension JSONYAMLConverterView: View {
             OpenFileButton(text: self.$input)
             ClearButton(text: self.$input)
         } content: {
-            TextEditor(text: self.$input)
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
+            CodeEditor(text: self.$input)
                 .frame(idealHeight: 200)
         }
     }
@@ -70,12 +59,7 @@ extension JSONYAMLConverterView: View {
         ToySection("Output") {
             CopyButton(text: self.output)
         } content: {
-            TextEditor(text: .constant(self.output))
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
+            CodeEditor(text: .constant(self.output))
                 .frame(idealHeight: 200)
         }
     }

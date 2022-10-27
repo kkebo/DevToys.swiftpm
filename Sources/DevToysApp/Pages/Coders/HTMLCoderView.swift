@@ -32,34 +32,18 @@ extension HTMLCoderView: View {
                 OpenFileButton(text: self.$state.input)
                 ClearButton(text: self.$state.input)
             } content: {
-                TextEditor(text: self.$state.input)
-                    .disableAutocorrection(true)
-                    .textInputAutocapitalization(.never)
-                    .font(.body.monospaced())
-                    .background(.regularMaterial)
-                    .cornerRadius(8)
+                CodeEditor(text: self.$state.input)
                     .frame(idealHeight: 200)
             }
 
             ToySection("Output") {
                 CopyButton(text: self.state.output)
             } content: {
-                TextEditor(text: .constant(self.state.output))
-                    .disableAutocorrection(true)
-                    .textInputAutocapitalization(.never)
-                    .font(.body.monospaced())
-                    .background(.regularMaterial)
-                    .cornerRadius(8)
+                CodeEditor(text: .constant(self.state.output))
                     .frame(idealHeight: 200)
             }
         }
         .navigationTitle("HTML Encoder / Decoder")
-        .onAppear {
-            UITextView.appearance().backgroundColor = .clear
-        }
-        .onDisappear {
-            UITextView.appearance().backgroundColor = nil
-        }
     }
 }
 

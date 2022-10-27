@@ -35,12 +35,6 @@ extension JSONFormatterView: View {
             }
         }
         .navigationTitle(Tool.jsonFormatter.strings.localizedLongTitle)
-        .onAppear {
-            UITextView.appearance().backgroundColor = .clear
-        }
-        .onDisappear {
-            UITextView.appearance().backgroundColor = nil
-        }
     }
 
     private var inputSection: some View {
@@ -49,12 +43,7 @@ extension JSONFormatterView: View {
             OpenFileButton(text: self.$state.input)
             ClearButton(text: self.$state.input)
         } content: {
-            TextEditor(text: self.$state.input)
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
+            CodeEditor(text: self.$state.input)
                 .frame(idealHeight: 200)
         }
     }
@@ -63,12 +52,7 @@ extension JSONFormatterView: View {
         ToySection("Output") {
             CopyButton(text: self.state.output)
         } content: {
-            TextEditor(text: .constant(self.state.output))
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-                .font(.body.monospaced())
-                .background(.regularMaterial)
-                .cornerRadius(8)
+            CodeEditor(text: .constant(self.state.output))
                 .frame(idealHeight: 200)
         }
     }
