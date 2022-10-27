@@ -48,10 +48,9 @@ extension MarkdownPreviewView: View {
 
 struct MarkdownPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             MarkdownPreviewView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

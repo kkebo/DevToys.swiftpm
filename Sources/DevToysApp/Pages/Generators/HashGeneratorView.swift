@@ -76,10 +76,9 @@ extension HashGeneratorView: View {
 
 struct HashGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             HashGeneratorView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

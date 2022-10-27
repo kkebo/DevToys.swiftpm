@@ -25,7 +25,7 @@ struct Sidebar {
 
 extension Sidebar: View {
     var body: some View {
-        List {
+        List(selection: self.$selection) {
             if !self.isSearching {
                 self.normalRows
             } else {
@@ -43,7 +43,7 @@ extension Sidebar: View {
 
     @ViewBuilder private var normalRows: some View {
         NavigationLink {
-            AllToolsView(state: self.state, selection: self.$selection, searchQuery: self.$searchQuery)
+            AllToolsView(state: self.state, searchQuery: self.$searchQuery)
         } label: {
             Label("All tools", systemImage: "house")
         }
@@ -61,9 +61,7 @@ extension Sidebar: View {
 
     private func row(for tool: Tool) -> some View {
         let strings = tool.strings
-        return NavigationLink(tag: tool, selection: self.$selection) {
-            tool.page(state: self.state)
-        } label: {
+        return NavigationLink(value: tool) {
             Label {
                 Text(
                     LocalizedStringKey(
@@ -95,7 +93,7 @@ extension Sidebar: View {
 
 struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             Sidebar(state: .init(), selection: .constant(nil), searchQuery: .constant(""))
         }
         .previewPresets()

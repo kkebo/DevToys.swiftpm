@@ -60,10 +60,9 @@ extension JSONFormatterView: View {
 
 struct JSONFormatterView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             JSONFormatterView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

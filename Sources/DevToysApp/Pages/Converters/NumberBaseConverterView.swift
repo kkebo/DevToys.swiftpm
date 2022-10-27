@@ -83,10 +83,9 @@ extension NumberBaseConverterView: View {
 
 struct NumberBaseConverterView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             NumberBaseConverterView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

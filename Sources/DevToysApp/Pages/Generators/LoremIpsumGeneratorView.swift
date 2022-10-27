@@ -92,10 +92,9 @@ extension LoremIpsumGeneratorView: View {
 
 struct LoremIpsumGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             LoremIpsumGeneratorView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

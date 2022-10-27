@@ -50,10 +50,9 @@ extension JWTDecoderView: View {
 
 struct JWTDecoderView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             JWTDecoderView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

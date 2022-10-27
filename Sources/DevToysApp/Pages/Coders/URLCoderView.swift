@@ -49,10 +49,9 @@ extension URLCoderView: View {
 
 struct URLCoderView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             URLCoderView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

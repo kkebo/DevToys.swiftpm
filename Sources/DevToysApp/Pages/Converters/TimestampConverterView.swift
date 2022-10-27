@@ -77,10 +77,9 @@ extension TimestampConverterView: View {
 
 struct TimestampConverterView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             TimestampConverterView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }

@@ -49,10 +49,9 @@ extension HTMLCoderView: View {
 
 struct HTMLCoderView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             HTMLCoderView(state: .init())
         }
-        .navigationViewStyle(.stack)
         .previewPresets()
     }
 }
