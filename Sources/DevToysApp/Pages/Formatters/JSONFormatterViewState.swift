@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class JSONFormatterViewState {
     @Published var formatter = JSONFormatter() {
         didSet { self.updateOutput() }

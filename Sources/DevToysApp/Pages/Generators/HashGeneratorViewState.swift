@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class HashGeneratorViewState {
     @Published var generator = HashGenerator() {
         didSet { self.updateOutputValues() }

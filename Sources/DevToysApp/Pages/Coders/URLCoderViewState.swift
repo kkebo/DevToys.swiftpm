@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class URLCoderViewState {
     @Published var encodeMode = true {
         didSet {

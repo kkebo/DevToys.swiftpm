@@ -3,6 +3,7 @@ import SwiftUI
 import struct Foundation.Calendar
 import struct Foundation.Date
 
+@MainActor
 final class TimestampConverterViewState {
     private static let utcCalendar: Calendar = {
         var calendar = Calendar(identifier: .iso8601)

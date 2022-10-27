@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class HTMLCoderViewState {
     @Published var encodeMode = true {
         didSet {

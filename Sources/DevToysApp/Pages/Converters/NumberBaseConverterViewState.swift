@@ -1,5 +1,6 @@
 import Combine
 
+@MainActor
 final class NumberBaseConverterViewState {
     @Published var converter = NumberBaseConverter() {
         didSet { self.formatAllText() }
