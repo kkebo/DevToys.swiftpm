@@ -69,7 +69,7 @@ extension NumberBaseConverterView: View {
                     .modifier(ClearButtonModifier(text: text))
                     .font(.body.monospaced())
                     .keyboardType(.numbersAndPunctuation)
-                    .disableAutocorrection(true)
+                    .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 PasteButton(text: text) {
                     self.state.inputType = type

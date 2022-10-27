@@ -39,7 +39,7 @@ extension LoremIpsumGeneratorView: View {
                         .multilineTextAlignment(.trailing)
                         .keyboardType(.numberPad)
                         .font(.body.monospacedDigit())
-                        .disableAutocorrection(true)
+                        .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .focused(self.$isFocused)
                         .onChange(of: self.isFocused) { isFocused in
