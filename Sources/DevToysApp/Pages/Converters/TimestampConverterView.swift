@@ -53,7 +53,7 @@ extension TimestampConverterView: View {
                 )
                 .modifier(ClearButtonModifier(text: self.$state.timestampString))
                 .keyboardType(.numberPad)
-                .font(.body.monospacedDigit())
+                .monospacedDigit()
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
                 Stepper(

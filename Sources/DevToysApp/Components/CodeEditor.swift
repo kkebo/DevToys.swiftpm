@@ -9,7 +9,7 @@ extension CodeEditor: View {
         TextEditor(text: self.$text)
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
-            .font(.body.monospaced())
+            .fontDesign(.monospaced)
             .scrollContentBackground(.hidden)
             .background(.regularMaterial)
             .cornerRadius(8)

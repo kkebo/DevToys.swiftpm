@@ -67,7 +67,7 @@ extension NumberBaseConverterView: View {
             HStack {
                 TextField("", text: text, axis: .vertical)
                     .modifier(ClearButtonModifier(text: text))
-                    .font(.body.monospaced())
+                    .fontDesign(.monospaced)
                     .keyboardType(.numbersAndPunctuation)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
