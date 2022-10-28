@@ -38,7 +38,7 @@ extension LoremIpsumGeneratorView: View {
                         .fixedSize(horizontal: true, vertical: false)
                         .multilineTextAlignment(.trailing)
                         .keyboardType(.numberPad)
-                        .font(.body.monospacedDigit())
+                        .monospacedDigit()
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .focused(self.$isFocused)

@@ -65,7 +65,7 @@ extension UUIDGeneratorView: View {
                     .frame(maxWidth: 80)
                     .fixedSize(horizontal: true, vertical: false)
                     .keyboardType(.numberPad)
-                    .font(.body.monospacedDigit())
+                    .monospacedDigit()
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                     .focused(self.$isFocused)

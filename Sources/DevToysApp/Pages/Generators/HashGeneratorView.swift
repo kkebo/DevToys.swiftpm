@@ -67,7 +67,7 @@ extension HashGeneratorView: View {
                 .padding(6)
                 .background(.regularMaterial)
                 .cornerRadius(8)
-                .font(.body.monospaced())
+                .fontDesign(.monospaced)
                 CopyButton(text: value)
             }
         }
