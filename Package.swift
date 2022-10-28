@@ -40,7 +40,7 @@ import PackageDescription
 let package = Package(
     name: "DevToys",
     platforms: [
-        .iOS("16.0")
+        .iOS("16.1")
     ],
     products: products,
     dependencies: [
