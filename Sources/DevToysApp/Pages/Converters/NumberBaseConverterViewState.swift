@@ -105,28 +105,28 @@ final class NumberBaseConverterViewState {
     }
 
     func formatText(of type: NumberType) {
-        guard let value = self.inputValue else { return }
+        guard let inputValue else { return }
         switch type {
         case .hexadecimal:
             self.hexadecimal = self.converter.convert(
-                value,
+                inputValue,
                 to: .hexadecimal
             )
         case .decimal:
-            self.decimal = self.converter.convert(value, to: .decimal)
+            self.decimal = self.converter.convert(inputValue, to: .decimal)
         case .octal:
-            self.octal = self.converter.convert(value, to: .octal)
+            self.octal = self.converter.convert(inputValue, to: .octal)
         case .binary:
-            self.binary = self.converter.convert(value, to: .binary)
+            self.binary = self.converter.convert(inputValue, to: .binary)
         }
     }
 
     private func formatAllText() {
-        guard let value = self.inputValue else { return }
-        self.hexadecimal = self.converter.convert(value, to: .hexadecimal)
-        self.decimal = self.converter.convert(value, to: .decimal)
-        self.octal = self.converter.convert(value, to: .octal)
-        self.binary = self.converter.convert(value, to: .binary)
+        guard let inputValue else { return }
+        self.hexadecimal = self.converter.convert(inputValue, to: .hexadecimal)
+        self.decimal = self.converter.convert(inputValue, to: .decimal)
+        self.octal = self.converter.convert(inputValue, to: .octal)
+        self.binary = self.converter.convert(inputValue, to: .binary)
     }
 }
 

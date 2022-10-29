@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView {
     @StateObject private var state = AppState()
-    @SceneStorage("selectedTool") private var selection: Tool?
+    @SceneStorage("selectedTool") private var tool: Tool?
     @State private var searchQuery = ""
     @State private var columnVisibility = NavigationSplitViewVisibility.all
 }
@@ -10,9 +10,9 @@ struct ContentView {
 extension ContentView: View {
     var body: some View {
         NavigationSplitView(columnVisibility: self.$columnVisibility) {
-            Sidebar(state: self.state, selection: self.$selection, searchQuery: self.$searchQuery)
+            Sidebar(state: self.state, selection: self.$tool, searchQuery: self.$searchQuery)
         } detail: {
-            if let tool = self.selection {
+            if let tool {
                 tool.page(state: self.state)
             } else {
                 AllToolsView(state: self.state, searchQuery: self.$searchQuery)
@@ -21,7 +21,7 @@ extension ContentView: View {
         .navigationSplitViewStyle(.balanced)
         .onContinueUserActivity("xyz.kebo.DevToysForiPad.newWindow") {
             let payload = try? $0.typedPayload(NewWindowActivityPayload.self)
-            self.selection = payload?.tool
+            self.tool = payload?.tool
         }
     }
 }

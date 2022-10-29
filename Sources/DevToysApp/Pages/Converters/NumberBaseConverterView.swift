@@ -50,7 +50,7 @@ extension NumberBaseConverterView: View {
             Tool.numberBaseConverter.strings.localizedLongTitle
         )
         .onChange(of: self.focusedField) { [focusedField] type in
-            if let type = type {
+            if let type {
                 self.state.inputType = type
             }
             if let oldType = focusedField {
