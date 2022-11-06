@@ -49,9 +49,7 @@ struct AllToolsView {
     }
 
     private var tools: [Tool] {
-        if !self.isSearching {
-            return Tool.allCases
-        } else {
+        guard !self.isSearching else {
             return Tool.allCases.filter {
                 $0.strings.localizedLongTitle
                     .localizedCaseInsensitiveContains(self.searchQuery)
@@ -59,6 +57,7 @@ struct AllToolsView {
                         .localizedCaseInsensitiveContains(self.searchQuery)
             }
         }
+        return Tool.allCases
     }
 }
 

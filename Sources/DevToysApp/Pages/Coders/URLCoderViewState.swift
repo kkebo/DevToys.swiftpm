@@ -15,7 +15,8 @@ final class URLCoderViewState {
     @Published var output = ""
 
     private func updateOutput() {
-        self.output = self.encodeMode
+        self.output =
+            self.encodeMode
             ? URLCoder.encode(self.input) ?? ""
             : URLCoder.decode(self.input) ?? ""
     }

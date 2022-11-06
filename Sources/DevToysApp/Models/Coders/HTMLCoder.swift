@@ -11,22 +11,22 @@ struct HTMLCoder {
 }
 
 #if TESTING_ENABLED
-import PlaygroundTester
+    import PlaygroundTester
 
-@objcMembers
-final class HTMLCoderTests: TestCase {
-    func testEncode() {
-        AssertEqual(
-            "&lt;Hello World&gt;",
-            other: HTMLCoder.encode("<Hello World>")
-        )
-    }
+    @objcMembers
+    final class HTMLCoderTests: TestCase {
+        func testEncode() {
+            AssertEqual(
+                "&lt;Hello World&gt;",
+                other: HTMLCoder.encode("<Hello World>")
+            )
+        }
 
-    func testDecode() {
-        AssertEqual(
-            "<Hello World>",
-            other: HTMLCoder.decode("&lt;Hello World&gt;")
-        )
+        func testDecode() {
+            AssertEqual(
+                "<Hello World>",
+                other: HTMLCoder.decode("&lt;Hello World&gt;")
+            )
+        }
     }
-}
 #endif

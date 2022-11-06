@@ -14,22 +14,22 @@ struct URLCoder {
 }
 
 #if TESTING_ENABLED
-import PlaygroundTester
+    import PlaygroundTester
 
-@objcMembers
-final class URLCoderTests: TestCase {
-    func testEncode() {
-        AssertEqual(
-            "Hello%20there%20%21",
-            other: URLCoder.encode("Hello there !")
-        )
-    }
+    @objcMembers
+    final class URLCoderTests: TestCase {
+        func testEncode() {
+            AssertEqual(
+                "Hello%20there%20%21",
+                other: URLCoder.encode("Hello there !")
+            )
+        }
 
-    func testDecode() {
-        AssertEqual(
-            "Hello there !",
-            other: URLCoder.decode("Hello%20there%20%21")
-        )
+        func testDecode() {
+            AssertEqual(
+                "Hello there !",
+                other: URLCoder.decode("Hello%20there%20%21")
+            )
+        }
     }
-}
 #endif

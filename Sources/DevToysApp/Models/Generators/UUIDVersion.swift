@@ -17,4 +17,3 @@ extension UUIDVersion: Identifiable {
 }
 
 extension UUIDVersion: CaseIterable {}
-

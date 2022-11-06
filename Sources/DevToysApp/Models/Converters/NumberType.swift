@@ -3,7 +3,7 @@ enum NumberType: String {
     case decimal
     case octal
     case binary
-    
+
     var radix: Int {
         switch self {
         case .hexadecimal: return 16
@@ -12,7 +12,7 @@ enum NumberType: String {
         case .binary: return 2
         }
     }
-    
+
     var digitsInGroup: Int {
         switch self {
         case .hexadecimal: return 4
@@ -21,7 +21,7 @@ enum NumberType: String {
         case .binary: return 4
         }
     }
-    
+
     var separator: String {
         switch self {
         case .hexadecimal: return " "

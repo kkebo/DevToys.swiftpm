@@ -15,7 +15,8 @@ final class HTMLCoderViewState {
     @Published var output = ""
 
     private func updateOutput() {
-        self.output = self.encodeMode
+        self.output =
+            self.encodeMode
             ? HTMLCoder.encode(self.input)
             : HTMLCoder.decode(self.input)
     }

@@ -78,7 +78,7 @@ extension NumberBaseConverterView: View {
                 }
             }
         }
-    } 
+    }
 }
 
 struct NumberBaseConverterView_Previews: PreviewProvider {

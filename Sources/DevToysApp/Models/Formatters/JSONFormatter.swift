@@ -18,76 +18,76 @@ struct JSONFormatter {
 }
 
 #if TESTING_ENABLED
-import PlaygroundTester
+    import PlaygroundTester
 
-@objcMembers
-final class JSONFormatterTests: TestCase {
-    func testFormat() {
-        let formatter = JSONFormatter()
-        AssertEqual(
-            """
-            {
-              "menu": {
-                "id": "file",
-                "value": "File",
-                "popup": {
-                  "menuitem": [
-                    {
-                      "value": "New",
-                      "onclick": "CreateNewDoc()"
-                    },
-                    {
-                      "value": "Open",
-                      "onclick": "OpenDoc()"
-                    },
-                    {
-                      "value": "Close",
-                      "onclick": "CloseDoc()"
+    @objcMembers
+    final class JSONFormatterTests: TestCase {
+        func testFormat() {
+            let formatter = JSONFormatter()
+            AssertEqual(
+                """
+                {
+                  "menu": {
+                    "id": "file",
+                    "value": "File",
+                    "popup": {
+                      "menuitem": [
+                        {
+                          "value": "New",
+                          "onclick": "CreateNewDoc()"
+                        },
+                        {
+                          "value": "Open",
+                          "onclick": "OpenDoc()"
+                        },
+                        {
+                          "value": "Close",
+                          "onclick": "CloseDoc()"
+                        }
+                      ]
                     }
-                  ]
+                  }
                 }
-              }
-            }
-            """,
-            other: formatter.format(
-                """
-                {"menu": {
-                  "id": "file",
-                  "value": "File",
-                  "popup": {
-                    "menuitem": [
-                      {"value": "New", "onclick": "CreateNewDoc()"},
-                      {"value": "Open", "onclick": "OpenDoc()"},
-                      {"value": "Close", "onclick": "CloseDoc()"}
-                    ]
-                  }
-                }}
-                """
+                """,
+                other: formatter.format(
+                    """
+                    {"menu": {
+                      "id": "file",
+                      "value": "File",
+                      "popup": {
+                        "menuitem": [
+                          {"value": "New", "onclick": "CreateNewDoc()"},
+                          {"value": "Open", "onclick": "OpenDoc()"},
+                          {"value": "Close", "onclick": "CloseDoc()"}
+                        ]
+                      }
+                    }}
+                    """
+                )
             )
-        )
-    }
+        }
 
-    func testFormatMinified() {
-        var formatter = JSONFormatter()
-        formatter.indentation = .minified
-        AssertEqual(
-            #"{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}"#,
-            other: formatter.format(
-                """
-                {"menu": {
-                  "id": "file",
-                  "value": "File",
-                  "popup": {
-                    "menuitem": [
-                      {"value": "New", "onclick": "CreateNewDoc()"},
-                      {"value": "Open", "onclick": "OpenDoc()"},
-                      {"value": "Close", "onclick": "CloseDoc()"}
-                    ]
-                  }
-                }}
-                """
+        func testFormatMinified() {
+            var formatter = JSONFormatter()
+            formatter.indentation = .minified
+            AssertEqual(
+                #"{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}"#,
+                other: formatter.format(
+                    """
+                    {"menu": {
+                      "id": "file",
+                      "value": "File",
+                      "popup": {
+                        "menuitem": [
+                          {"value": "New", "onclick": "CreateNewDoc()"},
+                          {"value": "Open", "onclick": "OpenDoc()"},
+                          {"value": "Close", "onclick": "CloseDoc()"}
+                        ]
+                      }
+                    }}
+                    """
+                )
             )
-        )
+        }
     }
-}
 #endif

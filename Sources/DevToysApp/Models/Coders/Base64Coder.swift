@@ -15,58 +15,58 @@ struct Base64Coder {
 }
 
 #if TESTING_ENABLED
-import PlaygroundTester
+    import PlaygroundTester
 
-@objcMembers
-final class Base64CoderTests: TestCase {
-    func testEncodeUTF8() {
-        let coder = Base64Coder()
-        AssertEqual(
-            "SGVsbG8gdGhlcmUgIQ==",
-            other: coder.encode("Hello there !")
-        )
-        AssertEqual(
-            "8J+rgw==",
-            other: coder.encode("🫃")
-        )
-    }
+    @objcMembers
+    final class Base64CoderTests: TestCase {
+        func testEncodeUTF8() {
+            let coder = Base64Coder()
+            AssertEqual(
+                "SGVsbG8gdGhlcmUgIQ==",
+                other: coder.encode("Hello there !")
+            )
+            AssertEqual(
+                "8J+rgw==",
+                other: coder.encode("🫃")
+            )
+        }
 
-    func testDecodeUTF8() {
-        let coder = Base64Coder()
-        AssertEqual(
-            "Hello there !",
-            other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
-        )
-        AssertEqual(
-            "🫃",
-            other: coder.decode("8J+rgw==")
-        )
-    }
+        func testDecodeUTF8() {
+            let coder = Base64Coder()
+            AssertEqual(
+                "Hello there !",
+                other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
+            )
+            AssertEqual(
+                "🫃",
+                other: coder.decode("8J+rgw==")
+            )
+        }
 
-    func testEncodeASCII() {
-        var coder = Base64Coder()
-        coder.encoding = .ascii
-        AssertEqual(
-            "SGVsbG8gdGhlcmUgIQ==",
-            other: coder.encode("Hello there !")
-        )
-        AssertEqual(
-            "Pw==",
-            other: coder.encode("🫃")
-        )
-    }
+        func testEncodeASCII() {
+            var coder = Base64Coder()
+            coder.encoding = .ascii
+            AssertEqual(
+                "SGVsbG8gdGhlcmUgIQ==",
+                other: coder.encode("Hello there !")
+            )
+            AssertEqual(
+                "Pw==",
+                other: coder.encode("🫃")
+            )
+        }
 
-    func testDecodeASCII() {
-        var coder = Base64Coder()
-        coder.encoding = .ascii
-        AssertEqual(
-            "Hello there !",
-            other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
-        )
-        AssertEqual(
-            "?",
-            other: coder.decode("Pw==")
-        )
+        func testDecodeASCII() {
+            var coder = Base64Coder()
+            coder.encoding = .ascii
+            AssertEqual(
+                "Hello there !",
+                other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
+            )
+            AssertEqual(
+                "?",
+                other: coder.decode("Pw==")
+            )
+        }
     }
-}
 #endif

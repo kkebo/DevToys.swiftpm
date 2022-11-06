@@ -7,11 +7,10 @@ struct NumberBaseConverter {
         uppercase: Bool = true
     ) -> String {
         guard value != 0 else {
-            if type == .binary {
-                return "0000"
-            } else {
+            guard type == .binary else {
                 return "0"
             }
+            return "0000"
         }
 
         var converted: String
@@ -32,10 +31,11 @@ struct NumberBaseConverter {
 
         if type == .binary {
             // Zero Padding
-            converted = String(
-                repeating: "0",
-                count: value.leadingZeroBitCount % 4
-            ) + converted
+            converted =
+                String(
+                    repeating: "0",
+                    count: value.leadingZeroBitCount % 4
+                ) + converted
         }
 
         return self.isFormatOn
@@ -64,80 +64,80 @@ struct NumberBaseConverter {
 }
 
 #if TESTING_ENABLED
-import PlaygroundTester
+    import PlaygroundTester
 
-@objcMembers
-final class NumberBaseConverterTests: TestCase {
-    func testConvertToHexadecimal() {
-        var converter = NumberBaseConverter()
-        AssertEqual(
-            "75C 710D",
-            other: converter.convert(123498765, to: .hexadecimal)
-        )
-        AssertEqual(
-            "FFFF FFFF FFFF FFFF",
-            other: converter.convert(-1, to: .hexadecimal)
-        )
-        converter.isFormatOn = false
-        AssertEqual(
-            "75C710D",
-            other: converter.convert(123498765, to: .hexadecimal)
-        )
-    }
+    @objcMembers
+    final class NumberBaseConverterTests: TestCase {
+        func testConvertToHexadecimal() {
+            var converter = NumberBaseConverter()
+            AssertEqual(
+                "75C 710D",
+                other: converter.convert(123_498_765, to: .hexadecimal)
+            )
+            AssertEqual(
+                "FFFF FFFF FFFF FFFF",
+                other: converter.convert(-1, to: .hexadecimal)
+            )
+            converter.isFormatOn = false
+            AssertEqual(
+                "75C710D",
+                other: converter.convert(123_498_765, to: .hexadecimal)
+            )
+        }
 
-    func testConvertToDecimal() {
-        var converter = NumberBaseConverter()
-        AssertEqual(
-            "123,498,765",
-            other: converter.convert(123498765, to: .decimal)
-        )
-        AssertEqual(
-            "-1",
-            other: converter.convert(-1, to: .decimal)
-        )
-        converter.isFormatOn = false
-        AssertEqual(
-            "123498765",
-            other: converter.convert(123498765, to: .decimal)
-        )
-    }
+        func testConvertToDecimal() {
+            var converter = NumberBaseConverter()
+            AssertEqual(
+                "123,498,765",
+                other: converter.convert(123_498_765, to: .decimal)
+            )
+            AssertEqual(
+                "-1",
+                other: converter.convert(-1, to: .decimal)
+            )
+            converter.isFormatOn = false
+            AssertEqual(
+                "123498765",
+                other: converter.convert(123_498_765, to: .decimal)
+            )
+        }
 
-    func testConvertToOctal() {
-        var converter = NumberBaseConverter()
-        AssertEqual(
-            "727 070 415",
-            other: converter.convert(123498765, to: .octal)
-        )
-        AssertEqual(
-            "1 777 777 777 777 777 777 777",
-            other: converter.convert(-1, to: .octal)
-        )
-        converter.isFormatOn = false
-        AssertEqual(
-            "727070415",
-            other: converter.convert(123498765, to: .octal)
-        )
-    }
+        func testConvertToOctal() {
+            var converter = NumberBaseConverter()
+            AssertEqual(
+                "727 070 415",
+                other: converter.convert(123_498_765, to: .octal)
+            )
+            AssertEqual(
+                "1 777 777 777 777 777 777 777",
+                other: converter.convert(-1, to: .octal)
+            )
+            converter.isFormatOn = false
+            AssertEqual(
+                "727070415",
+                other: converter.convert(123_498_765, to: .octal)
+            )
+        }
 
-    func testConvertToBinary() {
-        var converter = NumberBaseConverter()
-        AssertEqual(
-            "0111 0101 1100 0111 0001 0000 1101",
-            other: converter.convert(123498765, to: .binary)
-        )
-        AssertEqual(
-            "1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111",
-            other: converter.convert(-1, to: .binary)
-        )
-        AssertEqual(
-            "0000",
-            other: converter.convert(0, to: .binary)
-        )
-        converter.isFormatOn = false
-        AssertEqual(
-            "0111010111000111000100001101",
-            other: converter.convert(123498765, to: .binary)
-        )
+        func testConvertToBinary() {
+            var converter = NumberBaseConverter()
+            AssertEqual(
+                "0111 0101 1100 0111 0001 0000 1101",
+                other: converter.convert(123_498_765, to: .binary)
+            )
+            AssertEqual(
+                "1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111",
+                other: converter.convert(-1, to: .binary)
+            )
+            AssertEqual(
+                "0000",
+                other: converter.convert(0, to: .binary)
+            )
+            converter.isFormatOn = false
+            AssertEqual(
+                "0111010111000111000100001101",
+                other: converter.convert(123_498_765, to: .binary)
+            )
+        }
     }
-}
 #endif

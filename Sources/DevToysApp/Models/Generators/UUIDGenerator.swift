@@ -2,8 +2,8 @@ import func Darwin.uuid_generate_time
 import typealias Darwin.uuid_t
 import struct Foundation.UUID
 
-private extension UUID {
-    static func timeBased() -> Self {
+extension UUID {
+    fileprivate static func timeBased() -> Self {
         let ptr = UnsafeMutablePointer<uuid_t>.allocate(capacity: 1)
         defer { ptr.deallocate() }
         ptr.withMemoryRebound(
@@ -44,51 +44,51 @@ struct UUIDGenerator {
 }
 
 #if TESTING_ENABLED
-import Darwin
-import PlaygroundTester
+    import Darwin
+    import PlaygroundTester
 
-@objcMembers
-final class UUIDGeneratorTests: TestCase {
-    func testGenerateV1() {
-        var generator = UUIDGenerator()
-        generator.version = .v1
-        AssertNotNil(UUID(uuidString: generator.generate(count: 1)[0]))
-    }
+    @objcMembers
+    final class UUIDGeneratorTests: TestCase {
+        func testGenerateV1() {
+            var generator = UUIDGenerator()
+            generator.version = .v1
+            AssertNotNil(UUID(uuidString: generator.generate(count: 1)[0]))
+        }
 
-    func testGenerateV4() {
-        let generator = UUIDGenerator()
-        AssertNotNil(UUID(uuidString: generator.generate(count: 1)[0]))
-    }
+        func testGenerateV4() {
+            let generator = UUIDGenerator()
+            AssertNotNil(UUID(uuidString: generator.generate(count: 1)[0]))
+        }
 
-    func testGenerateV4Count() {
-        let generator = UUIDGenerator()
-        AssertEqual(3, other: generator.generate(count: 3).count)
-    }
+        func testGenerateV4Count() {
+            let generator = UUIDGenerator()
+            AssertEqual(3, other: generator.generate(count: 3).count)
+        }
 
-    func testGenerateV4NoHyphens() {
-        var generator = UUIDGenerator()
-        generator.usesHyphens = false
-        let uuid = generator.generate(count: 1).first
-        AssertNotNil(uuid)
-        Assert(uuid?.contains("-") == false)
-    }
+        func testGenerateV4NoHyphens() {
+            var generator = UUIDGenerator()
+            generator.usesHyphens = false
+            let uuid = generator.generate(count: 1).first
+            AssertNotNil(uuid)
+            Assert(uuid?.contains("-") == false)
+        }
 
-    func testGenerateV4Uppercased() {
-        var generator = UUIDGenerator()
-        generator.isUppercase = true
-        let uuid = generator.generate(count: 1).first
-        AssertNotNil(uuid)
-        AssertEqual(uuid, other: uuid?.uppercased())
-    }
+        func testGenerateV4Uppercased() {
+            var generator = UUIDGenerator()
+            generator.isUppercase = true
+            let uuid = generator.generate(count: 1).first
+            AssertNotNil(uuid)
+            AssertEqual(uuid, other: uuid?.uppercased())
+        }
 
-    func testGenerateV4NoHyphensAndUppercased() {
-        var generator = UUIDGenerator()
-        generator.usesHyphens = false
-        generator.isUppercase = true
-        let uuid = generator.generate(count: 1).first
-        AssertNotNil(uuid)
-        Assert(uuid?.contains("-") == false)
-        AssertEqual(uuid, other: uuid?.uppercased())
+        func testGenerateV4NoHyphensAndUppercased() {
+            var generator = UUIDGenerator()
+            generator.usesHyphens = false
+            generator.isUppercase = true
+            let uuid = generator.generate(count: 1).first
+            AssertNotNil(uuid)
+            Assert(uuid?.contains("-") == false)
+            AssertEqual(uuid, other: uuid?.uppercased())
+        }
     }
-}
 #endif

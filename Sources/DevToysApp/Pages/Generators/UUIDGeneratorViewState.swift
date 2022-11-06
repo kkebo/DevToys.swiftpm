@@ -26,7 +26,7 @@ final class UUIDGeneratorViewState {
             self.numberOfUUIDsString = String(self.numberOfUUIDs)
             return
         }
-        if self.numberOfUUIDs != value { 
+        if self.numberOfUUIDs != value {
             self.numberOfUUIDs = max(1, min(10000, value))
         }
     }

@@ -30,61 +30,61 @@ struct LoremIpsumGenerator {
 }
 
 #if TESTING_ENABLED
-import PlaygroundTester
+    import PlaygroundTester
 
-@objcMembers
-final class LoremIpsumGeneratorTests: TestCase {
-    func testGenerateWords() {
-        var generator = LoremIpsumGenerator()
-        generator.type = .words
-        generator.length = 3
-        let out = generator.generate()
-        AssertEqual(3, other: out.split(separator: " ").count)
-        Assert(out.first?.isUppercase == true)
+    @objcMembers
+    final class LoremIpsumGeneratorTests: TestCase {
+        func testGenerateWords() {
+            var generator = LoremIpsumGenerator()
+            generator.type = .words
+            generator.length = 3
+            let out = generator.generate()
+            AssertEqual(3, other: out.split(separator: " ").count)
+            Assert(out.first?.isUppercase == true)
 
-        generator.length = 5
-        generator.startWithLoremIpsum = true
-        AssertEqual(
-            LoremIpsumGenerator.loremIpsumPrefix,
-            other: generator.generate()
-        )
-    }
-
-    func testGenerateSentences() {
-        var generator = LoremIpsumGenerator()
-        generator.type = .sentences
-        generator.length = 3
-        AssertEqual(
-            3,
-            other: generator.generate().split(separator: ".").count
-        )
-
-        generator.startWithLoremIpsum = true
-        AssertEqual(
-            LoremIpsumGenerator.loremIpsumPrefix,
-            other: String(
-                generator.generate()
-                    .prefix(LoremIpsumGenerator.loremIpsumPrefix.count)
+            generator.length = 5
+            generator.startWithLoremIpsum = true
+            AssertEqual(
+                LoremIpsumGenerator.loremIpsumPrefix,
+                other: generator.generate()
             )
-        )
-    }
+        }
 
-    func testGenerateParagraphs() {
-        var generator = LoremIpsumGenerator()
-        generator.length = 3
-        AssertEqual(
-            3,
-            other: generator.generate().split(separator: "\n").count
-        )
-
-        generator.startWithLoremIpsum = true
-        AssertEqual(
-            LoremIpsumGenerator.loremIpsumPrefix,
-            other: String(
-                generator.generate()
-                    .prefix(LoremIpsumGenerator.loremIpsumPrefix.count)
+        func testGenerateSentences() {
+            var generator = LoremIpsumGenerator()
+            generator.type = .sentences
+            generator.length = 3
+            AssertEqual(
+                3,
+                other: generator.generate().split(separator: ".").count
             )
-        )
+
+            generator.startWithLoremIpsum = true
+            AssertEqual(
+                LoremIpsumGenerator.loremIpsumPrefix,
+                other: String(
+                    generator.generate()
+                        .prefix(LoremIpsumGenerator.loremIpsumPrefix.count)
+                )
+            )
+        }
+
+        func testGenerateParagraphs() {
+            var generator = LoremIpsumGenerator()
+            generator.length = 3
+            AssertEqual(
+                3,
+                other: generator.generate().split(separator: "\n").count
+            )
+
+            generator.startWithLoremIpsum = true
+            AssertEqual(
+                LoremIpsumGenerator.loremIpsumPrefix,
+                other: String(
+                    generator.generate()
+                        .prefix(LoremIpsumGenerator.loremIpsumPrefix.count)
+                )
+            )
+        }
     }
-}
 #endif
