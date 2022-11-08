@@ -6,43 +6,12 @@
 
 import PackageDescription
 
-#if canImport(AppleProductTypes)
-    import AppleProductTypes
-
-    let products: [Product] = [
-        .iOSApplication(
-            name: "DevToys",
-            targets: ["DevToysApp"],
-            bundleIdentifier: "xyz.kebo.DevToysForiPad",
-            teamIdentifier: "X4678G5DL2",
-            displayVersion: "1.0.0",
-            bundleVersion: "9",
-            appIcon: .asset("AppIcon"),
-            accentColor: .presetColor(.purple),
-            supportedDeviceFamilies: [
-                .pad,
-                .phone
-            ],
-            supportedInterfaceOrientations: [
-                .portrait,
-                .landscapeRight,
-                .landscapeLeft,
-                .portraitUpsideDown(.when(deviceFamilies: [.pad]))
-            ],
-            appCategory: .developerTools,
-            additionalInfoPlistContentFilePath: "Info.plist"
-        )
-    ]
-#else
-    let products: [Product] = []
-#endif
-
 let package = Package(
     name: "DevToys",
     platforms: [
         .iOS("16.1")
     ],
-    products: products,
+    products: [],
     dependencies: [
         .package(url: "https://github.com/kkk669/swift-log-playground", "0.1.2"..<"0.2.0"),
         .package(url: "https://github.com/luin/SwiftJSONFormatter", "1.0.0"..<"1.1.0"),
@@ -74,3 +43,32 @@ let package = Package(
         )
     ]
 )
+
+#if canImport(AppleProductTypes)
+    import AppleProductTypes
+
+    package.products += [
+        .iOSApplication(
+            name: "DevToys",
+            targets: ["DevToysApp"],
+            bundleIdentifier: "xyz.kebo.DevToysForiPad",
+            teamIdentifier: "X4678G5DL2",
+            displayVersion: "1.0.0",
+            bundleVersion: "9",
+            appIcon: .asset("AppIcon"),
+            accentColor: .presetColor(.purple),
+            supportedDeviceFamilies: [
+                .pad,
+                .phone
+            ],
+            supportedInterfaceOrientations: [
+                .portrait,
+                .landscapeRight,
+                .landscapeLeft,
+                .portraitUpsideDown(.when(deviceFamilies: [.pad]))
+            ],
+            appCategory: .developerTools,
+            additionalInfoPlistContentFilePath: "Info.plist"
+        )
+    ]
+#endif
