@@ -2,9 +2,9 @@ import SwiftUI
 
 struct ContentView {
     @StateObject private var state = AppState()
-    @SceneStorage("selectedTool") private var tool: Tool?
     @State private var searchQuery = ""
     @State private var columnVisibility = NavigationSplitViewVisibility.all
+    @Binding var tool: Tool?
 }
 
 extension ContentView: View {
@@ -19,16 +19,12 @@ extension ContentView: View {
             }
         }
         .navigationSplitViewStyle(.balanced)
-        .onContinueUserActivity("xyz.kebo.DevToysForiPad.newWindow") {
-            let payload = try? $0.typedPayload(NewWindowActivityPayload.self)
-            self.tool = payload?.tool
-        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(tool: .constant(nil))
             .previewPresets()
     }
 }

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct Sidebar {
+    @Environment(\.openWindow) private var openWindow
     @ObservedObject var state: AppState
     @Binding var selection: Tool?
     @Binding var searchQuery: String
@@ -73,15 +74,6 @@ extension Sidebar: View {
             } icon: {
                 tool.icon.padding(3)
             }
-        }
-        .onDrag {
-            let activity = NSUserActivity(
-                activityType: "xyz.kebo.DevToysForiPad.newWindow"
-            )
-            try! activity.setTypedPayload(
-                NewWindowActivityPayload(tool: tool)
-            )
-            return .init(object: activity)
         }
         .contextMenu {
             if UIDevice.current.userInterfaceIdiom == .pad {

@@ -1,25 +1,14 @@
 import SwiftUI
 
 struct OpenInNewWindowButton {
+    @Environment(\.openWindow) private var openWindow
     let tool: Tool
 }
 
 extension OpenInNewWindowButton: View {
     var body: some View {
         Button {
-            let activity = NSUserActivity(
-                activityType: "xyz.kebo.DevToysForiPad.newWindow"
-            )
-            try! activity.setTypedPayload(
-                NewWindowActivityPayload(tool: self.tool)
-            )
-            let options = UIWindowScene.ActivationRequestOptions()
-            options.preferredPresentationStyle = .prominent
-            UIApplication.shared.requestSceneSessionActivation(
-                nil,
-                userActivity: activity,
-                options: options
-            )
+            self.openWindow(value: self.tool)
         } label: {
             Label("Open in New Window", systemImage: "rectangle.badge.plus")
         }
