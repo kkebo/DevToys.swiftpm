@@ -11,6 +11,7 @@ struct HTMLCoder {
 }
 
 #if TESTING_ENABLED
+    import Foundation
     import PlaygroundTester
 
     @objcMembers

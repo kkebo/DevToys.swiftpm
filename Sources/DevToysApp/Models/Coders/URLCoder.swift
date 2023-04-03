@@ -14,6 +14,7 @@ struct URLCoder {
 }
 
 #if TESTING_ENABLED
+    import Foundation
     import PlaygroundTester
 
     @objcMembers
