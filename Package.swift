@@ -19,7 +19,7 @@ let package = Package(
         .package(url: "https://github.com/kkk669/swift-html-entities", "4.0.2"..<"4.1.0"),
         .package(url: "https://github.com/Losiowaty/PlaygroundTester", "0.3.1"..<"0.4.0"),
         .package(url: "https://github.com/lukaskubanek/LoremSwiftum", "2.2.1"..<"2.3.0"),
-        .package(url: "https://github.com/JohnSundell/Ink", "0.5.1"..<"0.6.0")
+        .package(url: "https://github.com/JohnSundell/Ink", "0.5.1"..<"0.6.0"),
     ],
     targets: [
         .executableTarget(
@@ -31,7 +31,7 @@ let package = Package(
                 .product(name: "HTMLEntities", package: "swift-html-entities"),
                 .product(name: "PlaygroundTester", package: "PlaygroundTester"),
                 .product(name: "LoremSwiftum", package: "LoremSwiftum"),
-                .product(name: "Ink", package: "Ink")
+                .product(name: "Ink", package: "Ink"),
             ],
             swiftSettings: [
                 .unsafeFlags(["-Xfrontend", "-warn-long-function-bodies=100"], .when(configuration: .debug)),
@@ -41,7 +41,7 @@ let package = Package(
                 .enableUpcomingFeature("BareSlashRegexLiterals"),
                 .enableUpcomingFeature("StrictConcurrency"),
                 .enableUpcomingFeature("ExistentialAny"),
-                .enableUpcomingFeature("ImplicitOpenExistentials")
+                .enableUpcomingFeature("ImplicitOpenExistentials"),
             ]
         )
     ]
@@ -62,13 +62,13 @@ let package = Package(
             accentColor: .presetColor(.purple),
             supportedDeviceFamilies: [
                 .pad,
-                .phone
+                .phone,
             ],
             supportedInterfaceOrientations: [
                 .portrait,
                 .landscapeRight,
                 .landscapeLeft,
-                .portraitUpsideDown(.when(deviceFamilies: [.pad]))
+                .portraitUpsideDown(.when(deviceFamilies: [.pad])),
             ],
             appCategory: .developerTools,
             additionalInfoPlistContentFilePath: "Info.plist"
