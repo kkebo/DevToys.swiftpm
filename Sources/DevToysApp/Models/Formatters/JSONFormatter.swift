@@ -18,7 +18,7 @@ struct JSONFormatter {
 }
 
 #if TESTING_ENABLED
-import Foundation
+    import Foundation
     import PlaygroundTester
 
     @objcMembers
