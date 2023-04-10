@@ -16,7 +16,7 @@ let package = Package(
         .package(url: "https://github.com/kkk669/swift-log-playground", "0.1.3"..<"0.2.0"),
         .package(url: "https://github.com/luin/SwiftJSONFormatter", "1.0.0"..<"1.1.0"),
         .package(url: "https://github.com/auth0/JWTDecode.swift", "3.0.1"..<"3.1.0"),
-        .package(url: "https://github.com/kkk669/swift-html-entities", "4.0.2"..<"4.1.0"),
+        .package(url: "https://github.com/kkk669/swift-html-entities", branch: "origin/issues/67"),
         .package(url: "https://github.com/Losiowaty/PlaygroundTester", "0.3.1"..<"0.4.0"),
         .package(url: "https://github.com/lukaskubanek/LoremSwiftum", "2.2.1"..<"2.3.0"),
         .package(url: "https://github.com/JohnSundell/Ink", "0.5.1"..<"0.6.0"),

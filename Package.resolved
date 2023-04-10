@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kkk669/swift-html-entities",
       "state" : {
-        "revision" : "fac7e328a57e9a54ed90c4fec9192d6cda39237b",
-        "version" : "4.0.2"
+        "branch" : "origin/issues/67",
+        "revision" : "b86aa375c18ee6e5811a7c5b91a8bd93ae126b86"
       }
     },
     {
