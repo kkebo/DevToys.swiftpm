@@ -31,7 +31,7 @@ extension TimestampConverterView: View {
                 selection: self.state.date,
                 displayedComponents: [.date, .hourAndMinute]
             )
-            .environment(\.timeZone, .init(identifier: "UTC")!)
+            .environment(\.timeZone, .gmt)
             DatePicker(
                 self.hSizeClass == .compact ? "Local" : "Local Date and Time",
                 selection: self.state.date,

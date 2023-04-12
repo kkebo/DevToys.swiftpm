@@ -2,11 +2,11 @@
   "fileScopedDeclarationPrivacy" : {
     "accessLevel" : "private"
   },
+  "indentConditionalCompilationBlocks" : true,
+  "indentSwitchCaseLabels" : false,
   "indentation" : {
     "spaces" : 4
   },
-  "indentConditionalCompilationBlocks" : true,
-  "indentSwitchCaseLabels" : false,
   "lineBreakAroundMultilineExpressionChainComponents" : true,
   "lineBreakBeforeControlFlowKeywords" : false,
   "lineBreakBeforeEachArgument" : true,
@@ -16,25 +16,26 @@
   "prioritizeKeepingFunctionOutputTogether" : false,
   "respectsExistingLineBreaks" : true,
   "rules" : {
-    "AllPublicDeclarationsHaveDocumentation" : false,
+    "AllPublicDeclarationsHaveDocumentation" : true,
     "AlwaysUseLowerCamelCase" : true,
     "AmbiguousTrailingClosureOverload" : true,
-    "BeginDocumentationCommentWithOneLineSummary" : false,
+    "BeginDocumentationCommentWithOneLineSummary" : true,
     "DoNotUseSemicolons" : true,
     "DontRepeatTypeInStaticProperties" : true,
     "FileScopedDeclarationPrivacy" : true,
     "FullyIndirectEnum" : true,
     "GroupNumericLiterals" : true,
     "IdentifiersMustBeASCII" : true,
-    "NeverForceUnwrap" : false,
-    "NeverUseForceTry" : false,
-    "NeverUseImplicitlyUnwrappedOptionals" : false,
+    "NeverForceUnwrap" : true,
+    "NeverUseForceTry" : true,
+    "NeverUseImplicitlyUnwrappedOptionals" : true,
     "NoAccessLevelOnExtensionDeclaration" : true,
+    "NoAssignmentInExpressions" : true,
     "NoBlockComments" : true,
     "NoCasesWithOnlyFallthrough" : true,
     "NoEmptyTrailingClosureParentheses" : true,
     "NoLabelsInCasePatterns" : true,
-    "NoLeadingUnderscores" : false,
+    "NoLeadingUnderscores" : true,
     "NoParensAroundConditions" : true,
     "NoVoidReturnOnFunctionSignature" : true,
     "OneCasePerLine" : true,
@@ -49,8 +50,9 @@
     "UseSynthesizedInitializer" : true,
     "UseTripleSlashForDocumentationComments" : true,
     "UseWhereClausesInForLoops" : true,
-    "ValidateDocumentationComments" : false
+    "ValidateDocumentationComments" : true
   },
+  "spacesAroundRangeFormationOperators" : false,
   "tabWidth" : 4,
   "version" : 1
 }

@@ -8,7 +8,7 @@ import struct Foundation.Date
 final class TimestampConverterViewState {
     private static let utcCalendar: Calendar = {
         var calendar = Calendar(identifier: .iso8601)
-        calendar.timeZone = .init(identifier: "UTC")!
+        calendar.timeZone = .gmt
         return calendar
     }()
 
