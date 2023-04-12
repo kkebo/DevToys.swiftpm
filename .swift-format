@@ -49,7 +49,7 @@
     "UseSingleLinePropertyGetter" : true,
     "UseSynthesizedInitializer" : true,
     "UseTripleSlashForDocumentationComments" : true,
-    "UseWhereClausesInForLoops" : true,
+    "UseWhereClausesInForLoops" : false,
     "ValidateDocumentationComments" : true
   },
   "spacesAroundRangeFormationOperators" : false,
