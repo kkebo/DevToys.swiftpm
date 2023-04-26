@@ -31,5 +31,6 @@ struct ClearButtonModifier_Previews: PreviewProvider {
     static var previews: some View {
         TextField("", text: .constant("text"))
             .modifier(ClearButtonModifier(text: .constant("text")))
+            .previewPresets()
     }
 }
