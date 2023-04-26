@@ -15,9 +15,9 @@ extension ClearButtonModifier: ViewModifier {
                     self.text.removeAll()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.primary)
+                        .opacity(0.2)
                 }
-                .foregroundColor(.primary)
-                .opacity(0.2)
                 .hoverEffect()
             }
         }
