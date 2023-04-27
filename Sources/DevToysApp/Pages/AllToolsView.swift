@@ -92,6 +92,14 @@ extension AllToolsView: View {
         }
         .foregroundStyle(.primary)
         .hoverEffect()
+        .onDrag {
+            let activity = NSUserActivity(activityType: "xyz.kebo.DevToysForiPad.newWindow")
+            try? activity.setTypedPayload(NewWindowActivityPayload(tool: tool))
+            return .init(object: activity)
+        } preview: {
+            self.buttonLabel(for: tool)
+                .frame(maxWidth: 160)
+        }
         .contextMenu {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 OpenInNewWindowButton(tool: tool)

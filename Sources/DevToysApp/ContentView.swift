@@ -19,6 +19,10 @@ extension ContentView: View {
             }
         }
         .navigationSplitViewStyle(.balanced)
+        .onContinueUserActivity("xyz.kebo.DevToysForiPad.newWindow") { activity in
+            let payload = try? activity.typedPayload(NewWindowActivityPayload.self)
+            self.tool = payload?.tool
+        }
     }
 }
 
