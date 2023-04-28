@@ -22,11 +22,8 @@ extension ContentView: View {
         NavigationSplitView(columnVisibility: self.$columnVisibility) {
             Sidebar(state: self.state, selection: self.$tool, searchQuery: self.$searchQuery)
         } detail: {
-            if let tool {
-                tool.page(state: self.state)
-            } else {
-                AllToolsView(state: self.state, searchQuery: self.$searchQuery)
-            }
+            let tool = self.tool ?? .allTools
+            tool.page(state: self.state, selection: self.$tool, searchQuery: self.$searchQuery)
         }
         .navigationSplitViewStyle(.balanced)
         .onContinueUserActivity("xyz.kebo.DevToysForiPad.newWindow") { activity in

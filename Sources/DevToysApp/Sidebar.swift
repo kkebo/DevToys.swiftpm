@@ -43,11 +43,7 @@ extension Sidebar: View {
     }
 
     @ViewBuilder private var normalRows: some View {
-        NavigationLink {
-            AllToolsView(state: self.state, searchQuery: self.$searchQuery)
-        } label: {
-            Label("All tools", systemImage: "house")
-        }
+        self.row(for: .allTools)
         ForEach(toolGroups, id: \.self) { group in
             Section(LocalizedStringKey(group.name)) {
                 ForEach(group.tools) { tool in

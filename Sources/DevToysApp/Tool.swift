@@ -41,6 +41,7 @@ let toolGroups: [ToolGroup] = [
 ]
 
 enum Tool: String {
+    case allTools
     case base64Coder
     case hashGenerator
     case htmlCoder
@@ -56,6 +57,12 @@ enum Tool: String {
 
     var strings: Strings {
         switch self {
+        case .allTools:
+            return .init(
+                shortTitle: "All tools",
+                longTitle: "All tools",
+                description: ""
+            )
         case .base64Coder:
             return .init(
                 shortTitle: "Base 64",
@@ -133,6 +140,8 @@ enum Tool: String {
 
     @ViewBuilder var icon: some View {
         switch self {
+        case .allTools:
+            Image(systemName: "house")
         case .base64Coder:
             Image(systemName: "b").symbolVariant(.square)
         case .hashGenerator:
@@ -162,8 +171,9 @@ enum Tool: String {
 
     @MainActor
     @ViewBuilder
-    func page(state: AppState) -> some View {
+    func page(state: AppState, selection: Binding<Tool?>, searchQuery: Binding<String>) -> some View {
         switch self {
+        case .allTools: AllToolsView(state: state, selection: selection, searchQuery: searchQuery)
         case .base64Coder: Base64CoderView(state: state)
         case .hashGenerator: HashGeneratorView(state: state)
         case .htmlCoder: HTMLCoderView(state: state)
@@ -184,6 +194,23 @@ extension Tool: Identifiable {
     var id: Self { self }
 }
 
-extension Tool: CaseIterable {}
+extension Tool: CaseIterable {
+    static var allCases: [Tool] {
+        [
+            .base64Coder,
+            .hashGenerator,
+            .htmlCoder,
+            .jsonFormatter,
+            .jsonYAMLConverter,
+            .jwtDecoder,
+            .loremIpsumGenerator,
+            .markdownPreview,
+            .numberBaseConverter,
+            .timestampConverter,
+            .urlCoder,
+            .uuidGenerator,
+        ]
+    }
+}
 
 extension Tool: Codable {}

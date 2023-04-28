@@ -42,6 +42,7 @@ struct AllToolsView {
     ]
 
     @ObservedObject var state: AppState
+    @Binding var selection: Tool?
     @Binding var searchQuery: String
 
     private var isSearching: Bool {
@@ -63,22 +64,17 @@ struct AllToolsView {
 
 extension AllToolsView: View {
     var body: some View {
-        NavigationStack {
-            ToyPage {
-                LazyVGrid(columns: Self.columns) {
-                    ForEach(self.tools) { tool in
-                        self.button(for: tool)
-                    }
+        ToyPage {
+            LazyVGrid(columns: Self.columns) {
+                ForEach(self.tools) { tool in
+                    self.button(for: tool)
                 }
             }
-            .navigationDestination(for: Tool.self) { tool in
-                tool.page(state: self.state)
-            }
-            .searchable(
-                text: self.$searchQuery,
-                prompt: "Type to search for tools..."
-            )
         }
+        .searchable(
+            text: self.$searchQuery,
+            prompt: "Type to search for tools..."
+        )
         .navigationTitle(
             !self.isSearching
                 ? "All tools"
@@ -87,7 +83,9 @@ extension AllToolsView: View {
     }
 
     private func button(for tool: Tool) -> some View {
-        NavigationLink(value: tool) {
+        Button {
+            self.selection = tool
+        } label: {
             self.buttonLabel(for: tool)
         }
         .foregroundStyle(.primary)
@@ -124,7 +122,7 @@ extension AllToolsView: View {
 struct AllToolsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AllToolsView(state: .init(), searchQuery: .constant(""))
+            AllToolsView(state: .init(), selection: .constant(nil), searchQuery: .constant(""))
         }
         .previewPresets()
     }
