@@ -1,5 +1,15 @@
 import SwiftUI
 
+struct StandaloneContentView {
+    @SceneStorage("selectedTool") private var tool: Tool?
+}
+
+extension StandaloneContentView: View {
+    var body: some View {
+        ContentView(tool: self.$tool)
+    }
+}
+
 struct ContentView {
     @StateObject private var state = AppState()
     @State private var searchQuery = ""
