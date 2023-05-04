@@ -22,18 +22,7 @@ struct OpenFileButton {
 extension OpenFileButton: View {
     var body: some View {
         Button {
-            if self.isImporterPresented {
-                // Workaround for the known issue
-                // https://developer.apple.com/forums/thread/693140
-                self.isImporterPresented = false
-                DispatchQueue.main.asyncAfter(
-                    deadline: .now() + .milliseconds(50)
-                ) {
-                    self.isImporterPresented = true
-                }
-            } else {
-                self.isImporterPresented = true
-            }
+            self.isImporterPresented.toggle()
         } label: {
             Label("Open", systemImage: "doc")
                 .labelStyle(.iconOnly)
