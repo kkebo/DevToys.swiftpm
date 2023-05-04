@@ -24,6 +24,7 @@
     struct UnitTestsButton_Previews: PreviewProvider {
         static var previews: some View {
             UnitTestsButton()
+                .previewPresets()
         }
     }
 
