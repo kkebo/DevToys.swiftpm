@@ -51,8 +51,13 @@ extension Sidebar: View {
                 }
             }
         }
-        #if TESTING_ENABLED
-            UnitTestsButton()
+        #if DEBUG
+            Section("Debug") {
+                #if TESTING_ENABLED
+                    UnitTestsButton()
+                #endif
+                ExportIPAButton()
+            }
         #endif
     }
 
