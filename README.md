@@ -12,7 +12,8 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
 ## Features
 
 - Converters
-  - [ ] JSON <> YAML
+  - [x] JSON <> YAML
+    - Partial support
   - [x] Number Base
   - [x] Unix Timestamp
 - Encoders / Decoders

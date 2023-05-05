@@ -13,6 +13,7 @@ final class AppState {
     let loremIpsumGeneratorViewState = LoremIpsumGeneratorViewState()
     let markdownPreviewViewState = MarkdownPreviewViewState()
     let timestampConverterViewState = TimestampConverterViewState()
+    let jsonYAMLConverterViewState = JSONYAMLConverterViewState()
 }
 
 extension AppState: ObservableObject {}
