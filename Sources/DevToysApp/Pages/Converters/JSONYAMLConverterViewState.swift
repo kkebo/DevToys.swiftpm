@@ -16,16 +16,7 @@ final class JSONYAMLConverterViewState {
     @Published var output = ""
 
     private func updateOutput() {
-        guard let inputObject = try? UniYAML.decode(self.input) else {
-            self.output = ""
-            return
-        }
-        switch self.conversionMode {
-        case .yamlToJSON:
-            self.output = (try? UniYAML.encode(inputObject, with: .json)) ?? ""
-        case .jsonToYAML:
-            self.output = (try? UniYAML.encode(inputObject, with: .yaml)) ?? ""
-        }
+        self.output = (try? JSONYAMLConverter.convert(self.input, mode: self.conversionMode)) ?? ""
     }
 }
 
