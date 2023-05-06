@@ -178,7 +178,7 @@ enum Tool: String {
         case .hashGenerator: HashGeneratorView(state: state)
         case .htmlCoder: HTMLCoderView(state: state)
         case .jsonFormatter: JSONFormatterView(state: state)
-        case .jsonYAMLConverter: JSONYAMLConverterView()
+        case .jsonYAMLConverter: JSONYAMLConverterView(state: state)
         case .jwtDecoder: JWTDecoderView(state: state)
         case .loremIpsumGenerator: LoremIpsumGeneratorView(state: state)
         case .markdownPreview: MarkdownPreviewView(state: state)

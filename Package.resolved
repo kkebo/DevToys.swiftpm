@@ -73,6 +73,15 @@
       }
     },
     {
+      "identity" : "swift-uniyaml",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kkk669/swift-uniyaml",
+      "state" : {
+        "branch" : "origin/issues/1",
+        "revision" : "acce8c01b2fed1aa87bfb960ebe09caaae3c18d0"
+      }
+    },
+    {
       "identity" : "swiftjsonformatter",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/luin/SwiftJSONFormatter",

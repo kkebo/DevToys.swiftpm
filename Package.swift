@@ -20,6 +20,7 @@ let package = Package(
         .package(url: "https://github.com/Losiowaty/PlaygroundTester", "0.3.1"..<"0.4.0"),
         .package(url: "https://github.com/lukaskubanek/LoremSwiftum", "2.2.1"..<"2.3.0"),
         .package(url: "https://github.com/JohnSundell/Ink", "0.5.1"..<"0.6.0"),
+        .package(url: "https://github.com/kkk669/swift-uniyaml", branch: "origin/issues/1"),
     ],
     targets: [
         .executableTarget(
@@ -32,6 +33,7 @@ let package = Package(
                 .product(name: "PlaygroundTester", package: "PlaygroundTester"),
                 .product(name: "LoremSwiftum", package: "LoremSwiftum"),
                 .product(name: "Ink", package: "Ink"),
+                .product(name: "UniYAML", package: "swift-uniyaml"),
             ],
             swiftSettings: [
                 .unsafeFlags(["-Xfrontend", "-warn-long-function-bodies=100"], .when(configuration: .debug)),

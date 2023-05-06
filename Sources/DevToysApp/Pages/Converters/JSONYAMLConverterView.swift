@@ -2,8 +2,11 @@ import SwiftUI
 
 struct JSONYAMLConverterView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @State private var input = ""
-    @State private var output = ""
+    @ObservedObject private var state: JSONYAMLConverterViewState
+
+    init(state: AppState) {
+        self.state = state.jsonYAMLConverterViewState
+    }
 }
 
 extension JSONYAMLConverterView: View {
@@ -16,9 +19,10 @@ extension JSONYAMLConverterView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } content: {
-                    Picker("", selection: .constant(0)) {
-                        Text("YAML to JSON").tag(0)
-                        Text("JSON to YAML").tag(1)
+                    Picker("", selection: self.$state.conversionMode) {
+                        ForEach(JSONYAMLConversionMode.allCases, id: \.self) {
+                            Text(LocalizedStringKey($0.description))
+                        }
                     }
                     .labelsHidden()
                 }
@@ -46,20 +50,20 @@ extension JSONYAMLConverterView: View {
 
     private var inputSection: some View {
         ToySection("Input") {
-            PasteButton(text: self.$input)
-            OpenFileButton(text: self.$input)
-            ClearButton(text: self.$input)
+            PasteButton(text: self.$state.input)
+            OpenFileButton(text: self.$state.input)
+            ClearButton(text: self.$state.input)
         } content: {
-            CodeEditor(text: self.$input)
+            CodeEditor(text: self.$state.input)
                 .frame(idealHeight: 200)
         }
     }
 
     private var outputSection: some View {
         ToySection("Output") {
-            CopyButton(text: self.output)
+            CopyButton(text: self.state.output)
         } content: {
-            CodeEditor(text: .constant(self.output))
+            CodeEditor(text: .constant(self.state.output))
                 .frame(idealHeight: 200)
         }
     }
@@ -68,7 +72,7 @@ extension JSONYAMLConverterView: View {
 struct JSONYAMLConverterView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            JSONYAMLConverterView()
+            JSONYAMLConverterView(state: .init())
         }
         .previewPresets()
     }
