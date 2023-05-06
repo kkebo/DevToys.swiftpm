@@ -1,5 +1,6 @@
-import Foundation
 import UniYAML
+
+import class Foundation.JSONSerialization
 
 struct JSONYAMLConverter {
     static func convert(
