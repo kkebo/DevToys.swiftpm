@@ -5,7 +5,7 @@ final class MarkdownPreviewViewState {
     @Published var input = "" {
         didSet { self.updateOutput() }
     }
-    @Published var output = ""
+    @Published private(set) var output = ""
     private let compiler = MarkdownCompiler()
 
     private func updateOutput() {

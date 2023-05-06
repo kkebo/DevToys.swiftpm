@@ -13,7 +13,7 @@ final class JSONYAMLConverterViewState {
     @Published var input = "" {
         didSet { self.updateOutput() }
     }
-    @Published var output = ""
+    @Published private(set) var output = ""
 
     private func updateOutput() {
         self.output = (try? JSONYAMLConverter.convert(self.input, mode: self.conversionMode)) ?? ""

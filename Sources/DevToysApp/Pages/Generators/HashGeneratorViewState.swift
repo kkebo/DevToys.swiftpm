@@ -8,10 +8,10 @@ final class HashGeneratorViewState {
     @Published var input = "" {
         didSet { self.updateOutputValues() }
     }
-    @Published var md5 = ""
-    @Published var sha1 = ""
-    @Published var sha256 = ""
-    @Published var sha512 = ""
+    @Published private(set) var md5 = ""
+    @Published private(set) var sha1 = ""
+    @Published private(set) var sha256 = ""
+    @Published private(set) var sha512 = ""
 
     private func updateOutputValues() {
         let value = self.input

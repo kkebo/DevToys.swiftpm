@@ -5,8 +5,8 @@ final class JWTDecoderViewState {
     @Published var input = "" {
         didSet { self.updateHeaderAndPayload() }
     }
-    @Published var header = ""
-    @Published var payload = ""
+    @Published private(set) var header = ""
+    @Published private(set) var payload = ""
 
     private func updateHeaderAndPayload() {
         if let (header, payload) = try? JWTDecoder.decode(self.input) {

@@ -6,7 +6,7 @@ final class NumberBaseConverterViewState {
         didSet { self.formatAllText() }
     }
     @Published var inputType = NumberType.decimal
-    @Published var inputValue: Int? {
+    @Published private(set) var inputValue: Int? {
         didSet { self.updateOutputValues() }
     }
     @Published var hexadecimal = "" {

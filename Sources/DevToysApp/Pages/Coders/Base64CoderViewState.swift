@@ -15,7 +15,7 @@ final class Base64CoderViewState {
     @Published var input = "" {
         didSet { self.updateOutput() }
     }
-    @Published var output = ""
+    @Published private(set) var output = ""
 
     private func updateOutput() {
         self.output =

@@ -15,7 +15,7 @@ final class TimestampConverterViewState {
     @Published var timestampString = "" {
         didSet { self.updateTimestamp() }
     }
-    @Published var timestamp: Int?
+    @Published private(set) var timestamp: Int?
 
     var date: Binding<Date> {
         .init(

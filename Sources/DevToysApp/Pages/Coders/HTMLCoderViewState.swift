@@ -12,7 +12,7 @@ final class HTMLCoderViewState {
     @Published var input = "" {
         didSet { self.updateOutput() }
     }
-    @Published var output = ""
+    @Published private(set) var output = ""
 
     private func updateOutput() {
         self.output =
