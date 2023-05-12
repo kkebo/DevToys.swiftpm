@@ -1,5 +1,6 @@
 import UniYAML
 
+import struct Foundation.Data
 import class Foundation.JSONSerialization
 
 struct JSONYAMLConverter {
