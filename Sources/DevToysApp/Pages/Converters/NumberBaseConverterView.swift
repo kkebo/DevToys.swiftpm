@@ -23,7 +23,7 @@ extension NumberBaseConverterView: View {
             if !self.state.input.isEmpty && self.state.inputValue == nil {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundColor(.yellow)
+                        .foregroundStyle(.yellow)
                     Text("The current value isn't valid")
                     Spacer()
                 }

@@ -88,7 +88,7 @@ extension AllToolsView: View {
         } label: {
             self.buttonLabel(for: tool)
         }
-        .foregroundStyle(.primary)
+        .tint(.primary)
         .hoverEffect()
         .onDrag {
             let activity = NSUserActivity(activityType: "xyz.kebo.DevToysForiPad.newWindow")
@@ -111,7 +111,7 @@ extension AllToolsView: View {
             Text(LocalizedStringKey(strings.longTitle))
             Text(LocalizedStringKey(strings.description))
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .tint(.secondary)
         } icon: {
             tool.icon.padding(12)
         }

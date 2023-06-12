@@ -17,7 +17,7 @@ extension TimestampConverterView: View {
             {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundColor(.yellow)
+                        .foregroundStyle(.yellow)
                     Text("Invalid value")
                     Spacer()
                 }
