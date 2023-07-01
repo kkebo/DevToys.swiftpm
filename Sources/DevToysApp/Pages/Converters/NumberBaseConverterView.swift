@@ -49,12 +49,12 @@ extension NumberBaseConverterView: View {
         .navigationTitle(
             Tool.numberBaseConverter.strings.localizedLongTitle
         )
-        .onChange(of: self.focusedField) { [focusedField] type in
-            if let type {
-                self.state.inputType = type
+        .onChange(of: self.focusedField) { oldValue, newValue in
+            if let newValue {
+                self.state.inputType = newValue
             }
-            if let oldType = focusedField {
-                self.state.formatText(of: oldType)
+            if let oldValue {
+                self.state.formatText(of: oldValue)
             }
         }
     }

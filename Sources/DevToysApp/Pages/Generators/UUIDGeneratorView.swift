@@ -69,8 +69,8 @@ extension UUIDGeneratorView: View {
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                     .focused(self.$isFocused)
-                    .onChange(of: self.isFocused) { isFocused in
-                        if !isFocused {
+                    .onChange(of: self.isFocused) { _, newValue in
+                        if !newValue {
                             self.state.commitNumberOfUUIDs()
                         }
                     }
