@@ -14,12 +14,16 @@ struct ContentView {
     @StateObject private var state = AppState()
     @State private var searchQuery = ""
     @State private var columnVisibility = NavigationSplitViewVisibility.all
+    @State private var preferredCompactColumn = NavigationSplitViewColumn.sidebar
     @Binding var tool: Tool?
 }
 
 extension ContentView: View {
     var body: some View {
-        NavigationSplitView(columnVisibility: self.$columnVisibility) {
+        NavigationSplitView(
+            columnVisibility: self.$columnVisibility,
+            preferredCompactColumn: self.$preferredCompactColumn
+        ) {
             Sidebar(state: self.state, selection: self.$tool, searchQuery: self.$searchQuery)
         } detail: {
             let tool = self.tool ?? .allTools
