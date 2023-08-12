@@ -13,7 +13,7 @@ let package = Package(
     ],
     products: [],
     dependencies: [
-        .package(url: "https://github.com/kkk669/swift-log-playground", "0.1.3"..<"0.2.0"),
+        .package(url: "https://github.com/kkk669/swift-log-playground", "0.1.4"..<"0.2.0"),
         .package(url: "https://github.com/luin/SwiftJSONFormatter", "1.0.0"..<"1.1.0"),
         .package(url: "https://github.com/auth0/JWTDecode.swift", "3.1.0"..<"3.2.0"),
         .package(url: "https://github.com/kkk669/swift-html-entities", branch: "origin/issues/67"),
