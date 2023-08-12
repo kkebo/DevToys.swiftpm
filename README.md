@@ -43,8 +43,8 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
 
 ## Target platforms
 
-- iPadOS 16.1 or later
-- iOS 16.1 or later
+- iPadOS 17.0 or later
+- iOS 17.0 or later
   
 ## Build requirements
 
