@@ -7,7 +7,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "DevToys",
+    name: "DevToys.swiftpm",
     platforms: [
         .iOS("17.0")
     ],
