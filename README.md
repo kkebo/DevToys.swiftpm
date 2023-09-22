@@ -48,9 +48,9 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
   
 ## Build requirements
 
-- Swift Playgrounds 4.4 or later (iPadOS 16.1 or later)
+- Swift Playgrounds 4.4 or later (iPadOS 17.0 or later)
 - Swift Playgrounds 4.4 or later (macOS 13.0 or later)
-- Xcode 15.0 or later (macOS 13.4 or later)
+- Xcode 15.0 or later (macOS 13.5 or later)
 
 ## Get Started
 
