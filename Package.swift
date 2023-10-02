@@ -19,7 +19,7 @@ let package = Package(
         .package(url: "https://github.com/kkk669/swift-html-entities", branch: "origin/issues/67"),
         .package(url: "https://github.com/Losiowaty/PlaygroundTester", "0.3.1"..<"0.4.0"),
         .package(url: "https://github.com/lukaskubanek/LoremSwiftum", "2.2.1"..<"2.3.0"),
-        .package(url: "https://github.com/JohnSundell/Ink", "0.5.1"..<"0.6.0"),
+        .package(url: "https://github.com/JohnSundell/Ink", "0.5.1"..<"1.0.0"),
         .package(url: "https://github.com/kkk669/swift-uniyaml", branch: "origin/issues/1"),
     ],
     targets: [
