@@ -44,7 +44,6 @@ let package = Package(
                 .define("TESTING_ENABLED", .when(configuration: .debug)),
                 .enableUpcomingFeature("BareSlashRegexLiterals"),
                 .enableUpcomingFeature("ExistentialAny"),
-                .enableUpcomingFeature("ImplicitOpenExistentials"),
             ]
         )
     ]
