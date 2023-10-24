@@ -59,7 +59,7 @@ let package = Package(
             bundleIdentifier: "xyz.kebo.DevToysForiPad",
             teamIdentifier: "X4678G5DL2",
             displayVersion: "1.0.0",
-            bundleVersion: "15",
+            bundleVersion: "16",
             appIcon: .asset("AppIcon"),
             accentColor: .presetColor(.purple),
             supportedDeviceFamilies: [
