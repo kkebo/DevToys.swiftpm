@@ -84,10 +84,10 @@
     {
       "identity" : "swiftjsonformatter",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/luin/SwiftJSONFormatter",
+      "location" : "https://github.com/kkk669/SwiftJSONFormatter",
       "state" : {
-        "revision" : "320e944bb2b54bf6946d5226b4fbb9ae907725af",
-        "version" : "2.0.0"
+        "branch" : "origin/fix-build",
+        "revision" : "59ad97f508e546b2df66f60e1cf70605f7e4960e"
       }
     }
   ],
