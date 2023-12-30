@@ -41,7 +41,7 @@ struct AllToolsView {
         GridItem(.adaptive(minimum: 140, maximum: 160))
     ]
 
-    @ObservedObject var state: AppState
+    @Bindable var state: AppState
     @Binding var selection: Tool?
     @Binding var searchQuery: String
 
@@ -82,6 +82,7 @@ extension AllToolsView: View {
         )
     }
 
+    @MainActor
     private func button(for tool: Tool) -> some View {
         Button {
             self.selection = tool

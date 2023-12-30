@@ -1,18 +1,16 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class JSONFormatterViewState {
-    @Published var formatter = JSONFormatter() {
+    var formatter = JSONFormatter() {
         didSet { self.updateOutput() }
     }
-    @Published var input = "" {
+    var input = "" {
         didSet { self.updateOutput() }
     }
-    @Published private(set) var output = ""
+    private(set) var output = ""
 
     private func updateOutput() {
         self.output = self.formatter.format(self.input)
     }
 }
-
-extension JSONFormatterViewState: ObservableObject {}

@@ -11,7 +11,7 @@ extension StandaloneContentView: View {
 }
 
 struct ContentView {
-    @StateObject private var state = AppState()
+    @State private var state = AppState()
     @State private var searchQuery = ""
     @State private var columnVisibility = NavigationSplitViewVisibility.all
     @State private var preferredCompactColumn = NavigationSplitViewColumn.sidebar

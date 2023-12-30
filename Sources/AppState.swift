@@ -1,6 +1,6 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class AppState {
     let numberBaseConverterViewState = NumberBaseConverterViewState()
     let base64CoderViewState = Base64CoderViewState()
@@ -15,5 +15,3 @@ final class AppState {
     let timestampConverterViewState = TimestampConverterViewState()
     let jsonYAMLConverterViewState = JSONYAMLConverterViewState()
 }
-
-extension AppState: ObservableObject {}

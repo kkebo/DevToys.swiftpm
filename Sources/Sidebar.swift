@@ -2,7 +2,7 @@ import SwiftUI
 
 struct Sidebar {
     @Environment(\.openWindow) private var openWindow
-    @ObservedObject var state: AppState
+    @Bindable var state: AppState
     @Binding var selection: Tool?
     @Binding var searchQuery: String
 
@@ -42,6 +42,7 @@ extension Sidebar: View {
         )
     }
 
+    @MainActor
     @ViewBuilder private var normalRows: some View {
         self.row(for: .allTools)
         ForEach(toolGroups, id: \.self) { group in
@@ -61,6 +62,7 @@ extension Sidebar: View {
         #endif
     }
 
+    @MainActor
     private func row(for tool: Tool) -> some View {
         let strings = tool.strings
         return NavigationLink(value: tool) {

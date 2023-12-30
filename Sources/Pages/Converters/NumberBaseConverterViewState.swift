@@ -1,36 +1,36 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class NumberBaseConverterViewState {
-    @Published var converter = NumberBaseConverter() {
+    var converter = NumberBaseConverter() {
         didSet { self.formatAllText() }
     }
-    @Published var inputType = NumberType.decimal
-    @Published private(set) var inputValue: Int? {
+    var inputType = NumberType.decimal
+    private(set) var inputValue: Int? {
         didSet { self.updateOutputValues() }
     }
-    @Published var hexadecimal = "" {
+    var hexadecimal = "" {
         didSet {
             if self.inputType == .hexadecimal {
                 self.updateInputValue(from: self.hexadecimal)
             }
         }
     }
-    @Published var decimal = "" {
+    var decimal = "" {
         didSet {
             if self.inputType == .decimal {
                 self.updateInputValue(from: self.decimal)
             }
         }
     }
-    @Published var octal = "" {
+    var octal = "" {
         didSet {
             if self.inputType == .octal {
                 self.updateInputValue(from: self.octal)
             }
         }
     }
-    @Published var binary = "" {
+    var binary = "" {
         didSet {
             if self.inputType == .binary {
                 self.updateInputValue(from: self.binary)
@@ -129,5 +129,3 @@ final class NumberBaseConverterViewState {
         self.binary = self.converter.convert(inputValue, to: .binary)
     }
 }
-
-extension NumberBaseConverterViewState: ObservableObject {}

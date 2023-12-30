@@ -1,18 +1,18 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class HTMLCoderViewState {
-    @Published var encodeMode = true {
+    var encodeMode = true {
         didSet {
             if oldValue != self.encodeMode {
                 self.input = self.output
             }
         }
     }
-    @Published var input = "" {
+    var input = "" {
         didSet { self.updateOutput() }
     }
-    @Published private(set) var output = ""
+    private(set) var output = ""
 
     private func updateOutput() {
         self.output =
@@ -21,5 +21,3 @@ final class HTMLCoderViewState {
             : HTMLCoder.decode(self.input)
     }
 }
-
-extension HTMLCoderViewState: ObservableObject {}
