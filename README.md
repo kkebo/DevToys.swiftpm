@@ -1,7 +1,7 @@
 # DevToys for iPad
 
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://www.swift.org)
-[![Swift Playgrounds](https://img.shields.io/badge/Swift%20Playgrounds-4.4-orange.svg)](https://itunes.apple.com/jp/app/swift-playgrounds/id908519492)
+[![Swift Playgrounds](https://img.shields.io/badge/Swift%20Playgrounds-4.4.1-orange.svg)](https://itunes.apple.com/jp/app/swift-playgrounds/id908519492)
 ![Platform](https://img.shields.io/badge/platform-ipados%20%7C%20ios-lightgrey.svg)
 [![License](https://img.shields.io/github/license/kkk669/DevToys.swiftpm.svg)](LICENSE.txt)
 
@@ -43,14 +43,14 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
 
 ## Target platforms
 
-- iPadOS 17.0 or later
-- iOS 17.0 or later
+- iPadOS 17.2 or later
+- iOS 17.2 or later
   
 ## Build requirements
 
-- Swift Playgrounds 4.4 or later (iPadOS 17.0 or later)
-- Swift Playgrounds 4.4 or later (macOS 13.0 or later)
-- Xcode 15.0 or later (macOS 13.5 or later)
+- Swift Playgrounds 4.4.1 or later (iPadOS 17.2 or later)
+- Swift Playgrounds 4.4.1 or later (macOS 13.0 or later)
+- Xcode 15.1 or later (macOS 13.5 or later)
 
 ## Get Started
 
