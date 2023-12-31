@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HashGeneratorView {
-    @Bindable var state: HashGeneratorViewState
+    @Bindable private var state: HashGeneratorViewState
 
     init(state: AppState) {
         self.state = state.hashGeneratorViewState

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct JSONFormatterView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @Bindable var state: JSONFormatterViewState
+    @Bindable private var state: JSONFormatterViewState
 
     init(state: AppState) {
         self.state = state.jsonFormatterViewState

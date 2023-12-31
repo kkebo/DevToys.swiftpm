@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct URLCoderView {
-    @Bindable var state: URLCoderViewState
+    @Bindable private var state: URLCoderViewState
 
     init(state: AppState) {
         self.state = state.urlCoderViewState

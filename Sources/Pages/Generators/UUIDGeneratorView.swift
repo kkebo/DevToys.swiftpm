@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct UUIDGeneratorView {
-    @Bindable var state: UUIDGeneratorViewState
+    @Bindable private var state: UUIDGeneratorViewState
     @FocusState private var isFocused: Bool
 
     init(state: AppState) {

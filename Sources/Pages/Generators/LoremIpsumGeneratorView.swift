@@ -2,7 +2,7 @@ import SwiftUI
 
 struct LoremIpsumGeneratorView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @Bindable var state: LoremIpsumGeneratorViewState
+    @Bindable private var state: LoremIpsumGeneratorViewState
     @FocusState private var isFocused: Bool
 
     init(state: AppState) {
