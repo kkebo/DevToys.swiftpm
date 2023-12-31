@@ -1,10 +1,10 @@
-import Combine
+import Observation
 import SwiftUI
 
 import struct Foundation.Calendar
 import struct Foundation.Date
 
-@MainActor
+@Observable
 final class TimestampConverterViewState {
     private static let utcCalendar: Calendar = {
         var calendar = Calendar(identifier: .iso8601)
@@ -12,10 +12,10 @@ final class TimestampConverterViewState {
         return calendar
     }()
 
-    @Published var timestampString = "" {
+    var timestampString = "" {
         didSet { self.updateTimestamp() }
     }
-    @Published private(set) var timestamp: Int?
+    private(set) var timestamp: Int?
 
     var date: Binding<Date> {
         .init(
@@ -43,5 +43,3 @@ final class TimestampConverterViewState {
         self.timestamp = Int(self.timestampString)
     }
 }
-
-extension TimestampConverterViewState: ObservableObject {}

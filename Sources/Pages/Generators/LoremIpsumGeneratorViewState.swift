@@ -1,22 +1,21 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class LoremIpsumGeneratorViewState {
     static let defaultLength = 1
 
-    @Published var generator = LoremIpsumGenerator() {
+    var generator = LoremIpsumGenerator() {
         didSet { self.generate() }
     }
-    @Published var lengthString =
-        String(LoremIpsumGeneratorViewState.defaultLength)
-    @Published var length = LoremIpsumGeneratorViewState.defaultLength {
+    var lengthString = String(LoremIpsumGeneratorViewState.defaultLength)
+    var length = LoremIpsumGeneratorViewState.defaultLength {
         didSet {
             self.updateLengthString()
             guard self.generator.length != self.length else { return }
             self.generator.length = self.length
         }
     }
-    @Published var output = ""
+    var output = ""
 
     init() {
         self.generate()
@@ -49,5 +48,3 @@ final class LoremIpsumGeneratorViewState {
         self.output = self.generator.generate()
     }
 }
-
-extension LoremIpsumGeneratorViewState: ObservableObject {}

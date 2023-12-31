@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HTMLCoderView {
-    @ObservedObject var state: HTMLCoderViewState
+    @Bindable private var state: HTMLCoderViewState
 
     init(state: AppState) {
         self.state = state.htmlCoderViewState

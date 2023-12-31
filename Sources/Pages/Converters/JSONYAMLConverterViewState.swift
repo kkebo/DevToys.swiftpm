@@ -1,23 +1,21 @@
-import Combine
+import Observation
 import UniYAML
 
-@MainActor
+@Observable
 final class JSONYAMLConverterViewState {
-    @Published var conversionMode = JSONYAMLConversionMode.yamlToJSON {
+    var conversionMode = JSONYAMLConversionMode.yamlToJSON {
         didSet {
             if oldValue != self.conversionMode {
                 self.input = self.output
             }
         }
     }
-    @Published var input = "" {
+    var input = "" {
         didSet { self.updateOutput() }
     }
-    @Published private(set) var output = ""
+    private(set) var output = ""
 
     private func updateOutput() {
         self.output = (try? JSONYAMLConverter.convert(self.input, mode: self.conversionMode)) ?? ""
     }
 }
-
-extension JSONYAMLConverterViewState: ObservableObject {}

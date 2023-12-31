@@ -1,12 +1,12 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class JWTDecoderViewState {
-    @Published var input = "" {
+    var input = "" {
         didSet { self.updateHeaderAndPayload() }
     }
-    @Published private(set) var header = ""
-    @Published private(set) var payload = ""
+    private(set) var header = ""
+    private(set) var payload = ""
 
     private func updateHeaderAndPayload() {
         if let (header, payload) = try? JWTDecoder.decode(self.input) {
@@ -18,5 +18,3 @@ final class JWTDecoderViewState {
         }
     }
 }
-
-extension JWTDecoderViewState: ObservableObject {}

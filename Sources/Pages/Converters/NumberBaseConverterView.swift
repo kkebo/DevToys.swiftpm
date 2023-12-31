@@ -2,7 +2,7 @@ import SwiftUI
 
 struct NumberBaseConverterView {
     @FocusState private var focusedField: NumberType?
-    @ObservedObject var state: NumberBaseConverterViewState
+    @Bindable private var state: NumberBaseConverterViewState
 
     init(state: AppState) {
         self.state = state.numberBaseConverterViewState

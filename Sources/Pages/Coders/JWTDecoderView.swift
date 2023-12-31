@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct JWTDecoderView {
-    @ObservedObject var state: JWTDecoderViewState
+    @Bindable private var state: JWTDecoderViewState
 
     init(state: AppState) {
         self.state = state.jwtDecoderViewState

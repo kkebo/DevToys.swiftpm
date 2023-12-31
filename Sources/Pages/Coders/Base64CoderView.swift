@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct Base64CoderView {
-    @ObservedObject var state: Base64CoderViewState
+    @Bindable private var state: Base64CoderViewState
 
     init(state: AppState) {
         self.state = state.base64CoderViewState

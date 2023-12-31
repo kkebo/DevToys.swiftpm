@@ -1,16 +1,14 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class MarkdownPreviewViewState {
-    @Published var input = "" {
+    var input = "" {
         didSet { self.updateOutput() }
     }
-    @Published private(set) var output = ""
+    private(set) var output = ""
     private let compiler = MarkdownCompiler()
 
     private func updateOutput() {
         self.output = self.compiler.compileToHTML(self.input)
     }
 }
-
-extension MarkdownPreviewViewState: ObservableObject {}

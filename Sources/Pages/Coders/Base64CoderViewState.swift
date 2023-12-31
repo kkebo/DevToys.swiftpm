@@ -1,21 +1,21 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class Base64CoderViewState {
-    @Published var coder = Base64Coder() {
+    var coder = Base64Coder() {
         didSet { self.updateOutput() }
     }
-    @Published var encodeMode = true {
+    var encodeMode = true {
         didSet {
             if oldValue != self.encodeMode {
                 self.input = self.output
             }
         }
     }
-    @Published var input = "" {
+    var input = "" {
         didSet { self.updateOutput() }
     }
-    @Published private(set) var output = ""
+    private(set) var output = ""
 
     private func updateOutput() {
         self.output =
@@ -24,5 +24,3 @@ final class Base64CoderViewState {
             : self.coder.decode(self.input) ?? ""
     }
 }
-
-extension Base64CoderViewState: ObservableObject {}

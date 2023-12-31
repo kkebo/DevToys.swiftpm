@@ -1,17 +1,17 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class HashGeneratorViewState {
-    @Published var generator = HashGenerator() {
+    var generator = HashGenerator() {
         didSet { self.updateOutputValues() }
     }
-    @Published var input = "" {
+    var input = "" {
         didSet { self.updateOutputValues() }
     }
-    @Published private(set) var md5 = ""
-    @Published private(set) var sha1 = ""
-    @Published private(set) var sha256 = ""
-    @Published private(set) var sha512 = ""
+    private(set) var md5 = ""
+    private(set) var sha1 = ""
+    private(set) var sha256 = ""
+    private(set) var sha512 = ""
 
     private func updateOutputValues() {
         let value = self.input
@@ -21,5 +21,3 @@ final class HashGeneratorViewState {
         self.sha512 = self.generator.generateSHA512(value)
     }
 }
-
-extension HashGeneratorViewState: ObservableObject {}

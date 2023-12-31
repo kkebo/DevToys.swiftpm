@@ -1,18 +1,15 @@
-import Combine
+import Observation
 
-@MainActor
+@Observable
 final class UUIDGeneratorViewState {
     static let defaultNumberOfUUIDs: UInt = 1
 
-    @Published var generator = UUIDGenerator()
-    @Published var numberOfUUIDsString =
-        String(UUIDGeneratorViewState.defaultNumberOfUUIDs)
-    @Published var numberOfUUIDs =
-        UUIDGeneratorViewState.defaultNumberOfUUIDs
-    {
+    var generator = UUIDGenerator()
+    var numberOfUUIDsString = String(UUIDGeneratorViewState.defaultNumberOfUUIDs)
+    var numberOfUUIDs = UUIDGeneratorViewState.defaultNumberOfUUIDs {
         didSet { self.updateNumberOfUUIDsString() }
     }
-    @Published var output = ""
+    var output = ""
 
     func commitNumberOfUUIDs() {
         guard !self.numberOfUUIDsString.isEmpty else {
@@ -48,5 +45,3 @@ final class UUIDGeneratorViewState {
         }
     }
 }
-
-extension UUIDGeneratorViewState: ObservableObject {}

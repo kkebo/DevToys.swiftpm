@@ -2,7 +2,7 @@ import SwiftUI
 
 struct JSONYAMLConverterView {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @ObservedObject private var state: JSONYAMLConverterViewState
+    @Bindable private var state: JSONYAMLConverterViewState
 
     init(state: AppState) {
         self.state = state.jsonYAMLConverterViewState
