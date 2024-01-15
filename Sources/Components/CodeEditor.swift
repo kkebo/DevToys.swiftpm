@@ -2,6 +2,17 @@ import CodeEditorView
 import SwiftUI
 
 struct CodeEditor {
+    static let defaultDark = {
+        var theme = Theme.defaultDark
+        theme.selectionColour = .tintColor
+        return theme
+    }()
+    static let defaultLight = {
+        var theme = Theme.defaultLight
+        theme.selectionColour = .tintColor
+        return theme
+    }()
+
     @Environment(\.colorScheme) private var colorScheme
     @Binding var text: String
     @State private var position = CodeEditorView.CodeEditor.Position()
@@ -15,7 +26,10 @@ extension CodeEditor: View {
             messages: .constant([])
         )
         .cornerRadius(8)
-        .environment(\.codeEditorTheme, self.colorScheme == .dark ? .defaultDark : .defaultLight)
+        .environment(
+            \.codeEditorTheme,
+            self.colorScheme == .dark ? Self.defaultDark : Self.defaultLight
+        )
     }
 }
 
