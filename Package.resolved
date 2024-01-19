@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "codeeditorview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kkk669/CodeEditorView",
+      "state" : {
+        "branch" : "origin/fix-updating-font",
+        "revision" : "3b0bc3d9305d8b098311cf86f9a648dfdd078dd7"
+      }
+    },
+    {
       "identity" : "difference",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/krzysztofzablocki/Difference",
@@ -43,6 +52,15 @@
       "state" : {
         "revision" : "1444c7e0d2f15be1e4c75bdaa6ecc3139d3c3a83",
         "version" : "0.3.1"
+      }
+    },
+    {
+      "identity" : "rearrange",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ChimeHQ/Rearrange.git",
+      "state" : {
+        "revision" : "3b154b59176ce40839071e7830c83410a0139d86",
+        "version" : "1.8.0"
       }
     },
     {
