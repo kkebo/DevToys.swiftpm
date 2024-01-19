@@ -3,10 +3,10 @@
     {
       "identity" : "codeeditorview",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mchakravarty/CodeEditorView",
+      "location" : "https://github.com/kkk669/CodeEditorView",
       "state" : {
-        "branch" : "main",
-        "revision" : "682ed1893d7addea717c4914914f9faf44abe3ff"
+        "branch" : "origin/fix-updating-font",
+        "revision" : "3b0bc3d9305d8b098311cf86f9a648dfdd078dd7"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ChimeHQ/Rearrange.git",
       "state" : {
-        "revision" : "0fb658e721c68495f6340c211cc6d4719e6b52d8",
-        "version" : "1.6.0"
+        "revision" : "3b154b59176ce40839071e7830c83410a0139d86",
+        "version" : "1.8.0"
       }
     },
     {
