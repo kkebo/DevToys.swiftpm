@@ -21,7 +21,7 @@ let package = Package(
         .package(url: "https://github.com/lukaskubanek/LoremSwiftum", from: "2.2.1"),
         .package(url: "https://github.com/JohnSundell/Ink", from: "0.6.0"),
         .package(url: "https://github.com/kkk669/swift-uniyaml", branch: "origin/issues/1"),
-        .package(url: "https://github.com/mchakravarty/CodeEditorView", branch: "main"),
+        .package(url: "https://github.com/mchakravarty/CodeEditorView", from: "0.13.0"),
     ],
     targets: [
         .executableTarget(
