@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mchakravarty/CodeEditorView",
       "state" : {
-        "branch" : "main",
-        "revision" : "d288c11462df5a6c27665da0f94b2e763fa578c8"
+        "revision" : "13ecb15e9017a025e340359dadacf471913e91b1",
+        "version" : "0.13.0"
       }
     },
     {
