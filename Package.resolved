@@ -66,7 +66,7 @@
     {
       "identity" : "swift-html-entities",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kkk669/swift-html-entities",
+      "location" : "https://github.com/kkebo/swift-html-entities",
       "state" : {
         "branch" : "origin/issues/67",
         "revision" : "b86aa375c18ee6e5811a7c5b91a8bd93ae126b86"
@@ -84,7 +84,7 @@
     {
       "identity" : "swift-log-playground",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kkk669/swift-log-playground",
+      "location" : "https://github.com/kkebo/swift-log-playground",
       "state" : {
         "revision" : "99fa452a8a12145dc1862af5bdf2648bd48c314a",
         "version" : "0.1.6"
@@ -93,7 +93,7 @@
     {
       "identity" : "swift-uniyaml",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kkk669/swift-uniyaml",
+      "location" : "https://github.com/kkebo/swift-uniyaml",
       "state" : {
         "branch" : "origin/issues/1",
         "revision" : "acce8c01b2fed1aa87bfb960ebe09caaae3c18d0"
@@ -102,7 +102,7 @@
     {
       "identity" : "swiftjsonformatter",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kkk669/SwiftJSONFormatter",
+      "location" : "https://github.com/kkebo/SwiftJSONFormatter",
       "state" : {
         "branch" : "origin/fix-build",
         "revision" : "59ad97f508e546b2df66f60e1cf70605f7e4960e"
