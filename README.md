@@ -3,7 +3,7 @@
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://www.swift.org)
 [![Swift Playgrounds](https://img.shields.io/badge/Swift%20Playgrounds-4.4.1-orange.svg)](https://itunes.apple.com/jp/app/swift-playgrounds/id908519492)
 ![Platform](https://img.shields.io/badge/platform-ipados%20%7C%20ios-lightgrey.svg)
-[![License](https://img.shields.io/github/license/kkk669/DevToys.swiftpm.svg)](LICENSE.txt)
+[![License](https://img.shields.io/github/license/kkebo/DevToys.swiftpm.svg)](LICENSE.txt)
 
 This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swiss Army Knife for developers, for iPadOS.
 
