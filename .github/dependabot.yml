@@ -10,6 +10,6 @@ updates:
     schedule:
       interval: "weekly"
     assignees:
-      - "kkk669"
+      - "kkebo"
     commit-message:
       prefix: "build"
