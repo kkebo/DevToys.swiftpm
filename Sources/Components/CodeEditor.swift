@@ -2,11 +2,13 @@ import CodeEditorView
 import SwiftUI
 
 struct CodeEditor {
+    @MainActor
     static let defaultDark = {
         var theme = Theme.defaultDark
         theme.selectionColour = .tintColor
         return theme
     }()
+    @MainActor
     static let defaultLight = {
         var theme = Theme.defaultLight
         theme.selectionColour = .tintColor
