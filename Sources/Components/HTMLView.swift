@@ -3,6 +3,20 @@ import WebKit
 
 struct HTMLView {
     private let html: String
+    private var fullHTML: String {
+        """
+        <!doctype html>
+        <html>
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        </head>
+        <body>
+        \(self.html)
+        </body>
+        </html>
+        """
+    }
 
     init(_ html: String) {
         self.html = html
@@ -17,7 +31,7 @@ extension HTMLView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: Self.UIViewType, context: Self.Context) {
-        uiView.loadHTMLString(self.html, baseURL: nil)
+        uiView.loadHTMLString(self.fullHTML, baseURL: nil)
     }
 }
 
