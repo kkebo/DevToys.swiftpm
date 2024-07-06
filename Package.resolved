@@ -1,5 +1,5 @@
 {
-  "originHash" : "e106a2e8d6b0978eaaa8d19e34a88689c9139534538f8b2c029c20bbdae96913",
+  "originHash" : "c11fc4c991b06910a91463c7804f1135ba639b5f4d3eee00be6f567c23702695",
   "pins" : [
     {
       "identity" : "codeeditorview",
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/auth0/JWTDecode.swift",
       "state" : {
-        "revision" : "58af7278797871e460d79496621b3e5366b865b2",
-        "version" : "3.1.0"
+        "revision" : "25b79764c328b4d9e824cefc9dbbfcb352387893",
+        "version" : "3.2.0-beta.0"
       }
     },
     {
