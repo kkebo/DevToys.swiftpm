@@ -14,4 +14,5 @@ final class AppState {
     let markdownPreviewViewState = MarkdownPreviewViewState()
     let timestampConverterViewState = TimestampConverterViewState()
     let jsonYAMLConverterViewState = JSONYAMLConverterViewState()
+    let listComparerViewState = ListComparerViewState()
 }
