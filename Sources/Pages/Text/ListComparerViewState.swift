@@ -17,6 +17,11 @@ final class ListComparerViewState {
     private(set) var output = ""
 
     private func didUpdate() {
-        self.output = ListComparer.compare(a: self.a, b: self.b, caseSensitive: self.isCaseSensitive, mode: self.comparisonMode)
+        self.output = ListComparer.compare(
+            a: self.a,
+            b: self.b,
+            caseSensitive: self.isCaseSensitive,
+            mode: self.comparisonMode
+        )
     }
 }

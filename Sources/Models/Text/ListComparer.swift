@@ -66,106 +66,105 @@ struct ListComparer {
 }
 
 #if TESTING_ENABLED
-import Foundation
-import PlaygroundTester
+    import Foundation
+    import PlaygroundTester
 
-@objcMembers
-final class ListComparerTests: TestCase {
-    func testIntersectionCaseInsensitive() {
-        func compare(a: String, b: String) -> String {
-            ListComparer.compare(a: a, b: b, caseSensitive: false, mode: .intersection)
+    @objcMembers
+    final class ListComparerTests: TestCase {
+        func testIntersectionCaseInsensitive() {
+            func compare(a: String, b: String) -> String {
+                ListComparer.compare(a: a, b: b, caseSensitive: false, mode: .intersection)
+            }
+            AssertEqual("", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
+            AssertEqual("c", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
+            AssertEqual("B", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
+            AssertEqual("", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
+            AssertEqual("", other: compare(a: "a\nB\nc", b: ""))
+            AssertEqual("", other: compare(a: "", b: "d\nE\nf"))
         }
-        AssertEqual("", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
-        AssertEqual("c", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
-        AssertEqual("B", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
-        AssertEqual("", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
-        AssertEqual("", other: compare(a: "a\nB\nc", b: ""))
-        AssertEqual("", other: compare(a: "", b: "d\nE\nf"))
-    }
 
-    func testIntersectionCaseSensitive() {
-        func compare(a: String, b: String) -> String {
-            ListComparer.compare(a: a, b: b, caseSensitive: true, mode: .intersection)
+        func testIntersectionCaseSensitive() {
+            func compare(a: String, b: String) -> String {
+                ListComparer.compare(a: a, b: b, caseSensitive: true, mode: .intersection)
+            }
+            AssertEqual("", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
+            AssertEqual("c", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
+            AssertEqual("", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
+            AssertEqual("", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
+            AssertEqual("", other: compare(a: "a\nB\nc", b: ""))
+            AssertEqual("", other: compare(a: "", b: "d\nE\nf"))
         }
-        AssertEqual("", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
-        AssertEqual("c", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
-        AssertEqual("", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
-        AssertEqual("", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
-        AssertEqual("", other: compare(a: "a\nB\nc", b: ""))
-        AssertEqual("", other: compare(a: "", b: "d\nE\nf"))
-    }
 
-    func testUnionCaseInsensitive() {
-        func compare(a: String, b: String) -> String {
-            ListComparer.compare(a: a, b: b, caseSensitive: false, mode: .union)
+        func testUnionCaseInsensitive() {
+            func compare(a: String, b: String) -> String {
+                ListComparer.compare(a: a, b: b, caseSensitive: false, mode: .union)
+            }
+            AssertEqual("a\nB\nc\nd\nE\nf", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
+            AssertEqual("a\nB\nc\nE\nf", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
+            AssertEqual("a\nB\nc\nE\nf", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
+            AssertEqual("a\nB\nc\nd\nE\nf", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
+            AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: ""))
+            AssertEqual("d\nE\nf", other: compare(a: "", b: "d\nE\nf"))
         }
-        AssertEqual("a\nB\nc\nd\nE\nf", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
-        AssertEqual("a\nB\nc\nE\nf", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
-        AssertEqual("a\nB\nc\nE\nf", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
-        AssertEqual("a\nB\nc\nd\nE\nf", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
-        AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: ""))
-        AssertEqual("d\nE\nf", other: compare(a: "", b: "d\nE\nf"))
-    }
 
-    func testUnionCaseSensitive() {
-        func compare(a: String, b: String) -> String {
-            ListComparer.compare(a: a, b: b, caseSensitive: true, mode: .union)
+        func testUnionCaseSensitive() {
+            func compare(a: String, b: String) -> String {
+                ListComparer.compare(a: a, b: b, caseSensitive: true, mode: .union)
+            }
+            AssertEqual("a\nB\nc\nd\nE\nf", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
+            AssertEqual("a\nB\nc\nE\nf", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
+            AssertEqual("a\nB\nc\nb\nE\nf", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
+            AssertEqual("a\nB\nc\nb\nd\nE\nf", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
+            AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: ""))
+            AssertEqual("d\nE\nf", other: compare(a: "", b: "d\nE\nf"))
         }
-        AssertEqual("a\nB\nc\nd\nE\nf", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
-        AssertEqual("a\nB\nc\nE\nf", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
-        AssertEqual("a\nB\nc\nb\nE\nf", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
-        AssertEqual("a\nB\nc\nb\nd\nE\nf", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
-        AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: ""))
-        AssertEqual("d\nE\nf", other: compare(a: "", b: "d\nE\nf"))
-    }
 
-    func testAOnlyCaseInsensitive() {
-        func compare(a: String, b: String) -> String {
-            ListComparer.compare(a: a, b: b, caseSensitive: false, mode: .aOnly)
+        func testAOnlyCaseInsensitive() {
+            func compare(a: String, b: String) -> String {
+                ListComparer.compare(a: a, b: b, caseSensitive: false, mode: .aOnly)
+            }
+            AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
+            AssertEqual("a\nB", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
+            AssertEqual("a\nc", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
+            AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
+            AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: ""))
+            AssertEqual("", other: compare(a: "", b: "d\nE\nf"))
         }
-        AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
-        AssertEqual("a\nB", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
-        AssertEqual("a\nc", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
-        AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
-        AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: ""))
-        AssertEqual("", other: compare(a: "", b: "d\nE\nf"))
-    }
 
-    func testAOnlyCaseSensitive() {
-        func compare(a: String, b: String) -> String {
-            ListComparer.compare(a: a, b: b, caseSensitive: true, mode: .aOnly)
+        func testAOnlyCaseSensitive() {
+            func compare(a: String, b: String) -> String {
+                ListComparer.compare(a: a, b: b, caseSensitive: true, mode: .aOnly)
+            }
+            AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
+            AssertEqual("a\nB", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
+            AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
+            AssertEqual("a\nB\nc\nb", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
+            AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: ""))
+            AssertEqual("", other: compare(a: "", b: "d\nE\nf"))
         }
-        AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
-        AssertEqual("a\nB", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
-        AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
-        AssertEqual("a\nB\nc\nb", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
-        AssertEqual("a\nB\nc", other: compare(a: "a\nB\nc", b: ""))
-        AssertEqual("", other: compare(a: "", b: "d\nE\nf"))
-    }
 
-    func testBOnlyCaseInsensitive() {
-        func compare(a: String, b: String) -> String {
-            ListComparer.compare(a: a, b: b, caseSensitive: false, mode: .bOnly)
+        func testBOnlyCaseInsensitive() {
+            func compare(a: String, b: String) -> String {
+                ListComparer.compare(a: a, b: b, caseSensitive: false, mode: .bOnly)
+            }
+            AssertEqual("d\nE\nf", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
+            AssertEqual("E\nf", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
+            AssertEqual("E\nf", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
+            AssertEqual("d\nE\nf", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
+            AssertEqual("", other: compare(a: "a\nB\nc", b: ""))
+            AssertEqual("d\nE\nf", other: compare(a: "", b: "d\nE\nf"))
         }
-        AssertEqual("d\nE\nf", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
-        AssertEqual("E\nf", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
-        AssertEqual("E\nf", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
-        AssertEqual("d\nE\nf", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
-        AssertEqual("", other: compare(a: "a\nB\nc", b: ""))
-        AssertEqual("d\nE\nf", other: compare(a: "", b: "d\nE\nf"))
-    }
 
-    func testBOnlyCaseSensitive() {
-        func compare(a: String, b: String) -> String {
-            ListComparer.compare(a: a, b: b, caseSensitive: true, mode: .bOnly)
+        func testBOnlyCaseSensitive() {
+            func compare(a: String, b: String) -> String {
+                ListComparer.compare(a: a, b: b, caseSensitive: true, mode: .bOnly)
+            }
+            AssertEqual("d\nE\nf", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
+            AssertEqual("E\nf", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
+            AssertEqual("b\nE\nf", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
+            AssertEqual("d\nE\nf", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
+            AssertEqual("", other: compare(a: "a\nB\nc", b: ""))
+            AssertEqual("d\nE\nf", other: compare(a: "", b: "d\nE\nf"))
         }
-        AssertEqual("d\nE\nf", other: compare(a: "a\nB\nc", b: "d\nE\nf"))
-        AssertEqual("E\nf", other: compare(a: "a\nB\nc", b: "c\nE\nf"))
-        AssertEqual("b\nE\nf", other: compare(a: "a\nB\nc", b: "b\nE\nf"))
-        AssertEqual("d\nE\nf", other: compare(a: "a\nB\nc\nb", b: "d\nE\nf"))
-        AssertEqual("", other: compare(a: "a\nB\nc", b: ""))
-        AssertEqual("d\nE\nf", other: compare(a: "", b: "d\nE\nf"))
     }
-}
 #endif
-

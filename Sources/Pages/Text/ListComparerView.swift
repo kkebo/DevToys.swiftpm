@@ -13,11 +13,11 @@ extension ListComparerView: View {
     var body: some View {
         ToyPage {
             ToySection("Configuration") {
-                ConfigurationRow("Case sensitive comparison", systemImage: "textformat") { 
+                ConfigurationRow("Case sensitive comparison", systemImage: "textformat") {
                     Toggle("", isOn: self.$state.isCaseSensitive).labelsHidden()
                 }
                 ConfigurationRow("Comparison mode", systemImage: "brain") {
-                    Picker("", selection: self.$state.comparisonMode) { 
+                    Picker("", selection: self.$state.comparisonMode) {
                         ForEach(ListComparisonMode.allCases, id: \.self) {
                             Text(LocalizedStringKey($0.description))
                         }
