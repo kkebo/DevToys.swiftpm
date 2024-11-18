@@ -38,6 +38,8 @@ extension ListComparerView: View {
             }
 
             ToySection(LocalizedStringKey(self.state.comparisonMode.description)) {
+                CopyButton(text: self.state.output)
+            } content: {
                 CodeEditor(text: .constant(self.state.output))
             }
         }
@@ -46,12 +48,20 @@ extension ListComparerView: View {
 
     private var sectionA: some View {
         ToySection("A") {
+            PasteButton(text: self.$state.a)
+            OpenFileButton(text: self.$state.a)
+            ClearButton(text: self.$state.a)
+        } content: {
             CodeEditor(text: self.$state.a)
         }
     }
 
     private var sectionB: some View {
         ToySection("B") {
+            PasteButton(text: self.$state.b)
+            OpenFileButton(text: self.$state.b)
+            ClearButton(text: self.$state.b)
+        } content: {
             CodeEditor(text: self.$state.b)
         }
     }
