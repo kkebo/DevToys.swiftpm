@@ -37,7 +37,7 @@ extension ListComparerView: View {
                 }
             }
 
-            ToySection("AB") {
+            ToySection(LocalizedStringKey(self.state.comparisonMode.description)) {
                 CodeEditor(text: .constant(self.state.output))
             }
         }
