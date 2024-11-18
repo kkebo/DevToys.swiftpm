@@ -216,6 +216,7 @@ extension Tool: CaseIterable {
             .jsonFormatter,
             .jsonYAMLConverter,
             .jwtDecoder,
+            .listComparer,
             .loremIpsumGenerator,
             .markdownPreview,
             .numberBaseConverter,
