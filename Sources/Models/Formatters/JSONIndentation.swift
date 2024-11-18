@@ -8,10 +8,10 @@ enum JSONIndentation {
 extension JSONIndentation: CustomStringConvertible {
     var description: String {
         switch self {
-        case .twoSpaces: return "2 spaces"
-        case .fourSpaces: return "4 spaces"
-        case .oneTab: return "1 tab"
-        case .minified: return "Minified"
+        case .twoSpaces: "2 spaces"
+        case .fourSpaces: "4 spaces"
+        case .oneTab: "1 tab"
+        case .minified: "Minified"
         }
     }
 }

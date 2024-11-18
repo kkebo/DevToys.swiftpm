@@ -8,8 +8,8 @@ extension JSONYAMLConversionMode: CaseIterable {}
 extension JSONYAMLConversionMode: CustomStringConvertible {
     var description: String {
         switch self {
-        case .yamlToJSON: return "YAML to JSON"
-        case .jsonToYAML: return "JSON to YAML"
+        case .yamlToJSON: "YAML to JSON"
+        case .jsonToYAML: "JSON to YAML"
         }
     }
 }
