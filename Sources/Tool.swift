@@ -58,79 +58,79 @@ enum Tool: String {
     var strings: Strings {
         switch self {
         case .allTools:
-            return .init(
+            .init(
                 shortTitle: "All tools",
                 longTitle: "All tools",
                 description: ""
             )
         case .base64Coder:
-            return .init(
+            .init(
                 shortTitle: "Base 64",
                 longTitle: "Base 64 Encoder / Decoder",
                 description: "Encode and decode Base64 data"
             )
         case .hashGenerator:
-            return .init(
+            .init(
                 shortTitle: "Hash",
                 longTitle: "Hash Generator",
                 description: "Calculate MD5, SHA1, SHA256 and SHA512 hash from text data"
             )
         case .htmlCoder:
-            return .init(
+            .init(
                 shortTitle: "HTML",
                 longTitle: "HTML Encoder / Decoder",
                 description: "Encode or decode all the applicable characters to their corresponding HTML entities"
             )
         case .jsonFormatter:
-            return .init(
+            .init(
                 shortTitle: "JSON",
                 longTitle: "JSON Formatter",
                 description: "Indent or minify JSON data"
             )
         case .jsonYAMLConverter:
-            return .init(
+            .init(
                 shortTitle: "JSON <> YAML",
                 longTitle: "JSON <> YAML Converter",
                 description: "Convert JSON data to YAML and vice versa"
             )
         case .jwtDecoder:
-            return .init(
+            .init(
                 shortTitle: "JWT Decoder",
                 longTitle: "JWT Decoder",
                 description: "Decode a JWT header, payload and signature"
             )
         case .loremIpsumGenerator:
-            return .init(
+            .init(
                 shortTitle: "Lorem Ipsum",
                 longTitle: "Lorem Ipsum Generator",
                 description: "Generate Lorem Ipsum placeholder text"
             )
         case .markdownPreview:
-            return .init(
+            .init(
                 shortTitle: "Markdown Preview",
                 longTitle: "Markdown Preview",
                 description: "Preview a Markdown document"
             )
         case .numberBaseConverter:
-            return .init(
+            .init(
                 shortTitle: "Number Base",
                 longTitle: "Number Base Converter",
                 description: "Convert numbers from one base to another"
             )
         case .timestampConverter:
-            return .init(
+            .init(
                 shortTitle: "Timestamp",
                 longTitle: "Unix Timestamp Converter",
                 description: "Convert timestamp to human-readable date and vice versa"
             )
         case .urlCoder:
-            return .init(
+            .init(
                 shortTitle: "URL",
                 longTitle: "URL Encoder / Decoder",
                 description: "Encode or decode all the applicable characters to their corresponding URL entities"
             )
         case .uuidGenerator:
-            return .init(
+            .init(
                 shortTitle: "UUID",
                 longTitle: "UUID Generator",
                 description: "Generate UUIDs version 1 and 4"

@@ -5,14 +5,10 @@ struct JSONFormatter {
 
     func format(_ input: String) -> String {
         switch self.indentation {
-        case .twoSpaces:
-            return SwiftJSONFormatter.beautify(input, indent: "  ")
-        case .fourSpaces:
-            return SwiftJSONFormatter.beautify(input, indent: "    ")
-        case .oneTab:
-            return SwiftJSONFormatter.beautify(input, indent: "\t")
-        case .minified:
-            return SwiftJSONFormatter.minify(input)
+        case .twoSpaces: SwiftJSONFormatter.beautify(input, indent: "  ")
+        case .fourSpaces: SwiftJSONFormatter.beautify(input, indent: "    ")
+        case .oneTab: SwiftJSONFormatter.beautify(input, indent: "\t")
+        case .minified: SwiftJSONFormatter.minify(input)
         }
     }
 }

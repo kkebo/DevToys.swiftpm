@@ -40,10 +40,10 @@ final class NumberBaseConverterViewState {
 
     var input: String {
         switch self.inputType {
-        case .hexadecimal: return self.hexadecimal
-        case .decimal: return self.decimal
-        case .octal: return self.octal
-        case .binary: return self.binary
+        case .hexadecimal: self.hexadecimal
+        case .decimal: self.decimal
+        case .octal: self.octal
+        case .binary: self.binary
         }
     }
 

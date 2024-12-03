@@ -6,8 +6,8 @@ enum UUIDVersion {
 extension UUIDVersion: CustomStringConvertible {
     var description: String {
         switch self {
-        case .v1: return "1"
-        case .v4: return "4 (GUID)"
+        case .v1: "1"
+        case .v4: "4 (GUID)"
         }
     }
 }
