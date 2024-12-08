@@ -32,7 +32,10 @@ let toolGroups: [ToolGroup] = [
     ),
     .init(
         name: "Text",
-        tools: [.markdownPreview]
+        tools: [
+            .listComparer,
+            .markdownPreview,
+        ]
     ),
     .init(
         name: "Graphic",
@@ -48,6 +51,7 @@ enum Tool: String {
     case jsonFormatter
     case jsonYAMLConverter
     case jwtDecoder
+    case listComparer
     case loremIpsumGenerator
     case markdownPreview
     case numberBaseConverter
@@ -98,6 +102,12 @@ enum Tool: String {
                 shortTitle: "JWT Decoder",
                 longTitle: "JWT Decoder",
                 description: "Decode a JWT header, payload and signature"
+            )
+        case .listComparer:
+            return .init(
+                shortTitle: "List Compare",
+                longTitle: "List Comparer",
+                description: "Compare two lists"
             )
         case .loremIpsumGenerator:
             .init(
@@ -154,6 +164,8 @@ enum Tool: String {
             Image(systemName: "doc.plaintext")
         case .jwtDecoder:
             Image("JWT").resizable().scaledToFit()
+        case .listComparer:
+            Image(systemName: "list.bullet.rectangle.portrait")
         case .loremIpsumGenerator:
             Image(systemName: "text.alignleft")
         case .markdownPreview:
@@ -180,6 +192,7 @@ enum Tool: String {
         case .jsonFormatter: JSONFormatterView(state: state)
         case .jsonYAMLConverter: JSONYAMLConverterView(state: state)
         case .jwtDecoder: JWTDecoderView(state: state)
+        case .listComparer: ListComparerView(state: state)
         case .loremIpsumGenerator: LoremIpsumGeneratorView(state: state)
         case .markdownPreview: MarkdownPreviewView(state: state)
         case .numberBaseConverter: NumberBaseConverterView(state: state)
@@ -203,6 +216,7 @@ extension Tool: CaseIterable {
             .jsonFormatter,
             .jsonYAMLConverter,
             .jwtDecoder,
+            .listComparer,
             .loremIpsumGenerator,
             .markdownPreview,
             .numberBaseConverter,
