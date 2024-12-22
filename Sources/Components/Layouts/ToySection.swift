@@ -29,6 +29,7 @@ struct ToySection<Title: View, Content: View> {
         self.content = content()
     }
 
+    @MainActor
     init<Toolbar: View>(
         _ titleKey: LocalizedStringKey,
         @ViewBuilder toolbar: () -> Toolbar,
@@ -43,6 +44,7 @@ struct ToySection<Title: View, Content: View> {
     }
 
     @_disfavoredOverload
+    @MainActor
     init<S: StringProtocol, Toolbar: View>(
         _ title: S,
         @ViewBuilder toolbar: () -> Toolbar,
@@ -56,6 +58,7 @@ struct ToySection<Title: View, Content: View> {
         self.content = content()
     }
 
+    @MainActor
     init<T: View, Toolbar: View>(
         @ViewBuilder _ title: () -> T,
         @ViewBuilder toolbar: () -> Toolbar,

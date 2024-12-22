@@ -17,6 +17,7 @@ final class TimestampConverterViewState {
     }
     private(set) var timestamp: Int?
 
+    @MainActor
     var date: Binding<Date> {
         .init(
             get: {

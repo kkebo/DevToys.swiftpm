@@ -26,6 +26,7 @@ extension MarkdownPreviewView: View {
         .navigationTitle(Tool.markdownPreview.strings.localizedLongTitle)
     }
 
+    @MainActor
     private var markdownSection: some View {
         ToySection("Markdown") {
             PasteButton(text: self.$state.input)
@@ -37,6 +38,7 @@ extension MarkdownPreviewView: View {
         }
     }
 
+    @MainActor
     private var previewSection: some View {
         ToySection("Preview") {
             CopyButton(text: self.state.output)
