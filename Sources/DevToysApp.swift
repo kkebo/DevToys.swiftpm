@@ -7,7 +7,7 @@ let logger = Logger(label: "main")
 @main
 struct DevToysApp {
     init() {
-        LoggingSystem.bootstrap(PlaygroundHandler.init)
+        LoggingSystem.bootstrap { PlaygroundHandler(label: $0) }
     }
 }
 
