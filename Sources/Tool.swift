@@ -104,7 +104,7 @@ enum Tool: String {
                 description: "Decode a JWT header, payload and signature"
             )
         case .listComparer:
-            return .init(
+            .init(
                 shortTitle: "List Compare",
                 longTitle: "List Comparer",
                 description: "Compare two lists"
