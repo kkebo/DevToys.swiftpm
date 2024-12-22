@@ -48,6 +48,7 @@ extension JSONYAMLConverterView: View {
         .navigationTitle(Tool.jsonYAMLConverter.strings.localizedLongTitle)
     }
 
+    @MainActor
     private var inputSection: some View {
         ToySection("Input") {
             PasteButton(text: self.$state.input)
@@ -59,6 +60,7 @@ extension JSONYAMLConverterView: View {
         }
     }
 
+    @MainActor
     private var outputSection: some View {
         ToySection("Output") {
             CopyButton(text: self.state.output)

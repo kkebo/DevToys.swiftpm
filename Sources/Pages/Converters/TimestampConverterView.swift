@@ -41,6 +41,7 @@ extension TimestampConverterView: View {
         .navigationTitle(Tool.timestampConverter.strings.localizedLongTitle)
     }
 
+    @MainActor
     private var timestampSection: some View {
         ToySection("Timestamp") {
             PasteButton(text: self.$state.timestampString)

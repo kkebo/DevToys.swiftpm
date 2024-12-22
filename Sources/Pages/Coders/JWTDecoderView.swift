@@ -18,6 +18,7 @@ extension JWTDecoderView: View {
         .navigationTitle("JWT Decoder")
     }
 
+    @MainActor
     private var inputSection: some View {
         ToySection("JWT Token") {
             PasteButton(text: self.$state.input)
@@ -29,6 +30,7 @@ extension JWTDecoderView: View {
         }
     }
 
+    @MainActor
     private var headerSection: some View {
         ToySection("Header") {
             CopyButton(text: self.state.header)
@@ -38,6 +40,7 @@ extension JWTDecoderView: View {
         }
     }
 
+    @MainActor
     private var payloadSection: some View {
         ToySection("Payload") {
             CopyButton(text: self.state.payload)

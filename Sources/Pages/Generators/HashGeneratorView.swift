@@ -42,6 +42,7 @@ extension HashGeneratorView: View {
         .navigationTitle(Tool.hashGenerator.strings.localizedLongTitle)
     }
 
+    @MainActor
     private var inputSection: some View {
         ToySection("Input") {
             PasteButton(text: self.$state.input)
