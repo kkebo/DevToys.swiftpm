@@ -1,5 +1,5 @@
 {
-  "originHash" : "f15f53b6144697d7b925339ea00e99ab41dbf8b07def87b17988a5dabbc8d12a",
+  "originHash" : "dbe263e209fca8630c3df55141ff393154503a954acc53f6c8dc8d08dd207310",
   "pins" : [
     {
       "identity" : "codeeditorview",
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kkebo/swift-log-playground",
       "state" : {
-        "revision" : "99fa452a8a12145dc1862af5bdf2648bd48c314a",
-        "version" : "0.1.6"
+        "revision" : "e4dc823998cd6130d75bcd60f083fc156d4d3ca1",
+        "version" : "0.2.0"
       }
     },
     {
