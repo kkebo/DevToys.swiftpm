@@ -1,4 +1,4 @@
-import CodeEditorView
+@preconcurrency import CodeEditorView
 import SwiftUI
 
 struct CodeEditor {

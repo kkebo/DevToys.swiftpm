@@ -1,6 +1,6 @@
 #if TESTING_ENABLED
 
-    import PlaygroundTester
+    @preconcurrency import PlaygroundTester
     import SwiftUI
 
     struct UnitTestsButton {
