@@ -1,7 +1,7 @@
 # DevToys for iPad
 
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://www.swift.org)
-[![Swift Playground](https://img.shields.io/badge/Swift%20Playground-4.6-orange.svg)](https://itunes.apple.com/jp/app/swift-playgrounds/id908519492)
+[![Swift Playground](https://img.shields.io/badge/Swift%20Playground-4.6-orange.svg)](https://itunes.apple.com/jp/app/swift-playground/id908519492)
 ![Platform](https://img.shields.io/badge/platform-ipados%20%7C%20ios-lightgrey.svg)
 [![License](https://img.shields.io/github/license/kkebo/DevToys.swiftpm.svg)](LICENSE.txt)
 
