@@ -45,28 +45,11 @@ let package = Package(
                 .unsafeFlags(["-Xfrontend", "-enable-actor-data-race-checks"]),
                 .define("DEBUG", .when(configuration: .debug)),
                 .define("TESTING_ENABLED", .when(configuration: .debug)),
-                // Swift 6
-                .enableUpcomingFeature("ConciseMagicFile"),
-                .enableUpcomingFeature("ForwardTrailingClosures"),
-                .enableUpcomingFeature("StrictConcurrency"),
-                .enableUpcomingFeature("BareSlashRegexLiterals"),
-                .enableUpcomingFeature("DeprecateApplicationMain"),
-                .enableUpcomingFeature("ImportObjcForwardDeclarations"),
-                .enableUpcomingFeature("DisableOutwardActorInference"),
-                .enableUpcomingFeature("IsolatedDefaultValues"),
-                .enableUpcomingFeature("GlobalConcurrency"),
-                .enableUpcomingFeature("InferSendableFromCaptures"),
-                .enableUpcomingFeature("ImplicitOpenExistentials"),
-                .enableUpcomingFeature("RegionBasedIsolation"),
-                .enableUpcomingFeature("DynamicActorIsolation"),
-                .enableUpcomingFeature("NonfrozenEnumExhaustivity"),
-                .enableUpcomingFeature("GlobalActorIsolatedTypesUsability"),
                 // Swift 7
                 .enableUpcomingFeature("ExistentialAny"),
             ]
         )
-    ],
-    swiftLanguageModes: [.v5]
+    ]
 )
 
 #if canImport(AppleProductTypes)
