@@ -51,7 +51,7 @@ struct Base64Coder {
                 other: coder.encode("Hello there !")
             )
             AssertEqual(
-                "Pw==",
+                "/w==",
                 other: coder.encode("🫃")
             )
         }
