@@ -1,13 +1,13 @@
 {
-  "originHash" : "dbe263e209fca8630c3df55141ff393154503a954acc53f6c8dc8d08dd207310",
+  "originHash" : "d735872c777213db9589c9a7ab0f9722c2c22a40a5aacbfa0aadb5b545137f73",
   "pins" : [
     {
       "identity" : "codeeditorview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mchakravarty/CodeEditorView",
       "state" : {
-        "revision" : "3d2f385aa1583828cdb8e454aea8f1163df23be8",
-        "version" : "0.14.0"
+        "revision" : "2b532411ae79520b973f1647e7ed51a6678d1188",
+        "version" : "0.15.3"
       }
     },
     {
