@@ -11,7 +11,8 @@ struct OpenFileButton {
         }
         defer { url.stopAccessingSecurityScopedResource() }
         do {
-            self.text = try .init(contentsOf: url)
+            var enc: String.Encoding = .utf8
+            self.text = try .init(contentsOf: url, usedEncoding: &enc)
         } catch {
             logger.error("\(error.localizedDescription)")
             return
