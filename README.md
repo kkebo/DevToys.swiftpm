@@ -52,7 +52,6 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
 - Swift Playground 4.6 or later (iPadOS 18.1 or later)
 - Swift Playground 4.6 or later (macOS 14.0 or later)
 - Xcode 16.1 or later (macOS 14.5 or later)
->>>>>>> bce72f0
 
 ## Get Started
 
