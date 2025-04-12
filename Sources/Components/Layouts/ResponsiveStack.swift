@@ -20,3 +20,17 @@ extension ResponsiveStack: View {
         }
     }
 }
+
+struct ResponsiveStack_Previews: PreviewProvider {
+    static var previews: some View {
+        ResponsiveStack {
+            Text("A")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.green)
+            Text("B")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.blue)
+        }
+        .previewPresets()
+    }
+}
