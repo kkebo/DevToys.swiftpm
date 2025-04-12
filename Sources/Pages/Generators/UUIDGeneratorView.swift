@@ -9,6 +9,7 @@ struct UUIDGeneratorView {
     }
 }
 
+@MainActor
 extension UUIDGeneratorView: View {
     var body: some View {
         ToyPage {
@@ -19,7 +20,6 @@ extension UUIDGeneratorView: View {
         .navigationTitle(Tool.uuidGenerator.strings.localizedLongTitle)
     }
 
-    @MainActor
     private var configurationSection: some View {
         ToySection("Configuration") {
             ConfigurationRow("Hyphens", systemImage: "minus") {
@@ -48,7 +48,6 @@ extension UUIDGeneratorView: View {
         }
     }
 
-    @MainActor
     private var generateSection: some View {
         ToySection("Generate") {
             HStack {
@@ -82,7 +81,6 @@ extension UUIDGeneratorView: View {
         }
     }
 
-    @MainActor
     private var outputSection: some View {
         ToySection(
             self.state.numberOfUUIDs > 1 ? "UUIDs" : "UUID"

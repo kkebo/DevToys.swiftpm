@@ -8,6 +8,7 @@ struct HashGeneratorView {
     }
 }
 
+@MainActor
 extension HashGeneratorView: View {
     var body: some View {
         ToyPage {
@@ -42,7 +43,6 @@ extension HashGeneratorView: View {
         .navigationTitle(Tool.hashGenerator.strings.localizedLongTitle)
     }
 
-    @MainActor
     private var inputSection: some View {
         ToySection("Input") {
             PasteButton(text: self.$state.input)

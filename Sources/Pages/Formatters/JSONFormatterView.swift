@@ -8,6 +8,7 @@ struct JSONFormatterView {
     }
 }
 
+@MainActor
 extension JSONFormatterView: View {
     var body: some View {
         ToyPage {
@@ -30,7 +31,6 @@ extension JSONFormatterView: View {
         .navigationTitle(Tool.jsonFormatter.strings.localizedLongTitle)
     }
 
-    @MainActor
     private var inputSection: some View {
         ToySection("Input") {
             PasteButton(text: self.$state.input)
@@ -42,7 +42,6 @@ extension JSONFormatterView: View {
         }
     }
 
-    @MainActor
     private var outputSection: some View {
         ToySection("Output") {
             CopyButton(text: self.state.output)

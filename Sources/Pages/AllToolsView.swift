@@ -62,6 +62,7 @@ struct AllToolsView {
     }
 }
 
+@MainActor
 extension AllToolsView: View {
     var body: some View {
         ToyPage {
@@ -82,7 +83,6 @@ extension AllToolsView: View {
         )
     }
 
-    @MainActor
     private func button(for tool: Tool) -> some View {
         Button {
             self.selection = tool

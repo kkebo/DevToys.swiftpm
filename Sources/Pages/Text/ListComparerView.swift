@@ -8,6 +8,7 @@ struct ListComparerView {
     }
 }
 
+@MainActor
 extension ListComparerView: View {
     var body: some View {
         ToyPage {
@@ -39,7 +40,6 @@ extension ListComparerView: View {
         .navigationTitle(Tool.listComparer.strings.localizedLongTitle)
     }
 
-    @MainActor
     private var sectionA: some View {
         ToySection("A") {
             PasteButton(text: self.$state.a)
@@ -50,7 +50,6 @@ extension ListComparerView: View {
         }
     }
 
-    @MainActor
     private var sectionB: some View {
         ToySection("B") {
             PasteButton(text: self.$state.b)
