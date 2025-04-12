@@ -23,7 +23,7 @@ extension JSONFormatterView: View {
                 }
             }
 
-            ResponsiveStack {
+            ResponsiveStack(spacing: 16) {
                 self.inputSection
                 self.outputSection
             }

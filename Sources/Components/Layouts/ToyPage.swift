@@ -36,6 +36,17 @@ struct ToyPage_Previews: PreviewProvider {
                     Text("bar")
                 }
             }
+            ToySection("Configuration 2") {
+                ConfigurationRow("foo", systemImage: "pencil") {
+                    Text("bar")
+                }
+                ConfigurationRow("foo", systemImage: "brain") {
+                    Text("bar")
+                }
+                ConfigurationRow("foo", systemImage: "timer") {
+                    Text("bar")
+                }
+            }
         }
         .previewPresets()
     }

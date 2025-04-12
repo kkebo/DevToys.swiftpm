@@ -12,7 +12,7 @@ struct MarkdownPreviewView {
 extension MarkdownPreviewView: View {
     var body: some View {
         ToyPage {
-            ResponsiveStack {
+            ResponsiveStack(spacing: 16) {
                 self.markdownSection
                 self.previewSection
             }

@@ -26,7 +26,7 @@ extension ListComparerView: View {
                 }
             }
 
-            ResponsiveStack {
+            ResponsiveStack(spacing: 16) {
                 self.sectionA
                 self.sectionB
             }

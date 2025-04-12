@@ -2,7 +2,19 @@ import SwiftUI
 
 struct ResponsiveStack<Content: View> {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @ViewBuilder var content: () -> Content
+    private let alignment: Alignment
+    private let spacing: CGFloat?
+    private let content: () -> Content
+
+    init(
+        alignment: Alignment = .center,
+        spacing: CGFloat? = nil,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.alignment = alignment
+        self.spacing = spacing
+        self.content = content
+    }
 }
 
 extension ResponsiveStack: View {
@@ -14,9 +26,9 @@ extension ResponsiveStack: View {
 
     private var layout: AnyLayout {
         if self.hSizeClass == .compact {
-            AnyLayout(VStackLayout(spacing: 16))
+            AnyLayout(VStackLayout(alignment: self.alignment.horizontal, spacing: self.spacing))
         } else {
-            AnyLayout(HStackLayout(spacing: 16))
+            AnyLayout(HStackLayout(alignment: self.alignment.vertical, spacing: self.spacing))
         }
     }
 }

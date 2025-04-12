@@ -34,7 +34,7 @@ extension JSONYAMLConverterView: View {
                 }
             }
 
-            ResponsiveStack {
+            ResponsiveStack(spacing: 16) {
                 self.inputSection
                 self.outputSection
             }
