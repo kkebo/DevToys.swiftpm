@@ -4,7 +4,7 @@ struct ResponsiveStack<Content: View> {
     @Environment(\.horizontalSizeClass) private var hSizeClass
     private let alignment: Alignment
     private let spacing: CGFloat?
-    private let content: () -> Content
+    private let content: Content
 
     init(
         alignment: Alignment = .center,
@@ -13,14 +13,14 @@ struct ResponsiveStack<Content: View> {
     ) {
         self.alignment = alignment
         self.spacing = spacing
-        self.content = content
+        self.content = content()
     }
 }
 
 extension ResponsiveStack: View {
     var body: some View {
         self.layout {
-            self.content()
+            self.content
         }
     }
 
