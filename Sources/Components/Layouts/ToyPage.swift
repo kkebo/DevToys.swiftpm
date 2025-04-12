@@ -1,11 +1,7 @@
 import SwiftUI
 
 struct ToyPage<Content: View> {
-    private let content: Content
-
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
+    @ViewBuilder let content: Content
 }
 
 extension ToyPage: View {
