@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct MarkdownPreviewView {
-    @Environment(\.horizontalSizeClass) private var hSizeClass
     @Bindable private var state: MarkdownPreviewViewState
 
     init(state: AppState) {
@@ -12,15 +11,9 @@ struct MarkdownPreviewView {
 extension MarkdownPreviewView: View {
     var body: some View {
         ToyPage {
-            if self.hSizeClass == .compact {
+            ResponsiveStack {
                 self.markdownSection
                 self.previewSection
-            } else {
-                HStack {
-                    self.markdownSection
-                    Divider()
-                    self.previewSection
-                }
             }
         }
         .navigationTitle(Tool.markdownPreview.strings.localizedLongTitle)

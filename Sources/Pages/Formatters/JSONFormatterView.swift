@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct JSONFormatterView {
-    @Environment(\.horizontalSizeClass) private var hSizeClass
     @Bindable private var state: JSONFormatterViewState
 
     init(state: AppState) {
@@ -23,15 +22,9 @@ extension JSONFormatterView: View {
                 }
             }
 
-            if self.hSizeClass == .compact {
+            ResponsiveStack {
                 self.inputSection
                 self.outputSection
-            } else {
-                HStack {
-                    self.inputSection
-                    Divider()
-                    self.outputSection
-                }
             }
         }
         .navigationTitle(Tool.jsonFormatter.strings.localizedLongTitle)

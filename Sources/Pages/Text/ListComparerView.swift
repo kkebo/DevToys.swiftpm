@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct ListComparerView {
-    @Environment(\.horizontalSizeClass) private var hSizeClass
     @Bindable var state: ListComparerViewState
 
     init(state: AppState) {
@@ -26,15 +25,9 @@ extension ListComparerView: View {
                 }
             }
 
-            if self.hSizeClass == .compact {
+            ResponsiveStack {
                 self.sectionA
                 self.sectionB
-            } else {
-                HStack {
-                    self.sectionA
-                    Divider()
-                    self.sectionB
-                }
             }
 
             ToySection(LocalizedStringKey(self.state.comparisonMode.description)) {

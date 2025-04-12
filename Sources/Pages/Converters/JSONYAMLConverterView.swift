@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct JSONYAMLConverterView {
-    @Environment(\.horizontalSizeClass) private var hSizeClass
     @Bindable private var state: JSONYAMLConverterViewState
 
     init(state: AppState) {
@@ -34,15 +33,9 @@ extension JSONYAMLConverterView: View {
                 }
             }
 
-            if self.hSizeClass == .compact {
+            ResponsiveStack {
                 self.inputSection
                 self.outputSection
-            } else {
-                HStack {
-                    self.inputSection
-                    Divider()
-                    self.outputSection
-                }
             }
         }
         .navigationTitle(Tool.jsonYAMLConverter.strings.localizedLongTitle)
