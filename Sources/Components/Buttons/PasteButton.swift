@@ -2,9 +2,9 @@ import SwiftUI
 
 struct PasteButton {
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @Binding var text: String
-    let preAction: () -> Void
-    let postAction: () -> Void
+    @Binding private var text: String
+    private let preAction: () -> Void
+    private let postAction: () -> Void
 
     init(
         text: Binding<String>,
