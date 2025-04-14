@@ -11,6 +11,7 @@
   "lineBreakBeforeControlFlowKeywords" : false,
   "lineBreakBeforeEachArgument" : true,
   "lineBreakBeforeEachGenericRequirement" : true,
+  "lineBreakBetweenDeclarationAttributes" : false,
   "lineLength" : 120,
   "maximumBlankLines" : 1,
   "multiElementCollectionTrailingCommas" : true,
@@ -20,12 +21,18 @@
     ]
   },
   "prioritizeKeepingFunctionOutputTogether" : true,
+  "reflowMultilineStringLiterals" : {
+    "never" : {
+
+    }
+  },
   "respectsExistingLineBreaks" : true,
   "rules" : {
     "AllPublicDeclarationsHaveDocumentation" : true,
     "AlwaysUseLiteralForEmptyCollectionInit" : true,
     "AlwaysUseLowerCamelCase" : true,
     "AmbiguousTrailingClosureOverload" : true,
+    "AvoidRetroactiveConformances" : true,
     "BeginDocumentationCommentWithOneLineSummary" : true,
     "DoNotUseSemicolons" : true,
     "DontRepeatTypeInStaticProperties" : true,
@@ -40,6 +47,7 @@
     "NoAssignmentInExpressions" : true,
     "NoBlockComments" : true,
     "NoCasesWithOnlyFallthrough" : true,
+    "NoEmptyLinesOpeningClosingBraces" : true,
     "NoEmptyTrailingClosureParentheses" : true,
     "NoLabelsInCasePatterns" : true,
     "NoLeadingUnderscores" : true,
@@ -61,10 +69,11 @@
     "UseSingleLinePropertyGetter" : true,
     "UseSynthesizedInitializer" : true,
     "UseTripleSlashForDocumentationComments" : true,
-    "UseWhereClausesInForLoops" : false,
+    "UseWhereClausesInForLoops" : true,
     "ValidateDocumentationComments" : true
   },
   "spacesAroundRangeFormationOperators" : false,
+  "spacesBeforeEndOfLineComments" : 2,
   "tabWidth" : 4,
   "version" : 1
 }
