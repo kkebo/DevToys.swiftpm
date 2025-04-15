@@ -72,6 +72,11 @@ extension AllToolsView: View {
                 }
             }
         }
+        .overlay {
+            if self.tools.isEmpty {
+                ContentUnavailableView.search
+            }
+        }
         .searchable(
             text: self.$searchQuery,
             prompt: "Type to search for tools..."

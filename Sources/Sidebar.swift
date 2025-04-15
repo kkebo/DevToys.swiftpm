@@ -37,6 +37,11 @@ extension Sidebar: View {
             }
         }
         .navigationTitle("DevToys")
+        .overlay {
+            if self.isSearching && self.filteredTools.isEmpty {
+                ContentUnavailableView.search
+            }
+        }
         .searchable(
             text: self.$searchQuery,
             prompt: "Type to search for tools..."
