@@ -44,6 +44,16 @@ extension HashGeneratorView: View {
             }
 
             self.inputSection
+
+            ToySection("Secret key to use to generate a HMAC hash") {
+                PasteButton(text: self.$state.generator.hmacKey)
+                OpenFileButton(text: self.$state.generator.hmacKey)
+                ClearButton(text: self.$state.generator.hmacKey)
+            } content: {
+                TextField("", text: self.$state.generator.hmacKey)
+                    .modifier(ClearButtonModifier(text: self.$state.generator.hmacKey))
+            }
+
             self.outputSection
         }
         .navigationTitle(Tool.hashGenerator.strings.localizedLongTitle)

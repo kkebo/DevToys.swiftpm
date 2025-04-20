@@ -6,18 +6,33 @@ struct HashGenerator {
     var algorithm = HashAlgorithm.md5
     var isUppercase = false
     var outputType = HashOutputType.hex
+    var hmacKey = ""
 
     func generate(_ input: String) -> String {
         guard !input.isEmpty else { return "" }
         let inputData = Data(input.utf8)
-        let outputData =
-            switch self.algorithm {
-            case .md5: Data(Insecure.MD5.hash(data: inputData))
-            case .sha1: Data(Insecure.SHA1.hash(data: inputData))
-            case .sha256: Data(SHA256.hash(data: inputData))
-            case .sha384: Data(SHA384.hash(data: inputData))
-            case .sha512: Data(SHA512.hash(data: inputData))
-            }
+        let outputData: Data
+        if self.hmacKey.isEmpty {
+            outputData =
+                switch self.algorithm {
+                case .md5: Data(Insecure.MD5.hash(data: inputData))
+                case .sha1: Data(Insecure.SHA1.hash(data: inputData))
+                case .sha256: Data(SHA256.hash(data: inputData))
+                case .sha384: Data(SHA384.hash(data: inputData))
+                case .sha512: Data(SHA512.hash(data: inputData))
+                }
+        } else {
+            let key = SymmetricKey(data: Data(self.hmacKey.utf8))
+            outputData =
+                switch self.algorithm {
+                case .md5: Data(HMAC<Insecure.MD5>.authenticationCode(for: inputData, using: key))
+                case .sha1:
+                    Data(HMAC<Insecure.SHA1>.authenticationCode(for: inputData, using: key))
+                case .sha256: Data(HMAC<SHA256>.authenticationCode(for: inputData, using: key))
+                case .sha384: Data(HMAC<SHA384>.authenticationCode(for: inputData, using: key))
+                case .sha512: Data(HMAC<SHA512>.authenticationCode(for: inputData, using: key))
+                }
+        }
         switch self.outputType {
         case .hex:
             let format = self.isUppercase ? "%02X" : "%02x"
