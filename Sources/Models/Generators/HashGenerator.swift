@@ -14,6 +14,7 @@ struct HashGenerator {
         case .md5: Data(Insecure.MD5.hash(data: inputData))
         case .sha1: Data(Insecure.SHA1.hash(data: inputData))
         case .sha256: Data(SHA256.hash(data: inputData))
+        case .sha384: Data(SHA384.hash(data: inputData))
         case .sha512: Data(SHA512.hash(data: inputData))
         }
         switch self.outputType {
@@ -96,6 +97,25 @@ struct HashGenerator {
             generator.outputType = .base64
             AssertEqual(
                 "Ry+GrVt7zZDv9hR/1vj7dVrDsauL9xLmoZRn9da/r9M=",
+                other: generator.generate("Hello there !")
+            )
+        }
+    
+        func testGenerateSHA384() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha384
+            AssertEqual(
+                "d8d70b6d20a02a4ec4de87f9047faef0dc467f049480043e954514be843d68950e6f8a20a6debe3bcd3bb4889a646590",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateSHA384Base64() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha384
+            generator.outputType = .base64
+            AssertEqual(
+                "2NcLbSCgKk7E3of5BH+u8NxGfwSUgAQ+lUUUvoQ9aJUOb4ogpt6+O807tIiaZGWQ",
                 other: generator.generate("Hello there !")
             )
         }

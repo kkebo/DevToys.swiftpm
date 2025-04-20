@@ -2,6 +2,7 @@ enum HashAlgorithm: String {
     case md5
     case sha1
     case sha256
+    case sha384
     case sha512
 }
 
