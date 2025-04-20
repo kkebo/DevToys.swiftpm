@@ -13,6 +13,18 @@ extension HashGeneratorView: View {
     var body: some View {
         ToyPage {
             ToySection("Configuration") {
+                ConfigurationRow(systemImage: "brain") {
+                    Text("Hashing Algorithm")
+                    Text("Select which hashing algorithm you want to use")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                } content: {
+                    Picker("", selection: self.$state.generator.algorithm) {
+                        ForEach(HashAlgorithm.allCases) {
+                            Text($0.rawValue.uppercased())
+                        }
+                    }
+                }
                 ConfigurationRow("Uppercase", systemImage: "textformat") {
                     Toggle("", isOn: self.$state.generator.isUppercase)
                         .labelsHidden()
@@ -32,13 +44,7 @@ extension HashGeneratorView: View {
             }
 
             self.inputSection
-
-            VStack(spacing: 10) {
-                self.outputSection("MD5", value: self.state.md5)
-                self.outputSection("SHA1", value: self.state.sha1)
-                self.outputSection("SHA256", value: self.state.sha256)
-                self.outputSection("SHA512", value: self.state.sha512)
-            }
+            self.outputSection
         }
         .navigationTitle(Tool.hashGenerator.strings.localizedLongTitle)
     }
@@ -54,14 +60,11 @@ extension HashGeneratorView: View {
         }
     }
 
-    private func outputSection(
-        _ title: String,
-        value: String
-    ) -> some View {
-        ToySection(title) {
+    private var outputSection: some View {
+        ToySection("Output") {
             HStack {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    Text(value)
+                    Text(self.state.output)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical, 2)
                 }
@@ -69,7 +72,7 @@ extension HashGeneratorView: View {
                 .background(.regularMaterial)
                 .cornerRadius(8)
                 .fontDesign(.monospaced)
-                CopyButton(text: value)
+                CopyButton(text: self.state.output)
             }
         }
     }
