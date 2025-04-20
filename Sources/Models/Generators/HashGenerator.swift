@@ -10,13 +10,14 @@ struct HashGenerator {
     func generate(_ input: String) -> String {
         guard !input.isEmpty else { return "" }
         let inputData = Data(input.utf8)
-        let outputData = switch self.algorithm {
-        case .md5: Data(Insecure.MD5.hash(data: inputData))
-        case .sha1: Data(Insecure.SHA1.hash(data: inputData))
-        case .sha256: Data(SHA256.hash(data: inputData))
-        case .sha384: Data(SHA384.hash(data: inputData))
-        case .sha512: Data(SHA512.hash(data: inputData))
-        }
+        let outputData =
+            switch self.algorithm {
+            case .md5: Data(Insecure.MD5.hash(data: inputData))
+            case .sha1: Data(Insecure.SHA1.hash(data: inputData))
+            case .sha256: Data(SHA256.hash(data: inputData))
+            case .sha384: Data(SHA384.hash(data: inputData))
+            case .sha512: Data(SHA512.hash(data: inputData))
+            }
         switch self.outputType {
         case .hex:
             let format = self.isUppercase ? "%02X" : "%02x"
@@ -100,7 +101,7 @@ struct HashGenerator {
                 other: generator.generate("Hello there !")
             )
         }
-    
+
         func testGenerateSHA384() {
             var generator = HashGenerator()
             generator.algorithm = .sha384
