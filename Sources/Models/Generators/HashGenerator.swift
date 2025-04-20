@@ -6,7 +6,7 @@ struct HashGenerator {
     var isUppercase = false
     var outputType = HashOutputType.hex
 
-    func generate<F: HashFunction>(
+    static func generate<F: HashFunction>(
         _ input: String,
         type _: F.Type
     ) -> [UInt8] {
@@ -19,15 +19,15 @@ struct HashGenerator {
         _ input: String,
         type inputType: F.Type
     ) -> String {
+        let bytes = Self.generate(input, type: inputType)
         switch self.outputType {
         case .hex:
             let format = self.isUppercase ? "%02X" : "%02x"
-            return self.generate(input, type: inputType).lazy
+            return bytes.lazy
                 .map { String(format: format, $0) }
                 .joined()
         case .base64:
-            return Data(self.generate(input, type: inputType))
-                .base64EncodedString()
+            return Data(bytes).base64EncodedString()
         }
     }
 
