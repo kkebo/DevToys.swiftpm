@@ -191,5 +191,170 @@ struct HashGenerator {
                 other: generator.generate("Hello there !")
             )
         }
+
+        func testGenerateHMACMD5() {
+            var generator = HashGenerator()
+            generator.algorithm = .md5
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "32f0e5f36a9ca3b8ddf4cf57a2aac3c2",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "0ca4313eae971e463ee36ef076d6726e",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateHMACMD5Base64() {
+            var generator = HashGenerator()
+            generator.algorithm = .md5
+            generator.outputType = .base64
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "MvDl82qco7jd9M9XoqrDwg==",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "DKQxPq6XHkY+427wdtZybg==",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateHMACSHA1() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha1
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "2062093078d9b904982597b6a67b14abc8512864",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "330ef8f4a6fc3bb4fd1d5be9d77bcaf4a1527c4b",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateHMACSHA1Base64() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha1
+            generator.outputType = .base64
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "IGIJMHjZuQSYJZe2pnsUq8hRKGQ=",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "Mw749Kb8O7T9HVvp13vK9KFSfEs=",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateHMACSHA256() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha256
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "1352c6b2598324a5fb3ad64097ca2d678ddb71d906aa994e2fd0678e0be361aa",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "48e34698037cc06234bacd88da6f76976647fc869f4d62dde15aee41a7a568cf",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateHMACSHA256Base64() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha256
+            generator.outputType = .base64
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "E1LGslmDJKX7OtZAl8otZ43bcdkGqplOL9BnjgvjYao=",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "SONGmAN8wGI0us2I2m92l2ZH/IafTWLd4VruQaelaM8=",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateHMACSHA384() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha384
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "1eeb28a5c16df6704aa5b452f43ed420cd032d43c86d40c37ba4739b7fbf04f586764edec88b13c2dd3530d15c5211b9",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "7220e5c1e34ba4905c9bc160e2d3c5e2ed63473d6362f293441f7b072cf3832826a302f8462caee97545bfe0b58d4cd6",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateHMACSHA384Base64() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha384
+            generator.outputType = .base64
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "HusopcFt9nBKpbRS9D7UIM0DLUPIbUDDe6Rzm3+/BPWGdk7eyIsTwt01MNFcUhG5",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "ciDlweNLpJBcm8Fg4tPF4u1jRz1jYvKTRB97ByzzgygmowL4Riyu6XVFv+C1jUzW",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateHMACSHA512() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha512
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "0b8a72163b925bbb61ffa98e90339e57f0ed5c8956665af83691aebbdebb87e7eb6090a877b62fdcfca2e29768159d0066e7ef875a87d6a8b2ff9d286a98ff56",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "b73897f5e28bcadd25a6673b2f2f662148d820217fdf24070af0a06e6cfe707b18a482263b2081f1f69f05c571d279a19e55769db7726960841747dcbc338a24",
+                other: generator.generate("Hello there !")
+            )
+        }
+
+        func testGenerateHMACSHA512Base64() {
+            var generator = HashGenerator()
+            generator.algorithm = .sha512
+            generator.outputType = .base64
+            generator.hmacKey = " "
+            AssertEqual("", other: generator.generate(""))
+            AssertEqual(
+                "C4pyFjuSW7th/6mOkDOeV/DtXIlWZlr4NpGuu967h+frYJCod7Yv3Pyi4pdoFZ0AZufvh1qH1qiy/50oapj/Vg==",
+                other: generator.generate(" ")
+            )
+            generator.hmacKey = "Hello"
+            AssertEqual(
+                "tziX9eKLyt0lpmc7Ly9mIUjYICF/3yQHCvCgbmz+cHsYpIImOyCB8fafBcVx0nmhnlV2nbdyaWCEF0fcvDOKJA==",
+                other: generator.generate("Hello there !")
+            )
+        }
     }
 #endif
