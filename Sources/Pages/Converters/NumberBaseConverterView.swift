@@ -9,6 +9,7 @@ struct NumberBaseConverterView {
     }
 }
 
+@MainActor
 extension NumberBaseConverterView: View {
     var body: some View {
         ToyPage {
@@ -62,19 +63,23 @@ extension NumberBaseConverterView: View {
         text: Binding<String>
     ) -> some View {
         ToySection(LocalizedStringKey(type.rawValue.capitalized)) {
-            HStack {
-                TextField("", text: text, axis: .vertical)
-                    .modifier(ClearButtonModifier(text: text))
-                    .fontDesign(.monospaced)
-                    .keyboardType(.numbersAndPunctuation)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                PasteButton(text: text) {
-                    self.state.inputType = type
-                } postAction: {
-                    self.state.formatText(of: type)
-                }
+            PasteButton(text: text) {
+                self.state.inputType = type
+            } postAction: {
+                self.state.formatText(of: type)
             }
+            // TODO: OpenFileButton
+            // TODO: ClearButton
+            Divider().fixedSize()
+            SaveFileButton(text: text.wrappedValue)
+            CopyButton(text: text.wrappedValue)
+        } content: {
+            TextField("", text: text, axis: .vertical)
+                .modifier(ClearButtonModifier(text: text))
+                .fontDesign(.monospaced)
+                .keyboardType(.numbersAndPunctuation)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
         }
     }
 }
