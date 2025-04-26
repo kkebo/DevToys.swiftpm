@@ -12,35 +12,88 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
 ## Features
 
 - Converters
-  - [x] JSON <> YAML
-    - Partial support
-  - [x] Number Base
-  - [x] Unix Timestamp
+  - [ ] Cron Expression Parser [#107]
+  - [ ] Date Converter
+    - [x] Unix Timestamp
+    - [ ] Other features [#119]
+  - [ ] JSON Array to Table [#108]
+  - [ ] JSON <> YAML Converter
+    - [x] Basic features
+    - [ ] Other features [#73]
+  - [ ] Number Base Converter
+    - [x] Basic features
+    - [ ] Advanced mode [#131]
 - Encoders / Decoders
-  - [x] HTML
-  - [x] URL
-  - [x] Base64
-  - [ ] GZip
-  - [x] JWT Decoder
+  - [ ] Base64 Image Encoder / Decoder [#103]
+  - [x] Base64 Text Encoder / Decoder
+  - [ ] Certificate Decoder [#104]
+  - [ ] GZip Compress / Decompress [#105]
+  - [x] HTML Test Encoder / Decoder
+  - [ ] JWT Encoder / Decoder
+    - [x] Decoder
+    - [ ] Encoder [#120]
+  - [ ] QR Code Encoder / Decoder [#106]
+  - [x] URL Encoder / Decoder
 - Formatters
-  - [x] JSON
-  - [ ] SQL
-  - [ ] XML
+  - [ ] JSON Formatter
+    - [x] Basic features
+    - [ ] Sort properties [#124]
+  - [ ] SQL Formatter [#109]
+  - [ ] XML Formatter [#110]
 - Generators
-  - [x] Hash (MD5, SHA1, SHA256, SHA384, SHA512)
-  - [x] UUID (v1, v4)
-  - [x] Lorem Ipsum
-  - [ ] Checksum
-- Text
-  - [ ] Inspector & Case Converter
-  - [ ] Regex Tester
-  - [ ] Text Comparer
-  - [x] Markdown Preview
-  - [x] List Comparer
+  - [ ] Hash / Checksum Generator
+    - [x] MD5, SHA1, SHA256, SHA384, SHA512
+    - [x] HMAC
+    - [ ] Checksum [#122]
+  - [ ] Lorem Ipsum Generator
+    - [x] Lorem Ipsum
+    - [ ] More text corpora [#129]
+  - [ ] Password Generator [#111]
+  - [x] UUID Generator
+    - [x] v1, v4
+    - [ ] v7 [#125]
 - Graphic
-  - [ ] Color Blindness Simulator
-  - [ ] PNG / JPEG Compressor
-  - [ ] Image Converter
+  - [ ] Color Blindness Simulator [#112]
+  - [ ] Image Converter [#113]
+- Testers
+  - [ ] JSONPath Tester [#114]
+  - [ ] Regular Expression Tester [#41]
+  - [ ] XML / XSD Tester [#115]
+- Text
+  - [ ] Text Escape / Unescape [#116]
+  - [x] List Comparer
+  - [ ] Markdown Preview
+    - [x] Basic features
+    - [ ] GitHub-flavored Markdown [#126]
+  - [ ] Text Analyzer and Utilities [#117]
+  - [ ] Text Comparer [#118]
+
+[#41]: https://github.com/kkebo/DevToys.swiftpm/issues/41
+[#73]: https://github.com/kkebo/DevToys.swiftpm/issues/73
+[#103]: https://github.com/kkebo/DevToys.swiftpm/issues/103
+[#104]: https://github.com/kkebo/DevToys.swiftpm/issues/104
+[#105]: https://github.com/kkebo/DevToys.swiftpm/issues/105
+[#106]: https://github.com/kkebo/DevToys.swiftpm/issues/106
+[#107]: https://github.com/kkebo/DevToys.swiftpm/issues/107
+[#108]: https://github.com/kkebo/DevToys.swiftpm/issues/108
+[#109]: https://github.com/kkebo/DevToys.swiftpm/issues/109
+[#110]: https://github.com/kkebo/DevToys.swiftpm/issues/110
+[#111]: https://github.com/kkebo/DevToys.swiftpm/issues/111
+[#112]: https://github.com/kkebo/DevToys.swiftpm/issues/112
+[#113]: https://github.com/kkebo/DevToys.swiftpm/issues/113
+[#114]: https://github.com/kkebo/DevToys.swiftpm/issues/114
+[#115]: https://github.com/kkebo/DevToys.swiftpm/issues/115
+[#116]: https://github.com/kkebo/DevToys.swiftpm/issues/116
+[#117]: https://github.com/kkebo/DevToys.swiftpm/issues/117
+[#118]: https://github.com/kkebo/DevToys.swiftpm/issues/118
+[#119]: https://github.com/kkebo/DevToys.swiftpm/issues/119
+[#120]: https://github.com/kkebo/DevToys.swiftpm/issues/120
+[#122]: https://github.com/kkebo/DevToys.swiftpm/issues/122
+[#124]: https://github.com/kkebo/DevToys.swiftpm/issues/124
+[#125]: https://github.com/kkebo/DevToys.swiftpm/issues/125
+[#126]: https://github.com/kkebo/DevToys.swiftpm/issues/126
+[#129]: https://github.com/kkebo/DevToys.swiftpm/issues/129
+[#131]: https://github.com/kkebo/DevToys.swiftpm/issues/131
 
 ## Target platforms
 
