@@ -43,7 +43,7 @@ extension HTMLCoderView: View {
                     .frame(idealHeight: 200)
             }
         }
-        .navigationTitle("HTML Encoder / Decoder")
+        .navigationTitle(Tool.htmlCoder.strings.localizedLongTitle)
     }
 }
 

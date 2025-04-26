@@ -43,7 +43,7 @@ extension URLCoderView: View {
                     .frame(idealHeight: 200)
             }
         }
-        .navigationTitle("URL Encoder / Decoder")
+        .navigationTitle(Tool.urlCoder.strings.localizedLongTitle)
     }
 }
 
