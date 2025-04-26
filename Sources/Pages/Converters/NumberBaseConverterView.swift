@@ -46,9 +46,7 @@ extension NumberBaseConverterView: View {
                     .focused(self.$focusedField, equals: .binary)
             }
         }
-        .navigationTitle(
-            Tool.numberBaseConverter.strings.localizedLongTitle
-        )
+        .navigationTitle(Tool.numberBaseConverter.strings.localizedLongTitle)
         .onChange(of: self.focusedField) { oldValue, newValue in
             if let newValue {
                 self.state.inputType = newValue

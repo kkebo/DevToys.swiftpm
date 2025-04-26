@@ -84,9 +84,7 @@ extension LoremIpsumGeneratorView: View {
                     .frame(idealHeight: 200)
             }
         }
-        .navigationTitle(
-            Tool.loremIpsumGenerator.strings.localizedLongTitle
-        )
+        .navigationTitle(Tool.loremIpsumGenerator.strings.localizedLongTitle)
     }
 }
 

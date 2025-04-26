@@ -16,7 +16,7 @@ extension JWTDecoderView: View {
             self.headerSection
             self.payloadSection
         }
-        .navigationTitle("JWT Decoder")
+        .navigationTitle(Tool.jwtDecoder.strings.localizedLongTitle)
     }
 
     private var inputSection: some View {

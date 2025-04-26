@@ -55,7 +55,7 @@ extension Base64CoderView: View {
                     .frame(idealHeight: 200)
             }
         }
-        .navigationTitle("Base 64 Encoder / Decoder")
+        .navigationTitle(Tool.base64Coder.strings.localizedLongTitle)
     }
 }
 
