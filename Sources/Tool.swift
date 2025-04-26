@@ -71,19 +71,19 @@ enum Tool: String {
             .init(
                 shortTitle: "Base64 Text",
                 longTitle: "Base64 Text Encoder / Decoder",
-                description: "Encode and decode Base64 data"
+                description: "Encode and decode Base64 text data"
             )
         case .hashGenerator:
             .init(
                 shortTitle: "Hash",
                 longTitle: "Hash Generator",
-                description: "Calculate MD5, SHA1, SHA256 and SHA512 hash from text data"
+                description: "Calculate hash from text data"
             )
         case .htmlCoder:
             .init(
                 shortTitle: "HTML",
                 longTitle: "HTML Text Encoder / Decoder",
-                description: "Encode or decode all the applicable characters to their corresponding HTML entities"
+                description: "Encode and decode HTML text data"
             )
         case .jsonFormatter:
             .init(
@@ -101,7 +101,7 @@ enum Tool: String {
             .init(
                 shortTitle: "JWT Decoder",
                 longTitle: "JWT Decoder",
-                description: "Decode a JWT header, payload and signature"
+                description: "Decode JSON Web Token"
             )
         case .listComparer:
             .init(
@@ -143,7 +143,7 @@ enum Tool: String {
             .init(
                 shortTitle: "UUID",
                 longTitle: "UUID Generator",
-                description: "Generate UUIDs version 1 and 4"
+                description: "Generate UUIDs version 1 and 4 (GUID)"
             )
         }
     }
