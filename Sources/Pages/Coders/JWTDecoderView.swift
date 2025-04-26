@@ -32,6 +32,7 @@ extension JWTDecoderView: View {
 
     private var headerSection: some View {
         ToySection("Header") {
+            SaveFileButton(text: self.state.header)
             CopyButton(text: self.state.header)
         } content: {
             CodeEditor(text: .constant(self.state.header))
@@ -41,6 +42,7 @@ extension JWTDecoderView: View {
 
     private var payloadSection: some View {
         ToySection("Payload") {
+            SaveFileButton(text: self.state.payload)
             CopyButton(text: self.state.payload)
         } content: {
             CodeEditor(text: .constant(self.state.payload))

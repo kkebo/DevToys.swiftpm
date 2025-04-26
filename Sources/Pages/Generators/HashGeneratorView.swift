@@ -72,18 +72,18 @@ extension HashGeneratorView: View {
 
     private var outputSection: some View {
         ToySection("Output") {
-            HStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    Text(self.state.output)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical, 2)
-                }
-                .padding(6)
-                .background(.regularMaterial)
-                .cornerRadius(8)
-                .fontDesign(.monospaced)
-                CopyButton(text: self.state.output)
+            SaveFileButton(text: self.state.output)
+            CopyButton(text: self.state.output)
+        } content: {
+            ScrollView(.horizontal, showsIndicators: false) {
+                Text(self.state.output)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.vertical, 2)
             }
+            .padding(6)
+            .background(.regularMaterial)
+            .cornerRadius(8)
+            .fontDesign(.monospaced)
         }
     }
 }

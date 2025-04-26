@@ -77,8 +77,8 @@ extension LoremIpsumGeneratorView: View {
                 }
                 .buttonStyle(.bordered)
                 .hoverEffect()
+                SaveFileButton(text: self.state.output)
                 CopyButton(text: self.state.output)
-                ClearButton(text: self.$state.output)
             } content: {
                 CodeEditor(text: .constant(self.state.output))
                     .frame(idealHeight: 200)
