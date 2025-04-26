@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ClearButton {
     @Binding var text: String
+    @ScaledMetric private var iconSize = 20
 }
 
 extension ClearButton: View {
@@ -9,8 +10,12 @@ extension ClearButton: View {
         Button(role: .destructive) {
             self.text.removeAll()
         } label: {
-            Label("Clear", systemImage: "xmark")
-                .labelStyle(.iconOnly)
+            Label {
+                Text("Clear")
+            } icon: {
+                Image(systemName: "xmark").frame(width: self.iconSize, height: self.iconSize)
+            }
+            .labelStyle(.iconOnly)
         }
         .buttonStyle(.bordered)
         .hoverEffect()

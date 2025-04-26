@@ -3,6 +3,7 @@ import SwiftUI
 struct PasteButton {
     @Binding var text: String
     @Environment(\.horizontalSizeClass) private var hSizeClass
+    @ScaledMetric private var iconSize = 20
 }
 
 extension PasteButton: View {
@@ -11,14 +12,26 @@ extension PasteButton: View {
             self.text = UIPasteboard.general.string ?? ""
         } label: {
             if self.hSizeClass == .compact {
-                Label("Paste", systemImage: "doc.on.clipboard")
-                    .labelStyle(.iconOnly)
+                self.label.labelStyle(.iconOnly)
             } else {
-                Label("Paste", systemImage: "doc.on.clipboard")
+                self.label
             }
         }
         .buttonStyle(.bordered)
         .hoverEffect()
+    }
+
+    private var label: some View {
+        Label {
+            Text("Paste")
+        } icon: {
+            Image(systemName: "doc.on.clipboard")
+                .frame(
+                    width: self.hSizeClass == .compact ? self.iconSize : nil,
+                    height: self.iconSize
+                )
+        }
+        .lineLimit(1)
     }
 }
 
