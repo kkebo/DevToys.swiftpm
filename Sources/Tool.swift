@@ -5,17 +5,17 @@ let toolGroups: [ToolGroup] = [
         name: "Converters",
         tools: [
             .jsonYAMLConverter,
-            .timestampConverter,
             .numberBaseConverter,
+            .timestampConverter,
         ]
     ),
     .init(
         name: "Encoders / Decoders",
         tools: [
-            .htmlCoder,
-            .urlCoder,
             .base64Coder,
+            .htmlCoder,
             .jwtDecoder,
+            .urlCoder,
         ]
     ),
     .init(
@@ -26,9 +26,17 @@ let toolGroups: [ToolGroup] = [
         name: "Generators",
         tools: [
             .hashGenerator,
-            .uuidGenerator,
             .loremIpsumGenerator,
+            .uuidGenerator,
         ]
+    ),
+    .init(
+        name: "Graphic",
+        tools: []
+    ),
+    .init(
+        name: "Testers",
+        tools: []
     ),
     .init(
         name: "Text",
@@ -36,10 +44,6 @@ let toolGroups: [ToolGroup] = [
             .listComparer,
             .markdownPreview,
         ]
-    ),
-    .init(
-        name: "Graphic",
-        tools: []
     ),
 ]
 
