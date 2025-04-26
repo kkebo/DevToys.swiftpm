@@ -69,8 +69,8 @@ enum Tool: String {
             )
         case .base64Coder:
             .init(
-                shortTitle: "Base 64",
-                longTitle: "Base 64 Encoder / Decoder",
+                shortTitle: "Base64 Text",
+                longTitle: "Base64 Text Encoder / Decoder",
                 description: "Encode and decode Base64 data"
             )
         case .hashGenerator:
@@ -82,7 +82,7 @@ enum Tool: String {
         case .htmlCoder:
             .init(
                 shortTitle: "HTML",
-                longTitle: "HTML Encoder / Decoder",
+                longTitle: "HTML Text Encoder / Decoder",
                 description: "Encode or decode all the applicable characters to their corresponding HTML entities"
             )
         case .jsonFormatter:
