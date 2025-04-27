@@ -1,28 +1,14 @@
 import SwiftUI
 
 struct PasteButton {
+    @Binding var text: String
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    @Binding private var text: String
-    private let preAction: () -> Void
-    private let postAction: () -> Void
-
-    init(
-        text: Binding<String>,
-        preAction: @escaping () -> Void = {},
-        postAction: @escaping () -> Void = {}
-    ) {
-        self._text = text
-        self.preAction = preAction
-        self.postAction = postAction
-    }
 }
 
 extension PasteButton: View {
     var body: some View {
         Button {
-            self.preAction()
             self.text = UIPasteboard.general.string ?? ""
-            self.postAction()
         } label: {
             if self.hSizeClass == .compact {
                 Label("Paste", systemImage: "doc.on.clipboard")

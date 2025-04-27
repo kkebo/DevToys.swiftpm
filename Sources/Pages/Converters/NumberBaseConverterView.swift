@@ -36,15 +36,52 @@ extension NumberBaseConverterView: View {
             VStack(spacing: 10) {
                 self.inputSection(
                     type: .hexadecimal,
-                    text: self.$state.hexadecimal
+                    text: .init(
+                        get: { self.state.hexadecimal },
+                        set: {
+                            self.state.inputType = .hexadecimal
+                            self.state.hexadecimal = $0
+                            self.state.formatText(of: .hexadecimal)
+                        }
+                    )
                 )
                 .focused(self.$focusedField, equals: .hexadecimal)
-                self.inputSection(type: .decimal, text: self.$state.decimal)
-                    .focused(self.$focusedField, equals: .decimal)
-                self.inputSection(type: .octal, text: self.$state.octal)
-                    .focused(self.$focusedField, equals: .octal)
-                self.inputSection(type: .binary, text: self.$state.binary)
-                    .focused(self.$focusedField, equals: .binary)
+                self.inputSection(
+                    type: .decimal,
+                    text: .init(
+                        get: { self.state.decimal },
+                        set: {
+                            self.state.inputType = .decimal
+                            self.state.decimal = $0
+                            self.state.formatText(of: .decimal)
+                        }
+                    )
+                )
+                .focused(self.$focusedField, equals: .decimal)
+                self.inputSection(
+                    type: .octal,
+                    text: .init(
+                        get: { self.state.octal },
+                        set: {
+                            self.state.inputType = .octal
+                            self.state.octal = $0
+                            self.state.formatText(of: .octal)
+                        }
+                    )
+                )
+                .focused(self.$focusedField, equals: .octal)
+                self.inputSection(
+                    type: .binary,
+                    text: .init(
+                        get: { self.state.binary },
+                        set: {
+                            self.state.inputType = .binary
+                            self.state.binary = $0
+                            self.state.formatText(of: .binary)
+                        }
+                    )
+                )
+                .focused(self.$focusedField, equals: .binary)
             }
         }
         .navigationTitle(Tool.numberBaseConverter.strings.localizedLongTitle)
@@ -63,13 +100,9 @@ extension NumberBaseConverterView: View {
         text: Binding<String>
     ) -> some View {
         ToySection(LocalizedStringKey(type.rawValue.capitalized)) {
-            PasteButton(text: text) {
-                self.state.inputType = type
-            } postAction: {
-                self.state.formatText(of: type)
-            }
-            // TODO: OpenFileButton
-            // TODO: ClearButton
+            PasteButton(text: text)
+            OpenFileButton(text: text)
+            ClearButton(text: text)
             Divider().fixedSize()
             SaveFileButton(text: text.wrappedValue)
             CopyButton(text: text.wrappedValue)
