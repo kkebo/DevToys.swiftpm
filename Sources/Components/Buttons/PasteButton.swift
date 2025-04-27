@@ -9,7 +9,9 @@ struct PasteButton {
 extension PasteButton: View {
     var body: some View {
         Button {
-            self.text = UIPasteboard.general.string ?? ""
+            if let text = UIPasteboard.general.string {
+                self.text = text
+            }
         } label: {
             if self.hSizeClass == .compact {
                 self.label.labelStyle(.iconOnly)
