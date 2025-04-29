@@ -58,11 +58,13 @@ extension Sidebar: View {
             }
         }
         #if DEBUG
-            Section("Debug") {
-                #if TESTING_ENABLED
-                    UnitTestsButton()
-                #endif
-                ExportIPAButton()
+            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+                Section("Debug") {
+                    #if TESTING_ENABLED
+                        UnitTestsButton()
+                    #endif
+                    ExportIPAButton()
+                }
             }
         #endif
     }
