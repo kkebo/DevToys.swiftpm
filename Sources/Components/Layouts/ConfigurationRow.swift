@@ -1,5 +1,18 @@
 import SwiftUI
 
+private struct ConfigurationLabelStyle {
+    @ScaledMetric private var iconSize = 20
+}
+
+extension ConfigurationLabelStyle: LabelStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        HStack {
+            configuration.icon.frame(width: self.iconSize)
+            configuration.title
+        }
+    }
+}
+
 struct ConfigurationRow<Title: View, Content: View> {
     private let label: Label<Title, Image>
     private let content: Content
@@ -43,7 +56,7 @@ extension ConfigurationRow: View {
     var body: some View {
         GroupBox {
             HStack {
-                self.label
+                self.label.labelStyle(ConfigurationLabelStyle())
                 Spacer()
                 self.content
             }
