@@ -19,6 +19,7 @@ extension CopyButton: View {
         }
         .buttonStyle(.bordered)
         .hoverEffect()
+        .disabled(self.text.isEmpty)
     }
 
     private var label: some View {

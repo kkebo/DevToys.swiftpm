@@ -18,6 +18,7 @@ extension SaveFileButton: View {
         }
         .buttonStyle(.bordered)
         .hoverEffect()
+        .disabled(self.text.isEmpty)
     }
 }
 
