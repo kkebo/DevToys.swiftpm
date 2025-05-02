@@ -6,11 +6,11 @@ struct Strings {
     let description: String
 
     var localizedLongTitle: String {
-        NSLocalizedString(self.longTitle, comment: "")
+        String(localized: .init(self.longTitle))
     }
 
     var localizedDescription: String {
-        NSLocalizedString(self.description, comment: "")
+        String(localized: .init(self.description))
     }
 
     init(
