@@ -64,7 +64,7 @@ extension Sidebar: View {
                     #if TESTING_ENABLED
                         UnitTestsButton()
                     #endif
-                    ExportIPAButton()
+                    ExportIPAButton(customBundleID: "xyz.kebo.DevToysForiPad")
                 }
             }
         #endif
