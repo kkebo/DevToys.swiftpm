@@ -23,6 +23,7 @@ let package = Package(
         .package(url: "https://github.com/kkebo/swift-uniyaml", branch: "origin/issues/1"),
         .package(url: "https://github.com/mchakravarty/CodeEditorView", from: "0.13.0"),
         .package(url: "https://github.com/apple/swift-collections", from: "1.1.4"),
+        .package(url: "https://github.com/kkebo/export-ipa", from: "0.1.0"),
     ],
     targets: [
         .executableTarget(
@@ -38,6 +39,7 @@ let package = Package(
                 .product(name: "UniYAML", package: "swift-uniyaml"),
                 .product(name: "CodeEditorView", package: "CodeEditorView"),
                 .product(name: "OrderedCollections", package: "swift-collections"),
+                .product(name: "ExportIPAUI", package: "export-ipa"),
             ],
             swiftSettings: [
                 .unsafeFlags(["-Xfrontend", "-warn-long-function-bodies=100"], .when(configuration: .debug)),
