@@ -1,5 +1,5 @@
 {
-  "originHash" : "f23c15d0d9414c3b5989b0c4f993693e0db54024092a196442d4f2142992b2c1",
+  "originHash" : "7405dc003932904062dc275476aa81e45f766d368d150a90f9768c5042578d16",
   "pins" : [
     {
       "identity" : "codeeditorview",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "02fe1111edc8318c4f8a0da96336fcbcc201f38b",
         "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "export-ipa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kkebo/export-ipa",
+      "state" : {
+        "revision" : "af3557983c75ed70eda4b528e2926ab310ceb231",
+        "version" : "0.2.0"
       }
     },
     {
