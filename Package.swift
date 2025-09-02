@@ -44,7 +44,6 @@ let package = Package(
             swiftSettings: [
                 .unsafeFlags(["-Xfrontend", "-warn-long-function-bodies=100"], .when(configuration: .debug)),
                 .unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
-                .unsafeFlags(["-Xfrontend", "-enable-actor-data-race-checks"]),
                 .define("DEBUG", .when(configuration: .debug)),
                 .define("TESTING_ENABLED", .when(configuration: .debug)),
                 // Swift 7
