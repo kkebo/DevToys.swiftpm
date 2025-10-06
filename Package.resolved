@@ -1,5 +1,5 @@
 {
-  "originHash" : "6a9cec692163b434df9ded3403757b01bd8a43c9c996540b674ddd125a8a3f2a",
+  "originHash" : "01eb036de56b31509bc8949a7fa19716f935af96435aad18cdd169c8c1f5ef0c",
   "pins" : [
     {
       "identity" : "codeeditorview",
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kkebo/swift-uniyaml",
       "state" : {
-        "branch" : "origin/issues/1",
-        "revision" : "acce8c01b2fed1aa87bfb960ebe09caaae3c18d0"
+        "branch" : "master",
+        "revision" : "1628bc64f558f0f43c3126c5da1b5e99ecebd129"
       }
     },
     {
