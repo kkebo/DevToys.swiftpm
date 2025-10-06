@@ -20,7 +20,7 @@ let package = Package(
         .package(url: "https://github.com/Losiowaty/PlaygroundTester", from: "0.3.1"),
         .package(url: "https://github.com/lukaskubanek/LoremSwiftum", from: "2.2.1"),
         .package(url: "https://github.com/JohnSundell/Ink", from: "0.6.0"),
-        .package(url: "https://github.com/kkebo/swift-uniyaml", branch: "origin/issues/1"),
+        .package(url: "https://github.com/kkebo/swift-uniyaml", branch: "master"),
         .package(url: "https://github.com/mchakravarty/CodeEditorView", from: "0.13.0"),
         .package(url: "https://github.com/apple/swift-collections", from: "1.1.4"),
         .package(url: "https://github.com/kkebo/export-ipa", from: "0.2.0"),
