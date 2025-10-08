@@ -41,6 +41,9 @@ let package = Package(
                 .product(name: "OrderedCollections", package: "swift-collections"),
                 .product(name: "ExportIPAUI", package: "export-ipa"),
             ],
+            resources: [
+                .process("Assets.xcassets")
+            ],
             swiftSettings: [
                 .unsafeFlags(["-Xfrontend", "-warn-long-function-bodies=100"], .when(configuration: .debug)),
                 .unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
