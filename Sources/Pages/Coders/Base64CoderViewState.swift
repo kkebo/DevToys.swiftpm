@@ -20,7 +20,7 @@ final class Base64CoderViewState {
     private func updateOutput() {
         self.output =
             self.encodeMode
-            ? self.coder.encode(self.input) ?? ""
+            ? self.coder.encode(self.input)
             : self.coder.decode(self.input) ?? ""
     }
 }
