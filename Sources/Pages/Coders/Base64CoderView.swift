@@ -32,8 +32,8 @@ extension Base64CoderView: View {
                         .foregroundStyle(.secondary)
                 } content: {
                     Picker("", selection: self.$state.coder.encoding) {
-                        Text("UTF-8").tag(String.Encoding.utf8)
-                        Text("ASCII").tag(String.Encoding.ascii)
+                        Text("UTF-8").tag(Base64CoderEncoding.utf8)
+                        Text("ASCII").tag(Base64CoderEncoding.ascii)
                     }
                     .labelsHidden()
                 }

@@ -1,16 +1,33 @@
 import struct Foundation.Data
 
-struct Base64Coder {
-    var encoding = String.Encoding.utf8
+enum Base64CoderEncoding {
+    case utf8
+    case ascii
 
-    func encode(_ input: String) -> String? {
-        input.data(using: self.encoding, allowLossyConversion: true)?
-            .base64EncodedString()
+    func encode(_ str: String) -> Data {
+        switch self {
+        case .utf8: Data(str.utf8)
+        case .ascii: Data(self.decode(Data(str.utf8)).utf8)
+        }
+    }
+
+    func decode(_ data: Data) -> String {
+        switch self {
+        case .utf8: String(decoding: data, as: UTF8.self)
+        case .ascii: String(decoding: data, as: Unicode.ASCII.self)
+        }
+    }
+}
+
+struct Base64Coder {
+    var encoding = Base64CoderEncoding.utf8
+
+    func encode(_ input: String) -> String {
+        self.encoding.encode(input).base64EncodedString()
     }
 
     func decode(_ input: String) -> String? {
-        Data(base64Encoded: input)
-            .flatMap { .init(data: $0, encoding: self.encoding) }
+        Data(base64Encoded: input).map(self.encoding.decode)
     }
 }
 
@@ -51,7 +68,7 @@ struct Base64Coder {
                 other: coder.encode("Hello there !")
             )
             AssertEqual(
-                "/w==",
+                "77+977+977+977+9",
                 other: coder.encode("🫃")
             )
         }
@@ -64,8 +81,8 @@ struct Base64Coder {
                 other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
             )
             AssertEqual(
-                "?",
-                other: coder.decode("Pw==")
+                "������������",
+                other: coder.decode("77+977+977+977+9")
             )
         }
     }
