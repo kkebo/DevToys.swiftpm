@@ -36,6 +36,7 @@ extension ListComparerView: View {
                 CopyButton(text: self.state.output)
             } content: {
                 CodeEditor(text: .constant(self.state.output))
+                    .frame(idealHeight: 200)
             }
         }
         .navigationTitle(Tool.listComparer.strings.localizedLongTitle)
@@ -48,6 +49,7 @@ extension ListComparerView: View {
             ClearButton(text: self.$state.a)
         } content: {
             CodeEditor(text: self.$state.a)
+                .frame(idealHeight: 100)
         }
     }
 
@@ -58,6 +60,7 @@ extension ListComparerView: View {
             ClearButton(text: self.$state.b)
         } content: {
             CodeEditor(text: self.$state.b)
+                .frame(idealHeight: 100)
         }
     }
 }
