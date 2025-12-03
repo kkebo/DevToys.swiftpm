@@ -3,6 +3,7 @@ import Observation
 @Observable
 final class AppState {
     let numberBaseConverterViewState = NumberBaseConverterViewState()
+    let base64ImageCoderViewState = Base64ImageCoderViewState()
     let base64CoderViewState = Base64CoderViewState()
     let htmlCoderViewState = HTMLCoderViewState()
     let jwtDecoderViewState = JWTDecoderViewState()

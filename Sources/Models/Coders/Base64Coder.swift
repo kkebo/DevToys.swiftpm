@@ -22,12 +22,32 @@ enum Base64CoderEncoding {
 struct Base64Coder {
     var encoding = Base64CoderEncoding.utf8
 
+    @inline(__always)
+    private func encodeString(_ s: String) -> Data {
+        self.encoding.encode(s)
+    }
+
+    @inline(__always)
+    private func decodeString(_ data: Data) -> String {
+        self.encoding.decode(data)
+    }
+
+    @inline(__always)
+    static func encode(_ input: Data) -> String {
+        input.base64EncodedString()
+    }
+
     func encode(_ input: String) -> String {
-        self.encoding.encode(input).base64EncodedString()
+        Self.encode(self.encodeString(input))
+    }
+
+    @inline(__always)
+    static func decode(_ input: String) -> Data? {
+        Data(base64Encoded: input)
     }
 
     func decode(_ input: String) -> String? {
-        Data(base64Encoded: input).map(self.encoding.decode)
+        Self.decode(input).map(self.decodeString)
     }
 }
 
