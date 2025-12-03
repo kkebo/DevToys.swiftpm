@@ -25,6 +25,8 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
     - [ ] Advanced mode [#131]
 - Encoders / Decoders
   - [ ] Base64 Image Encoder / Decoder [#103]
+    - [x] Decoder
+    - [ ] Encoder [#161]
   - [x] Base64 Text Encoder / Decoder
   - [ ] Certificate Decoder [#104]
   - [ ] GZip Compress / Decompress [#105]
@@ -94,6 +96,7 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
 [#126]: https://github.com/kkebo/DevToys.swiftpm/issues/126
 [#129]: https://github.com/kkebo/DevToys.swiftpm/issues/129
 [#131]: https://github.com/kkebo/DevToys.swiftpm/issues/131
+[#161]: https://github.com/kkebo/DevToys.swiftpm/issues/161
 
 ## Target platforms
 

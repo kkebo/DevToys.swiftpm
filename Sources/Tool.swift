@@ -12,6 +12,7 @@ let toolGroups: [ToolGroup] = [
     .init(
         name: "Encoders / Decoders",
         tools: [
+            .base64ImageCoder,
             .base64Coder,
             .htmlCoder,
             .jwtDecoder,
@@ -49,6 +50,7 @@ let toolGroups: [ToolGroup] = [
 
 enum Tool: String {
     case allTools
+    case base64ImageCoder
     case base64Coder
     case hashGenerator
     case htmlCoder
@@ -70,6 +72,12 @@ enum Tool: String {
                 shortTitle: "All tools",
                 longTitle: "All tools",
                 description: ""
+            )
+        case .base64ImageCoder:
+            .init(
+                shortTitle: "Base64 Image Decoder",
+                longTitle: "Base64 Image Decoder",
+                description: "Decode Base64 image data"
             )
         case .base64Coder:
             .init(
@@ -156,6 +164,8 @@ enum Tool: String {
         switch self {
         case .allTools:
             Image(systemName: "house")
+        case .base64ImageCoder:
+            Image(systemName: "b").symbolVariant(.square)
         case .base64Coder:
             Image(systemName: "b").symbolVariant(.square)
         case .hashGenerator:
@@ -191,6 +201,7 @@ enum Tool: String {
         switch self {
         case .allTools: AllToolsView(state: state, selection: selection, searchQuery: searchQuery)
         case .base64Coder: Base64CoderView(state: state)
+        case .base64ImageCoder: Base64ImageCoderView(state: state)
         case .hashGenerator: HashGeneratorView(state: state)
         case .htmlCoder: HTMLCoderView(state: state)
         case .jsonFormatter: JSONFormatterView(state: state)
@@ -214,6 +225,7 @@ extension Tool: Identifiable {
 extension Tool: CaseIterable {
     static var allCases: [Tool] {
         [
+            .base64ImageCoder,
             .base64Coder,
             .hashGenerator,
             .htmlCoder,
