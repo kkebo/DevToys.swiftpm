@@ -21,12 +21,14 @@ extension Base64ImageCoderView: View {
                         .frame(idealHeight: 200)
                 }
                 ToySection("Image preview") {
-                    // TODO: Implement
-                    // CopyButton
-                    // SaveFileButton
+                    if let data = self.state.imageData, let image = UIImage(data: data) {
+                        ViewImageButton(data: data)
+                        CopyImageButton(image: image)
+                        SaveImageButton(image: Image(uiImage: image))
+                    }
                 } content: {
                     Group {
-                        if let data = self.state.imageData, let image = UIImage(data: data) {
+                        if let image = self.state.imageData.flatMap(UIImage.init) {
                             Image(uiImage: image).resizable().scaledToFit()
                         } else {
                             ContentUnavailableView("No Image", systemImage: "photo")
