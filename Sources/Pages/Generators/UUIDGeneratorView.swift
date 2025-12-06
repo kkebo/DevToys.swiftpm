@@ -85,8 +85,7 @@ extension UUIDGeneratorView: View {
         ToySection(
             self.state.numberOfUUIDs > 1 ? "UUIDs" : "UUID"
         ) {
-            SaveFileButton(text: self.state.output)
-            CopyButton(text: self.state.output)
+            OutputButtons(text: self.state.output)
         } content: {
             CodeEditor(text: .constant(self.state.output))
                 .frame(idealHeight: 200)

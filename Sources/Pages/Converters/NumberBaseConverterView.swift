@@ -100,12 +100,9 @@ extension NumberBaseConverterView: View {
         text: Binding<String>
     ) -> some View {
         ToySection(LocalizedStringKey(type.rawValue.capitalized)) {
-            PasteButton(text: text)
-            OpenFileButton(text: text)
-            ClearButton(text: text)
+            InputButtons(text: text)
             Divider().fixedSize()
-            SaveFileButton(text: text.wrappedValue)
-            CopyButton(text: text.wrappedValue)
+            OutputButtons(text: text.wrappedValue)
         } content: {
             TextField("", text: text, axis: .vertical)
                 .modifier(ClearButtonModifier(text: text))

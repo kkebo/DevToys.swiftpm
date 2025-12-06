@@ -22,12 +22,9 @@ extension MarkdownPreviewView: View {
 
     private var markdownSection: some View {
         ToySection("Markdown") {
-            PasteButton(text: self.$state.input)
-            OpenFileButton(text: self.$state.input)
-            ClearButton(text: self.$state.input)
+            InputButtons(text: self.$state.input)
             Divider().fixedSize()
-            SaveFileButton(text: self.state.input)
-            CopyButton(text: self.state.input)
+            OutputButtons(text: self.state.input)
         } content: {
             CodeEditor(text: self.$state.input)
                 .frame(idealHeight: 200)
@@ -36,8 +33,7 @@ extension MarkdownPreviewView: View {
 
     private var previewSection: some View {
         ToySection("Preview") {
-            SaveFileButton(text: self.state.output)
-            CopyButton(text: self.state.output)
+            OutputButtons(text: self.state.output)
         } content: {
             HTMLView(self.state.output)
         }

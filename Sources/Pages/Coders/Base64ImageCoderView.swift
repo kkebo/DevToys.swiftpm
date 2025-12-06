@@ -13,19 +13,13 @@ extension Base64ImageCoderView: View {
         ToyPage {
             ResponsiveStack(spacing: 16) {
                 ToySection("Base64 text") {
-                    PasteButton(text: self.$state.text)
-                    OpenFileButton(text: self.$state.text)
-                    ClearButton(text: self.$state.text)
+                    InputButtons(text: self.$state.text)
                 } content: {
                     CodeEditor(text: self.$state.text)
                         .frame(idealHeight: 200)
                 }
                 ToySection("Image preview") {
-                    if let data = self.state.imageData, let image = UIImage(data: data) {
-                        ViewImageButton(data: data)
-                        CopyImageButton(image: image)
-                        SaveImageButton(image: Image(uiImage: image))
-                    }
+                    OutputImageButtons(data: self.state.imageData)
                 } content: {
                     Group {
                         if let image = self.state.imageData.flatMap(UIImage.init) {

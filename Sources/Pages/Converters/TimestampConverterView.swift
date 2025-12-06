@@ -44,8 +44,9 @@ extension TimestampConverterView: View {
 
     private var timestampSection: some View {
         ToySection("Timestamp") {
-            PasteButton(text: self.$state.timestampString)
-            CopyButton(text: self.state.timestampString)
+            InputButtons(text: self.$state.timestampString)
+            Divider().fixedSize()
+            OutputButtons(text: self.state.timestampString)
         } content: {
             HStack {
                 TextField(

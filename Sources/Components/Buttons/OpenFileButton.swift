@@ -4,7 +4,6 @@ struct OpenFileButton {
     @Binding var text: String
     @State private var isImporterPresented = false
     @State private var fileToBeOpenedWithEncoding: URL?
-    @ScaledMetric private var iconSize = 20
 
     var encodingPickerPresented: Binding<Bool> {
         .init(
@@ -62,17 +61,10 @@ struct OpenFileButton {
 
 extension OpenFileButton: View {
     var body: some View {
-        Button {
+        Button("Open", systemImage: "doc") {
             self.isImporterPresented.toggle()
-        } label: {
-            Label {
-                Text("Open")
-            } icon: {
-                Image(systemName: "doc").frame(width: self.iconSize, height: self.iconSize)
-            }
-            .labelStyle(.iconOnly)
         }
-        .buttonStyle(.bordered)
+        .buttonStyle(.toolbarIconOnly)
         .hoverEffect()
         .fileImporter(
             isPresented: self.$isImporterPresented,
