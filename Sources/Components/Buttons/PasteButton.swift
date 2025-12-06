@@ -33,7 +33,6 @@ extension PasteButton: View {
                     height: self.iconSize
                 )
         }
-        .lineLimit(1)
     }
 }
 

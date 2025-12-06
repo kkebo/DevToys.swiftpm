@@ -32,7 +32,6 @@ extension CopyButton: View {
                     height: self.iconSize
                 )
         }
-        .lineLimit(1)
     }
 }
 
