@@ -76,7 +76,7 @@ struct ToySection<Title: View, Content: View> {
 extension ToySection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            self.title
+            self.title.lineLimit(1)
             self.content
         }
         .frame(maxWidth: .infinity, alignment: .leading)
