@@ -40,7 +40,6 @@ extension ViewImageButton: View {
                     height: self.iconSize
                 )
         }
-        .lineLimit(1)
     }
 }
 
