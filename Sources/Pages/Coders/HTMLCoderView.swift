@@ -28,17 +28,14 @@ extension HTMLCoderView: View {
             }
 
             ToySection("Input") {
-                PasteButton(text: self.$state.input)
-                OpenFileButton(text: self.$state.input)
-                ClearButton(text: self.$state.input)
+                InputButtons(text: self.$state.input)
             } content: {
                 CodeEditor(text: self.$state.input)
                     .frame(idealHeight: 200)
             }
 
             ToySection("Output") {
-                SaveFileButton(text: self.state.output)
-                CopyButton(text: self.state.output)
+                OutputButtons(text: self.state.output)
             } content: {
                 CodeEditor(text: .constant(self.state.output))
                     .frame(idealHeight: 200)

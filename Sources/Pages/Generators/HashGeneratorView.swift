@@ -46,9 +46,7 @@ extension HashGeneratorView: View {
             self.inputSection
 
             ToySection("Secret key to use to generate a HMAC hash") {
-                PasteButton(text: self.$state.generator.hmacKey)
-                OpenFileButton(text: self.$state.generator.hmacKey)
-                ClearButton(text: self.$state.generator.hmacKey)
+                InputButtons(text: self.$state.generator.hmacKey)
             } content: {
                 TextField("", text: self.$state.generator.hmacKey)
                     .modifier(ClearButtonModifier(text: self.$state.generator.hmacKey))
@@ -61,9 +59,7 @@ extension HashGeneratorView: View {
 
     private var inputSection: some View {
         ToySection("Input") {
-            PasteButton(text: self.$state.input)
-            OpenFileButton(text: self.$state.input)
-            ClearButton(text: self.$state.input)
+            InputButtons(text: self.$state.input)
         } content: {
             CodeEditor(text: self.$state.input)
                 .frame(height: 100)
@@ -72,8 +68,7 @@ extension HashGeneratorView: View {
 
     private var outputSection: some View {
         ToySection("Output") {
-            SaveFileButton(text: self.state.output)
-            CopyButton(text: self.state.output)
+            OutputButtons(text: self.state.output)
         } content: {
             ScrollView(.horizontal, showsIndicators: false) {
                 Text(self.state.output)

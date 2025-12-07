@@ -21,9 +21,7 @@ extension JWTDecoderView: View {
 
     private var inputSection: some View {
         ToySection("JWT Token") {
-            PasteButton(text: self.$state.input)
-            OpenFileButton(text: self.$state.input)
-            ClearButton(text: self.$state.input)
+            InputButtons(text: self.$state.input)
         } content: {
             CodeEditor(text: self.$state.input)
                 .frame(height: 100)
@@ -32,8 +30,7 @@ extension JWTDecoderView: View {
 
     private var headerSection: some View {
         ToySection("Header") {
-            SaveFileButton(text: self.state.header)
-            CopyButton(text: self.state.header)
+            OutputButtons(text: self.state.header)
         } content: {
             CodeEditor(text: .constant(self.state.header))
                 .frame(idealHeight: 200)
@@ -42,8 +39,7 @@ extension JWTDecoderView: View {
 
     private var payloadSection: some View {
         ToySection("Payload") {
-            SaveFileButton(text: self.state.payload)
-            CopyButton(text: self.state.payload)
+            OutputButtons(text: self.state.payload)
         } content: {
             CodeEditor(text: .constant(self.state.payload))
                 .frame(idealHeight: 200)

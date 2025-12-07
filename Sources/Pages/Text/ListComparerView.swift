@@ -32,8 +32,7 @@ extension ListComparerView: View {
             }
 
             ToySection(LocalizedStringKey(self.state.comparisonMode.description)) {
-                SaveFileButton(text: self.state.output)
-                CopyButton(text: self.state.output)
+                OutputButtons(text: self.state.output)
             } content: {
                 CodeEditor(text: .constant(self.state.output))
                     .frame(idealHeight: 200)
@@ -44,9 +43,7 @@ extension ListComparerView: View {
 
     private var sectionA: some View {
         ToySection("A") {
-            PasteButton(text: self.$state.a)
-            OpenFileButton(text: self.$state.a)
-            ClearButton(text: self.$state.a)
+            InputButtons(text: self.$state.a)
         } content: {
             CodeEditor(text: self.$state.a)
                 .frame(idealHeight: 100)
@@ -55,9 +52,7 @@ extension ListComparerView: View {
 
     private var sectionB: some View {
         ToySection("B") {
-            PasteButton(text: self.$state.b)
-            OpenFileButton(text: self.$state.b)
-            ClearButton(text: self.$state.b)
+            InputButtons(text: self.$state.b)
         } content: {
             CodeEditor(text: self.$state.b)
                 .frame(idealHeight: 100)

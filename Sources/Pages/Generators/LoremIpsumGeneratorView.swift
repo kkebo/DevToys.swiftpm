@@ -65,20 +65,12 @@ extension LoremIpsumGeneratorView: View {
             }
 
             ToySection("Output") {
-                Button {
+                Button("Refresh", systemImage: "arrow.clockwise") {
                     self.state.generate()
-                } label: {
-                    if self.hSizeClass == .compact {
-                        Label("Refresh", systemImage: "arrow.clockwise")
-                            .labelStyle(.iconOnly)
-                    } else {
-                        Label("Refresh", systemImage: "arrow.clockwise")
-                    }
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(.toolbar)
                 .hoverEffect()
-                SaveFileButton(text: self.state.output)
-                CopyButton(text: self.state.output)
+                OutputButtons(text: self.state.output)
             } content: {
                 CodeEditor(text: .constant(self.state.output))
                     .frame(idealHeight: 200)

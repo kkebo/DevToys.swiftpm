@@ -2,23 +2,14 @@ import SwiftUI
 
 struct CopyImageButton {
     let image: UIImage
-    @ScaledMetric private var iconSize = 20
 }
 
 extension CopyImageButton: View {
     var body: some View {
-        Button {
+        Button("Copy", systemImage: "doc.on.doc") {
             UIPasteboard.general.image = self.image
-        } label: {
-            Label {
-                Text("Copy")
-            } icon: {
-                Image(systemName: "doc.on.doc")
-                    .frame(width: self.iconSize, height: self.iconSize)
-            }
-            .labelStyle(.iconOnly)
         }
-        .buttonStyle(.bordered)
+        .buttonStyle(.toolbarIconOnly)
         .hoverEffect()
     }
 }
