@@ -1,5 +1,5 @@
 {
-  "originHash" : "01eb036de56b31509bc8949a7fa19716f935af96435aad18cdd169c8c1f5ef0c",
+  "originHash" : "5b013f413f050b0055539bbe0df80c2d2e8aeca5b3ee335840e4c927ff7e4c3f",
   "pins" : [
     {
       "identity" : "codeeditorview",
@@ -94,10 +94,10 @@
     {
       "identity" : "swift-log",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-log.git",
+      "location" : "https://github.com/apple/swift-log",
       "state" : {
-        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
-        "version" : "1.6.1"
+        "revision" : "ca538143e2dc2b5996c34b9322a1ed9def1d7747",
+        "version" : "1.7.0"
       }
     },
     {
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kkebo/swift-log-playground",
       "state" : {
-        "revision" : "e4dc823998cd6130d75bcd60f083fc156d4d3ca1",
-        "version" : "0.2.0"
+        "revision" : "248ae97fa5d2687ed80d8cdd5c6b9b0c3ac4ff2c",
+        "version" : "0.3.0"
       }
     },
     {
@@ -115,7 +115,7 @@
       "location" : "https://github.com/kkebo/swift-uniyaml",
       "state" : {
         "branch" : "master",
-        "revision" : "0cc03940c16ebe76c28b18695fd21b36d7de2334"
+        "revision" : "7cd137791252955cfc89334fdebbe512696be8db"
       }
     },
     {
