@@ -1,12 +1,12 @@
-import HTMLEntities
+import HTMLEntityCoder
 
 struct HTMLCoder {
     static func encode(_ input: String) -> String {
-        input.htmlEscape(useNamedReferences: true)
+        encodeHTML(input)
     }
 
     static func decode(_ input: String) -> String {
-        input.htmlUnescape()
+        decodeHTML(input)
     }
 }
 
