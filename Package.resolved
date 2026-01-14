@@ -1,5 +1,5 @@
 {
-  "originHash" : "5b013f413f050b0055539bbe0df80c2d2e8aeca5b3ee335840e4c927ff7e4c3f",
+  "originHash" : "4bb9a2e166918b32a7091fff12aa92edcbd7b2ab0fda99017843348d89a3cc5e",
   "pins" : [
     {
       "identity" : "codeeditorview",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "af3557983c75ed70eda4b528e2926ab310ceb231",
         "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "html-entity-coder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kkebo/html-entity-coder",
+      "state" : {
+        "revision" : "78ab7cbfa4de21282d02117b12990d306780b324",
+        "version" : "1.0.1"
       }
     },
     {
@@ -80,15 +89,6 @@
       "state" : {
         "revision" : "7b847a3b7008b2dc2f47ca3110d8c782fb2e5c7e",
         "version" : "1.3.0"
-      }
-    },
-    {
-      "identity" : "swift-html-entities",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kkebo/swift-html-entities",
-      "state" : {
-        "branch" : "origin/issues/67",
-        "revision" : "b86aa375c18ee6e5811a7c5b91a8bd93ae126b86"
       }
     },
     {
