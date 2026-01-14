@@ -16,7 +16,7 @@ let package = Package(
         .package(url: "https://github.com/kkebo/swift-log-playground", from: "0.1.4"),
         .package(url: "https://github.com/kkebo/SwiftJSONFormatter", branch: "origin/fix-build"),
         .package(url: "https://github.com/auth0/JWTDecode.swift", from: "3.2.0"),
-        .package(url: "https://github.com/kkebo/html-entity-coder", from: "1.0.0"),
+        .package(url: "https://github.com/kkebo/html-entity-coder", from: "1.0.1"),
         .package(url: "https://github.com/Losiowaty/PlaygroundTester", from: "0.3.1"),
         .package(url: "https://github.com/lukaskubanek/LoremSwiftum", from: "2.2.1"),
         .package(url: "https://github.com/JohnSundell/Ink", from: "0.6.0"),

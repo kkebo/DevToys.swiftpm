@@ -1,5 +1,5 @@
 {
-  "originHash" : "80e7a4bf42a5848593d4d3630094879dbf38de6b427095155248f33b47afa4bb",
+  "originHash" : "4bb9a2e166918b32a7091fff12aa92edcbd7b2ab0fda99017843348d89a3cc5e",
   "pins" : [
     {
       "identity" : "codeeditorview",
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kkebo/html-entity-coder",
       "state" : {
-        "revision" : "9838762cd554b667d10c88079a26406ce451aa22",
-        "version" : "1.0.0"
+        "revision" : "78ab7cbfa4de21282d02117b12990d306780b324",
+        "version" : "1.0.1"
       }
     },
     {
