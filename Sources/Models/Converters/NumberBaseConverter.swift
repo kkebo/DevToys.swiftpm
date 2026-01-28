@@ -2,7 +2,7 @@ struct NumberBaseConverter {
     var isFormatOn = true
 
     func convert(
-        _ value: Int,
+        _ value: Int128,
         to type: NumberType,
         uppercase: Bool = true
     ) -> String {
@@ -17,7 +17,7 @@ struct NumberBaseConverter {
         if type != .decimal && value < 0 {
             // 2's complement
             converted = .init(
-                UInt(bitPattern: value),
+                UInt128(bitPattern: value),
                 radix: type.radix,
                 uppercase: uppercase
             )
