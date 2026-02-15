@@ -59,7 +59,7 @@ extension Sidebar: View {
             }
         }
         #if DEBUG
-            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+            if Bundle.main.isPlaygroundPreview {
                 Section("Debug") {
                     #if TESTING_ENABLED
                         UnitTestsButton()

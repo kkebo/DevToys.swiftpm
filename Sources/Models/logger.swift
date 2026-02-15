@@ -2,7 +2,7 @@
     import Logging
     import LoggingPlayground
 
-    import class Foundation.ProcessInfo
+    import class Foundation.Bundle
 
     let logger = Logger(label: "main")
 #else
@@ -13,8 +13,7 @@
 
 func initializeLogger() {
     #if DEBUG
-        // Use swift-log-playground only if running on Swift Playground or Xcode Previews
-        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+        if Bundle.main.isPlayground {
             LoggingSystem.bootstrap { PlaygroundHandler(label: $0) }
         }
     #endif
