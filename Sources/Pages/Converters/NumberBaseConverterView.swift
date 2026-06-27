@@ -22,12 +22,13 @@ extension NumberBaseConverterView: View {
             }
 
             if !self.state.input.isEmpty && self.state.inputValue == nil {
-                HStack {
+                Label {
+                    Text("The current value isn't valid")
+                } icon: {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundStyle(.yellow)
-                    Text("The current value isn't valid")
-                    Spacer()
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
                 .background(.yellow.opacity(0.2))
                 .cornerRadius(8)
