@@ -16,12 +16,13 @@ extension TimestampConverterView: View {
             if !self.state.timestampString.isEmpty
                 && self.state.timestamp == nil
             {
-                HStack {
+                Label {
+                    Text("Invalid value")
+                } icon: {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundStyle(.yellow)
-                    Text("Invalid value")
-                    Spacer()
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
                 .background(.yellow.opacity(0.2))
                 .cornerRadius(8)
