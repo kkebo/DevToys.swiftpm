@@ -1,6 +1,6 @@
-import CryptoKit
+private import CryptoKit
 
-import struct Foundation.Data
+private import struct Foundation.Data
 
 struct HashGenerator {
     var algorithm = HashAlgorithm.md5
@@ -37,7 +37,7 @@ struct HashGenerator {
         case .hex:
             let format = self.isUppercase ? "%02X" : "%02x"
             return outputData.lazy
-                .map { String(format: format, $0) }
+                .map { unsafe String(format: format, $0) }
                 .joined()
         case .base64:
             return outputData.base64EncodedString()
@@ -46,6 +46,7 @@ struct HashGenerator {
 }
 
 #if TESTING_ENABLED
+    private import Foundation
     import PlaygroundTester
 
     @objcMembers

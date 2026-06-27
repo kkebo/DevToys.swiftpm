@@ -1,4 +1,4 @@
-import SwiftUI
+private import Foundation
 
 struct Strings {
     let shortTitle: String

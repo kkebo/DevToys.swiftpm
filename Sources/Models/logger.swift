@@ -1,8 +1,8 @@
 #if DEBUG
     import Logging
-    import LoggingPlayground
+    private import LoggingPlayground
 
-    import class Foundation.Bundle
+    private import class Foundation.Bundle
 
     let logger = Logger(label: "main")
 #else

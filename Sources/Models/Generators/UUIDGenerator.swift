@@ -1,18 +1,18 @@
-import func Darwin.uuid_generate_time
-import typealias Darwin.uuid_t
-import struct Foundation.UUID
+private import func Darwin.uuid_generate_time
+private import typealias Darwin.uuid_t
+private import struct Foundation.UUID
 
 extension UUID {
     fileprivate static func timeBased() -> Self {
         let ptr = UnsafeMutablePointer<uuid_t>.allocate(capacity: 1)
-        defer { ptr.deallocate() }
-        ptr.withMemoryRebound(
+        defer { unsafe ptr.deallocate() }
+        unsafe ptr.withMemoryRebound(
             to: UInt8.self,
             capacity: MemoryLayout<uuid_t>.size
         ) {
-            uuid_generate_time($0)
+            unsafe uuid_generate_time($0)
         }
-        return .init(uuid: ptr.pointee)
+        return .init(uuid: unsafe ptr.pointee)
     }
 }
 
@@ -44,7 +44,7 @@ struct UUIDGenerator {
 }
 
 #if TESTING_ENABLED
-    import Darwin
+    private import Foundation
     import PlaygroundTester
 
     @objcMembers

@@ -1,4 +1,4 @@
-import HTMLEntityCoder
+private import HTMLEntityCoder
 
 struct HTMLCoder {
     static func encode(_ input: String) -> String {
@@ -11,7 +11,7 @@ struct HTMLCoder {
 }
 
 #if TESTING_ENABLED
-    import Foundation
+    private import Foundation
     import PlaygroundTester
 
     @objcMembers

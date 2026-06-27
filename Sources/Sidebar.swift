@@ -1,4 +1,4 @@
-import ExportIPAUI
+private import ExportIPAUI
 import SwiftUI
 
 struct Sidebar {

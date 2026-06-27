@@ -1,4 +1,4 @@
-import Ink
+private import Ink
 
 struct MarkdownCompiler {
     private let parser = MarkdownParser()

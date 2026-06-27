@@ -1,7 +1,7 @@
-import JWTDecode
+private import JWTDecode
 
-import class Foundation.DispatchQueue
-import class Foundation.JSONSerialization
+private import class Foundation.DispatchQueue
+private import class Foundation.JSONSerialization
 
 enum JWTDecoderError {
     case headerEncodingError
@@ -42,6 +42,7 @@ struct JWTDecoder {
 }
 
 #if TESTING_ENABLED
+    private import Foundation
     import PlaygroundTester
 
     @objcMembers

@@ -1,8 +1,8 @@
 import Observation
-import SwiftUI
 
-import struct Foundation.Calendar
-import struct Foundation.Date
+private import struct Foundation.Calendar
+private import struct Foundation.Date
+import struct SwiftUI.Binding
 
 @Observable
 final class TimestampConverterViewState {

@@ -1,7 +1,7 @@
-import UniYAML
+private import UniYAML
 
-import struct Foundation.Data
-import class Foundation.JSONSerialization
+private import struct Foundation.Data
+private import class Foundation.JSONSerialization
 
 struct JSONYAMLConverter {
     static func convert(
@@ -27,7 +27,7 @@ struct JSONYAMLConverter {
 }
 
 #if TESTING_ENABLED
-    import Foundation
+    private import Foundation
     import PlaygroundTester
 
     @objcMembers

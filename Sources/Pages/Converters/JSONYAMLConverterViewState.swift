@@ -1,5 +1,5 @@
 import Observation
-import UniYAML
+private import UniYAML
 
 @Observable
 final class JSONYAMLConverterViewState {
