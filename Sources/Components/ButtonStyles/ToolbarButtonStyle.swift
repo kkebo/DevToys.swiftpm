@@ -1,28 +1,21 @@
 import SwiftUI
 
-private struct ToolbarButtonLabelStyle {
+struct ToolbarButtonStyle {
     @Environment(\.horizontalSizeClass) private var hSizeClass
     @ScaledMetric private var iconSize = 20
 }
 
-extension ToolbarButtonLabelStyle: LabelStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.icon.frame(width: self.iconSize, height: self.iconSize)
-            if self.hSizeClass != .compact {
-                configuration.title
-            }
-        }
-    }
-}
-
-struct ToolbarButtonStyle {}
-
 extension ToolbarButtonStyle: PrimitiveButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
-        Button(configuration)
-            .labelStyle(ToolbarButtonLabelStyle())
-            .buttonStyle(.bordered)
+        if self.hSizeClass == .compact {
+            Button(configuration)
+                .labelStyle(.iconOnly)
+                .buttonStyle(.bordered)
+        } else {
+            Button(configuration)
+                .labelStyle(.titleAndIcon)
+                .buttonStyle(.bordered)
+        }
     }
 }
 
