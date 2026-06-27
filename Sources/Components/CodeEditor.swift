@@ -1,4 +1,4 @@
-@preconcurrency import CodeEditorView
+@unsafe @preconcurrency import CodeEditorView
 import SwiftUI
 
 struct CodeEditor {
