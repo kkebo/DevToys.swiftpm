@@ -1,4 +1,4 @@
-import class Foundation.Bundle
+private import class Foundation.Bundle
 
 extension Bundle {
     var isPlayground: Bool {

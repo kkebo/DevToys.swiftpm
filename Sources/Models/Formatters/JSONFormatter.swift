@@ -1,4 +1,4 @@
-import SwiftJSONFormatter
+private import SwiftJSONFormatter
 
 struct JSONFormatter {
     var indentation = JSONIndentation.twoSpaces
@@ -14,7 +14,7 @@ struct JSONFormatter {
 }
 
 #if TESTING_ENABLED
-    import Foundation
+    private import Foundation
     import PlaygroundTester
 
     @objcMembers

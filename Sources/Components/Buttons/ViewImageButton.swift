@@ -1,4 +1,4 @@
-import QuickLook
+private import QuickLook
 import SwiftUI
 
 struct ViewImageButton {

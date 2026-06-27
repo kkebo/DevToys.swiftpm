@@ -1,6 +1,8 @@
-import CoreGraphics
-import ImageIO
-import UniformTypeIdentifiers
+private import CoreGraphics
+private import ImageIO
+private import UniformTypeIdentifiers
+
+import struct Foundation.URL
 
 extension CGImage {
     func save() -> URL? {

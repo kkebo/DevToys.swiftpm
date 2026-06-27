@@ -1,6 +1,6 @@
-import CryptoKit
+private import CryptoKit
 
-import struct Foundation.Data
+private import struct Foundation.Data
 
 struct HashGenerator {
     var algorithm = HashAlgorithm.md5
@@ -46,6 +46,7 @@ struct HashGenerator {
 }
 
 #if TESTING_ENABLED
+    private import Foundation
     import PlaygroundTester
 
     @objcMembers

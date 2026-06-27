@@ -1,4 +1,6 @@
+private import Logging
 import SwiftUI
+private import UniformTypeIdentifiers
 
 struct OpenFileButton {
     @Binding var text: String

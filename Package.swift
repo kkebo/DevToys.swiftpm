@@ -51,6 +51,10 @@ let package = Package(
                 .define("TESTING_ENABLED", .when(configuration: .debug)),
                 // Swift 7
                 .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault"),
+                .enableUpcomingFeature("MemberImportVisibility"),
+                .enableUpcomingFeature("InferIsolatedConformances"),
+                .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
             ]
         )
     ]

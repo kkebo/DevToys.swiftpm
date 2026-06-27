@@ -52,6 +52,7 @@ struct Base64Coder {
 }
 
 #if TESTING_ENABLED
+    private import Foundation
     import PlaygroundTester
 
     @objcMembers

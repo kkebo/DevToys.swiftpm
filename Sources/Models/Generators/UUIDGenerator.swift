@@ -1,6 +1,6 @@
-import func Darwin.uuid_generate_time
-import typealias Darwin.uuid_t
-import struct Foundation.UUID
+private import func Darwin.uuid_generate_time
+private import typealias Darwin.uuid_t
+private import struct Foundation.UUID
 
 extension UUID {
     fileprivate static func timeBased() -> Self {
@@ -44,7 +44,7 @@ struct UUIDGenerator {
 }
 
 #if TESTING_ENABLED
-    import Darwin
+    private import Foundation
     import PlaygroundTester
 
     @objcMembers
