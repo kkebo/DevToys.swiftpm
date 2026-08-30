@@ -100,12 +100,12 @@ This app is a SwiftUI reimplementation of [DevToys](https://devtoys.app), a Swis
 
 ## Target platforms
 
-- iPadOS 18.1 or later
-- iOS 18.1 or later
+- iPadOS 26.0 or later
+- iOS 26.0 or later
   
 ## Build requirements
 
-- Swift Playground 4.7 or later (iPadOS 18.1 or later)
+- Swift Playground 4.7 or later (iPadOS 26.0 or later)
 - Swift Playground 4.7 or later (macOS 15.0 or later)
 - Xcode 26.0 or later (macOS 15.6 or later)
 
