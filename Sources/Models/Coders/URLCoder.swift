@@ -1,3 +1,5 @@
+private import Foundation
+
 struct URLCoder {
     static func encode(_ input: String) -> String? {
         input.addingPercentEncoding(
@@ -14,7 +16,6 @@ struct URLCoder {
 }
 
 #if TESTING_ENABLED
-    private import Foundation
     import PlaygroundTester
 
     @objcMembers

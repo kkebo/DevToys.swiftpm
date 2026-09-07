@@ -1,6 +1,11 @@
-private import Logging
 import SwiftUI
 private import UniformTypeIdentifiers
+
+#if DEBUG
+    private import Logging
+#else
+    private import os.log
+#endif
 
 struct OpenFileButton {
     @Binding var text: String
