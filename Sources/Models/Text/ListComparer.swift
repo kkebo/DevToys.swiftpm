@@ -1,3 +1,4 @@
+private import Foundation
 private import OrderedCollections
 
 private struct CaseInsensitiveString<S: StringProtocol> {
@@ -66,7 +67,6 @@ struct ListComparer {
 }
 
 #if TESTING_ENABLED
-    private import Foundation
     import PlaygroundTester
 
     @objcMembers
