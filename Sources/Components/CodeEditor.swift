@@ -25,12 +25,12 @@ extension CodeEditor: View {
         CodeEditorView.CodeEditor(
             text: self.$text,
             position: self.$position,
-            messages: .constant([])
+            messages: .constant([]),
         )
         .cornerRadius(8)
         .environment(
             \.codeEditorTheme,
-            self.colorScheme == .dark ? Self.defaultDark : Self.defaultLight
+            self.colorScheme == .dark ? Self.defaultDark : Self.defaultLight,
         )
     }
 }

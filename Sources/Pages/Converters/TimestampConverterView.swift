@@ -31,13 +31,13 @@ extension TimestampConverterView: View {
             DatePicker(
                 self.hSizeClass == .compact ? "UTC" : "UTC Date and Time",
                 selection: self.state.date,
-                displayedComponents: [.date, .hourAndMinute]
+                displayedComponents: [.date, .hourAndMinute],
             )
             .environment(\.timeZone, .gmt)
             DatePicker(
                 self.hSizeClass == .compact ? "Local" : "Local Date and Time",
                 selection: self.state.date,
-                displayedComponents: [.date, .hourAndMinute]
+                displayedComponents: [.date, .hourAndMinute],
             )
         }
         .navigationTitle(Tool.timestampConverter.strings.localizedLongTitle)
@@ -52,7 +52,7 @@ extension TimestampConverterView: View {
             HStack {
                 TextField(
                     "Unix Timestamp",
-                    text: self.$state.timestampString
+                    text: self.$state.timestampString,
                 )
                 .modifier(ClearButtonModifier(text: self.$state.timestampString))
                 .keyboardType(.numberPad)
@@ -63,8 +63,8 @@ extension TimestampConverterView: View {
                     "",
                     value: .init(
                         get: { self.state.timestamp ?? 0 },
-                        set: { self.state.timestampString = .init($0) }
-                    )
+                        set: { self.state.timestampString = .init($0) },
+                    ),
                 )
                 .labelsHidden()
                 .disabled(self.state.timestamp == nil)

@@ -50,13 +50,13 @@ extension LoremIpsumGeneratorView: View {
                     Stepper(
                         "",
                         value: self.$state.length,
-                        in: 1...Int(Int32.max)
+                        in: 1...Int(Int32.max),
                     )
                     .labelsHidden()
                 }
                 ConfigurationRow(
                     "Start with '\(LoremIpsumGenerator.loremIpsumPrefix)...'",
-                    systemImage: "gearshape"
+                    systemImage: "gearshape",
                 ) {
                     Toggle("", isOn: self.$state.generator.startWithLoremIpsum)
                         .tint(.accentColor)

@@ -7,7 +7,7 @@ let toolGroups: [ToolGroup] = [
             .jsonYAMLConverter,
             .numberBaseConverter,
             .timestampConverter,
-        ]
+        ],
     ),
     .init(
         name: "Encoders / Decoders",
@@ -17,11 +17,11 @@ let toolGroups: [ToolGroup] = [
             .htmlCoder,
             .jwtDecoder,
             .urlCoder,
-        ]
+        ],
     ),
     .init(
         name: "Formatters",
-        tools: [.jsonFormatter]
+        tools: [.jsonFormatter],
     ),
     .init(
         name: "Generators",
@@ -29,22 +29,22 @@ let toolGroups: [ToolGroup] = [
             .hashGenerator,
             .loremIpsumGenerator,
             .uuidGenerator,
-        ]
+        ],
     ),
     .init(
         name: "Graphic",
-        tools: []
+        tools: [],
     ),
     .init(
         name: "Testers",
-        tools: []
+        tools: [],
     ),
     .init(
         name: "Text",
         tools: [
             .listComparer,
             .markdownPreview,
-        ]
+        ],
     ),
 ]
 
@@ -71,91 +71,91 @@ enum Tool: String {
             .init(
                 shortTitle: "All tools",
                 longTitle: "All tools",
-                description: ""
+                description: "",
             )
         case .base64ImageCoder:
             .init(
                 shortTitle: "Base64 Image Decoder",
                 longTitle: "Base64 Image Decoder",
-                description: "Decode Base64 image data"
+                description: "Decode Base64 image data",
             )
         case .base64Coder:
             .init(
                 shortTitle: "Base64 Text",
                 longTitle: "Base64 Text Encoder / Decoder",
-                description: "Encode and decode Base64 text data"
+                description: "Encode and decode Base64 text data",
             )
         case .hashGenerator:
             .init(
                 shortTitle: "Hash",
                 longTitle: "Hash Generator",
-                description: "Calculate hash from text data"
+                description: "Calculate hash from text data",
             )
         case .htmlCoder:
             .init(
                 shortTitle: "HTML",
                 longTitle: "HTML Text Encoder / Decoder",
-                description: "Encode and decode HTML text data"
+                description: "Encode and decode HTML text data",
             )
         case .jsonFormatter:
             .init(
                 shortTitle: "JSON",
                 longTitle: "JSON Formatter",
-                description: "Indent or minify JSON data"
+                description: "Indent or minify JSON data",
             )
         case .jsonYAMLConverter:
             .init(
                 shortTitle: "JSON <> YAML",
                 longTitle: "JSON <> YAML Converter",
-                description: "Convert JSON data to YAML and vice versa"
+                description: "Convert JSON data to YAML and vice versa",
             )
         case .jwtDecoder:
             .init(
                 shortTitle: "JWT Decoder",
                 longTitle: "JWT Decoder",
-                description: "Decode JSON Web Token"
+                description: "Decode JSON Web Token",
             )
         case .listComparer:
             .init(
                 shortTitle: "List Compare",
                 longTitle: "List Comparer",
-                description: "Compare two lists"
+                description: "Compare two lists",
             )
         case .loremIpsumGenerator:
             .init(
                 shortTitle: "Lorem Ipsum",
                 longTitle: "Lorem Ipsum Generator",
-                description: "Generate Lorem Ipsum placeholder text"
+                description: "Generate Lorem Ipsum placeholder text",
             )
         case .markdownPreview:
             .init(
                 shortTitle: "Markdown Preview",
                 longTitle: "Markdown Preview",
-                description: "Preview a Markdown document"
+                description: "Preview a Markdown document",
             )
         case .numberBaseConverter:
             .init(
                 shortTitle: "Number Base",
                 longTitle: "Number Base Converter",
-                description: "Convert numbers from one base to another"
+                description: "Convert numbers from one base to another",
             )
         case .timestampConverter:
             .init(
                 shortTitle: "Timestamp",
                 longTitle: "Unix Timestamp Converter",
-                description: "Convert timestamp to human-readable date and vice versa"
+                description: "Convert timestamp to human-readable date and vice versa",
             )
         case .urlCoder:
             .init(
                 shortTitle: "URL",
                 longTitle: "URL Encoder / Decoder",
-                description: "Encode or decode all the applicable characters to their corresponding URL entities"
+                description: "Encode or decode all the applicable characters to their corresponding URL entities",
             )
         case .uuidGenerator:
             .init(
                 shortTitle: "UUID",
                 longTitle: "UUID Generator",
-                description: "Generate UUIDs version 1 and 4 (GUID)"
+                description: "Generate UUIDs version 1 and 4 (GUID)",
             )
         }
     }

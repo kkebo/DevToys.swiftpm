@@ -16,7 +16,7 @@ struct Strings {
     init(
         shortTitle: String,
         longTitle: String,
-        description: String
+        description: String,
     ) {
         self.shortTitle = shortTitle
         self.longTitle = longTitle

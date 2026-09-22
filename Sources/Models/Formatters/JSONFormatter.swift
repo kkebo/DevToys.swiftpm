@@ -60,7 +60,7 @@ struct JSONFormatter {
                       }
                     }}
                     """
-                )
+                ),
             )
         }
 
@@ -83,7 +83,7 @@ struct JSONFormatter {
                       }
                     }}
                     """
-                )
+                ),
             )
         }
     }

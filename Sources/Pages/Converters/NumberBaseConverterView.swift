@@ -43,8 +43,8 @@ extension NumberBaseConverterView: View {
                             self.state.inputType = .hexadecimal
                             self.state.hexadecimal = $0
                             self.state.formatText(of: .hexadecimal)
-                        }
-                    )
+                        },
+                    ),
                 )
                 .focused(self.$focusedField, equals: .hexadecimal)
                 self.inputSection(
@@ -55,8 +55,8 @@ extension NumberBaseConverterView: View {
                             self.state.inputType = .decimal
                             self.state.decimal = $0
                             self.state.formatText(of: .decimal)
-                        }
-                    )
+                        },
+                    ),
                 )
                 .focused(self.$focusedField, equals: .decimal)
                 self.inputSection(
@@ -67,8 +67,8 @@ extension NumberBaseConverterView: View {
                             self.state.inputType = .octal
                             self.state.octal = $0
                             self.state.formatText(of: .octal)
-                        }
-                    )
+                        },
+                    ),
                 )
                 .focused(self.$focusedField, equals: .octal)
                 self.inputSection(
@@ -79,8 +79,8 @@ extension NumberBaseConverterView: View {
                             self.state.inputType = .binary
                             self.state.binary = $0
                             self.state.formatText(of: .binary)
-                        }
-                    )
+                        },
+                    ),
                 )
                 .focused(self.$focusedField, equals: .binary)
             }
@@ -98,7 +98,7 @@ extension NumberBaseConverterView: View {
 
     private func inputSection(
         type: NumberType,
-        text: Binding<String>
+        text: Binding<String>,
     ) -> some View {
         ToySection(LocalizedStringKey(type.rawValue.capitalized)) {
             InputButtons(text: text)

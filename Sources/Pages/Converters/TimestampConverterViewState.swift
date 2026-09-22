@@ -25,7 +25,7 @@ final class TimestampConverterViewState {
             },
             set: {
                 self.timestampString = .init(Int($0.timeIntervalSince1970))
-            }
+            },
         )
     }
 

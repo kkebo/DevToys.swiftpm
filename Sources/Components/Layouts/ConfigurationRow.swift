@@ -20,7 +20,7 @@ struct ConfigurationRow<Title: View, Content: View> {
     init<T: View>(
         systemImage name: String,
         @ViewBuilder title: () -> T,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) where Title == VStack<T> {
         self.label = Label {
             VStack(alignment: .leading, spacing: 10) {
@@ -35,7 +35,7 @@ struct ConfigurationRow<Title: View, Content: View> {
     init(
         _ titleKey: LocalizedStringKey,
         systemImage name: String,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) where Title == Text {
         self.label = Label(titleKey, systemImage: name)
         self.content = content()
@@ -45,7 +45,7 @@ struct ConfigurationRow<Title: View, Content: View> {
     init<S: StringProtocol>(
         _ title: S,
         systemImage name: String,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) where Title == Text {
         self.label = Label(title, systemImage: name)
         self.content = content()

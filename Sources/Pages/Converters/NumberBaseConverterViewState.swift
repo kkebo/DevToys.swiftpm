@@ -54,7 +54,7 @@ final class NumberBaseConverterViewState {
         }
         self.inputValue = .init(
             String(input.filter { !$0.isWhitespace && $0 != "," }),
-            radix: self.inputType.radix
+            radix: self.inputType.radix,
         )
     }
 
@@ -67,21 +67,21 @@ final class NumberBaseConverterViewState {
         case (let value?, .decimal):
             self.hexadecimal = self.converter.convert(
                 value,
-                to: .hexadecimal
+                to: .hexadecimal,
             )
             self.octal = self.converter.convert(value, to: .octal)
             self.binary = self.converter.convert(value, to: .binary)
         case (let value?, .octal):
             self.hexadecimal = self.converter.convert(
                 value,
-                to: .hexadecimal
+                to: .hexadecimal,
             )
             self.decimal = self.converter.convert(value, to: .decimal)
             self.binary = self.converter.convert(value, to: .binary)
         case (let value?, .binary):
             self.hexadecimal = self.converter.convert(
                 value,
-                to: .hexadecimal
+                to: .hexadecimal,
             )
             self.decimal = self.converter.convert(value, to: .decimal)
             self.octal = self.converter.convert(value, to: .octal)
@@ -110,7 +110,7 @@ final class NumberBaseConverterViewState {
         case .hexadecimal:
             self.hexadecimal = self.converter.convert(
                 inputValue,
-                to: .hexadecimal
+                to: .hexadecimal,
             )
         case .decimal:
             self.decimal = self.converter.convert(inputValue, to: .decimal)

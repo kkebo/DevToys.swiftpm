@@ -61,11 +61,11 @@ struct Base64Coder {
             let coder = Base64Coder()
             AssertEqual(
                 "SGVsbG8gdGhlcmUgIQ==",
-                other: coder.encode("Hello there !")
+                other: coder.encode("Hello there !"),
             )
             AssertEqual(
                 "8J+rgw==",
-                other: coder.encode("🫃")
+                other: coder.encode("🫃"),
             )
         }
 
@@ -73,11 +73,11 @@ struct Base64Coder {
             let coder = Base64Coder()
             AssertEqual(
                 "Hello there !",
-                other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
+                other: coder.decode("SGVsbG8gdGhlcmUgIQ=="),
             )
             AssertEqual(
                 "🫃",
-                other: coder.decode("8J+rgw==")
+                other: coder.decode("8J+rgw=="),
             )
         }
 
@@ -86,11 +86,11 @@ struct Base64Coder {
             coder.encoding = .ascii
             AssertEqual(
                 "SGVsbG8gdGhlcmUgIQ==",
-                other: coder.encode("Hello there !")
+                other: coder.encode("Hello there !"),
             )
             AssertEqual(
                 "77+977+977+977+9",
-                other: coder.encode("🫃")
+                other: coder.encode("🫃"),
             )
         }
 
@@ -99,11 +99,11 @@ struct Base64Coder {
             coder.encoding = .ascii
             AssertEqual(
                 "Hello there !",
-                other: coder.decode("SGVsbG8gdGhlcmUgIQ==")
+                other: coder.decode("SGVsbG8gdGhlcmUgIQ=="),
             )
             AssertEqual(
                 "������������",
-                other: coder.decode("77+977+977+977+9")
+                other: coder.decode("77+977+977+977+9"),
             )
         }
     }

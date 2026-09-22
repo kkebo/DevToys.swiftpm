@@ -6,7 +6,7 @@ struct ToySection<Title: View, Content: View> {
 
     init(
         _ titleKey: LocalizedStringKey,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) where Title == Text {
         self.title = Text(titleKey)
         self.content = content()
@@ -15,7 +15,7 @@ struct ToySection<Title: View, Content: View> {
     @_disfavoredOverload
     init<S: StringProtocol>(
         _ title: S,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) where Title == Text {
         self.title = Text(title)
         self.content = content()
@@ -23,7 +23,7 @@ struct ToySection<Title: View, Content: View> {
 
     init(
         @ViewBuilder _ title: () -> Title,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) {
         self.title = title()
         self.content = content()
@@ -33,7 +33,7 @@ struct ToySection<Title: View, Content: View> {
     init<Toolbar: View>(
         _ titleKey: LocalizedStringKey,
         @ViewBuilder toolbar: () -> Toolbar,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) where Title == HStack<TupleView<(Text, Spacer, Toolbar)>> {
         self.title = HStack {
             Text(titleKey)
@@ -48,7 +48,7 @@ struct ToySection<Title: View, Content: View> {
     init<S: StringProtocol, Toolbar: View>(
         _ title: S,
         @ViewBuilder toolbar: () -> Toolbar,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) where Title == HStack<TupleView<(Text, Spacer, Toolbar)>> {
         self.title = HStack {
             Text(title)
@@ -62,7 +62,7 @@ struct ToySection<Title: View, Content: View> {
     init<T: View, Toolbar: View>(
         @ViewBuilder _ title: () -> T,
         @ViewBuilder toolbar: () -> Toolbar,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) where Title == HStack<TupleView<(T, Spacer, Toolbar)>> {
         self.title = HStack {
             title()

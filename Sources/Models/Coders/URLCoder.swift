@@ -23,14 +23,14 @@ struct URLCoder {
         func testEncode() {
             AssertEqual(
                 "Hello%20there%20%21",
-                other: URLCoder.encode("Hello there !")
+                other: URLCoder.encode("Hello there !"),
             )
         }
 
         func testDecode() {
             AssertEqual(
                 "Hello there !",
-                other: URLCoder.decode("Hello%20there%20%21")
+                other: URLCoder.decode("Hello%20there%20%21"),
             )
         }
     }

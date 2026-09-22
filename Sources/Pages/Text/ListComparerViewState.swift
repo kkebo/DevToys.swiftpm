@@ -21,7 +21,7 @@ final class ListComparerViewState {
             a: self.a,
             b: self.b,
             caseSensitive: self.isCaseSensitive,
-            mode: self.comparisonMode
+            mode: self.comparisonMode,
         )
     }
 }
