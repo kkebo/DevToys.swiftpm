@@ -15,7 +15,7 @@ struct OpenFileButton {
     var encodingPickerPresented: Binding<Bool> {
         .init(
             get: { self.fileToBeOpenedWithEncoding != nil },
-            set: { if !$0 { self.fileToBeOpenedWithEncoding = nil } }
+            set: { if !$0 { self.fileToBeOpenedWithEncoding = nil } },
         )
     }
 
@@ -75,7 +75,7 @@ extension OpenFileButton: View {
         .hoverEffect()
         .fileImporter(
             isPresented: self.$isImporterPresented,
-            allowedContentTypes: [.data]
+            allowedContentTypes: [.data],
         ) {
             switch $0 {
             case .success(let url):
@@ -87,7 +87,7 @@ extension OpenFileButton: View {
         .alert(
             "Choose Character Encoding",
             isPresented: self.encodingPickerPresented,
-            presenting: self.fileToBeOpenedWithEncoding
+            presenting: self.fileToBeOpenedWithEncoding,
         ) { url in
             Button("Shift_JIS") {
                 self.openFile(url, using: .shiftJIS)

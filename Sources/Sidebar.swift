@@ -45,7 +45,7 @@ extension Sidebar: View {
         }
         .searchable(
             text: self.$searchQuery,
-            prompt: "Type to search for tools..."
+            prompt: "Type to search for tools...",
         )
     }
 

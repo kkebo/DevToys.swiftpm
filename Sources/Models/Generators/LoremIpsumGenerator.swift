@@ -47,7 +47,7 @@ struct LoremIpsumGenerator {
             generator.startWithLoremIpsum = true
             AssertEqual(
                 LoremIpsumGenerator.loremIpsumPrefix,
-                other: generator.generate()
+                other: generator.generate(),
             )
         }
 
@@ -57,7 +57,7 @@ struct LoremIpsumGenerator {
             generator.length = 3
             AssertEqual(
                 3,
-                other: generator.generate().split(separator: ".").count
+                other: generator.generate().split(separator: ".").count,
             )
 
             generator.startWithLoremIpsum = true
@@ -66,7 +66,7 @@ struct LoremIpsumGenerator {
                 other: String(
                     generator.generate()
                         .prefix(LoremIpsumGenerator.loremIpsumPrefix.count)
-                )
+                ),
             )
         }
 
@@ -75,7 +75,7 @@ struct LoremIpsumGenerator {
             generator.length = 3
             AssertEqual(
                 3,
-                other: generator.generate().split(separator: "\n").count
+                other: generator.generate().split(separator: "\n").count,
             )
 
             generator.startWithLoremIpsum = true
@@ -84,7 +84,7 @@ struct LoremIpsumGenerator {
                 other: String(
                     generator.generate()
                         .prefix(LoremIpsumGenerator.loremIpsumPrefix.count)
-                )
+                ),
             )
         }
     }

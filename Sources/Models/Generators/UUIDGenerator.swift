@@ -8,7 +8,7 @@ extension UUID {
         defer { unsafe ptr.deallocate() }
         unsafe ptr.withMemoryRebound(
             to: UInt8.self,
-            capacity: MemoryLayout<uuid_t>.size
+            capacity: MemoryLayout<uuid_t>.size,
         ) {
             unsafe uuid_generate_time($0)
         }

@@ -32,7 +32,7 @@ extension HashGeneratorView: View {
                 }
                 ConfigurationRow(
                     "Output Type",
-                    systemImage: "slider.horizontal.3"
+                    systemImage: "slider.horizontal.3",
                 ) {
                     Picker("", selection: self.$state.generator.outputType) {
                         ForEach(HashOutputType.allCases) {

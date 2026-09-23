@@ -19,9 +19,9 @@ struct JWTDecoder {
             let header = String(
                 data: try JSONSerialization.data(
                     withJSONObject: jwt.header,
-                    options: [.prettyPrinted, .sortedKeys]
+                    options: [.prettyPrinted, .sortedKeys],
                 ),
-                encoding: .utf8
+                encoding: .utf8,
             )
         else {
             throw JWTDecoderError.headerEncodingError
@@ -30,9 +30,9 @@ struct JWTDecoder {
             let payload = String(
                 data: try JSONSerialization.data(
                     withJSONObject: jwt.body,
-                    options: [.prettyPrinted, .sortedKeys]
+                    options: [.prettyPrinted, .sortedKeys],
                 ),
-                encoding: .utf8
+                encoding: .utf8,
             )
         else {
             throw JWTDecoderError.payloadEncodingError
@@ -58,7 +58,7 @@ struct JWTDecoder {
                   "typ" : "JWT"
                 }
                 """,
-                other: header
+                other: header,
             )
             AssertEqual(
                 """
@@ -68,7 +68,7 @@ struct JWTDecoder {
                   "sub" : "1234567890"
                 }
                 """,
-                other: payload
+                other: payload,
             )
         }
     }

@@ -9,7 +9,7 @@ struct ResponsiveStack<Content: View> {
     init(
         alignment: Alignment = .center,
         spacing: CGFloat? = nil,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) {
         self.alignment = alignment
         self.spacing = spacing

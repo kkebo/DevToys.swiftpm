@@ -20,7 +20,7 @@ extension Base64CoderView: View {
                 } content: {
                     Toggle(
                         self.state.encodeMode ? "Encode" : "Decode",
-                        isOn: self.$state.encodeMode
+                        isOn: self.$state.encodeMode,
                     )
                     .tint(.accentColor)
                     .fixedSize(horizontal: true, vertical: false)

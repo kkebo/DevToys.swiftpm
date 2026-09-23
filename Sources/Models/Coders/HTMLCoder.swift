@@ -19,14 +19,14 @@ struct HTMLCoder {
         func testEncode() {
             AssertEqual(
                 "&lt;Hello World&gt;",
-                other: HTMLCoder.encode("<Hello World>")
+                other: HTMLCoder.encode("<Hello World>"),
             )
         }
 
         func testDecode() {
             AssertEqual(
                 "<Hello World>",
-                other: HTMLCoder.decode("&lt;Hello World&gt;")
+                other: HTMLCoder.decode("&lt;Hello World&gt;"),
             )
         }
     }

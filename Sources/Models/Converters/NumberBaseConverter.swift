@@ -4,7 +4,7 @@ struct NumberBaseConverter {
     func convert(
         _ value: Int,
         to type: NumberType,
-        uppercase: Bool = true
+        uppercase: Bool = true,
     ) -> String {
         guard value != 0 else {
             guard type == .binary else {
@@ -19,13 +19,13 @@ struct NumberBaseConverter {
             converted = .init(
                 UInt(bitPattern: value),
                 radix: type.radix,
-                uppercase: uppercase
+                uppercase: uppercase,
             )
         } else {
             converted = .init(
                 value,
                 radix: type.radix,
-                uppercase: uppercase
+                uppercase: uppercase,
             )
         }
 
@@ -34,7 +34,7 @@ struct NumberBaseConverter {
             converted =
                 String(
                     repeating: "0",
-                    count: value.leadingZeroBitCount % 4
+                    count: value.leadingZeroBitCount % 4,
                 ) + converted
         }
 
@@ -45,7 +45,7 @@ struct NumberBaseConverter {
 
     private static func format(
         _ value: String,
-        type: NumberType
+        type: NumberType,
     ) -> String {
         value
             .reversed()
@@ -73,16 +73,16 @@ struct NumberBaseConverter {
             var converter = NumberBaseConverter()
             AssertEqual(
                 "75C 710D",
-                other: converter.convert(123_498_765, to: .hexadecimal)
+                other: converter.convert(123_498_765, to: .hexadecimal),
             )
             AssertEqual(
                 "FFFF FFFF FFFF FFFF",
-                other: converter.convert(-1, to: .hexadecimal)
+                other: converter.convert(-1, to: .hexadecimal),
             )
             converter.isFormatOn = false
             AssertEqual(
                 "75C710D",
-                other: converter.convert(123_498_765, to: .hexadecimal)
+                other: converter.convert(123_498_765, to: .hexadecimal),
             )
         }
 
@@ -90,16 +90,16 @@ struct NumberBaseConverter {
             var converter = NumberBaseConverter()
             AssertEqual(
                 "123,498,765",
-                other: converter.convert(123_498_765, to: .decimal)
+                other: converter.convert(123_498_765, to: .decimal),
             )
             AssertEqual(
                 "-1",
-                other: converter.convert(-1, to: .decimal)
+                other: converter.convert(-1, to: .decimal),
             )
             converter.isFormatOn = false
             AssertEqual(
                 "123498765",
-                other: converter.convert(123_498_765, to: .decimal)
+                other: converter.convert(123_498_765, to: .decimal),
             )
         }
 
@@ -107,16 +107,16 @@ struct NumberBaseConverter {
             var converter = NumberBaseConverter()
             AssertEqual(
                 "727 070 415",
-                other: converter.convert(123_498_765, to: .octal)
+                other: converter.convert(123_498_765, to: .octal),
             )
             AssertEqual(
                 "1 777 777 777 777 777 777 777",
-                other: converter.convert(-1, to: .octal)
+                other: converter.convert(-1, to: .octal),
             )
             converter.isFormatOn = false
             AssertEqual(
                 "727070415",
-                other: converter.convert(123_498_765, to: .octal)
+                other: converter.convert(123_498_765, to: .octal),
             )
         }
 
@@ -124,20 +124,20 @@ struct NumberBaseConverter {
             var converter = NumberBaseConverter()
             AssertEqual(
                 "0111 0101 1100 0111 0001 0000 1101",
-                other: converter.convert(123_498_765, to: .binary)
+                other: converter.convert(123_498_765, to: .binary),
             )
             AssertEqual(
                 "1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111",
-                other: converter.convert(-1, to: .binary)
+                other: converter.convert(-1, to: .binary),
             )
             AssertEqual(
                 "0000",
-                other: converter.convert(0, to: .binary)
+                other: converter.convert(0, to: .binary),
             )
             converter.isFormatOn = false
             AssertEqual(
                 "0111010111000111000100001101",
-                other: converter.convert(123_498_765, to: .binary)
+                other: converter.convert(123_498_765, to: .binary),
             )
         }
     }

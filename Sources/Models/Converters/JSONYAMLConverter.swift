@@ -6,7 +6,7 @@ private import class Foundation.JSONSerialization
 struct JSONYAMLConverter {
     static func convert(
         _ input: String,
-        mode: JSONYAMLConversionMode
+        mode: JSONYAMLConversionMode,
     ) throws -> String {
         let inputObject = try UniYAML.decode(input)
         switch mode {
@@ -16,9 +16,9 @@ struct JSONYAMLConverter {
             return String(
                 data: try JSONSerialization.data(
                     withJSONObject: json,
-                    options: [.prettyPrinted, .sortedKeys]
+                    options: [.prettyPrinted, .sortedKeys],
                 ),
-                encoding: .utf8
+                encoding: .utf8,
             ) ?? ""
         case .jsonToYAML:
             return try UniYAML.encode(inputObject, with: .yaml)
@@ -43,7 +43,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 "",
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -56,7 +56,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -69,7 +69,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -88,7 +88,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -105,7 +105,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -122,7 +122,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -135,7 +135,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -148,7 +148,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -176,7 +176,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -193,7 +193,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -222,7 +222,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -241,7 +241,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -260,7 +260,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -285,7 +285,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -320,7 +320,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -359,7 +359,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -385,7 +385,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -419,7 +419,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -444,7 +444,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -472,7 +472,7 @@ struct JSONYAMLConverter {
                 """#
             AssertEqual(
                 json,
-                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON)
+                other: try JSONYAMLConverter.convert(yaml, mode: .yamlToJSON),
             )
         }
 
@@ -481,7 +481,7 @@ struct JSONYAMLConverter {
             let yaml = "a: 3\n"
             AssertEqual(
                 yaml,
-                other: try JSONYAMLConverter.convert(json, mode: .jsonToYAML)
+                other: try JSONYAMLConverter.convert(json, mode: .jsonToYAML),
             )
         }
     }

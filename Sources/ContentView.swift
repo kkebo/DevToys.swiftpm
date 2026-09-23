@@ -22,7 +22,7 @@ extension ContentView: View {
     var body: some View {
         NavigationSplitView(
             columnVisibility: self.$columnVisibility,
-            preferredCompactColumn: self.$preferredCompactColumn
+            preferredCompactColumn: self.$preferredCompactColumn,
         ) {
             Sidebar(state: self.state, selection: self.$tool, searchQuery: self.$searchQuery)
         } detail: {
