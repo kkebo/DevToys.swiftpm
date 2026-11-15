@@ -33,7 +33,7 @@ jobs:
           "$SWIFT" build --sdk "$(xcrun --sdk iphoneos --show-sdk-path)" --triple arm64-apple-ios --explicit-target-dependency-import-check error --force-resolved-versions
   lint:
     runs-on: ubuntu-26.04-arm
-    container: swift:6.4
+    container: swift:6.4.2-resolute@sha256:0384f00cf80f81064a907c249a0ad56a1648906f65075a95b1827e88de666e21
     permissions:
       contents: read
     steps:
