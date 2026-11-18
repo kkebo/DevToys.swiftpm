@@ -1,21 +1,14 @@
 import SwiftUI
 
-private struct ToolbarIconOnlyButtonLabelStyle {
+struct ToolbarIconOnlyButtonStyle {
     @ScaledMetric private var iconSize = 20
 }
-
-extension ToolbarIconOnlyButtonLabelStyle: LabelStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.icon.frame(width: self.iconSize, height: self.iconSize)
-    }
-}
-
-struct ToolbarIconOnlyButtonStyle {}
 
 extension ToolbarIconOnlyButtonStyle: PrimitiveButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         Button(configuration)
-            .labelStyle(ToolbarIconOnlyButtonLabelStyle())
+            .labelReservedIconWidth(self.iconSize)
+            .labelStyle(.iconOnly)
             .buttonStyle(.bordered)
     }
 }
