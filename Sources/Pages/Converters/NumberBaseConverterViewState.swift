@@ -6,7 +6,7 @@ final class NumberBaseConverterViewState {
         didSet { self.formatAllText() }
     }
     var inputType = NumberType.decimal
-    private(set) var inputValue: Int? {
+    private(set) var inputValue: Int64? {
         didSet { self.updateOutputValues() }
     }
     var hexadecimal = "" {
@@ -48,14 +48,22 @@ final class NumberBaseConverterViewState {
     }
 
     private func updateInputValue(from input: String) {
-        guard !input.hasPrefix("-") || self.inputType == .decimal else {
-            self.inputValue = nil
-            return
+        if input.hasPrefix("-") {
+            guard self.inputType == .decimal else {
+                self.inputValue = nil
+                return
+            }
+            self.inputValue = .init(
+                String(input.filter { $0 != "," }),
+                radix: self.inputType.radix,
+            )
+        } else {
+            self.inputValue = UInt64(
+                String(input.filter { !$0.isWhitespace }),
+                radix: self.inputType.radix,
+            )
+            .map(Int64.init(bitPattern:))
         }
-        self.inputValue = .init(
-            String(input.filter { !$0.isWhitespace && $0 != "," }),
-            radix: self.inputType.radix,
-        )
     }
 
     private func updateOutputValues() {
